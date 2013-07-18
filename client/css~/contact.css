@@ -1,0 +1,201 @@
+#contact_wrap {
+width:100%;	        
+position: relative;
+height: 687px;
+}
+#credits {
+width:960px;
+margin:0 auto;
+}
+#page-wrap {
+width: 914px;
+height:77%;
+padding-left: 20px;
+margin: 0 auto;
+background: rgba(255, 255, 255, 0.61);
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+border:1px solid rgba(29, 69, 99, 0.29);
+
+
+-webkit-animation-name: glowz;
+-webkit-animation-duration: .85s;
+-webkit-animation-timing-function: ease-in-out;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-direction: alternate;
+-webkit-animation-delay: 0;
+-webkit-animation-fill-mode: none;
+
+-moz-animation-name: glowz;
+-moz-animation-duration: .85s;
+-moz-animation-timing-function: ease-in-out;
+-moz-animation-iteration-count: infinite;
+-mozkit-animation-direction: alternate;
+-moz-animation-delay: 0;
+-moz-animation-fill-mode: none;
+
+animation-name: glowz;
+animation-duration: .85s;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-direction: alternate;
+animation-delay: 0;
+animation-fill-mode: none;
+
+
+background: url('/images/diagonal-noise.png') repeat;
+}
+
+
+
+@-webkit-keyframes glowz {
+    0% {-webkit-box-shadow: 0px 0px 8px 1px #0069aa;}
+    100% {-webkit-box-shadow: 0px 0px 65px 1px #0069aa;}
+}
+
+@-moz-keyframes glowz {
+    0% {-webkit-box-shadow: 0px 0px 8px 1px #0069aa;}
+    100% {-webkit-box-shadow: 0px 0px 65px 1px #0069aa;}
+}
+
+
+@keyframes glowz {
+    0% {-webkit-box-shadow: 0px 0px 8px 1px #0069aa;}
+    100% {-webkit-box-shadow: 0px 0px 65px 1px #0069aa;}
+}
+
+
+
+
+
+#page-wrap p.charles {
+font-size: 30px;
+font-weight:bold;
+color: rgb(142, 144, 145);
+text-shadow: 1px 2px #334433;
+text-align: center;
+line-height: 1;
+margin-top:15px;
+}
+#contact_wrap #page-wrap .contact_tag {
+font-size: 25px;
+color: black;
+text-shadow: none;
+font-weight: bold;
+font-family: "PT Sans", sans-serif;
+width: 850px;
+text-align: center;
+line-height: 1.12;
+text-shadow: 1px 1px 1px white;
+margin: 12px auto 26px;
+
+}
+#address {
+float:left;
+
+}
+#address .big_map {
+width:272px;
+height:311px;
+background: url('../../images/cali-3.png') 0 0 no-repeat;
+}
+#address .directions h1 {
+font-size: 20px;
+font-weight:bold;
+text-align:left;
+text-shadow: 1px 2px #334433;
+color:rgb(142, 144, 145);
+}
+#address .directions p {
+font-family: "PT Sans", sans-serif;
+font-size: 14px;
+font-weight: bold;
+text-align:left;
+text-shadow:none;
+color:black;
+
+}
+#contact-area {
+width: 600px;
+float: right;
+margin-right:-30px;
+}
+#contact-area .field_input {
+width: 280px;
+height:65px;
+float:left;
+clear:right;
+}
+#contact-area .area_input {
+height: 148px;
+width:540px;
+display:block;
+}
+#contact-area input{
+width:89%;
+}
+#contact-area textarea{
+width:98.5%;
+}
+#contact-area input, #contact-area textarea {
+padding: 5px;
+font-family: Helvetica, sans-serif;
+font-size: 14px;
+margin: 7px 0px 10px 0px;
+border: 1px solid rgb(177, 175, 175);
+-webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+-moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
+outline:none;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+}
+#contact-area textarea:focus, #contact-area input:focus {
+border: 1px solid #72C4FC;
+box-shadow: 0 0 5px #72C4FC;
+    -webkit-box-shadow: 0 0 5px #72C4FC; 
+    -moz-box-shadow: 0 0 5px #72C4FC;
+}
+#contact-area a {
+color: #1d4563;
+font-size: 18px;
+font-family: 'PT sans', sans-serif;
+float: right;
+margin-right: 20px;
+text-decoration:underline;
+margin-top: 18px;
+}
+
+#contact-area input.submit-button {
+background: url('../../images/lrnmre.png') 0 0 no-repeat;
+width:175px;
+height: 58px;
+float:right;
+margin-right:56px;
+margin-top:18px;
+color: white;
+font-family: 'PT sans', sans-serif;
+font-size:16px;
+border: none;
+cursor:pointer;
+box-shadow:none;
+transition: none;
+-webkit-transition:none;
+-moz-transition:none;
+}
+#contact-area input.submit-button:hover {
+background: url('../../images/lrnmre.png') 0 -59px no-repeat;
+box-shadow:none;
+}
+label {
+text-align: right;
+margin-right: 15px;
+width: 100px;
+color:#0069aa;
+font-size: 18px;
+font-family: 'PT sans', sans-serif;
+padding-top: 5px;
+font-size: 16px;
+}

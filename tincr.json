@@ -1,0 +1,10 @@
+{
+	"toFile" : [
+		{"from": "/client/(.+\\.js)",
+		 "to": "/client/$1"},
+		{"from": "/client/(.+\\.css)",
+		 "to": "/client/$1"}
+	]
+}
+
+

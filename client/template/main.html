@@ -1,0 +1,44 @@
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<div id="container">
+			<div class="row_container">
+				<div id="sales_logo">
+					<img class="enlightened" src="../../../images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
+				</div>
+					
+					{{renderPage}}
+				
+			</div>
+			<div id="copy">
+				<p class="copyright">Copyright ConsciousKombucha.com 2013 all rights reserved</p>
+			</div>
+	</div>
+</body>
+
+<template name="page_sales">
+	{{>sales_1}}
+</template>
+
+<template name="page_contact">
+	{{>contact}}
+</template>
+
+<template name="page_home">
+	{{>home}}
+</template>
+
+<template name="page_product">
+	<div id="product_wrapper">
+		{{>product_1}}
+		{{>product_2}}
+		{{>product_3}}
+		{{>product_4}}
+		{{>product_5}}
+		{{>product_6}}
+		{{>product_7}}
+	</div>
+</template>

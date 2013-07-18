@@ -1,0 +1,29 @@
+#home {
+}
+
+.action {
+color: #0065a3; /* text color */
+font-family: "ColaborateLight";
+font-size: 30px;
+text-shadow: 1px 1px 2px rgba(23,23,24,.75); /* drop shadow */
+text-shadow: 0 0 5px rgba(74,144,220,.71); /* outer glow */	
+float: right;
+clear: both;
+text-align: center;
+position: relative;
+top: 88px;
+left: 30px;
+}
+.action a {
+color: #0065a3; /* text color */
+font-family: "ColaborateLight";
+font-size: 30px;
+text-shadow: 1px 1px 2px rgba(23,23,24,.75); /* drop shadow */
+text-shadow: 0 0 5px rgba(74,144,220,.71); /* outer glow */	
+}
+.crest {
+    position: relative;
+	
+    float: right;
+    right: 142px;
+}
