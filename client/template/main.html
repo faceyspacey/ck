@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div id="container">
-			<div class="row_container">
+			<div class="row_container" style="width:512px;">
 				<div id="sales_logo">
 					<img class="enlightened" src="../../../images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
 				</div>
@@ -13,8 +13,8 @@
 					{{renderPage}}
 				
 			</div>
-			<div id="copy">
-				<p class="copyright">Copyright ConsciousKombucha.com 2013 all rights reserved</p>
+			<div id="copy" style="width:100%;left:0%;">
+				<p class="copyright" style="width: 512px;margin: 0 auto; padding-left: 100px;">Copyright ConsciousKombucha.com 2013 all rights reserved</p>
 			</div>
 	</div>
 </body>
@@ -41,4 +41,8 @@
 		{{>product_6}}
 		{{>product_7}}
 	</div>
+</template>
+
+<template name="page_pricing">
+	{{>pricing}}
 </template>
