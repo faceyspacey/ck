@@ -1,126 +1,240 @@
 <template name="pricing">
-	<div id="price_wrapper">
-	    <div class="pricingtable">
-	      <div class="top">
-	        <h2>Grocers</h2>
-				<div class="location"><img src="../../images/deli.png" width="100" height="100" alt="deli"></div>
-	      </div>
-	      <ul class="price_list">
-	        <li>
-				<strong>12</strong> Bottles
-			</li>
-	        <li class="odd">
-				<strong>24</strong> Bottles
-		    </li>
-	        <li>
-				<strong>48</strong> Bottles
-			</li>
-			<li class="odd">
-				<strong>24</strong> Bottles
-		    </li>
-	        <li>
-				<strong>48</strong> Bottles
-			</li>
-	      </ul>
+	
 
-	      <hr>
-		  <div class="bottles_price" style="left: 71px; top: -4px;">
-	     	<img src="../../images/b_price-1.png" width="145" height="203" alt="Bottle Price">
-		  </div>
-	      <div class="order_price" style="top: -11px;">
-	      <p>
-	      		<select>
-				      <option>12 Bottles $120/week</option>
-				      <option>12 Bottles $120/week</option>
-					  <option>12 Bottles $120/week</option>
-				</select>
-	      </p>
+		
+		<div id="price_wrapper">
+			
+			<form method="POST" action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/772138553136742" accept-charset="utf-8" style="margin-bottom:100px;">
 
-	      <a href="#">Order Now</a>
+				<input type="hidden" name="shopping-cart.items.item-1.unit-price.currency" value="USD"/>
+				<input type="hidden" name="shopping-cart.items.item-1.quantity" value="1"/>
+
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.type" value="google"/>
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.period" value="WEEKLY"/>
+
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.times" value="52">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.maximum-charge.currency" value="USD">
+
+
+				<input type="hidden" name="shopping-cart.items.item-1.item-name" value="5 Gallon Weekly Kombucha Keg Refill"/>
+				<input type="hidden" name="shopping-cart.items.item-1.item-description" value="5 Gallon Keg Weekly Refill and Replacement"/>
+				<input type="hidden" name="shopping-cart.items.item-1.unit-price" value="150.00"/>
+
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.maximum-charge" value="150.00">
+
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.item-name" value="5 Gallon Weekly Kombucha Keg Refill">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.item-description" value="5 Gallon Keg Weekly Refill and Replacement">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.unit-price" value="150.00">
+
+
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.quantity" value="1">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.unit-price.currency" value="USD">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.display-disposition" value="OPTIMISTIC">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.url" value="http://www.consciouskombucha.com">
+				<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.description" value="Congratulations! Your Conscious Kombucha Subscription is all Setup!">
+
+				<input type="hidden" name="shopping-cart.items.item-1.digital-content.display-disposition" value="OPTIMISTIC">
+				<input type="hidden" name="shopping-cart.items.item-1.digital-content.description" value="Congratulations! Your Conscious Kombucha Subscription is all Setup!">
+
+				<input type="hidden" name="_charset_"/>
+			
+		    	<div class="pricingtable">
+			      <div class="top">
+			        <h2>Grocers</h2>
+						<div class="location"><img src="../../images/deli.png" width="100" height="100" alt="deli"></div>
+			      </div>
+			      <ul class="price_list">
+			        <li>
+						<strong>12</strong> Bottles
+					</li>
+			        <li class="odd">
+						<strong>24</strong> Bottles
+				    </li>
+			        <li>
+						<strong>48</strong> Bottles
+					</li>
+					<li class="odd">
+						<strong>24</strong> Bottles
+				    </li>
+			        <li>
+						<strong>48</strong> Bottles
+					</li>
+			      </ul>
+
+			      <hr>
+				  <div class="bottles_price" style="left: 71px; top: -4px;">
+			     	<img src="../../images/b_price-1.png" width="145" height="203" alt="Bottle Price">
+				  </div>
+			      <div class="order_price" style="top: -11px;">
+			      <p>
+			      		<select>
+						      <option>12 Bottles $120/week</option>
+						      <option>12 Bottles $120/week</option>
+							  <option>12 Bottles $120/week</option>
+						</select>
+			      </p>
+
+
+				  <input type="submit" name="Google Checkout" alt="Fast checkout through Google" class="buy-button" value="Order Now"/>
+				</div>
+			</div>	
+		</form>	
+
+
+		<form method="POST" action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/772138553136742" accept-charset="utf-8" style="margin-bottom:100px;">
+
+			<input type="hidden" name="shopping-cart.items.item-1.unit-price.currency" value="USD"/>
+			<input type="hidden" name="shopping-cart.items.item-1.quantity" value="1"/>
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.type" value="google"/>
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.period" value="WEEKLY"/>
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.times" value="52">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.maximum-charge.currency" value="USD">
+
+
+			<input type="hidden" name="shopping-cart.items.item-1.item-name" value="3 Five Gallon Weekly Kombucha Keg Refills"/>
+			<input type="hidden" name="shopping-cart.items.item-1.item-description" value="3 Five Gallon Keg Weekly Refills and Replacements"/>
+			<input type="hidden" name="shopping-cart.items.item-1.unit-price" value="420.00"/>
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.maximum-charge" value="420.00">
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.item-name" value="3 Five Gallon Weekly Kombucha Keg Refills">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.item-description" value="3 Five Gallon Keg Weekly Refills and Replacements">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.unit-price" value="420.00">
+
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.quantity" value="1">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.unit-price.currency" value="USD">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.display-disposition" value="OPTIMISTIC">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.url" value="http://www.consciouskombucha.com">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.description" value="Congratulations! Your Conscious Kombucha Subscription is all Setup!">
+
+			<input type="hidden" name="shopping-cart.items.item-1.digital-content.display-disposition" value="OPTIMISTIC">
+			<input type="hidden" name="shopping-cart.items.item-1.digital-content.description" value="Congratulations! Your Conscious Kombucha Subscription is all Setup!">
+
+			<input type="hidden" name="_charset_"/>
+
+		    <div class="pricingtable featured">
+		      <div class="top">
+		        <h2>Offices &Yoga Studios</h2>
+				<div class="location"><img src="../../images/yoga.png" width="100" height="100" alt="Yoga"></div>
+		      </div>
+		      <ul class="price_list">
+		        <li>
+					<strong>12</strong> Bottles
+				</li>
+		        <li class="odd">
+					<strong>24</strong> Bottles
+			    </li>
+		        <li>
+					<strong>48</strong> Bottles
+				</li>
+				<li class="odd">
+					<strong>24</strong> Bottles
+			    </li>
+		        <li>
+					<strong>48</strong> Bottles
+				</li>
+		      </ul>
+
+		      <hr>
+
+			  <div class="wine_price" style="left: 52px; top: -3px;">
+				<img src="../../images/kegerator-3.png" width="177" height="209" >
+	  	
+			  </div>
+			<div class="order_price" style="top: -14px;">
+		      <p>
+		      		<select>
+					      <option>12 Bottles $120/week</option>
+					      <option>12 Bottles $120/week</option>
+						  <option>12 Bottles $120/week</option>
+					</select>
+		      </p>
+
+		      	<input type="submit" name="Google Checkout" alt="Fast checkout through Google" class="buy-button" value="Order Now"/>
+				</div>
+			</div>	
+		</form>
+
+
+
+		<form method="POST" action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/772138553136742" accept-charset="utf-8" style="margin-bottom:100px;">
+
+			<input type="hidden" name="shopping-cart.items.item-1.unit-price.currency" value="USD"/>
+			<input type="hidden" name="shopping-cart.items.item-1.quantity" value="1"/>
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.type" value="google"/>
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.period" value="WEEKLY"/>
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.times" value="52">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.maximum-charge.currency" value="USD">
+
+
+			<input type="hidden" name="shopping-cart.items.item-1.item-name" value="2 Five Gallon Weekly Kombucha Keg Refills"/>
+			<input type="hidden" name="shopping-cart.items.item-1.item-description" value="2 Five Gallon Keg Weekly Refills and Replacements"/>
+			<input type="hidden" name="shopping-cart.items.item-1.unit-price" value="300.00"/>
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.payments.subscription-payment-1.maximum-charge" value="300.00">
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.item-name" value="2 Five Gallon Weekly Kombucha Keg Refills">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.item-description" value="2 Five Gallon Keg Weekly Refills and Replacements">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.unit-price" value="300.00">
+
+
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.quantity" value="1">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.unit-price.currency" value="USD">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.display-disposition" value="OPTIMISTIC">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.url" value="http://www.consciouskombucha.com">
+			<input type="hidden" name="shopping-cart.items.item-1.subscription.recurrent-item.digital-content.description" value="Congratulations! Your Conscious Kombucha Subscription is all Setup!">
+
+			<input type="hidden" name="shopping-cart.items.item-1.digital-content.display-disposition" value="OPTIMISTIC">
+			<input type="hidden" name="shopping-cart.items.item-1.digital-content.description" value="Congratulations! Your Conscious Kombucha Subscription is all Setup!">
+
+			<input type="hidden" name="_charset_"/>
+
+
+		    <div class="pricingtable">
+		      <div class="top">
+		        <h2>Restaurant's & Bars</h2>
+				<div class="location"><img src="../../images/bar_scene.png" width="100" height="100" alt="Bar Scene"></div>
+		      </div>
+		      <ul class="price_list">
+		        <li>
+					<strong>12</strong> Bottles
+				</li>
+		        <li class="odd">
+					<strong>24</strong> Bottles
+			    </li>
+		        <li>
+					<strong>48</strong> Bottles
+				</li>
+				<li class="odd">
+					<strong>24</strong> Bottles
+			    </li>
+		        <li>
+					<strong>48</strong> Bottles
+				</li>
+		      </ul>
+		      <hr>
+
+		      <div class="keg_price" tyle="top: 0px;">
+		      	<img src="../../images/wine_2.png" width="125" height="193" alt="Wine Price">
+		      </div>
+		      <div class="order_price" style="top: 0px;">
+		      <p>
+					<select>
+					      <option>12 Bottles $120/week</option>
+					      <option>12 Bottles $120/week</option>
+						  <option>12 Bottles $120/week</option>
+					</select>
+			  </p>
+
+		      	<input type="submit" name="Google Checkout" alt="Fast checkout through Google" class="buy-button" value="Order Now"/>
+				</div>
+			</div>	
+		</form>
+
 		</div>
-	</div>
-
-	    <div class="pricingtable featured">
-	      <div class="top">
-	        <h2>Offices &Yoga Studios</h2>
-			<div class="location"><img src="../../images/yoga.png" width="100" height="100" alt="Yoga"></div>
-	      </div>
-	      <ul class="price_list">
-	        <li>
-				<strong>12</strong> Bottles
-			</li>
-	        <li class="odd">
-				<strong>24</strong> Bottles
-		    </li>
-	        <li>
-				<strong>48</strong> Bottles
-			</li>
-			<li class="odd">
-				<strong>24</strong> Bottles
-		    </li>
-	        <li>
-				<strong>48</strong> Bottles
-			</li>
-	      </ul>
-
-	      <hr>
-
-		  <div class="wine_price" style="left: 52px; top: -3px;">
-			<img src="../../images/kegerator-3.png" width="177" height="209" >
-		  	
-		  </div>
-		<div class="order_price" style="top: -14px;">
-	      <p>
-	      		<select>
-				      <option>12 Bottles $120/week</option>
-				      <option>12 Bottles $120/week</option>
-					  <option>12 Bottles $120/week</option>
-				</select>
-	      </p>
-
-	      <a href="#">Order Now</a>
-		</div>
-	    </div>
-
-	    <div class="pricingtable">
-	      <div class="top">
-	        <h2>Restaurant's & Bars</h2>
-			<div class="location"><img src="../../images/bar_scene.png" width="100" height="100" alt="Bar Scene"></div>
-	      </div>
-	      <ul class="price_list">
-	        <li>
-				<strong>12</strong> Bottles
-			</li>
-	        <li class="odd">
-				<strong>24</strong> Bottles
-		    </li>
-	        <li>
-				<strong>48</strong> Bottles
-			</li>
-			<li class="odd">
-				<strong>24</strong> Bottles
-		    </li>
-	        <li>
-				<strong>48</strong> Bottles
-			</li>
-	      </ul>
-	      <hr>
-
-	      <div class="keg_price" tyle="top: 0px;">
-	      	<img src="../../images/wine_2.png" width="125" height="193" alt="Wine Price">
-	      </div>
-	      <div class="order_price" style="top: 0px;">
-	      <p>
-				<select>
-				      <option>12 Bottles $120/week</option>
-				      <option>12 Bottles $120/week</option>
-					  <option>12 Bottles $120/week</option>
-				</select>
-		  </p>
-
-	      <a href="#">Order Now</a>
-		</div>
-	    </div>
-
-	</div>
 </template>
