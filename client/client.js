@@ -1,3 +1,7 @@
+/** Matheus, this is the old Router system from the Meteorite package manager.
+I don't know if this is how they do it anymore, but feel free to implement your
+own way of creating pages **/
+
 Meteor.Router.add({
 	'/': function() {
 		Session.set('page', 'home');
