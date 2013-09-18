@@ -1,0 +1,46 @@
+#venues {
+    margin: 0;
+    position: relative;
+    display: block;
+    min-height: 400px;
+    /*background: rgba(173, 216, 230, 0.8);*/
+}
+
+.styled-form .form-row{
+    display: block;
+    margin: 10px auto;
+    padding: 10px 5px 0 5px;
+}
+
+.add-venue-btn {
+    margin: 10px auto 0 auto;
+    padding: 3px 10px 5px 10px;
+    width: 157px;
+    height: 51px;
+    line-height: 49px;
+    text-align: center;
+    cursor: pointer;
+    background: url('/images/lrnmre.png') no-repeat top;
+    z-index: 99;
+}
+.add-venue-btn:hover {
+    background-position: bottom;
+}
+
+.delete-venue-btn {
+    display: inline-block;
+    padding: 3px !important;
+    width: 24px;
+    height: 24px;
+    line-height: 18px;
+    font-size: 24px;
+    text-shadow: 1px 1px 1px white;
+    color: DimGrey;
+}
+.delete-venue-btn:hover {
+    color: red;
+}
+
+.edit-venue-btn {
+    display: inline-block;
+}

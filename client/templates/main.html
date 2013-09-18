@@ -1,0 +1,67 @@
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<div id="container">
+			<div class="row_container">
+
+                <div id="navi-top" style="float:right; z-index: 99;">
+                    {{loginButtons align="right"}}
+
+                    {{> basic_nav}}
+
+                    {{#if currentUser}}
+                        {{> customer_nav}}
+                    {{/if}}
+
+                    {{#if isInRole 'admin'}}
+                        {{> admin_nav}}
+                    {{/if}}
+                </div>
+
+				<div id="sales_logo">
+					<img class="enlightened" src="/images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
+				</div>
+					
+					{{renderPage}}
+				
+			</div>
+	</div>
+
+    <div id="copy" style="width:100%;left:0%;">
+        <p class="copyright" style="width: 512px;margin: 0 auto; text-align:center;">Copyright ConsciousKombucha.com 2013 all rights reserved</p>
+    </div>
+</body>
+
+
+<template name="page_home">
+	{{>home}}
+</template>
+
+<template name="page_flavors">
+    {{>flavors}}
+</template>
+
+<template name="page_venues">
+    {{>venues}}
+</template>
+
+<template name="page_venue">
+    {{>venue}}
+</template>
+
+
+
+<template name="page_sales">
+    {{>sales_1}}
+</template>
+
+<template name="page_contact">
+    {{>contact}}
+</template>
+
+<template name="page_pricing">
+	{{>pricing}}
+</template>

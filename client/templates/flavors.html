@@ -1,0 +1,69 @@
+<template name="flavors">
+    <div id="flavors">
+        <div class="open-dialog-btn">+ Add Flavor</div>
+
+        <h1 class="page_title">Flavors</h1>
+
+
+        <table class="items" style="width: 960px; margin: 20px auto;">
+            <tbody>
+            <tr>
+                <th style="">Name</th>
+                <th style="width: 40px;">Is Public?</th>
+                <th style="width: 40px;">Icon</th>
+                <th style="width: 40px;">Usage</th>
+                <th style="width: 25%;">Actions</th>
+            </tr>
+            {{#if flavorsList}}
+                {{#each flavorsList}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>
+                        {{#if notPublic}}
+                            <span style="color: orange;">No</span>
+                        {{else}}
+                            <span style="color: green;">Yes</span>
+                        {{/if}}
+                    </td>
+                    <td>
+                        <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        {{#if notPublic}}
+                            <div class="make-public-btn customButton">Make public!</div>
+                        {{/if}}
+                        <div class="delete-flavor-btn customButton"> &times; </div>
+                    </td>
+                </tr>
+                {{/each}}
+            {{else}}
+                <tr>
+                    <td colspan="4"> You have no flavors added yet. </td>
+                </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+        <div id="addFlavorDialog" class="dialog-box" style="display: none;">
+            <div class="close-dialog-btn"> &times; </div>
+            <h2 class="subtitle">New Flavor</h2>
+            <form id="new-flavor-form" name="newFlavorForm" class="styled-form" method="POST">
+
+                <div class="form-row">
+                    <label for="flavorForm_name">Name:</label>
+                    <input id="flavorForm_name" type="text" name="name"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="flavorForm_icon">Icon (Url):</label>
+                    <input id="flavorForm_icon" type="text" name="icon"/>
+                </div>
+
+            </form>
+
+            <div class="add-flavor-btn">Add Flavor</div>
+        </div>
+
+    </div>
+</template>

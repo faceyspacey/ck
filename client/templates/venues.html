@@ -1,0 +1,87 @@
+<template name="venues">
+    <div id="venues">
+        <div class="open-dialog-btn">+ Add Venue</div>
+
+        <h1 class="page_title">My Venues</h1>
+
+
+        <table class="items" style="width: 960px; margin: 20px auto;">
+            <tbody>
+                <tr>
+                    <th style="width: 20%;">Name</th>
+                    <th style="width: 35%;">Address</th>
+                    <th style="width: 25%;">Flavors</th>
+                    <th style="width: 20%;">Actions</th>
+                </tr>
+                {{#if venuesList}}
+                    {{#each venuesList}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{address}}</td>
+                            <td>{{{kegerators}}}</td>
+                            <td>
+                                <div class="edit-venue-btn customButton"> Edit flavors </div>
+                                <div class="delete-venue-btn customButton"> &times; </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                {{else}}
+                    <tr>
+                        <td colspan="4"> You have no venues added yet. </td>
+                    </tr>
+                {{/if}}
+            </tbody>
+        </table>
+
+        <div id="addVenueDialog" class="dialog-box" style="display: none;">
+            <div class="close-dialog-btn"> &times; </div>
+            <h2 class="subtitle">New Venue</h2>
+            <form id="new-venue-form" name="newVenueForm" class="styled-form" method="POST">
+
+                <div class="form-row">
+                    <label for="venueForm_name">Name:</label>
+                    <input id="venueForm_name" type="text" name="name"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_address">Address:</label>
+                    <input id="venueForm_address" type="text" name="address"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_email">Email:</label>
+                    <input id="venueForm_email" type="text" name="email"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_phone">Phone:</label>
+                    <input id="venueForm_phone" type="text" name="phone"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_facebook">Facebook:</label>
+                    <input id="venueForm_facebook" type="text" name="facebook"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_twitter">Twitter:</label>
+                    <input id="venueForm_twitter" type="text" name="twitter"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_instagram">Instagram:</label>
+                    <input id="venueForm_instagram" type="text" name="instagram"/>
+                </div>
+
+                <div class="form-row">
+                    <label for="venueForm_youtube">Youtube:</label>
+                    <input id="venueForm_youtube" type="text" name="youtube"/>
+                </div>
+
+            </form>
+
+            <div class="add-venue-btn">Add Venue</div>
+        </div>
+
+    </div>
+</template>

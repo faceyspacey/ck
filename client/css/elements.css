@@ -1,0 +1,116 @@
+table.items {
+    background: white;
+    width: 100%;
+    cellspacing: 0;
+    border: 1px solid #ffffff;
+}
+
+.items th,
+.items td {
+    padding: 3px 5px;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+.items th:last-of-type,
+.items td:last-of-type {
+    border-right: 0;
+}
+.items tr:last-of-type th,
+.items tr:last-of-type td{
+    border-bottom: 0;
+}
+
+.items th {
+    background: skyblue;
+    color: white;
+    text-shadow: 1px 1px 2px DimGrey;
+}
+
+.items td {
+    background: #dedede;
+    min-height: 24px;
+}
+
+
+.form-row label {
+    display: inline-block;
+    width: 100px;
+}
+
+.form-row input[type=text] {
+    display: inline-block;
+    width: 300px;
+    height:20px;
+    line-height: 20px;
+    font-size: 14px;
+    padding: 2px;
+    border-radius:6px;
+    border:1px inset lightgrey;
+    background: white;
+    box-shadow: 5px 5px 10px -7px Black inset;
+    -webkit-box-shadow: 5px 5px 10px -7px Black inset;
+    -moz-box-shadow: 5px 5px 10px -7px Black inset;
+}
+
+.dialog-box {
+    position: relative;
+    margin: 20px auto;
+    width: 420px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color:#e0e0e0;
+    background-repeat:repeat-x;
+    background-image:-khtml-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e0e0e0));
+    background-image:-moz-linear-gradient(top, #f6f6f6, #e0e0e0);
+    background-image:-ms-linear-gradient(top, #f6f6f6, #e0e0e0);
+    background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(100%, #e0e0e0));
+    background-image:-webkit-linear-gradient(top, #f6f6f6, #e0e0e0);
+    background-image:-o-linear-gradient(top, #f6f6f6, #e0e0e0);
+    background-image:linear-gradient(top, #f6f6f6, #e0e0e0);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#e0e0e0', GradientType=0);
+    box-shadow: 2px 2px 6px DimGrey;
+    -webkit-box-shadow: 2px 2px 6px DimGrey;
+    -moz-box-shadow: 2px 2px 6px DimGrey;
+}
+
+.dialog-box .form-row {
+    border-top: 1px solid #c7c7c7;
+}
+
+
+.close-dialog-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 99;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+    color: DimGrey;
+    line-height: 26px;
+    text-align: center;
+    text-shadow: 1px 1px 1px white;
+    cursor: pointer;
+}
+
+.close-dialog-btn:hover {
+    color: red;
+}
+
+.open-dialog-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 3px 10px 5px 10px;
+    width: 157px;
+    height: 51px;
+    line-height: 49px;
+    text-align: center;
+    cursor: pointer;
+    background: url('/images/lrnmre.png') no-repeat top;
+    z-index: 99;
+}
+.open-dialog-btn:hover {
+    background-position: bottom;
+}

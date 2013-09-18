@@ -1,0 +1,48 @@
+#flavors {
+    margin: 0;
+    position: relative;
+    display: block;
+    min-height: 400px;
+    /*background: rgba(173, 216, 230, 0.8);*/
+}
+
+.flavor-list-icon {
+    width: 32px;
+    height: 32px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.add-flavor-btn {
+    margin: 10px auto 0 auto;
+    padding: 3px 10px 5px 10px;
+    width: 157px;
+    height: 51px;
+    line-height: 49px;
+    text-align: center;
+    cursor: pointer;
+    background: url('/images/lrnmre.png') no-repeat top;
+    z-index: 99;
+}
+.add-flavor-btn:hover {
+    background-position: bottom;
+}
+
+.delete-flavor-btn {
+    display: inline-block;
+    padding: 3px !important;
+    width: 24px;
+    height: 24px;
+    line-height: 18px;
+    font-size: 24px;
+    text-shadow: 1px 1px 1px white;
+    color: DimGrey;
+}
+.delete-flavor-btn:hover {
+    color: red;
+}
+
+.make-public-btn{
+    display: inline-block;
+}
