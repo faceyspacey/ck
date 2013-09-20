@@ -57,6 +57,9 @@ Template.flavors.events({
 
 
 Template.flavors.flavorsList = function(){
+    for(var i = 0; i < Flavors.find({}, {sort: {name: 1}}).fetch().length; i++){
+        console.log(Flavors.find({}, {sort: {name: 1}}).fetch()[i]);
+    }
     return Flavors.find({}, {sort: {name: 1}});
 }
 Template.flavors.notPublic = function(){

@@ -12,21 +12,6 @@
     padding: 10px 5px 0 5px;
 }
 
-.add-venue-btn {
-    margin: 10px auto 0 auto;
-    padding: 3px 10px 5px 10px;
-    width: 157px;
-    height: 51px;
-    line-height: 49px;
-    text-align: center;
-    cursor: pointer;
-    background: url('/images/lrnmre.png') no-repeat top;
-    z-index: 99;
-}
-.add-venue-btn:hover {
-    background-position: bottom;
-}
-
 .delete-venue-btn {
     display: inline-block;
     padding: 3px !important;

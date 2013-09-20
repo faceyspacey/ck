@@ -1,0 +1,11 @@
+<template name="_navBar">
+    <a class="navi-link" href="{{homePath}}">Home</a>
+
+    {{#if currentUser}}
+        <a class="navi-link" href="{{venuesPath}}">My Venues</a>
+    {{/if}}
+
+    {{#if isInRole 'admin'}}
+        <a class="navi-link" href="{{flavorsPath}}">Edit flavors</a>
+    {{/if}}
+</template>

@@ -7,26 +7,12 @@
 }
 
 .flavor-list-icon {
+    display: inline-block;
     width: 32px;
     height: 32px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-}
-
-.add-flavor-btn {
-    margin: 10px auto 0 auto;
-    padding: 3px 10px 5px 10px;
-    width: 157px;
-    height: 51px;
-    line-height: 49px;
-    text-align: center;
-    cursor: pointer;
-    background: url('/images/lrnmre.png') no-repeat top;
-    z-index: 99;
-}
-.add-flavor-btn:hover {
-    background-position: bottom;
 }
 
 .delete-flavor-btn {

@@ -29,7 +29,7 @@ var VenueModel = function(objectId, attributes){
         instagram = '',
         youtube = '';
     var user_id = '';
-    var kegs = {};
+    var kegerators = [];
     var modelAttributes = [
         'name',
         'address',
@@ -39,7 +39,7 @@ var VenueModel = function(objectId, attributes){
         'twitter',
         'instagram',
         'youtube',
-        'kegs',
+        'kegerators',
         'user_id',
     ];
     var requiredAttrs = ['name', 'address', 'email'];
@@ -93,7 +93,7 @@ Template.venues.events({
     },
     'click .add-venue-btn' : function(event){
         var venueFormElements = document.newVenueForm.elements;
-        var attributes = {};
+        var attributes = {kegerators: []};
         for(var i = 0; i < venueFormElements.length; i++){
             attributes[venueFormElements[i].name] = venueFormElements[i].value;
         }
@@ -110,7 +110,8 @@ Template.venues.events({
             Venues.remove(this._id);
     },
     'click .edit-venue-btn' : function(event){
-        Meteor.Router.to('/venue/'+this._id);
+        //console.log(Venues.findOne(this._id));
+        Meteor.Router.to('/venue/'+this._id+'/editFlavors');
     }
 });
 

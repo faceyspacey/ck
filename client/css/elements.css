@@ -7,7 +7,7 @@ table.items {
 
 .items th,
 .items td {
-    padding: 3px 5px;
+    padding: 3px 5px !important;
     border-right: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;
 }
@@ -22,6 +22,7 @@ table.items {
 
 .items th {
     background: skyblue;
+    text-align: center;
     color: white;
     text-shadow: 1px 1px 2px DimGrey;
 }
@@ -29,27 +30,50 @@ table.items {
 .items td {
     background: #dedede;
     min-height: 24px;
+    vertical-align: middle;
+}
+
+.items .action-buttons {
+    text-align: right;
+}
+
+.items .customButton {
+    vertical-align: top !important;
+}
+
+.items .align-center {
+    text-align: center;
 }
 
 
 .form-row label {
     display: inline-block;
-    width: 100px;
+    width: 90px;
 }
 
-.form-row input[type=text] {
+.form-row input {
     display: inline-block;
-    width: 300px;
-    height:20px;
-    line-height: 20px;
+    width: 290px;
+    padding: 5px;
+
+    font-family: Helvetica, sans-serif;
     font-size: 14px;
-    padding: 2px;
-    border-radius:6px;
-    border:1px inset lightgrey;
-    background: white;
-    box-shadow: 5px 5px 10px -7px Black inset;
-    -webkit-box-shadow: 5px 5px 10px -7px Black inset;
-    -moz-box-shadow: 5px 5px 10px -7px Black inset;
+    margin: 7px 0px 10px 10px;
+    border: 1px solid rgb(177, 175, 175);
+    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
+    outline:none;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+}
+
+.form-row input:focus {
+    border: 1px solid #72C4FC;
+    box-shadow: 0 0 5px #72C4FC;
+    -webkit-box-shadow: 0 0 5px #72C4FC;
+    -moz-box-shadow: 0 0 5px #72C4FC;
 }
 
 .dialog-box {
@@ -57,21 +81,38 @@ table.items {
     margin: 20px auto;
     width: 420px;
     padding: 10px;
-    border-radius: 10px;
-    border: 1px solid white;
-    background-color:#e0e0e0;
-    background-repeat:repeat-x;
-    background-image:-khtml-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e0e0e0));
-    background-image:-moz-linear-gradient(top, #f6f6f6, #e0e0e0);
-    background-image:-ms-linear-gradient(top, #f6f6f6, #e0e0e0);
-    background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(100%, #e0e0e0));
-    background-image:-webkit-linear-gradient(top, #f6f6f6, #e0e0e0);
-    background-image:-o-linear-gradient(top, #f6f6f6, #e0e0e0);
-    background-image:linear-gradient(top, #f6f6f6, #e0e0e0);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#e0e0e0', GradientType=0);
-    box-shadow: 2px 2px 6px DimGrey;
-    -webkit-box-shadow: 2px 2px 6px DimGrey;
-    -moz-box-shadow: 2px 2px 6px DimGrey;
+    background: rgba(255, 255, 255, 0.61);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border:1px solid rgba(29, 69, 99, 0.29);
+
+
+    -webkit-animation-name: glowz;
+    -webkit-animation-duration: .85s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-delay: 0;
+    -webkit-animation-fill-mode: none;
+
+    -moz-animation-name: glowz;
+    -moz-animation-duration: .85s;
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-iteration-count: infinite;
+    -mozkit-animation-direction: alternate;
+    -moz-animation-delay: 0;
+    -moz-animation-fill-mode: none;
+
+    animation-name: glowz;
+    animation-duration: .85s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0;
+    animation-fill-mode: none;
+
+    background: url('/images/diagonal-noise.png') repeat;
 }
 
 .dialog-box .form-row {
@@ -108,9 +149,28 @@ table.items {
     line-height: 49px;
     text-align: center;
     cursor: pointer;
+    text-shadow: 1px 1px 1px blue;
+    color: white;
     background: url('/images/lrnmre.png') no-repeat top;
     z-index: 99;
 }
 .open-dialog-btn:hover {
+    background-position: bottom;
+}
+
+.customButton-blue {
+    margin: 10px auto 0 auto;
+    padding: 3px 10px 5px 10px;
+    width: 157px;
+    height: 51px;
+    line-height: 49px;
+    text-align: center;
+    text-shadow: 1px 1px 1px blue;
+    color: white;
+    cursor: pointer;
+    background: url('/images/lrnmre.png') no-repeat top;
+    z-index: 99;
+}
+.customButton-blue:hover {
     background-position: bottom;
 }

@@ -10,20 +10,14 @@
                 <div id="navi-top" style="float:right; z-index: 99;">
                     {{loginButtons align="right"}}
 
-                    {{> basic_nav}}
-
-                    {{#if currentUser}}
-                        {{> customer_nav}}
-                    {{/if}}
-
-                    {{#if isInRole 'admin'}}
-                        {{> admin_nav}}
-                    {{/if}}
+                    {{> _navBar}}
                 </div>
 
-				<div id="sales_logo">
-					<img class="enlightened" src="/images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
-				</div>
+                <a class="invisi-link" href="{{homePath}}">
+                    <div id="sales_logo">
+                            <img class="enlightened" src="/images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
+                    </div>
+                </a>
 					
 					{{renderPage}}
 				
@@ -35,22 +29,6 @@
     </div>
 </body>
 
-
-<template name="page_home">
-	{{>home}}
-</template>
-
-<template name="page_flavors">
-    {{>flavors}}
-</template>
-
-<template name="page_venues">
-    {{>venues}}
-</template>
-
-<template name="page_venue">
-    {{>venue}}
-</template>
 
 
 

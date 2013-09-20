@@ -1,3 +1,7 @@
+<template name="page_flavors">
+    {{>flavors}}
+</template>
+
 <template name="flavors">
     <div id="flavors">
         <div class="open-dialog-btn">+ Add Flavor</div>
@@ -9,27 +13,27 @@
             <tbody>
             <tr>
                 <th style="">Name</th>
-                <th style="width: 40px;">Is Public?</th>
-                <th style="width: 40px;">Icon</th>
-                <th style="width: 40px;">Usage</th>
-                <th style="width: 25%;">Actions</th>
+                <th style="width: 60px;">Is Public?</th>
+                <th style="width: 60px;">Icon</th>
+                <th style="width: 100px;">Usage</th>
+                <th style="width: 20%;">Actions</th>
             </tr>
             {{#if flavorsList}}
                 {{#each flavorsList}}
                 <tr>
                     <td>{{name}}</td>
-                    <td>
+                    <td class="align-center">
                         {{#if notPublic}}
                             <span style="color: orange;">No</span>
                         {{else}}
                             <span style="color: green;">Yes</span>
                         {{/if}}
                     </td>
-                    <td>
+                    <td class="align-center">
                         <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
                     </td>
-                    <td></td>
-                    <td>
+                    <td class="align-center"></td>
+                    <td class="action-buttons">
                         {{#if notPublic}}
                             <div class="make-public-btn customButton">Make public!</div>
                         {{/if}}
@@ -62,7 +66,7 @@
 
             </form>
 
-            <div class="add-flavor-btn">Add Flavor</div>
+            <div class="add-flavor-btn customButton-blue">Add Flavor</div>
         </div>
 
     </div>

@@ -14,7 +14,7 @@ Venues.allow({
         return true;
     },
     update: function(userId, doc, fields, modifier) {
-        if( (doc._id == userId) )
+        if( (doc.user_id == userId) )
             return true;
         else
             return false;

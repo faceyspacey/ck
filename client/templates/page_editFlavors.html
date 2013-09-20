@@ -1,0 +1,33 @@
+<template name="page_editFlavors">
+    {{>editFlavors}}
+</template>
+
+<template name="editFlavors">
+    <div class="dialog-box" id="edit_venue_flavors">
+        <h1 class="page_title">{{venue.name}}</h1>
+        <h3 class="subtitle" style="margin-bottom: 25px;">(edit flavors)</h3>
+
+        <div id="kegerator-list">
+            <form id="editFlavorsForm" name="editFlavorsForm" methos="POST">
+                {{#each kegerators}}
+                    <div class="kegerator-row">
+                            <div class="kegerator-illustration has-{{tapsCount}}-tap"></div>
+                        {{#each taps}}
+                            <div class="kegerator-tap-row">
+                                <label>{{num}} Tap's flavor: </label>
+                                {{{flavorDropDown flavor}}}
+                                {{{flavorIcon flavor}}}
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/each}}
+            </form>
+
+            <div class="buttons-container">
+                <!-- <div class="save-kegarators-btn customButton-blue">Save</div> -->
+                <div class="add-tap-btn customButton-blue">+ Add Tap</div>
+            </div>
+        </div>
+
+    </div>
+</template>

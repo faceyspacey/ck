@@ -5,28 +5,47 @@ own way of creating pages **/
 //Meteor.users.remove(Meteor.userId());
 
 Meteor.Router.add({
-	'/': function() {
-		Session.set('page', 'home');
-		return 'page_home';
-	},
-    '/flavors': function() {
-        Session.set('page', 'flavors');
-        return 'page_flavors';
+    '/': {
+        to: 'home',
+        and: function() {
+            Session.set('page', 'home');
+            return 'page_home';
+        }
     },
-    '/venues': function() {
-        Session.set('page', 'venues');
-        return 'page_venues';
+    '/flavors': {
+        to: 'flavors',
+        and: function() {
+            Session.set('page', 'flavors');
+            return 'page_flavors';
+        }
     },
-    '/venue/:id': function(id) {
-        // access parameters in order a function args too
-        Session.set('currentVenueId', id);
-        return 'page_venue';
+    '/contact': {
+        to: 'contact',
+        and: function() {
+            Session.set('page', 'contact');
+            return 'page_contact';
+        }
+    },
+    '/venues': {
+        to: 'venues',
+        and: function() {
+            Session.set('page', 'venues');
+            return 'page_venues';
+        }
+    },
+    '/venue/:id/editFlavors': {
+        to: 'editFlavors',
+        and: function(id) {
+            // access parameters in order a function args too
+            Session.set('page', 'editFlavors');
+            Session.set('currentVenueId', id);
+            return 'page_editFlavors';
+        }
     }
     /*'/:page': function(page) {
         Session.set('page', page);
-        console.log(page);
         return 'page_'+page;
-    },*/
+    }*/
 });
 
 Meteor.subscribe('allUsers');
