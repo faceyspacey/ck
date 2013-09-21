@@ -6,23 +6,23 @@
     <div class="page-background" id="venues">
         <div class="open-dialog-btn">+ Add Venue</div>
 
-        <h1 class="page_title">My Venues</h1>
+        <h1 class="page_title" style="margin-bottom:25px;">My Venues</h1>
 
 
         <table class="items">
             <tbody>
                 <tr>
-                    <th style="width: 20%;">Name</th>
-                    <th style="width: 35%;">Address</th>
-                    <th style="width: 25%;">Flavors</th>
+                    <th style="width: 20%;">Venue Name</th>
+                    <th style="">Address</th>
+                    <th style="width: 20%;">Kegerators</th>
                     <th style="width: 20%;">Actions</th>
                 </tr>
-                {{#if venuesList}}
-                    {{#each venuesList}}
+                {{#if venuesList }}
+                    {{#each venuesList }}
                         <tr>
                             <td>{{name}}</td>
                             <td>{{address}}</td>
-                            <td></td>
+                            <td>{{{displayKegerators _id}}}</td>
                             <td class="action-buttons">
                                 <div class="edit-venue-btn customButton"> Edit flavors </div>
                                 <div class="delete-venue-btn customButton"> &times; </div>

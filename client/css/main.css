@@ -56,6 +56,12 @@ overflow-x: hidden;
 #navi-top a.navi-link:hover{
     color:  lightcyan !important;
 }
+#navi-top .navi-link.admin-only {
+    color: limegreen !important;
+}
+#navi-top .navi-link.admin-only:hover {
+    color: greenyellow !important;
+}
 
 #login-buttons {
     float: right;
@@ -77,6 +83,19 @@ overflow-x: hidden;
     -webkit-box-shadow: 0 0 10px #72C4FC !important;
     -moz-box-shadow: 0 0 10px #72C4FC !important;
     /*background: rgba(173, 216, 230, 0.8);*/
+}
+
+#sales_logo {
+    display: inline-block;
+    background: url('/images/sales_logo.png') no-repeat;
+    width: 505px;
+    height: 161px;
+    margin: 0 257px;
+}
+.enlightened {
+    position: relative;
+    top: 106px;
+    left: 122px;
 }
 
 #container {

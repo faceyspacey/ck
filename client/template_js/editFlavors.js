@@ -5,7 +5,14 @@ Template.editFlavors.helpers({
     },
     kegerators: function(){
         var venue = Venues.findOne(Session.get('currentVenueId'));
+        if( !venue )
+            return [];
+
         var haveMissingFlavor = false;
+        if( !venue.usedFlavors ){
+            venue.usedFlavors = [];
+            haveMissingFlavor = true;
+        }
         for(var i = 0; i < venue.usedFlavors.length; i++){
             if( !Flavors.findOne(venue.usedFlavors[i]) ){
                 haveMissingFlavor = true;

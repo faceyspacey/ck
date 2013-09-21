@@ -1,11 +1,14 @@
 <template name="_navBar">
+    {{#if isInRole 'admin'}}
+        <a class="navi-link admin-only" href="{{customersPath}}">Customers</a>
+        <a class="navi-link admin-only" href="{{allVenuesPath}}">All Venues</a>
+        <a class="navi-link admin-only" href="{{flavorsPath}}">Edit flavors</a>
+    {{/if}}
+
     <a class="navi-link" href="{{homePath}}">Home</a>
 
     {{#if currentUser}}
         <a class="navi-link" href="{{venuesPath}}">My Venues</a>
     {{/if}}
 
-    {{#if isInRole 'admin'}}
-        <a class="navi-link" href="{{flavorsPath}}">Edit flavors</a>
-    {{/if}}
 </template>

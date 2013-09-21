@@ -1,0 +1,35 @@
+<template name="page_customers">
+    {{> customers}}
+</template>
+
+<template name="customers">
+    <div class="page-background" id="customers">
+        <h1 class="page_title" style="margin-bottom: 25px;">Customers</h1>
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Venues</th>
+                <th>Roles</th>
+            </tr>
+            {{#if customerList }}
+                {{#each customerList }}
+                <tr>
+                    <td>{{profile.name}}</td>
+                    <td>{{emails.0.address}}</td>
+                    <td>{{{venues}}}</td>
+                    <td>{{{listRoles roles}}}</td>
+                </tr>
+                {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="4"> You have no venues added yet. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+    </div>
+</template>

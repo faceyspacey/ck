@@ -1,12 +1,9 @@
 
-Flavors = new Meteor.Collection('flavors');
+Flavors = new Meteor.Collection('flavors', {
+    transform: function (doc) { return new FlavorModel(doc); }
+});
 
-if( Roles.userIsInRole(this.userId, ['admin']) ){
-    console.log('Admins is logged in.');
-    Meteor.subscribe('all-flavors');
-} else {
-    Meteor.subscribe('public-flavors');
-}
+Meteor.subscribe('flavors');
 
 /*
  function deleteFlavors(){
@@ -22,7 +19,7 @@ if( Roles.userIsInRole(this.userId, ['admin']) ){
 Template.flavors.events({
     'click .open-dialog-btn' : function(event){
         var flavorDialog = document.getElementById('addFlavorDialog');
-        console.log(flavorDialog);
+        //console.log(flavorDialog);
         if( flavorDialog )
             flavorDialog.style.display = 'block';
     },
@@ -44,11 +41,12 @@ Template.flavors.events({
                 document.newFlavorForm.elements[i].value = '';
             }
         }
+        //console.log(id);
     },
     'click .delete-flavor-btn' : function(event){
         //console.log(Venues.find({kegerators: {$elemMatch: {taps: {flavor: 'x8Mn5J3Y8oujnhiwK'}}}}));
         if( confirm('Are you sure you want to delete this venue?') )
-            console.log(Flavors.remove(this._id));
+            Flavors.remove(this._id);
     },
     'click .make-public-btn' : function(event){
         Flavors.update(this._id, {$set: {is_public: true}});
@@ -57,12 +55,12 @@ Template.flavors.events({
 
 
 Template.flavors.flavorsList = function(){
-    for(var i = 0; i < Flavors.find({}, {sort: {name: 1}}).fetch().length; i++){
+    /*for(var i = 0; i < Flavors.find({}, {sort: {name: 1}}).fetch().length; i++){
         console.log(Flavors.find({}, {sort: {name: 1}}).fetch()[i]);
-    }
+    }*/
     return Flavors.find({}, {sort: {name: 1}});
 }
 Template.flavors.notPublic = function(){
-    console.log(this._id);
+   // console.log(this._id);
     return Flavors.findOne(this._id).is_public != true;
 }

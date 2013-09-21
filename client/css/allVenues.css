@@ -1,0 +1,15 @@
+.venues-list-userinfo{
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: Grey;
+}
+.venues-list-userinfo span.info{
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+.venues-list-userinfo span.info-small{
+    font-size: 12px;
+}

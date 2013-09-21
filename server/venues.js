@@ -1,12 +1,13 @@
 
 Venues = new Meteor.Collection('venues');
-Meteor.publish("all-venues", function () {
-    return Venues.find(); // everything
-});
-Meteor.publish("my-venues", function () {
-    return Venues.find({user_id: this.userId}); // everything
-});
 
+Meteor.publish("venues", function () {
+    if( Roles.userIsInRole(this.userId, ['admin']) ){
+        return Venues.find(); // everything
+    }else{
+        return Venues.find({user_id: this.userId});
+    }
+});
 
 Venues.allow({
     insert: function(userId, doc) {

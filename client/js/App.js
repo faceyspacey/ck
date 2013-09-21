@@ -82,8 +82,6 @@ App = (function(){
         return min;
     }
 
-    Meteor.call('addAdmins', Meteor.userId());
-
     return {
         getHalfRandomFlavor: getHalfRandomFlavor,
         getUsedFlavors: getUsedFlavors,

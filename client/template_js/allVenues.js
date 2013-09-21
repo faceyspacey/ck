@@ -1,21 +1,7 @@
 
-Venues = new Meteor.Collection("venues", {
-    transform: function (doc) { return new VenueModel(doc); }
-});
+Meteor.subscribe('venues');
 
-/*
-function deleteVenues(){
-    var allVenues = Venues.find({}).fetch();
-    console.log(allVenues);
-    for(i in allVenues){
-        console.log(allVenues[i]);
-        Venues.remove(allVenues[i]._id);
-    }
-}
-deleteVenues();
-*/
-
-Template.venues.events({
+Template.allVenues.events({
     'click .open-dialog-btn' : function(event){
         var venueDialog = document.getElementById('addVenueDialog');
         console.log(venueDialog);
@@ -52,6 +38,7 @@ Template.venues.events({
     }
 });
 
-Template.venues.venuesList = function(){
-    return Venues.find({user_id: Meteor.userId()}, {sort: {name: 1}});
+Template.allVenues.venuesList = function(){
+    return Venues.find({}, {sort: {name: 1}});
 }
+

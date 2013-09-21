@@ -15,7 +15,7 @@
                 <th style="">Name</th>
                 <th style="width: 60px;">Is Public?</th>
                 <th style="width: 60px;">Icon</th>
-                <th style="width: 100px;">Usage</th>
+                <th style="width: 100px;">Popularity</th>
                 <th style="width: 20%;">Actions</th>
             </tr>
             {{#if flavorsList}}
@@ -32,7 +32,7 @@
                     <td class="align-center">
                         <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
                     </td>
-                    <td class="align-center"></td>
+                    <td class="align-center">{{usage}} Venues</td>
                     <td class="action-buttons">
                         {{#if notPublic}}
                             <div class="make-public-btn customButton">Make public!</div>

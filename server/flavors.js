@@ -1,11 +1,14 @@
 
 Flavors = new Meteor.Collection('flavors');
-Meteor.publish("all-flavors", function () {
-    return Flavors.find(); // everything
+
+Meteor.publish("flavors", function () {
+    if( Roles.userIsInRole(this.userId, ['admin']) ){
+        return Flavors.find({}); // everything
+    } else {
+        return Flavors.find({is_public: true}); // publicated flavors
+    }
 });
-Meteor.publish("public-flavors", function () {
-    return Flavors.find({is_public: true}); // publicated flavors
-});
+
 
 
 Flavors.allow({

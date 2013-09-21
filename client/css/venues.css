@@ -28,3 +28,23 @@
 .edit-venue-btn {
     display: inline-block;
 }
+
+.table-kegerator-div{
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+    -webkit-box-shadow: 2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         2px 2px 6px rgba(50, 50, 50, 0.61);
+}
+.table-kegerator-flavor-div{
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 5px;
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
