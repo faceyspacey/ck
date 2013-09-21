@@ -1,9 +1,8 @@
 #venues {
-    margin: 0;
-    position: relative;
-    display: block;
-    min-height: 400px;
-    /*background: rgba(173, 216, 230, 0.8);*/
+}
+
+#addVenueDialog {
+    background: rgba(255,255,255,0.5);
 }
 
 .styled-form .form-row{

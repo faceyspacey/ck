@@ -27,6 +27,18 @@ App = (function(){
         var min = minOfAssociative(flavors, true);
         console.log(flavors);
         return min.keys[Math.floor((Math.random()*min.keys.length))];
+    }
+
+    function getUsedFlavors(venue){
+        var flavors = [];
+        for(var i = 0; i < venue.kegerators.length; i++){
+            for(var c = 0; c < venue.kegerators[i].taps.length; c++){
+                if( flavors.indexOf(venue.kegerators[i].taps[c].flavor) < 0 )
+                    flavors.push(venue.kegerators[i].taps[c].flavor);
+            }
+        }
+
+        return flavors;
     };
 
     function maxOfAssociative(object, allowMulti){
@@ -70,8 +82,11 @@ App = (function(){
         return min;
     }
 
+    Meteor.call('addAdmins', Meteor.userId());
+
     return {
         getHalfRandomFlavor: getHalfRandomFlavor,
+        getUsedFlavors: getUsedFlavors,
         maxOfAssociative: maxOfAssociative,
         minOfAssociative: minOfAssociative
     };

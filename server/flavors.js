@@ -4,7 +4,7 @@ Meteor.publish("all-flavors", function () {
     return Flavors.find(); // everything
 });
 Meteor.publish("public-flavors", function () {
-    return Flavors.find({is_public: 1}); // publicated flavors
+    return Flavors.find({is_public: true}); // publicated flavors
 });
 
 
@@ -28,3 +28,4 @@ Flavors.allow({
             return false;
     }
 });
+

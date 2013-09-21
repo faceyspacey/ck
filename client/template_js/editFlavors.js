@@ -4,8 +4,25 @@ Template.editFlavors.helpers({
         return Venues.findOne(Session.get('currentVenueId'));
     },
     kegerators: function(){
-        var currentVenue = Venues.findOne(Session.get('currentVenueId'));
-        return currentVenue ? currentVenue.kegerators : [];
+        var venue = Venues.findOne(Session.get('currentVenueId'));
+        var haveMissingFlavor = false;
+        for(var i = 0; i < venue.usedFlavors.length; i++){
+            if( !Flavors.findOne(venue.usedFlavors[i]) ){
+                haveMissingFlavor = true;
+                break;
+            }
+        }
+        if( haveMissingFlavor ){
+            for(var c = 0; c < venue.kegerators.length; c++){
+                for(var d = 0; d < venue.kegerators[c].taps.length; d++){
+                    if( !Flavors.findOne(venue.kegerators[c].taps[d].flavor) )
+                        venue.kegerators[c].taps[d].flavor = App.getHalfRandomFlavor(venue);
+                }
+            }
+        }
+        Venues.update(venue._id, {$set: {kegerators: venue.kegerators}});
+
+        return venue ? venue.kegerators : [];
     },
     flavorDropDown: function(flavor){
         var allFlavors = Flavors.find({is_public: true}).fetch();
@@ -41,8 +58,9 @@ Template.editFlavors.events({
                 taps = [];
             }
         }
-
-        Venues.update(Session.get('currentVenueId'), {$set: {kegerators: kegerators}});
+        var venue = Venues.findOne(Session.get('currentVenueId'));
+        venue.kegerators = kegerators;
+        Venues.update(Session.get('currentVenueId'), {$set: {usedFlavors: App.getUsedFlavors(venue), kegerators: kegerators}});
     },
     'click .add-tap-btn' : function(){
         var venue = Venues.findOne(Session.get('currentVenueId'));
@@ -58,6 +76,20 @@ Template.editFlavors.events({
                 taps: [{flavor: App.getHalfRandomFlavor(venue), num: '1st'}],
             });
         }
-        Venues.update(venue._id, {$set: {kegerators: venue.kegerators}});
+        Venues.update(venue._id, {$set: {usedFlavors: App.getUsedFlavors(venue), kegerators: venue.kegerators}});
+    },
+    'click .remove-tap-btn' : function(){
+        var venue = Venues.findOne(Session.get('currentVenueId'));
+        var kegerator = venue.kegerators.length ? venue.kegerators[venue.kegerators.length-1] : null;
+        if( kegerator ){
+            if( kegerator.taps.length <= 1){
+                venue.kegerators.splice(venue.kegerators.length-1, 1);
+            }else{
+                kegerator.taps.splice(kegerator.tapsCount-1, 1);
+                kegerator.tapsCount = kegerator.taps.length;
+                venue.kegerators[venue.kegerators.length-1] = kegerator;
+            }
+            Venues.update(venue._id, {$set: {usedFlavors: App.getUsedFlavors(venue), kegerators: venue.kegerators}});
+        }
     }
 });

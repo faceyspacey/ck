@@ -1,7 +1,4 @@
-var users = [
-    {   name: "Matheus Simon",  email: "90.matheus@gmail.com", roles:['admin'] },
-    {   name: "James Gillmore",  email: "james@faceyspacey.com", roles:['admin'] }
-];
+
 
 
 Meteor.users.allow({
@@ -20,18 +17,31 @@ Meteor.users.allow({
     }
 });
 
-/*
-_.each(users, function (user) {
-    var id;
 
-    id = Accounts.createUser({
-        email: user.email,
-        password: user.password,
-        profile: { name: user.name }
-    });
+Meteor.methods({
+    addAdmins: function (userId) {
+        //return userId;
+        var admins = [
+            {   name: "Matheus Simon",  email: "90.matheus@gmail.com", roles:['admin'] },
+            {   name: "James Gillmore",  email: "james@faceyspacey.com", roles:['admin'] },
+            {   name: "Tyler Beerman",  email: "Tyler@consciouskombucha.com", roles:['admin'] }
+        ];
+        this.unblock();
 
-    if (user.roles.length > 0) {
-        Roles.addUsersToRoles(id, user.roles);
+        _.each(admins, function (admin) {
+
+            //var currUser = Meteor.users.findOne({emails: {$elemMatch: { address: "90.matheus@gmail.com" }}});
+
+            if( userId ){
+                var currUser = Meteor.users.findOne(userId);
+                if ( currUser.emails[0].address == admin.email && admin.roles.length > 0) {
+                    Meteor.users.update(userId, {$set: {'profile.name': admin.name}});
+                    Roles.addUsersToRoles(currUser._id, admin.roles);
+                }
+            }
+
+        });
     }
+});
 
-});*/
+

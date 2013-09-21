@@ -1,66 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/js/App.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/template_js/editFlavors.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/css/contact.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/css/pricing.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/css/sales.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/template_js/venue.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/admin_nav.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/basic_nav.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/contact.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/customer_nav.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/flavors.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/home.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/pricing.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/sales.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/venue.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/venues.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/client/css/venue.css" afterPath="$PROJECT_DIR$/client/css/editFlavors.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/client.js" afterPath="$PROJECT_DIR$/client/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/elements.css" afterPath="$PROJECT_DIR$/client/css/elements.css" />
+    <list default="true" id="0ba74e68-9a2e-4b29-82df-501a4a5b23be" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/App.js" afterPath="$PROJECT_DIR$/client/js/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/accounts.js" afterPath="$PROJECT_DIR$/server/accounts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/editFlavors.css" afterPath="$PROJECT_DIR$/client/css/editFlavors.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/editFlavors.js" afterPath="$PROJECT_DIR$/client/template_js/editFlavors.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/flavors.css" afterPath="$PROJECT_DIR$/client/css/flavors.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/flavors.js" afterPath="$PROJECT_DIR$/client/template_js/flavors.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/flavors.js" afterPath="$PROJECT_DIR$/server/flavors.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/main.css" afterPath="$PROJECT_DIR$/client/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/main.html" afterPath="$PROJECT_DIR$/client/templates/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_editFlavors.html" afterPath="$PROJECT_DIR$/client/templates/page_editFlavors.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_flavors.html" afterPath="$PROJECT_DIR$/client/templates/page_flavors.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_venues.html" afterPath="$PROJECT_DIR$/client/templates/page_venues.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/venues.css" afterPath="$PROJECT_DIR$/client/css/venues.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/venues.js" afterPath="$PROJECT_DIR$/client/template_js/venues.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/venues.js" afterPath="$PROJECT_DIR$/server/venues.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ckhome.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379633061545" ignored="false" />
-    <file path="/venues.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379528071724" ignored="false" />
-    <file path="/client.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379619677996" ignored="false" />
-    <file path="/venues.css" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379613659479" ignored="false" />
-    <file path="/main.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379617836568" ignored="false" />
-    <file path="/main.css" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379618278929" ignored="false" />
-    <file path="/venue.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379451055699" ignored="false" />
-    <file path="/menu.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379362705508" ignored="false" />
-    <file path="/customer_nav.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379366785627" ignored="false" />
-    <file path="/admin_nav.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379453428702" ignored="false" />
-    <file path="/basic_nav.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379366804167" ignored="false" />
-    <file path="/navigation.css" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379363567881" ignored="false" />
-    <file path="/accounts.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379364933261" ignored="false" />
-    <file path="/elements.css" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379621077592" ignored="false" />
-    <file path="/venue.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379452438135" ignored="false" />
-    <file path="/venues.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379633732809" ignored="false" />
-    <file path="/modelVenue.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379428654722" ignored="false" />
-    <file path="/VenueModel.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379428842461" ignored="false" />
-    <file path="/flavors.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379539053941" ignored="false" />
-    <file path="/flavors.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379633697130" ignored="false" />
-    <file path="/flavors.css" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379615571680" ignored="false" />
-    <file path="/page_editFlavors.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379636800808" ignored="false" />
-    <file path="/nav_bar.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379605293148" ignored="false" />
-    <file path="/editFlavors.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379636671269" ignored="false" />
-    <file path="/page_venues.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379615181893" ignored="false" />
-    <file path="/page_flavors.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379615519220" ignored="false" />
-    <file path="/_navBar.html" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379618197998" ignored="false" />
-    <file path="/editFlavors.css" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379636835275" ignored="false" />
-    <file path="/App.js" changelist="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" time="1379636922936" ignored="false" />
+    <file path="/Dummy.txt" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379704703536" ignored="false" />
+    <file path="/page_editFlavors.html" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379703927610" ignored="false" />
+    <file path="/editFlavors.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379722267355" ignored="false" />
+    <file path="/flavors.css" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379706051606" ignored="false" />
+    <file path="/venues.css" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379705509054" ignored="false" />
+    <file path="/page_flavors.html" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379705947086" ignored="false" />
+    <file path="/main.css" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379705962571" ignored="false" />
+    <file path="/flavors.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379720404020" ignored="false" />
+    <file path="/App.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379720127712" ignored="false" />
+    <file path="/accounts.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379722464580" ignored="false" />
+    <file path="/client.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379719253312" ignored="false" />
+    <file path="/venues.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379720193898" ignored="false" />
+    <file path="/helperFunctions.js" changelist="0ba74e68-9a2e-4b29-82df-501a4a5b23be" time="1379720967111" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,24 +47,50 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="ckhome">
-      <favorite_root url="file://$PROJECT_DIR$/client/templates" module="ckhome" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/home.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/main.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/sales.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/venue.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/venues.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/contact.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-        <favorite_root url="file://$PROJECT_DIR$/client/templates/pricing.html" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-      </favorite_root>
-    </favorites_list>
+    <favorites_list name="ckhome" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="page_venues.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/page_venues.html">
+      <file leaf-file-name="accounts.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/accounts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="22" selection-start="1656" selection-end="1656" vertical-scroll-proportion="-6.875">
+            <state line="27" column="10" selection-start="754" selection-end="754" vertical-scroll-proportion="0.69827586">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="39" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_navBar.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/templates/_navBar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="11" selection-start="292" selection-end="292" vertical-scroll-proportion="-5.625">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flavors.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/flavors.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="email.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/email.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -102,34 +99,7 @@
       <file leaf-file-name="venues.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/template_js/venues.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="9" selection-start="2963" selection-end="2963" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_flavors.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/page_flavors.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="25" selection-start="1209" selection-end="1209" vertical-scroll-proportion="-10.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="elements.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/elements.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="31" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="211" column="23" selection-start="5672" selection-end="5672" vertical-scroll-proportion="0.0">
+            <state line="120" column="45" selection-start="3474" selection-end="3474" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,25 +108,7 @@
       <file leaf-file-name="editFlavors.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/template_js/editFlavors.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/js/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="29" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.54310346">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editFlavors.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/editFlavors.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="23" selection-start="1241" selection-end="1241" vertical-scroll-proportion="-14.4">
+            <state line="18" column="24" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -165,19 +117,17 @@
       <file leaf-file-name="flavors.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/template_js/flavors.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="13" selection-start="1431" selection-end="1431" vertical-scroll-proportion="0.0">
+            <state line="49" column="68" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page_editFlavors.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/page_editFlavors.html">
+      <file leaf-file-name="App.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="39" selection-start="1158" selection-end="1169" vertical-scroll-proportion="-16.875">
-              <folding>
-                <element signature="n#style#0;n#h3#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-              </folding>
+            <state line="86" column="12" selection-start="0" selection-end="3265" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,47 +150,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/client/templates/main.html" />
-        <option value="$PROJECT_DIR$/client/templates/_navBar.html" />
-        <option value="$PROJECT_DIR$/client/js/client.js" />
-        <option value="$PROJECT_DIR$/client/css/elements.css" />
+        <option value="$PROJECT_DIR$/client/css/editFlavors.css" />
+        <option value="$PROJECT_DIR$/client/templates/page_editFlavors.html" />
         <option value="$PROJECT_DIR$/client/templates/page_flavors.html" />
+        <option value="$PROJECT_DIR$/client/css/main.css" />
+        <option value="$PROJECT_DIR$/client/templates/page_venues.html" />
         <option value="$PROJECT_DIR$/client/css/flavors.css" />
         <option value="$PROJECT_DIR$/client/css/venues.css" />
-        <option value="$PROJECT_DIR$/server/venues.js" />
-        <option value="$PROJECT_DIR$/client/templates/page_venues.html" />
-        <option value="$PROJECT_DIR$/client/template_js/flavors.js" />
-        <option value="$PROJECT_DIR$/client/template_js/venues.js" />
-        <option value="$PROJECT_DIR$/client/css/main.css" />
-        <option value="$PROJECT_DIR$/client/template_js/editFlavors.js" />
-        <option value="$PROJECT_DIR$/client/templates/page_editFlavors.html" />
-        <option value="$PROJECT_DIR$/client/css/editFlavors.css" />
+        <option value="$PROJECT_DIR$/client/js/client.js" />
         <option value="$PROJECT_DIR$/client/js/App.js" />
+        <option value="$PROJECT_DIR$/client/template_js/venues.js" />
+        <option value="$PROJECT_DIR$/server/flavors.js" />
+        <option value="$PROJECT_DIR$/server/helperFunctions.js" />
+        <option value="$PROJECT_DIR$/client/template_js/editFlavors.js" />
+        <option value="$PROJECT_DIR$/client/template_js/flavors.js" />
+        <option value="$PROJECT_DIR$/server/accounts.js" />
       </list>
     </option>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="49" />
     <option name="y" value="24" />
     <option name="width" value="1317" />
     <option name="height" value="744" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>CoffeeScript</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -268,7 +200,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -311,7 +242,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="packages" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -387,65 +318,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ckhome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ckhome" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".meteor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="tasks" />
-    <property name="last_opened_file_path" value="$USER_HOME$/.meteorite/packages/router/tmeasday/meteor-router/d00e380dda2184b70e909fc4a0fb5358d602c586/.npm" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
-      <method />
-    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
-    <option name="USER" value="" />
-    <option name="PASSWORD" value="" />
-    <option name="mySSHConnectionTimeout" value="30000" />
-    <option name="mySSHReadTimeout" value="30000" />
-    <option name="LAST_MERGED_REVISION" />
-    <option name="MERGE_DRY_RUN" value="false" />
-    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
-    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
-    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
-    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
-    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
-    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <option name="FORCE_UPDATE" value="false" />
-    <option name="IGNORE_EXTERNALS" value="false" />
-    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b1b58c18-8f57-4f96-a0b5-41526bb3bd56" name="Default" comment="" />
-      <created>1379334855645</created>
-      <updated>1379334855645</updated>
+      <changelist id="0ba74e68-9a2e-4b29-82df-501a4a5b23be" name="Default" comment="" />
+      <created>1379692237596</created>
+      <updated>1379692237596</updated>
     </task>
     <servers />
   </component>
@@ -457,7 +347,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20456333" sideWeight="0.8213716" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15420929" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -466,7 +356,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17862839" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -533,129 +424,111 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/templates/main.html">
+    <entry file="file://$PROJECT_DIR$/client/css/home.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="515" selection-end="526" vertical-scroll-proportion="-9.375" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/templates/_navBar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="11" selection-start="304" selection-end="304" vertical-scroll-proportion="-6.25" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="969" selection-end="969" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/flavors.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="1" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/venues.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="19" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/venues.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="11" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/page_flavors.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="25" selection-start="1209" selection-end="1209" vertical-scroll-proportion="-10.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/venues.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="9" selection-start="2963" selection-end="2963" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/flavors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="13" selection-start="1431" selection-end="1431" vertical-scroll-proportion="0.0">
+        <state line="5" column="8" selection-start="95" selection-end="119" vertical-scroll-proportion="-3.125">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/page_venues.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="22" selection-start="1656" selection-end="1656" vertical-scroll-proportion="-6.875">
+        <state line="11" column="25" selection-start="259" selection-end="259" vertical-scroll-proportion="-6.875">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/elements.css">
+    <entry file="file://$PROJECT_DIR$/client/css/flavors.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="31" selection-start="1279" selection-end="1279" vertical-scroll-proportion="0.0">
+        <state line="4" column="36" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/main.css">
+    <entry file="file://$PROJECT_DIR$/client/css/venues.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="23" selection-start="5672" selection-end="5672" vertical-scroll-proportion="0.0">
+        <state line="11" column="1" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/editFlavors.js">
+    <entry file="file://$PROJECT_DIR$/server/venues.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/templates/page_editFlavors.html">
+    <entry file="file://$PROJECT_DIR$/server/email.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="39" selection-start="1158" selection-end="1169" vertical-scroll-proportion="-16.875">
-          <folding>
-            <element signature="n#style#0;n#h3#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/editFlavors.css">
+    <entry file="file://$PROJECT_DIR$/client/templates/_navBar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="23" selection-start="1241" selection-end="1241" vertical-scroll-proportion="-14.4">
+        <state line="9" column="11" selection-start="292" selection-end="292" vertical-scroll-proportion="-5.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="39" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/js/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="29" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.54310346">
+        <state line="86" column="12" selection-start="0" selection-end="3265" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <entry file="file://$PROJECT_DIR$/server/flavors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/venues.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="45" selection-start="3474" selection-end="3474" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/editFlavors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="24" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/flavors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="68" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/accounts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="10" selection-start="754" selection-end="754" vertical-scroll-proportion="0.69827586">
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
 
