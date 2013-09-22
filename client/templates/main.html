@@ -5,23 +5,27 @@
 </head>
 <body>
 	<div id="container">
-			<div class="row_container">
 
-                <div id="navi-top" style="float:right; z-index: 99;">
-                    {{loginButtons align="right"}}
+        <div id="navi-top" style="">
+            <div class="navi-links-holder">
+                {{loginButtons align="right"}}
 
-                    {{> _navBar}}
+                {{> _navBar}}
+            </div>
+        </div>
+
+        <div class="row_container">
+
+
+            <a class="invisi-link" href="{{homePath}}">
+                <div id="sales_logo">
+                        <img class="enlightened" src="/images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
                 </div>
+            </a>
 
-                <a class="invisi-link" href="{{homePath}}">
-                    <div id="sales_logo">
-                            <img class="enlightened" src="/images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
-                    </div>
-                </a>
-					
-					{{renderPage}}
-				
-			</div>
+                {{renderPage}}
+
+        </div>
 	</div>
 
     <div id="copy" style="width:100%;left:0%;">

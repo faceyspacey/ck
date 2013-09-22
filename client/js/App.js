@@ -19,7 +19,7 @@ App = (function(){
 
         //console.log(venue);
         //console.log(Flavors.find({_id: {$nin: flavorKeys}}).fetch());
-        var nonChoosedFlavors = Flavors.find({_id: {$nin: flavorKeys}}).fetch();
+        var nonChoosedFlavors = Flavors.find({_id: {$nin: flavorKeys}, is_public: true}).fetch();
         for( var i = 0; i < nonChoosedFlavors.length; i++){
             if( flavorKeys.indexOf(nonChoosedFlavors[i]._id) < 0 )
                 flavors[nonChoosedFlavors[i]._id] = 0;
