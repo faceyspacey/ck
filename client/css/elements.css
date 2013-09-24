@@ -77,6 +77,31 @@ table.items {
     -moz-box-shadow: 0 0 5px #72C4FC;
 }
 
+.styled-select {
+    display: inline-block;
+    width: 300px;
+    padding: 5px;
+    background: white;
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 7px 0px 10px 10px;
+    border: 1px solid rgb(177, 175, 175);
+    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
+    outline:none;
+    transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+}
+
+.styled-select:focus {
+    border: 1px solid #72C4FC;
+    box-shadow: 0 0 5px #72C4FC;
+    -webkit-box-shadow: 0 0 5px #72C4FC;
+    -moz-box-shadow: 0 0 5px #72C4FC;
+}
+
 .dialog-box {
     position: relative;
     margin: 20px auto;

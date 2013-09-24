@@ -9,6 +9,7 @@
         <table class="items">
             <tbody>
             <tr>
+                <th style="width: 40px; text-align: center;">Avatar</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Venues</th>
@@ -17,6 +18,7 @@
             {{#if clientList }}
                 {{#each clientList }}
                 <tr>
+                    <td><div class="user-info-avatar" style="background-image: url('{{profile.avatar}}');"></div></td>
                     <td>{{profile.name}}</td>
                     <td>{{emails.0.address}}</td>
                     <td>{{{venues}}}</td>

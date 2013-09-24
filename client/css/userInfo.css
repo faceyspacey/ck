@@ -1,23 +1,24 @@
 
 #loggedIn-user-info {
-    float: right;
-    height: 40px;
-    line-height: 40px;
     display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    line-height: 36px;
     margin: 0 0 0 15px;
-    padding: 0 10px;
+    padding: 0 0 0 10px;
     border-left: 1px dashed #0069aa;
-    border-right: 1px dashed #0069aa;
 }
 
 #user-info-avatar {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px;
     width: 32px;
     height: 32px;
-    background: dodgerblue;
+    background-color: white;
+    background-size: contain;
+    background-position: center;
 }
+
 #user-info-name-email {
     display: inline-block;
     vertical-align: middle;
@@ -25,4 +26,4 @@
     color:  lightskyblue !important;
     text-decoration: none;
     text-shadow: 1px 1px 8px Black;
-n
+}

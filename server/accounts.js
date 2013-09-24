@@ -28,7 +28,6 @@ Accounts.onCreateUser(function(options, user){
         {email: "90.matheus@gmail.com", roles: ['admin']},
         {email: "james@faceyspacey.com", roles: ['admin']},
         {email: "Tyler@consciouskombucha.com", roles: ['admin']},
-        {email: "test1@email.com", roles: ['advanced-role']}
     ];
 
     var foundRoles = false;
@@ -46,6 +45,8 @@ Accounts.onCreateUser(function(options, user){
 
     if (options.profile)
         user.profile = options.profile;
+    else
+        user.profile = {};
     return user;
 })
 

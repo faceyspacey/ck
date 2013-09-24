@@ -78,6 +78,8 @@ Template.editFlavors.events({
     },
     'click .add-tap-btn' : function(){
         var venue = Venues.findOne(Session.get('currentVenueId'));
+        if( !Flavors.find({is_public: true}).count() )
+            return;
         var kegerator = venue.kegerators.length ? venue.kegerators[venue.kegerators.length-1] : {tapsCount: 0};
         if( venue.kegerators.length && kegerator.tapsCount < 3 ){
             var numText = kegerator.tapsCount+1 == 1 ? '1st' : (kegerator.tapsCount+1 == 2 ? '2nd' : '3rd');

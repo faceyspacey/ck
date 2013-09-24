@@ -8,9 +8,14 @@
 
         <div id="navi-top" style="">
             <div class="navi-links-holder">
-                {{loginButtons align="right"}}
-
                 {{> _navBar}}
+
+                {{#if currentUser}}
+                    <div id="loggedIn-user-info">
+                        <div id="user-info-avatar" style="background-image: url('{{Meteor.user.profile.avatar}}')"></div>
+                    </div>
+                {{/if}}
+                {{loginButtons}}
             </div>
         </div>
 

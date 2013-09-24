@@ -23,3 +23,9 @@ Template.admins.helpers({
         return venues.count()+' venues';
     }
 });
+
+Template.admins.events({
+    'click .user-name' : function(){
+        Meteor.Router.to('/clientVenues/'+this._id);
+    }
+});

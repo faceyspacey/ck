@@ -1,0 +1,50 @@
+<template name="page_profile">
+    {{> profile}}
+</template>
+
+<template name="profile">
+    <div class="page-background" id="profile">
+        <h1 class="page_title" style="margin-bottom:25px;">Profile</h1>
+
+        <div id="profile_content">
+            <form id="profileForm" class="styled-form" method="POST">
+                <div id="profile_left">
+                    <div class="form-row">
+                        <label for="profile_name">Name:</label>
+                        <input type="text" id="profile_name" name="name" value="{{user.profile.name}}"/>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="profile_email">Email:</label>
+                        <input type="text" id="profile_email" name="email" value="{{user.emails.0.address}}"/>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="profile_phone">Phone:</label>
+                        <input type="text" id="profile_phone" name="phone" value="{{user.profile.phone}}"/>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="profile_paymentCycle">Payment cycle:</label>
+                        <select class="styled-select" id="profile_paymentCycle" name="paymentCycle">
+                            {{{paymentCycleOptions}}}
+                        </select>
+                    </div>
+                </div>
+                <div id="profile_right">
+                    <div class="profile_avatar_img" style="background-image: url('{{user.profile.avatar}}')"></div>
+                    <div class="form-row">
+                        <label for="profile_avatar">Avatar Url:</label>
+                        <input type="text" id="profile_avatar" name="avatar" value="{{user.profile.avatar}}"/>
+                    </div>
+
+                </div>
+
+                <div id="save-profile-btn" class="customButton-blue"> Save </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</template>

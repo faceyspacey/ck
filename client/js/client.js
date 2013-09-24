@@ -21,6 +21,17 @@ Meteor.Router.add({
             return 'page_flavors';
         }
     },
+    '/profile/:id': {
+        to: 'profile',
+        and: function(id) {
+            if( (Meteor.userId() != id && Roles.userIsInRole(Meteor.userId(), ['admin'])) || Meteor.users.findOne(id) )
+                Meteor.Router.to('/');
+
+            Session.set('page', 'profile');
+            Session.set('profileId', id);
+            return 'page_profile';
+        }
+    },
     '/contact': {
         to: 'contact',
         and: function() {

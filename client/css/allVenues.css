@@ -1,8 +1,13 @@
+
+.client-venue-row:hover {
+    color: #0069aa !important;
+}
 .venues-list-userinfo{
     text-align: left;
     font-size: 12px;
     font-weight: normal;
     color: Grey;
+    cursor: pointer;
 }
 .venues-list-userinfo span.info{
     display: block;
