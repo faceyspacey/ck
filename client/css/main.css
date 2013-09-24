@@ -29,7 +29,6 @@ font-family: 'Oxygen', sans-serif;
 vertical-align: baseline;
 /**background: url('../../images/dark_bg.png') no-repeat center center fixed;**/
 background: url(/images/splash_bg.png) no-repeat center center fixed; ;
-/*background: black;*/
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;
@@ -132,7 +131,6 @@ overflow-x: hidden;
 	margin: 0 auto;
 	width: 1020px;
 	position: relative;
-    /*border: 1px solid lightgrey;*/
 }
 
 .row_left {

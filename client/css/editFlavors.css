@@ -100,7 +100,7 @@
     height: 28px;
     line-height: 28px;
     border-top: 1px solid #c7c7c7;
-    border-botom: 1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
     background: rgba(255, 255, 255, 0.4);
 }
 
@@ -111,6 +111,7 @@
 .keg-charges-keg-row-subtotal {
     height: 28px;
     line-height: 28px;
+    font-size: 16px;
     color: DimGrey;
     background: rgba(255, 255, 255, 0.4);
     border-top: 1px solid #c7c7c7;
@@ -119,15 +120,20 @@
     border-top: 0;
 }
 .keg-charges-tap-row {
-    text-indent: 30px;
     text-align: left;
     height: 28px;
     line-height: 28px;
+    font-size: 14px;
     border-top: 1px dashed #c7c7c7;
+}
+.keg-charges-tap-row-label{
+    width: 80px;
+    display: inline-block;
+    margin-left: 25px;
 }
 .keg-charges-tap-row-icon {
     max-height: 24px;
-    max-widht: 24px;
+    max-width: 24px;
 }
 
 .keg-charge {
