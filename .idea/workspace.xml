@@ -2,35 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab780d15-ed56-4034-a954-81edd1255e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/js/User.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/css/admins.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/template_js/admins.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/css/clientVenues.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/template_js/clientVenues.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/page_admins.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/page_clientVenues.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/css/userInfo.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/template_js/userLogInOut.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/login/user_dropdown.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/login/user_loggedIn.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/login/user_loggedOut.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/template_js/customers.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/templates/page_customers.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/VenueModel.js" afterPath="$PROJECT_DIR$/client/js/VenueModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/_navBar.html" afterPath="$PROJECT_DIR$/client/templates/_navBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/accounts.js" afterPath="$PROJECT_DIR$/server/accounts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/allVenues.js" afterPath="$PROJECT_DIR$/client/template_js/allVenues.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/client.js" afterPath="$PROJECT_DIR$/client/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/editFlavors.css" afterPath="$PROJECT_DIR$/client/css/editFlavors.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/editFlavors.js" afterPath="$PROJECT_DIR$/client/template_js/editFlavors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/main.css" afterPath="$PROJECT_DIR$/client/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/main.html" afterPath="$PROJECT_DIR$/client/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_allVenues.html" afterPath="$PROJECT_DIR$/client/templates/page_allVenues.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_editFlavors.html" afterPath="$PROJECT_DIR$/client/templates/page_editFlavors.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_venues.html" afterPath="$PROJECT_DIR$/client/templates/page_venues.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/venues.css" afterPath="$PROJECT_DIR$/client/css/venues.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/venues.js" afterPath="$PROJECT_DIR$/client/template_js/venues.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ckhome.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,6 +10,7 @@
     <file path="/VenueModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380019973263" ignored="false" />
     <file path="/editFlavors.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380020292375" ignored="false" />
     <file path="/venues.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380020863064" ignored="false" />
+    <file path="/main.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380021613515" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,10 +52,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="venues.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="venues.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/css/venues.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="1" selection-start="384" selection-end="384" vertical-scroll-proportion="0.2972973">
+            <state line="26" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="-9.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/templates/main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="30" selection-start="389" selection-end="389" vertical-scroll-proportion="0.2762431">
               <folding />
             </state>
           </provider>
@@ -147,11 +129,12 @@
         <option value="$PROJECT_DIR$/client/js/VenueModel.js" />
         <option value="$PROJECT_DIR$/client/css/editFlavors.css" />
         <option value="$PROJECT_DIR$/client/css/venues.css" />
+        <option value="$PROJECT_DIR$/client/templates/main.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="46" />
+    <option name="x" value="48" />
     <option name="y" value="-4" />
     <option name="width" value="1319" />
     <option name="height" value="773" />
@@ -309,7 +292,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="46" y="-4" width="1319" height="773" extended-state="6" />
+    <frame x="48" y="-4" width="1319" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -443,7 +426,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/css/venues.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="1" selection-start="384" selection-end="384" vertical-scroll-proportion="0.2972973">
+        <state line="26" column="0" selection-start="429" selection-end="429" vertical-scroll-proportion="-9.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/templates/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="30" selection-start="389" selection-end="389" vertical-scroll-proportion="0.2762431">
           <folding />
         </state>
       </provider>
