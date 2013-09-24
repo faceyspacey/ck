@@ -1,6 +1,7 @@
 <template name="_navBar">
     {{#if isInRole 'admin'}}
-        <a class="navi-link admin-only" href="{{customersPath}}">Customers</a>
+        <a class="navi-link admin-only" href="{{adminsPath}}">Admins</a>
+        <a class="navi-link admin-only" href="{{clientsPath}}">Clients</a>
         <a class="navi-link admin-only" href="{{allVenuesPath}}">All Venues</a>
         <a class="navi-link admin-only" href="{{flavorsPath}}">Edit flavors</a>
     {{/if}}

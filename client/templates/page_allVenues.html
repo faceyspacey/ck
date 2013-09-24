@@ -9,7 +9,7 @@
         <table class="items">
             <tbody>
             <tr>
-                <th style="width: 10%;">Customer</th>
+                <th style="width: 10%;">Client</th>
                 <th style="width: 10%;">Venue Name</th>
                 <th style="">Address</th>
                 <th style="width: 20%;">Kegerators</th>
@@ -19,8 +19,10 @@
                 {{#each venuesList }}
                 <tr>
                     <td class="venues-list-userinfo">
-                        Name: <span class="info">{{user.profile.name}}</span>
-                        Email: <span class="info info-small">{{user.emails.0.address}}</span>
+                        <div class="client-venue-link">
+                            Name: <span class="info">{{user.profile.name}}</span>
+                            Email: <span class="info info-small">{{user.emails.0.address}}</span>
+                        </div>
                     </td>
                     <td>{{name}}</td>
                     <td>{{address}}</td>

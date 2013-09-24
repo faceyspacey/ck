@@ -43,6 +43,13 @@ Template.editFlavors.helpers({
     flavorIcon: function(flavor){
         var selectedFlavor = Flavors.findOne({_id: flavor, is_public: true});
         return '<img class="tap-row-icon" src="'+selectedFlavor.icon+'" />';
+    },
+    renderKegCharges: function(){
+        var venue = Venues.findOne(Session.get('currentVenueId'));
+        if( venue )
+            return venue.renderKegCharges();
+        else
+            return '';
     }
 });
 

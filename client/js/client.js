@@ -28,11 +28,18 @@ Meteor.Router.add({
             return 'page_contact';
         }
     },
-    '/customers': {
-        to: 'customers',
+    '/clients': {
+        to: 'clients',
         and: function() {
-            Session.set('page', 'customers');
-            return 'page_customers';
+            Session.set('page', 'clients');
+            return 'page_clients';
+        }
+    },
+    '/admins': {
+        to: 'admins',
+        and: function() {
+            Session.set('page', 'admins');
+            return 'page_admins';
         }
     },
     '/venues': {
@@ -59,6 +66,17 @@ Meteor.Router.add({
             Session.set('currentVenueId', id);
             console.log(Session.get('currentVenueId', id));
             return 'page_editFlavors';
+        }
+    },
+    '/clientVenues/:id': {
+        to: 'clientVenues',
+        and: function(id) {
+            if( Meteor.users.findOne(id) )
+                Meteor.Router.to('/');
+            // access parameters in order a function args too
+            Session.set('page', 'clientVenues');
+            Session.set('clientId', id);
+            return 'page_clientVenues';
         }
     }
     /*'/:page': function(page) {

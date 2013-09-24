@@ -3,18 +3,6 @@ Venues = new Meteor.Collection("venues", {
     transform: function (doc) { return new VenueModel(doc); }
 });
 
-/*
-function deleteVenues(){
-    var allVenues = Venues.find({}).fetch();
-    console.log(allVenues);
-    for(i in allVenues){
-        console.log(allVenues[i]);
-        Venues.remove(allVenues[i]._id);
-    }
-}
-deleteVenues();
-*/
-
 Template.venues.events({
     'click .open-dialog-btn' : function(event){
         var venueDialog = document.getElementById('addVenueDialog');

@@ -1,10 +1,10 @@
-<template name="page_customers">
-    {{> customers}}
+<template name="page_clients">
+    {{> clients}}
 </template>
 
-<template name="customers">
-    <div class="page-background" id="customers">
-        <h1 class="page_title" style="margin-bottom: 25px;">Customers</h1>
+<template name="clients">
+    <div class="page-background" id="clients">
+        <h1 class="page_title" style="margin-bottom: 25px;">Clients</h1>
 
         <table class="items">
             <tbody>
@@ -14,8 +14,8 @@
                 <th>Venues</th>
                 <th>Roles</th>
             </tr>
-            {{#if customerList }}
-                {{#each customerList }}
+            {{#if clientList }}
+                {{#each clientList }}
                 <tr>
                     <td>{{profile.name}}</td>
                     <td>{{emails.0.address}}</td>
@@ -25,7 +25,7 @@
                 {{/each}}
             {{else}}
             <tr>
-                <td colspan="4"> You have no venues added yet. </td>
+                <td colspan="4"> No clients registered yet. </td>
             </tr>
             {{/if}}
             </tbody>

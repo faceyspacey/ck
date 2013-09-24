@@ -8,9 +8,13 @@
 
         <div id="navi-top" style="">
             <div class="navi-links-holder">
-                {{loginButtons align="right"}}
-
                 {{> _navBar}}
+
+                {{#if currentUser}}
+                    {{> user_loggedIn}}
+                {{else}}
+                    {{> user_loggedOut}}
+                {{/if}}
             </div>
         </div>
 

@@ -15,6 +15,7 @@
                     <th style="width: 20%;">Venue Name</th>
                     <th style="">Address</th>
                     <th style="width: 20%;">Kegerators</th>
+                    <th style="width: 5%;">Total Costs</th>
                     <th style="width: 20%;">Actions</th>
                 </tr>
                 {{#if venuesList }}
@@ -22,7 +23,10 @@
                         <tr>
                             <td>{{name}}</td>
                             <td>{{address}}</td>
-                            <td>{{{displayKegerators _id}}}</td>
+                            <td>{{{displayKegerators}}}</td>
+                            <td>
+                                <div style="text-align:center; font-size: 16px;"><b>${{{summarizedCost}}}</b></div>
+                            </td>
                             <td class="action-buttons">
                                 <div class="edit-venue-btn customButton"> Edit flavors </div>
                                 <div class="delete-venue-btn customButton"> &times; </div>

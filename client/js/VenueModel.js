@@ -44,15 +44,51 @@ window.VenueModel = function(doc){
         var kegeratorsHtml = '';
         var flavor;
         for(var i = 0; i < venue.kegerators.length; i++){
+            var fees = venue.kegerators[i].tapsCount == 1 ? 128 : (venue.kegerators[i].tapsCount == 2 ? 118 : 108);
             kegeratorsHtml += '<div class="table-kegerator-div"> '+venue.kegerators[i].tapsCount+' taps: ';
             for(var c = 0; c < venue.kegerators[i].taps.length; c++){
                 flavor = Flavors.findOne(venue.kegerators[i].taps[c].flavor);
                 kegeratorsHtml += '<div class="table-kegerator-flavor-div" style="background-image:url(\''+(flavor ? flavor.icon : '') +'\');"></div>';
             }
+            kegeratorsHtml += '<div>costs: <b>$'+ (fees*venue.kegerators[i].tapsCount) +'</b></div>';
             kegeratorsHtml += '</div>';
         }
 
         return kegeratorsHtml;
+    }
+
+    this.summarizedCost = function(){
+        var kegerators = this.kegerators;
+        var sum = 0;
+        if( typeof kegerators != 'undefined' ){
+            for(var i = 0; i < kegerators.length; i++){
+                sum += (138 - 10*kegerators[i].tapsCount) * kegerators[i].tapsCount;
+            }
+        }
+
+        return sum;
+    }
+
+    this.renderKegCharges = function(){
+        var html = '<div class="keg-charges-container">' +
+                        '<h3 class="subtitle" style="border-bottom: 1px solid #c7c7c7; padding-bottom: 15px;">Weekly charges of venue</h3>';
+        for(var i = 0; i < this.kegerators.length; i++){
+            html += '<div class="keg-charges-keg-row">';
+            html +=     '<div class="keg-charges-keg-row-subtotal">Kegerator subtotal: <b><span class="keg-charge">$'+((138 - 10*this.kegerators[i].tapsCount) * this.kegerators[i].tapsCount) +'</span></b></div>';
+            for(var c = 0; c < this.kegerators[i].taps.length; c++){
+                var flavor = Flavors.findOne(this.kegerators[i].taps[c].flavor);
+                var numText = c+1 == 1 ? '1st' : (c+1 == 2 ? '2nd' : '3rd');
+                html += '<div class="keg-charges-tap-row">' +
+                            numText+' tap: '+ '<img class="keg-charges-tap-row-icon tap-row-icon" src="'+flavor.icon+'" />' + flavor.name +
+                            '<span class="keg-charge" style="margin-right: 10px;">$'+(138 - 10*this.kegerators[i].tapsCount)+'</span>' +
+                        '</div>';
+            }
+            html += '</div>';
+        }
+        html +=     '<div class="keg-charges-total">Total: (Charged on every Monday) <span class="keg-charge">$'+this.summarizedCost()+'</span></div>' +
+                    '</div>';
+
+        return html;
     }
 
     this.setAttributes = function(doc){

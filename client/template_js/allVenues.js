@@ -35,6 +35,9 @@ Template.allVenues.events({
     'click .edit-venue-btn' : function(event){
         //console.log(Venues.findOne(this._id));
         Meteor.Router.to('/venue/'+this._id+'/editFlavors');
+    },
+    'click .client-venue-link' : function(){
+        Meteor.Router.to('/clientVenues/'+this.user_id);
     }
 });
 

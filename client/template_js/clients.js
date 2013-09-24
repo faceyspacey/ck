@@ -2,15 +2,15 @@
 
 Meteor.subscribe('users');
 
-Template.customers.customerList = function(){
-    var customers = Meteor.users.find({roles: {$in: ['customer']}});
-    //console.log(customers);
-    return customers;
+Template.clients.clientList = function(){
+    var clients = Meteor.users.find({roles: {$in: ['client']}});
+    //console.log(clients);
+    return clients;
 }
 
-Template.customers.helpers({
+Template.clients.helpers({
     'listRoles': function(roles){
-        if( roles.length < 1 )
+        if( typeof roles == 'undefined' || roles.length < 1 )
             return '-';
 
         var rolesText = "";

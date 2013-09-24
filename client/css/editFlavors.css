@@ -10,9 +10,9 @@
     border:1px solid #c7c7c7;
     background: rgba(255,255,255,0.5);
     border-radius: 8px;
-    -webkit-box-shadow: 2px 2px 6px rgba(50, 50, 50, 0.61);
-    -moz-box-shadow:    2px 2px 6px rgba(50, 50, 50, 0.61);
-    box-shadow:         2px 2px 6px rgba(50, 50, 50, 0.61);
+    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
 }
 
 .kegerator-illustration {
@@ -80,4 +80,59 @@
     box-shadow: 0 0 5px #72C4FC;
     -webkit-box-shadow: 0 0 5px #72C4FC;
     -moz-box-shadow: 0 0 5px #72C4FC;
+}
+
+.keg-charges-container {
+    margin: 25px 10px 10px 10px;
+    padding: 10px;
+    border: 1px solid #c7c7c7;
+    background: rgba(255, 255, 255, 0.4);
+    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
+}
+.keg-charges-subtitle {
+    border-bottom: 1px solid #c7c7c7;
+}
+.keg-charges-total {
+    font-size: 18px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    border-top: 1px solid #c7c7c7;
+    border-botom: 1px solid #c7c7c7;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.keg-charges-keg-row {
+    color: grey;
+    border-bottom: 1px solid #c7c7c7;
+}
+.keg-charges-keg-row-subtotal {
+    height: 28px;
+    line-height: 28px;
+    color: DimGrey;
+    background: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid #c7c7c7;
+}
+.keg-charges-tap-row:first-child {
+    border-top: 0;
+}
+.keg-charges-tap-row {
+    text-indent: 30px;
+    text-align: left;
+    height: 28px;
+    line-height: 28px;
+    border-top: 1px dashed #c7c7c7;
+}
+.keg-charges-tap-row-icon {
+    max-height: 24px;
+    max-widht: 24px;
+}
+
+.keg-charge {
+    display: inline-block;
+    float: right;
+    height: 28px;
+    line-height: 28px;
 }

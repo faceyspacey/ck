@@ -40,8 +40,8 @@ Accounts.onCreateUser(function(options, user){
         }
     }
     if( !foundRoles ){
-        Roles.addUsersToRoles(user._id, ['customer']);
-        user.roles = ['customer'];
+        Roles.addUsersToRoles(user._id, ['client']);
+        user.roles = ['client'];
     }
 
     if (options.profile)
