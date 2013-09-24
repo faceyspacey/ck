@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab780d15-ed56-4034-a954-81edd1255e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/page_profile.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/css/profile.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/template_js/profile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/User.js" afterPath="$PROJECT_DIR$/client/js/User.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/_navBar.html" afterPath="$PROJECT_DIR$/client/templates/_navBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/accounts.js" afterPath="$PROJECT_DIR$/server/accounts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/admins.css" afterPath="$PROJECT_DIR$/client/css/admins.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/admins.js" afterPath="$PROJECT_DIR$/client/template_js/admins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/allVenues.css" afterPath="$PROJECT_DIR$/client/css/allVenues.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/allVenues.js" afterPath="$PROJECT_DIR$/client/template_js/allVenues.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/client.js" afterPath="$PROJECT_DIR$/client/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/clients.js" afterPath="$PROJECT_DIR$/client/template_js/clients.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/editFlavors.js" afterPath="$PROJECT_DIR$/client/template_js/editFlavors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/elements.css" afterPath="$PROJECT_DIR$/client/css/elements.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/main.css" afterPath="$PROJECT_DIR$/client/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/main.html" afterPath="$PROJECT_DIR$/client/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_admins.html" afterPath="$PROJECT_DIR$/client/templates/page_admins.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_allVenues.html" afterPath="$PROJECT_DIR$/client/templates/page_allVenues.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_clients.html" afterPath="$PROJECT_DIR$/client/templates/page_clients.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/userInfo.css" afterPath="$PROJECT_DIR$/client/css/userInfo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/venues.css" afterPath="$PROJECT_DIR$/client/css/venues.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ckhome.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,6 +29,7 @@
     <file path="/allVenues.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380062354526" ignored="false" />
     <file path="/admins.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380062664183" ignored="false" />
     <file path="/clients.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380062791727" ignored="false" />
+    <file path="/page_clients.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380063542533" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,10 +67,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page_clients.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="page_clients.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/templates/page_clients.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="16" selection-start="275" selection-end="348" vertical-scroll-proportion="-6.25">
+            <state line="23" column="41" selection-start="856" selection-end="856" vertical-scroll-proportion="0.6205036">
               <folding>
                 <element signature="n#style#0;n#th#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
@@ -151,10 +131,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allVenues.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="allVenues.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/css/allVenues.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="370" selection-end="370" vertical-scroll-proportion="0.51724136">
+            <state line="18" column="20" selection-start="367" selection-end="367" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -198,7 +178,6 @@
         <option value="$PROJECT_DIR$/client/css/main.css" />
         <option value="$PROJECT_DIR$/client/templates/main.html" />
         <option value="$PROJECT_DIR$/client/css/userInfo.css" />
-        <option value="$PROJECT_DIR$/client/templates/page_clients.html" />
         <option value="$PROJECT_DIR$/client/template_js/allVenues.js" />
         <option value="$PROJECT_DIR$/client/templates/page_allVenues.html" />
         <option value="$PROJECT_DIR$/client/css/allVenues.css" />
@@ -206,6 +185,7 @@
         <option value="$PROJECT_DIR$/client/template_js/clients.js" />
         <option value="$PROJECT_DIR$/client/template_js/admins.js" />
         <option value="$PROJECT_DIR$/client/css/admins.css" />
+        <option value="$PROJECT_DIR$/client/templates/page_clients.html" />
       </list>
     </option>
   </component>
@@ -567,16 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/templates/page_clients.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="16" selection-start="275" selection-end="348" vertical-scroll-proportion="-6.25">
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/page_allVenues.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="45" selection-start="747" selection-end="747" vertical-scroll-proportion="-8.75">
@@ -615,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/clients.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="52" selection-start="786" selection-end="786" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/template_js/admins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="3" selection-start="763" selection-end="763" vertical-scroll-proportion="0.0">
@@ -638,8 +601,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/css/allVenues.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="370" selection-end="370" vertical-scroll-proportion="0.51724136">
+        <state line="18" column="20" selection-start="367" selection-end="367" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/clients.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="52" selection-start="786" selection-end="786" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/templates/page_clients.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="41" selection-start="856" selection-end="856" vertical-scroll-proportion="0.6205036">
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
