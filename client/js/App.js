@@ -1,4 +1,8 @@
 App = (function(){
+    var paymentCycles = [
+        {id: 0, name: 'Weekly', text1: 'Monday', text2: '1 week', multiplier: 1},
+        {id: 1, name: 'Bi-Weekly', text1: 'second Monday', text2: '2 weeks', multiplier: 2},
+    ];
 
     function getHalfRandomFlavor(venue){
         var flavors = {};
@@ -82,11 +86,23 @@ App = (function(){
         return min;
     }
 
+    function getPaymentCycles(){
+        return paymentCycles;
+    }
+    function getPaymentCycle(id){
+        if( _.keys(paymentCycles).indexOf(id) > -1)
+            return paymentCycles[id];
+        else
+            return {};
+    }
+
     return {
         getHalfRandomFlavor: getHalfRandomFlavor,
         getUsedFlavors: getUsedFlavors,
         maxOfAssociative: maxOfAssociative,
-        minOfAssociative: minOfAssociative
+        minOfAssociative: minOfAssociative,
+        paymentCycles: getPaymentCycles,
+        getPaymentCycle: getPaymentCycle,
     };
 })();
 

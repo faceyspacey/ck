@@ -35,6 +35,13 @@ window.VenueModel = function(doc){
 
         return Meteor.users.findOne(this.user_id);
     }
+    this.paymentCycle = function(){
+        var user;
+        if( !this.user_id || !(user = Meteor.users.findOne(this.user_id)) )
+            return {};
+
+        return App.getPaymentCycle(user.profile.paymentCycle)
+    }
 
     this.displayKegerators = function(){
         var venue = Venues.findOne(this._id);
@@ -50,14 +57,15 @@ window.VenueModel = function(doc){
                 flavor = Flavors.findOne(venue.kegerators[i].taps[c].flavor);
                 kegeratorsHtml += '<div class="table-kegerator-flavor-div" style="background-image:url(\''+(flavor ? flavor.icon : '') +'\');"></div>';
             }
-            kegeratorsHtml += '<div style="font-size: 12px;">charges: '+venue.kegerators[i].tapsCount+' &times; $'+fees+' = <b>$'+ (fees*venue.kegerators[i].tapsCount) +'</b></div>';
+            kegeratorsHtml += '<div style="font-size: 12px;">'+venue.kegerators[i].tapsCount+' &times; $'+fees+' = <b>$'+ (fees*venue.kegerators[i].tapsCount) +'</b>/week</div>';
             kegeratorsHtml += '</div>';
         }
 
         return kegeratorsHtml;
     }
 
-    this.summarizedCost = function(){
+    this.summarizedCost = function(multiplier){
+        console.log(multiplier);
         var kegerators = this.kegerators;
         var sum = 0;
         if( typeof kegerators != 'undefined' ){
@@ -66,10 +74,18 @@ window.VenueModel = function(doc){
             }
         }
 
-        return sum;
+        if( multiplier )
+            return multiplier*sum;
+        else
+            return sum;
     }
 
     this.renderKegCharges = function(){
+        var user = Meteor.users.findOne(this.user_id);
+        if( !user )
+            return '';
+        var paymentCycle = App.getPaymentCycle(user.profile.paymentCycle);
+
         var html = '<div class="keg-charges-container">' +
                         '<h3 class="subtitle" style="border-bottom: 1px solid #c7c7c7; padding-bottom: 15px;">Weekly charges of venue</h3>';
         for(var i = 0; i < this.kegerators.length; i++){
@@ -85,8 +101,15 @@ window.VenueModel = function(doc){
             }
             html += '</div>';
         }
-        html +=     '<div class="keg-charges-total">Total: <span style="font-weight: normal; font-size: 14px;">(Charged on every Monday)</span> <span class="keg-charge">$'+this.summarizedCost()+'</span></div>' +
-                    '</div>';
+        var sum = this.summarizedCost();
+        html +=     '<div class="keg-charges-total">Weekly charge: ' +
+                        '<span class="keg-charge">$'+sum+'</span>' +
+                    '</div>' +
+                    '<div class="keg-charges-total">Total: ' +
+                        '<span style="font-weight: normal; font-size: 14px;">(Charged on every '+paymentCycle.text1+')</span> ' +
+                        '<span class="keg-charge">' + paymentCycle.multiplier + ' &times; $'+ sum +' = $'+(paymentCycle.multiplier*sum)+'</span>' +
+                    '</div>' +
+                '</div>';
 
         return html;
     }

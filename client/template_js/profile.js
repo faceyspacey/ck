@@ -6,9 +6,10 @@ Template.profile.helpers({
         if( !user )
             return html;
 
-        var cyclesAvailable = { 0: 'Weekly', 1: 'Bi-Weekly'};
+        var cyclesAvailable = App.paymentCycles();
+        console.log(cyclesAvailable);
         for(i in cyclesAvailable){
-            html += '<option value="'+i+'" '+(user.profile.paymentCycle == i ? 'selected="selected"' : '')+'>'+cyclesAvailable[i]+'</option>';
+            html += '<option value="'+cyclesAvailable[i].id+'" '+(user.profile.paymentCycle == cyclesAvailable[i].id ? 'selected="selected"' : '')+'>'+cyclesAvailable[i].name+'</option>';
         }
 
         return html;
