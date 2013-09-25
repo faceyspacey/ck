@@ -10,6 +10,7 @@ window.VenueModel = function(doc){
         instagram = '',
         youtube = '',
         user_id = '',
+        status_id = 0,
         usedFlavors = [],
         kegerators = [];
     var modelAttributes = [
@@ -48,7 +49,7 @@ window.VenueModel = function(doc){
         if( !venue || typeof venue.kegerators == 'undefined')
             return 'no kegerators yet';
 
-        var kegeratorsHtml = '';
+        var kegeratorsHtml = '<div class="venue-kegerators-container">';
         var flavor;
         for(var i = 0; i < venue.kegerators.length; i++){
             var fees = venue.kegerators[i].tapsCount == 1 ? 128 : (venue.kegerators[i].tapsCount == 2 ? 118 : 108);
@@ -60,6 +61,7 @@ window.VenueModel = function(doc){
             kegeratorsHtml += '<div style="font-size: 12px;">'+venue.kegerators[i].tapsCount+' &times; $'+fees+' = <b>$'+ (fees*venue.kegerators[i].tapsCount) +'</b>/week</div>';
             kegeratorsHtml += '</div>';
         }
+        kegeratorsHtml += '</div>';
 
         return kegeratorsHtml;
     }

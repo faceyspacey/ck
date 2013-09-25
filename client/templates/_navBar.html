@@ -1,16 +1,16 @@
 <template name="_navBar">
     {{#if isInRole 'admin'}}
-        <a class="navi-link admin-only" href="{{adminsPath}}">Admins</a>
-        <a class="navi-link admin-only" href="{{clientsPath}}">Clients</a>
-        <a class="navi-link admin-only" href="{{allVenuesPath}}">All Venues</a>
-        <a class="navi-link admin-only" href="{{flavorsPath}}">Edit flavors</a>
+        <a class="navi-link admin-only {{{isActive 'admins'}}}" id="page_admins_link" href="javascript: Meteor.Router.to('admins');">Admins</a>
+        <a class="navi-link admin-only {{{isActive 'clients'}}}" id="page_clients_link" href="javascript: Meteor.Router.to('clients');">Clients</a>
+        <a class="navi-link admin-only {{{isActive 'allVenues'}}}" id="page_allVenues_link" href="javascript: Meteor.Router.to('allVenues');">All Venues</a>
+        <a class="navi-link admin-only {{{isActive 'flavors'}}}" id="page_flavors_link" href="javascript: Meteor.Router.to('flavors');">Edit flavors</a>
     {{/if}}
 
-    <a class="navi-link" href="{{homePath}}">Home</a>
+    <a class="navi-link {{{isActive 'home'}}}" id="page_home_link" href="javascript: Meteor.Router.to('home');">Home</a>
 
     {{#if currentUser}}
-        <a class="navi-link" href="{{venuesPath}}">My Venues</a>
-        <a class="navi-link" href="{{profilePath}}{{Meteor.userId}}">Profile</a>
+        <a class="navi-link {{{isActive 'venues'}}}" id="page_venues_link" href="javascript: Meteor.Router.to('venues');">My Venues</a>
+        <a class="navi-link {{{isActive 'profile'}}}" id="page_profile_link" href="javascript: Meteor.Router.to('/profile/'+Meteor.userId());">Profile</a>
     {{/if}}
 
 </template>

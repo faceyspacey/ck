@@ -19,8 +19,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    -webkit-box-shadow: 2px 2px 6px rgba(50, 50, 50, 0.61);
-    -moz-box-shadow:    2px 2px 6px rgba(50, 50, 50, 0.61);
-    box-shadow:         2px 2px 6px rgba(50, 50, 50, 0.61);
+    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
 }
 

@@ -86,6 +86,12 @@ overflow-x: hidden;
 #navi-top .navi-link.admin-only:hover {
     color: greenyellow !important;
 }
+#navi-top .navi-link.active {
+    text-shadow: 1px 1px 8px Black,
+                0px 0px 30px White,
+                0px 0px 30px White,
+                0px 0px 30px White;
+}
 
 #login-buttons {
     float: right;

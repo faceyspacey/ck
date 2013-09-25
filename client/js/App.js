@@ -3,6 +3,9 @@ App = (function(){
         {id: 0, name: 'Weekly', text1: 'Monday', text2: '1 week', multiplier: 1},
         {id: 1, name: 'Bi-Weekly', text1: 'second Monday', text2: '2 weeks', multiplier: 2},
     ];
+    var statuses = [
+        {id: 0, name: 'c'},
+    ];
 
     function getHalfRandomFlavor(venue){
         var flavors = {};
@@ -96,6 +99,11 @@ App = (function(){
             return {};
     }
 
+    function activateLink(page){
+        $('#navi-top .navi-link').removeClass('active');
+        $('#page_'+page+'_link').addClass('active');
+    }
+
     return {
         getHalfRandomFlavor: getHalfRandomFlavor,
         getUsedFlavors: getUsedFlavors,
@@ -103,6 +111,7 @@ App = (function(){
         minOfAssociative: minOfAssociative,
         paymentCycles: getPaymentCycles,
         getPaymentCycle: getPaymentCycle,
+        activateLink: activateLink,
     };
 })();
 

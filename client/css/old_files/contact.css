@@ -98,7 +98,7 @@ float:left;
 #address .big_map {
 width:272px;
 height:311px;
-background: url('../../images/cali-3.png') 0 0 no-repeat;
+background: url('/images/cali-3.png') 0 0 no-repeat;
 }
 #address .directions h1 {
 font-size: 20px;

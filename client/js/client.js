@@ -11,6 +11,7 @@ Meteor.Router.add({
         to: 'home',
         and: function() {
             Session.set('page', 'home');
+            App.activateLink('home');
             return 'page_home';
         }
     },
@@ -18,6 +19,7 @@ Meteor.Router.add({
         to: 'flavors',
         and: function() {
             Session.set('page', 'flavors');
+            App.activateLink('flavors');
             return 'page_flavors';
         }
     },
@@ -29,6 +31,9 @@ Meteor.Router.add({
 
             Session.set('page', 'profile');
             Session.set('profileId', id);
+            if( id == Meteor.userId() )
+                App.activateLink('myProfile');
+
             return 'page_profile';
         }
     },
@@ -43,6 +48,7 @@ Meteor.Router.add({
         to: 'clients',
         and: function() {
             Session.set('page', 'clients');
+            App.activateLink('clients');
             return 'page_clients';
         }
     },
@@ -50,6 +56,7 @@ Meteor.Router.add({
         to: 'admins',
         and: function() {
             Session.set('page', 'admins');
+            App.activateLink('admins');
             return 'page_admins';
         }
     },
@@ -57,6 +64,7 @@ Meteor.Router.add({
         to: 'venues',
         and: function() {
             Session.set('page', 'venues');
+            App.activateLink('venues');
             return 'page_venues';
         }
     },
@@ -64,6 +72,7 @@ Meteor.Router.add({
         to: 'allVenues',
         and: function() {
             Session.set('page', 'allVenues');
+            App.activateLink('allVenues');
             return 'page_allVenues';
         }
     },
@@ -75,7 +84,7 @@ Meteor.Router.add({
             // access parameters in order a function args too
             Session.set('page', 'editFlavors');
             Session.set('currentVenueId', id);
-            console.log(Session.get('currentVenueId', id));
+            App.activateLink('');
             return 'page_editFlavors';
         }
     },
@@ -87,6 +96,7 @@ Meteor.Router.add({
             // access parameters in order a function args too
             Session.set('page', 'clientVenues');
             Session.set('clientId', id);
+            App.activateLink('');
             return 'page_clientVenues';
         }
     }
@@ -95,3 +105,18 @@ Meteor.Router.add({
         return 'page_'+page;
     }*/
 });
+
+Meteor.Router.filters({
+    'checkLoggedIn': function(page) {
+        if (Meteor.loggingIn()) {
+            return 'loading';
+        } else if (Meteor.user()) {
+            return page;
+        } else {
+            return 'home';
+        }
+    }
+});
+
+Meteor.Router.filter('checkLoggedIn', {only: ['flavors', 'profile', 'clients', 'admins', 'venues', 'allVenues', 'editFlavors', 'clientVenues'] });
+//Meteor.Router.filter('checkLoggedIn', {except: ['home', 'browse'] });
