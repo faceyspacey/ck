@@ -11,3 +11,4 @@ standard-app-packages
 accounts-ui
 accounts-password
 roles
+iron-router

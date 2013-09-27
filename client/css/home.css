@@ -1,4 +1,9 @@
 #home {
+    display: none;
+    width: 100%;
+    height: 3737px;
+    background: url('/images/home-bg.jpg') no-repeat top;
+    background-color: black;
 }
 
 .action {

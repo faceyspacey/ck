@@ -36,10 +36,11 @@ Template.venues.events({
     },
     'click .edit-venue-btn' : function(event){
         //console.log(Venues.findOne(this._id));
-        Meteor.Router.to('/venue/'+this._id+'/editFlavors');
+        Router.go('setKegs', {id: this._id});
     }
 });
 
 Template.venues.venuesList = function(){
-    return Venues.find({user_id: Meteor.userId()}, {sort: {name: 1}});
+    var condition = this.user_id ? {user_id: this.user_id} : {};
+    return Venues.find(condition, {sort: {name: 1}});
 }

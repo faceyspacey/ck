@@ -2,13 +2,14 @@
 
 Meteor.subscribe('users');
 
-Template.clients.clientList = function(){
-    var clients = Meteor.users.find({roles: {$in: ['client']}});
+Template.users.clientList = function(){
+    var condition = this.role_id != 'all' ? {roles: {$in: [this.role_id]}} : {};
+    var users = Meteor.users.find(condition);
     //console.log(clients);
-    return clients;
+    return users;
 }
 
-Template.clients.helpers({
+Template.users.helpers({
     'listRoles': function(roles){
         if( typeof roles == 'undefined' || roles.length < 1 )
             return '-';
@@ -26,7 +27,7 @@ Template.clients.helpers({
     }
 });
 
-Template.clients.events({
+Template.users.events({
     'click .user-name' : function(){
         Meteor.Router.to('/clientVenues/'+this._id);
     }

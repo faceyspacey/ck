@@ -1,0 +1,43 @@
+<template name="page_myOrders">
+    {{>orders}}
+</template>
+
+<template name="page_clientOrders">
+    {{>orders}}
+</template>
+
+<template name="orders">
+    <div class="page-background" id="orders">
+        <h1 class="page_title">Orders</h1>
+
+        {{userId}}
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th style="">Order</th>
+                <th style="">Day of Week</th>
+                <th style="">Date</th>
+                <th style="">Kegs</th>
+                <th style="">Total</th>
+            </tr>
+            {{#if orderList}}
+                {{#each orderList}}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="5"> You have no orders yet. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+    </div>
+</template>

@@ -7,87 +7,6 @@ if( Roles.userIsInRole(Meteor.userId(), ['admin']) )
     Meteor.subscribe('users');
 
 Meteor.Router.add({
-    '/': {
-        to: 'home',
-        and: function() {
-            Session.set('page', 'home');
-            App.activateLink('home');
-            return 'page_home';
-        }
-    },
-    '/flavors': {
-        to: 'flavors',
-        and: function() {
-            Session.set('page', 'flavors');
-            App.activateLink('flavors');
-            return 'page_flavors';
-        }
-    },
-    '/profile/:id': {
-        to: 'profile',
-        and: function(id) {
-            if( (Meteor.userId() != id && Roles.userIsInRole(Meteor.userId(), ['admin'])) || Meteor.users.findOne(id) )
-                Meteor.Router.to('/');
-
-            Session.set('page', 'profile');
-            Session.set('profileId', id);
-            if( id == Meteor.userId() )
-                App.activateLink('myProfile');
-
-            return 'page_profile';
-        }
-    },
-    '/contact': {
-        to: 'contact',
-        and: function() {
-            Session.set('page', 'contact');
-            return 'page_contact';
-        }
-    },
-    '/clients': {
-        to: 'clients',
-        and: function() {
-            Session.set('page', 'clients');
-            App.activateLink('clients');
-            return 'page_clients';
-        }
-    },
-    '/admins': {
-        to: 'admins',
-        and: function() {
-            Session.set('page', 'admins');
-            App.activateLink('admins');
-            return 'page_admins';
-        }
-    },
-    '/venues': {
-        to: 'venues',
-        and: function() {
-            Session.set('page', 'venues');
-            App.activateLink('venues');
-            return 'page_venues';
-        }
-    },
-    '/allVenues': {
-        to: 'allVenues',
-        and: function() {
-            Session.set('page', 'allVenues');
-            App.activateLink('allVenues');
-            return 'page_allVenues';
-        }
-    },
-    '/venue/:id/editFlavors': {
-        to: 'editFlavors',
-        and: function(id) {
-            if( Venues.findOne(id) )
-                Meteor.Router.to('/');
-            // access parameters in order a function args too
-            Session.set('page', 'editFlavors');
-            Session.set('currentVenueId', id);
-            App.activateLink('');
-            return 'page_editFlavors';
-        }
-    },
     '/clientVenues/:id': {
         to: 'clientVenues',
         and: function(id) {
@@ -106,6 +25,71 @@ Meteor.Router.add({
     }*/
 });
 
+Router.map(function() {
+
+    /* ----- Public pages ----- */
+    this.route('home', {
+        path: '/',
+        template: 'page_home',
+        data: {},
+    });
+
+    /* ----- Login-required pages ----- */
+    this.route('myProfile', {
+        path: '/myProfile',
+        template: 'page_profile',
+        data: {userId: Meteor.userId()},
+    });
+    this.route('myOrders', {
+        path: '/myOrders',
+        template: 'page_myOrders',
+        data: {userId: Meteor.userId()},
+    });
+    this.route('myVenues', {
+        path: '/venues/'+Meteor.userId(),
+        template: 'page_venues',
+        data: {title: 'My Venues', user_id: Meteor.userId()},
+    });
+    this.route('setKegs', {
+        path: '/venue/:id/setKegs',
+        template: 'page_setKegs',
+        data: function(){ return {venueId: this.params.id} },
+    });
+
+    /* ----- Admin Pages ----- */
+    this.route('flavors', {
+        path: '/flavors',
+        template: 'page_flavors',
+        data: {},
+    });
+    this.route('clientOrders', {
+        path: '/clientOrders/:id',
+        template: 'page_clientOrders',
+        data: function(){ return {user_id: this.params.id}; },
+    });
+    this.route('users', {
+        path: '/users/:role',
+        template: 'page_users',
+        data: function(){ return {role_id: this.params.role}; },
+    });
+    this.route('profile', {
+        path: '/profile/:id',
+        template: 'page_profile',
+        data: function(){ return {user_id: this.params.id}; },
+    });
+    this.route('allVenues', {
+        path: '/venues/all',
+        template: 'page_venues',
+        data: {title: 'All Venues', user_id: false},
+    });
+    this.route('clientVenues', {
+        path: '/venues/:id',
+        template: 'page_venues',
+        data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Venues", user_id: this.params.id}; },
+    });
+});
+
+
 Meteor.Router.filters({
     'checkLoggedIn': function(page) {
         if (Meteor.loggingIn()) {
@@ -115,8 +99,49 @@ Meteor.Router.filters({
         } else {
             return 'home';
         }
+    },
+    'checkAdmin': function(page) {
+        if (Meteor.loggingIn()) {
+            return 'home';
+        } else if (Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+            console.log('checkAdmin true');
+            return page;
+        } else {
+            return 'home';
+        }
     }
 });
 
-Meteor.Router.filter('checkLoggedIn', {only: ['flavors', 'profile', 'clients', 'admins', 'venues', 'allVenues', 'editFlavors', 'clientVenues'] });
-//Meteor.Router.filter('checkLoggedIn', {except: ['home', 'browse'] });
+Router.configure({
+    layout: 'layout',
+
+    /*notFoundTemplate: 'notFound',
+
+    loadingTemplate: 'loading',*/
+
+    renderTemplates: {
+        /* render the templated named footer to the 'footer' yield */
+        'footer': { to: 'footer' },
+    },
+
+    before: function() {
+        var routeName = this.context.route.name;
+        // no need to check at these URLs
+        if (_.include(['home'], routeName))
+            return;
+
+        var user = Meteor.user();
+        if (! user) {
+            this.render('home');
+            return this.stop();
+        }
+    },
+});
+
+
+/*
+Meteor.Router.filter('checkLoggedIn', {only: ['profile', 'venues', 'editFlavors', 'myOrders']});
+
+Meteor.Router.filter('checkAdmin', {only: [ 'profile', 'venues', 'editFlavors', 'flavors', 'clients', 'admins', 'allVenues', 'editFlavors', 'clientVenues', 'clientOrders' ]});
+Meteor.Router.filter('checkAdmin', {except: ['myOrders']});
+*/

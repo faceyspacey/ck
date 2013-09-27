@@ -1,5 +1,5 @@
 
-Template.editFlavors.helpers({
+Template.setKegs.helpers({
     venue: function() {
         return Venues.findOne(Session.get('currentVenueId'));
     },
@@ -53,7 +53,7 @@ Template.editFlavors.helpers({
     }
 });
 
-Template.editFlavors.events({
+Template.setKegs.events({
     'change .tap-flavor-select' : function(){
         console.log(this._id);
         var tapInputs = document.editFlavorsForm.elements;

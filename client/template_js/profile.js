@@ -15,7 +15,7 @@ Template.profile.helpers({
         return html;
     },
     'user' : function(){
-        return Meteor.users.findOne(Session.get('profileId'));
+        return Meteor.users.findOne(this.user_id);
     }
 });
 

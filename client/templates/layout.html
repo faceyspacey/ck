@@ -1,0 +1,42 @@
+<template name="layout">
+
+    <nav>
+        <!-- static content here like nav links -->
+        <div id="navi-top" style="">
+            <div class="navi-links-holder">
+                {{> _navBar}}
+
+                {{#if currentUser}}
+                <div id="loggedIn-user-info">
+                    <div id="user-info-avatar" style="background-image: url('{{Meteor.user.profile.avatar}}')"></div>
+                </div>
+                {{/if}}
+
+                {{loginButtons}}
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- the main template will be rendered here -->
+
+    <div id="container">
+        <div class="row_container">
+
+            <a class="invisi-link" href="{{homePath}}">
+                <div id="sales_logo">
+                    <img class="enlightened" src="/images/sales_enlightened.png" width="289" height="36" alt="Sales Enlightened">
+                </div>
+            </a>
+
+            {{yield}}
+
+        </div>
+    </div>
+
+    <footer>
+        <!-- render to the footer yield -->
+        {{yield 'footer'}}
+    </footer>
+
+</template>
