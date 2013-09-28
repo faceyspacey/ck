@@ -13,6 +13,15 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+.flavor-list-kegIcon{
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    background-color: white;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 .delete-flavor-btn {
     display: inline-block;

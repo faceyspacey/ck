@@ -1,12 +1,8 @@
 
-Venues = new Meteor.Collection("venues", {
-    transform: function (doc) { return new VenueModel(doc); }
-});
-
 Template.venues.events({
     'click .open-dialog-btn' : function(event){
         var venueDialog = document.getElementById('addVenueDialog');
-        console.log(venueDialog);
+        //console.log(venueDialog);
         if( venueDialog )
             venueDialog.style.display = 'block';
     },
@@ -19,16 +15,11 @@ Template.venues.events({
     'click .add-venue-btn' : function(event){
         var venueFormElements = document.newVenueForm.elements;
         var attributes = {kegerators: []};
-        for(var i = 0; i < venueFormElements.length; i++){
-            attributes[venueFormElements[i].name] = venueFormElements[i].value;
-        }
-        if( id = Venues.insert(attributes) ){
-            var venue = new VenueModel(id, attributes);
-            console.log(venue.errors);
-            for(var i = 0; i < venueFormElements.length; i++){
-                document.newVenueForm.elements[i].value = '';
-            }
-        }
+        _.each(venueFormElements, function(elem){
+            attributes[elem.name] = elem.value;
+            elem.value = "";
+        });
+        Venues.insert(attributes);
     },
     'click .delete-venue-btn' : function(event){
         if( confirm('Are you sure you want to delete this venue?') )
@@ -42,5 +33,6 @@ Template.venues.events({
 
 Template.venues.venuesList = function(){
     var condition = this.user_id ? {user_id: this.user_id} : {};
+    //console.log(Venues.find(condition, {sort: {name: 1}}));
     return Venues.find(condition, {sort: {name: 1}});
 }

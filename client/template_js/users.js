@@ -1,7 +1,5 @@
 
 
-Meteor.subscribe('users');
-
 Template.users.clientList = function(){
     var condition = this.role_id != 'all' ? {roles: {$in: [this.role_id]}} : {};
     var users = Meteor.users.find(condition);

@@ -1,18 +1,24 @@
 
-window.FlavorModel = function(doc){
+FlavorModel = function(doc){
     var _id = '',
         name = '',
         icon = '',
+        kegIcon = '',
         is_public = false,
-        user_id = '';
+        user_id = '',
+        createdAt = 0,
+        updatedAt = 0;
     var modelAttributes = [
         '_id',
         'name',
         'icon',
+        'kegIcon',
         'is_public',
-        'user_id'
+        'user_id',
+        'createdAt',
+        'updatedAt'
     ];
-    var requiredAttrs = ['name', 'icon'];
+    //var requiredAttrs = ['name', 'icon'];
     this.errors = {};
 
     this.user = function(){
@@ -46,6 +52,7 @@ window.FlavorModel = function(doc){
         return kegeratorsHtml;
     }*/
 
+    /*
     this.setAttributes = function(doc){
         for(i = 0; i < modelAttributes.length; i++){
             var attr = modelAttributes[i];
@@ -59,9 +66,7 @@ window.FlavorModel = function(doc){
 
             this[attr] = doc[attr];
         }
-    };
+    };*/
 
-    this.setAttributes(doc);
-
-    return this;
+    _.extend(this, doc);
 };

@@ -1,52 +1,19 @@
 App = (function(){
     var paymentCycles = [
-        {id: 0, name: 'Weekly', text1: 'Monday', text2: '1 week', multiplier: 1},
-        {id: 1, name: 'Bi-Weekly', text1: 'second Monday', text2: '2 weeks', multiplier: 2},
+        {id: 'weekly', name: 'Weekly'},
+        {id: 'bi-weekly', name: 'Bi-Weekly'}
     ];
-    var statuses = [
-        {id: 0, name: 'c'},
+    var paymentDays = [
+        {id: 'monday', name: 'Monday'},
+        {id: 'thursday', name: 'Thursday'}
     ];
 
-    function getHalfRandomFlavor(venue){
-        var flavors = {};
-        var flavorKeys = [];
-        for( var i = 0; i < venue.kegerators.length; i++){
-            var kege = venue.kegerators[i];
-            for(var c = 0; c < kege.taps.length; c++){
-                var tap = kege.taps[c];
-                if( typeof flavors[tap.flavor] != 'undefined' )
-                    flavors[tap.flavor] += 1 ;
-                else
-                    flavors[tap.flavor] = 1 ;
-
-                if( flavorKeys.indexOf(tap.flavor) == -1 )
-                    flavorKeys.push(tap.flavor);
-            }
-        }
-
-        //console.log(venue);
-        //console.log(Flavors.find({_id: {$nin: flavorKeys}}).fetch());
-        var nonChoosedFlavors = Flavors.find({_id: {$nin: flavorKeys}, is_public: true}).fetch();
-        for( var i = 0; i < nonChoosedFlavors.length; i++){
-            if( flavorKeys.indexOf(nonChoosedFlavors[i]._id) < 0 )
-                flavors[nonChoosedFlavors[i]._id] = 0;
-        }
-        var min = minOfAssociative(flavors, true);
-        console.log(flavors);
-        return min.keys[Math.floor((Math.random()*min.keys.length))];
+    function getPaymentCycles(){
+        return paymentCycles;
     }
-
-    function getUsedFlavors(venue){
-        var flavors = [];
-        for(var i = 0; i < venue.kegerators.length; i++){
-            for(var c = 0; c < venue.kegerators[i].taps.length; c++){
-                if( flavors.indexOf(venue.kegerators[i].taps[c].flavor) < 0 )
-                    flavors.push(venue.kegerators[i].taps[c].flavor);
-            }
-        }
-
-        return flavors;
-    };
+    function getPaymentDays(){
+        return paymentDays;
+    }
 
     function maxOfAssociative(object, allowMulti){
         var max = {keys: [], val: 0};
@@ -65,6 +32,7 @@ App = (function(){
                     max = {key: i, val: object[i]};
             }
         }
+
         return max;
     }
 
@@ -84,19 +52,8 @@ App = (function(){
                     min = {key: i, val: object[i]};
             }
         }
-        /*console.log(object);
-        console.log(min);*/
-        return min;
-    }
 
-    function getPaymentCycles(){
-        return paymentCycles;
-    }
-    function getPaymentCycle(id){
-        if( _.keys(paymentCycles).indexOf(id) > -1)
-            return paymentCycles[id];
-        else
-            return {};
+        return min;
     }
 
     function activateLink(page){
@@ -105,13 +62,11 @@ App = (function(){
     }
 
     return {
-        getHalfRandomFlavor: getHalfRandomFlavor,
-        getUsedFlavors: getUsedFlavors,
         maxOfAssociative: maxOfAssociative,
         minOfAssociative: minOfAssociative,
-        paymentCycles: getPaymentCycles,
-        getPaymentCycle: getPaymentCycle,
         activateLink: activateLink,
+        paymentCycles: getPaymentCycles(),
+        paymentDays: getPaymentDays(),
     };
 })();
 
@@ -124,3 +79,7 @@ Array.max = function( array ){
 Array.min = function( array ){
     return Math.min.apply( Math, array );
 };
+
+String.prototype.ucfirst = function() {
+    return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
+}

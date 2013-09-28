@@ -2,28 +2,14 @@
 I don't know if this is how they do it anymore, but feel free to implement your
 own way of creating pages **/
 
-//Meteor.users.remove(Meteor.userId());
-if( Roles.userIsInRole(Meteor.userId(), ['admin']) )
-    Meteor.subscribe('users');
-
+/*
 Meteor.Router.add({
-    '/clientVenues/:id': {
-        to: 'clientVenues',
-        and: function(id) {
-            if( Meteor.users.findOne(id) )
-                Meteor.Router.to('/');
-            // access parameters in order a function args too
-            Session.set('page', 'clientVenues');
-            Session.set('clientId', id);
-            App.activateLink('');
-            return 'page_clientVenues';
-        }
-    }
-    /*'/:page': function(page) {
+    '/:page': function(page) {
         Session.set('page', page);
         return 'page_'+page;
-    }*/
+    }
 });
+*/
 
 Router.map(function() {
 
@@ -31,29 +17,37 @@ Router.map(function() {
     this.route('home', {
         path: '/',
         template: 'page_home',
-        data: {},
+        renderTemplates: {
+            'footer': {to: 'footer'}
+        },
+        data: {}
     });
 
     /* ----- Login-required pages ----- */
     this.route('myProfile', {
         path: '/myProfile',
         template: 'page_profile',
-        data: {userId: Meteor.userId()},
+        data: {user_id: Meteor.userId()},
+    });
+    this.route('myProfileEdit', {
+        path: '/myProfile/edit',
+        template: 'page_editProfile',
+        data: {user_id: Meteor.userId()},
     });
     this.route('myOrders', {
         path: '/myOrders',
         template: 'page_myOrders',
-        data: {userId: Meteor.userId()},
+        data: {user_id: Meteor.userId()},
     });
     this.route('myVenues', {
-        path: '/venues/'+Meteor.userId(),
+        path: '/myVenues',
         template: 'page_venues',
         data: {title: 'My Venues', user_id: Meteor.userId()},
     });
     this.route('setKegs', {
         path: '/venue/:id/setKegs',
         template: 'page_setKegs',
-        data: function(){ return {venueId: this.params.id} },
+        data: function(){ return {venue_id: this.params.id} },
     });
 
     /* ----- Admin Pages ----- */
@@ -77,6 +71,11 @@ Router.map(function() {
         template: 'page_profile',
         data: function(){ return {user_id: this.params.id}; },
     });
+    this.route('editProfile', {
+        path: '/profile/:id/edit',
+        template: 'page_editProfile',
+        data: function(){ return {user_id: this.params.id}},
+    });
     this.route('allVenues', {
         path: '/venues/all',
         template: 'page_venues',
@@ -89,37 +88,15 @@ Router.map(function() {
     });
 });
 
-
-Meteor.Router.filters({
-    'checkLoggedIn': function(page) {
-        if (Meteor.loggingIn()) {
-            return 'loading';
-        } else if (Meteor.user()) {
-            return page;
-        } else {
-            return 'home';
-        }
-    },
-    'checkAdmin': function(page) {
-        if (Meteor.loggingIn()) {
-            return 'home';
-        } else if (Roles.userIsInRole(Meteor.userId(), ['admin'])) {
-            console.log('checkAdmin true');
-            return page;
-        } else {
-            return 'home';
-        }
-    }
-});
-
 Router.configure({
     layout: 'layout',
 
     /*notFoundTemplate: 'notFound',
-
     loadingTemplate: 'loading',*/
 
     renderTemplates: {
+        /* render the templated named footer to the 'footer' yield */
+        'header': { to: 'header' },
         /* render the templated named footer to the 'footer' yield */
         'footer': { to: 'footer' },
     },
@@ -137,11 +114,3 @@ Router.configure({
         }
     },
 });
-
-
-/*
-Meteor.Router.filter('checkLoggedIn', {only: ['profile', 'venues', 'editFlavors', 'myOrders']});
-
-Meteor.Router.filter('checkAdmin', {only: [ 'profile', 'venues', 'editFlavors', 'flavors', 'clients', 'admins', 'allVenues', 'editFlavors', 'clientVenues', 'clientOrders' ]});
-Meteor.Router.filter('checkAdmin', {except: ['myOrders']});
-*/

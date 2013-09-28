@@ -1,9 +1,8 @@
 
-Orders = new Meteor.Collection('orders');
 
 Template.orders.helpers({
     'orderList' : function(){
-        var user = Meteor.users.findOne(Session.get('ordersClientId'));
+        var user = Meteor.users.findOne(this.user_id);
         if( !user )
             return;
 

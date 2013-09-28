@@ -46,13 +46,46 @@ table.items {
     text-align: center;
 }
 
+/* ---------- Vertical Table ---------- */
+table.styled-vertical-table {
+    width: 100%;
+    cellspacing: 0;
+    border: 0;
+}
 
+table.styled-vertical-table tbody th {
+    width: 30%;
+    padding: 5px 10px;
+    color: #0069aa;
+    text-shadow: 1px 1px 1px white;
+    text-align: right;
+    border-bottom: 1px dashed #0069aa;
+    border-right: 1px dashed #0069aa;
+}
+table.styled-vertical-table tbody td {
+    padding: 5px 10px;
+    color: DimGrey;
+    text-shadow: 1px 1px 1px white;
+    text-align: left;
+    border-bottom: 1px dashed #0069aa;
+ }
+table.styled-vertical-table tbody .section-title td {
+    position: relative;
+    color: #0069aa;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    height: 30px;
+}
+
+/* ----------- FORM --------- */
 .form-row label {
     display: inline-block;
     width: 90px;
 }
 
-.form-row input {
+.form-row input[type="text"] {
     display: inline-block;
     width: 290px;
     padding: 5px;
@@ -195,6 +228,7 @@ table.items {
     color: white;
     cursor: pointer;
     background: url('/images/lrnmre.png') no-repeat top;
+    background-size: 100% 200%;
     z-index: 99;
 }
 .customButton-blue:hover {

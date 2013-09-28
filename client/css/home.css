@@ -1,7 +1,10 @@
 #home {
-    display: none;
+    margin-top: -55px;
+    margin-bottom: -55px;
+    border-top: 55px solid black;
+    border-bottom: 55px solid black;
     width: 100%;
-    height: 3737px;
+    height: 3703px;
     background: url('/images/home-bg.jpg') no-repeat top;
     background-color: black;
 }

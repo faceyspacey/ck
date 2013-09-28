@@ -1,20 +1,4 @@
 
-Flavors = new Meteor.Collection('flavors', {
-    transform: function (doc) { return new FlavorModel(doc); }
-});
-
-Meteor.subscribe('flavors');
-
-/*
- function deleteFlavors(){
-     var allFlavors = Flavors.find({}).fetch();
-     for(i in allFlavors){
-         Flavors.remove(allFlavors[i]._id);
-     }
- }
- deleteFlavors();
-*/
-
 
 Template.flavors.events({
     'click .open-dialog-btn' : function(event){

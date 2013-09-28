@@ -1,10 +1,17 @@
 
 Template.setKegs.helpers({
     venue: function() {
-        return Venues.findOne(Session.get('currentVenueId'));
+        return Venues.findOne(this.venue_id);
+    },
+    kegs: function(){
+        var venue = Venues.findOne(this.venue_id);
+        if( !venue )
+            return [];
+
+        return venue.getKegs();
     },
     kegerators: function(){
-        var venue = Venues.findOne(Session.get('currentVenueId'));
+        var venue = Venues.findOne(this.venue_id);
         if( !venue )
             return [];
 
@@ -31,21 +38,18 @@ Template.setKegs.helpers({
 
         return venue ? venue.kegerators : [];
     },
-    flavorDropDown: function(flavor){
-        var allFlavors = Flavors.find({is_public: true}).fetch();
+    flavorDropDown: function(flavorId){
         var options = '';
-        for(var i = 0; i < allFlavors.length; i++){
-            options += '<option value="' + allFlavors[i]._id + '" ' + (flavor == allFlavors[i]._id ? 'selected="selected"' : '') + '>' + allFlavors[i].name + '</option>';
-        }
 
-        return '<select class="tap-flavor-select">'+options +'</select>';
-    },
-    flavorIcon: function(flavor){
-        var selectedFlavor = Flavors.findOne({_id: flavor, is_public: true});
-        return '<img class="tap-row-icon" src="'+selectedFlavor.icon+'" />';
+        Flavors.find({is_public: true}).forEach(function(flavor){
+            options += '<option value="' + flavor._id + '" ' + (flavorId == flavor._id ? 'selected="selected"' : '') + '>' + flavor.name + '</option>';
+        });
+
+        return '<select class="keg-flavor-select">'+options +'</select>';
     },
     renderKegCharges: function(){
-        var venue = Venues.findOne(Session.get('currentVenueId'));
+        var venue = Venues.findOne(this.venue_id);
+        return '';
         if( venue )
             return venue.renderKegCharges();
         else
@@ -54,58 +58,24 @@ Template.setKegs.helpers({
 });
 
 Template.setKegs.events({
-    'change .tap-flavor-select' : function(){
-        console.log(this._id);
-        var tapInputs = document.editFlavorsForm.elements;
-        var kegerators = [];
-        var taps = [];
-        for(var i = 0; i < tapInputs.length; i++){
-            var numText = taps.length+1 == 1 ? '1st' : (taps.length+1 == 2 ? '2nd' : '3rd');
-
-            taps.push({flavor: tapInputs[i].value, num: numText});
-
-            if( taps.length == 3 || i == tapInputs.length-1 ){
-                kegerators.push({
-                    tapsCount: taps.length,
-                    taps: taps,
-                });
-                taps = [];
-            }
-        }
-        var venue = Venues.findOne(Session.get('currentVenueId'));
-        venue.kegerators = kegerators;
-        Venues.update(Session.get('currentVenueId'), {$set: {usedFlavors: App.getUsedFlavors(venue), kegerators: kegerators}});
+    'change .keg-flavor-select' : function(event){
+        Venues.findOne(this.venue_id).updateKeg(this._id, {flavor_id: event.target.value});
     },
-    'click .add-tap-btn' : function(){
-        var venue = Venues.findOne(Session.get('currentVenueId'));
-        if( !Flavors.find({is_public: true}).count() )
+    'change input[type=radio].radio-cycle' : function(event){
+        Venues.findOne(this.venue_id).updateKeg(this._id, {paymentCycle: event.target.value});
+    },
+    'change input[type=radio].radio-day' : function(event){
+        Venues.findOne(this.venue_id).updateKeg(this._id, {paymentDay: event.target.value});
+    },
+    'click .add-keg-btn' : function(){
+        var venue = Venues.findOne(this.venue_id);
+        if( !Flavors.find({is_public: true}).count() || !venue )
             return;
-        var kegerator = venue.kegerators.length ? venue.kegerators[venue.kegerators.length-1] : {tapsCount: 0};
-        if( venue.kegerators.length && kegerator.tapsCount < 3 ){
-            var numText = kegerator.tapsCount+1 == 1 ? '1st' : (kegerator.tapsCount+1 == 2 ? '2nd' : '3rd');
-            kegerator.taps.push({flavor: App.getHalfRandomFlavor(venue), num: numText});
-            kegerator.tapsCount += 1;
-            venue.kegerators[venue.kegerators.length-1] = kegerator;
-        }else{
-            venue.kegerators.push({
-                tapsCount: 1,
-                taps: [{flavor: App.getHalfRandomFlavor(venue), num: '1st'}],
-            });
-        }
-        Venues.update(venue._id, {$set: {usedFlavors: App.getUsedFlavors(venue), kegerators: venue.kegerators}});
+
+        venue.addKeg({flavor_id: '', venue_id: this.venue_id});
     },
-    'click .remove-tap-btn' : function(){
-        var venue = Venues.findOne(Session.get('currentVenueId'));
-        var kegerator = venue.kegerators.length ? venue.kegerators[venue.kegerators.length-1] : null;
-        if( kegerator ){
-            if( kegerator.taps.length <= 1){
-                venue.kegerators.splice(venue.kegerators.length-1, 1);
-            }else{
-                kegerator.taps.splice(kegerator.tapsCount-1, 1);
-                kegerator.tapsCount = kegerator.taps.length;
-                venue.kegerators[venue.kegerators.length-1] = kegerator;
-            }
-            Venues.update(venue._id, {$set: {usedFlavors: App.getUsedFlavors(venue), kegerators: venue.kegerators}});
-        }
+    'click .remove-keg-btn' : function(){
+        if( confirm('Are you sure you want to drop this keg?') )
+            Venues.findOne(this.venue_id).removeKeg(this._id);
     }
 });

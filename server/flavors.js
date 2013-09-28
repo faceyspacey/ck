@@ -10,25 +10,22 @@ Meteor.publish("flavors", function () {
 });
 
 
-
 Flavors.allow({
     insert: function(userId, doc) {
-        if( Roles.userIsInRole(userId, ['admin']) )
-            return true;
-        else
-            return false;
+        doc.createdAt = (new Date()).getTime();
+        doc.updatedAt = (new Date()).getTime();
+
+        return Roles.userIsInRole(userId, ['admin']);
     },
     update: function(userId, doc, fields, modifier) {
-        if( Roles.userIsInRole(userId, ['admin']) )
-            return true;
-        else
-            return false;
+        doc.updatedAt = (new Date()).getTime();
+
+        return Roles.userIsInRole(userId, ['admin']);
     },
     remove: function(userId, doc) {
-        if( Roles.userIsInRole(userId, ['admin']) )
-            return true;
-        else
-            return false;
-    }
+
+        return Roles.userIsInRole(userId, ['admin']);
+    },
+    fetch: ['user_id, createdAt, updatedAt']
 });
 

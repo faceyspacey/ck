@@ -5,28 +5,40 @@
 <template name="setKegs">
     <div class="dialog-box" id="edit_venue_flavors">
         <h1 class="page_title">{{venue.name}}</h1>
-        <h3 class="subtitle" style="margin-bottom: 25px;">(edit flavors)</h3>
+        <h3 class="subtitle" style="margin-bottom: 25px;">(Keg settings)</h3>
 
         <div id="kegerator-list">
             <form id="editFlavorsForm" name="editFlavorsForm" methos="POST">
-                {{#each kegerators}}
-                    <div class="kegerator-row">
-                            <div class="kegerator-illustration has-{{tapsCount}}-tap"></div>
-                        {{#each taps}}
-                            <div class="kegerator-tap-row">
-                                <label>{{num}} Tap's flavor: </label>
-                                {{{flavorDropDown flavor}}}
-                                {{{flavorIcon flavor}}}
+                {{#each kegs}}
+                    <div class="keg-box">
+                        <div class="remove-keg-btn"> &times; </div>
+                        <div class="keg-illustration" style="background-image: url('{{icon}}');">
+                            <div class="keg-flavor-illustration" style="background-image: url('{{flavorIcon}}');"></div>
+                        </div>
+                        <div class="keg-settings">
+
+                            <div class="form-row">
+                                <label>Flavor: </label>
+                                {{{flavorDropDown flavor_id}}}
                             </div>
-                        {{/each}}
+
+                            <div class="form-row">
+                                <label>Payment Cycle: </label>
+                                <div class="keg-pcycle-left">
+                                    {{{cycleRadios}}}
+                                </div>
+                                <div class="keg-pcycle-right">
+                                    {{{dayRadios}}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {{/each}}
             </form>
 
             <div class="buttons-container">
                 <!-- <div class="save-kegarators-btn customButton-blue">Save</div> -->
-                <div class="remove-tap-btn customButton-blue">- Remove Tap</div>
-                <div class="add-tap-btn customButton-blue">+ Add Tap</div>
+                <div class="add-keg-btn customButton-blue">+ Add Keg</div>
             </div>
 
             {{{renderKegCharges}}}

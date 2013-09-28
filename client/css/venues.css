@@ -32,18 +32,20 @@
     line-height: 24px;
 }
 
-.table-kegerator-div{
+.table-keg-div{
     display: inline-block;
     padding: 5px;
     margin: 5px;
-    width: 158px;
-    border: 1px solid #c7c7c7;
-    border-radius: 6px;
-    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
-    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
-    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
+    width: 100%;
+    border-bottom: 1px dashed #0069aa;
 }
-.table-kegerator-flavor-div{
+.table-keg-div:last-child{
+    border: 0;
+}
+span.keg-fee{
+    float: right;
+}
+.table-keg-flavor-div{
     vertical-align: middle;
     display: inline-block;
     margin: 0 5px;
@@ -53,6 +55,6 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
-.venue-kegerators-container {
+.venue-kegs-container {
     width: 365px;
 }

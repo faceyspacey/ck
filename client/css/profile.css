@@ -1,26 +1,34 @@
+#profile .profile_avatar_img{
+
+}
+
 #profile_content {
-    margin: 10px;
-    padding: 2px;
-    border:1px solid #c7c7c7;
+    position: relative;
+    margin: 30px;
+    padding: 10px 10px 10px 200px;
+    border: 1px solid #0069aa;
 }
 
-#profile_left,
-#profile_right {
+#profile_content .profile_avatar_img{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    margin: 0;
+}
+#profile_content .profile_right {
+    border-left: 1px solid #0069aa;
+    min-height: 300px;
+    padding-left: 10px;
+}
+#edit-profile-btn{
+    position: absolute;
+    top: 0px;
+    right: 5px;
     display: inline-block;
-    width: 46%;
-    margin: 10px 1.5%;
-    vertical-align: top;
+    float: right;
+    width: 90px;
+    height: 28px;
+    line-height: 28px;
+    font-weight: normal;
+    font-size: 14px;
 }
-
-.profile_avatar_img {
-    margin: 15px auto;
-    width: 128px;
-    height: 128px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
-    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
-    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
-}
-
