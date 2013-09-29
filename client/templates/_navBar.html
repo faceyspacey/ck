@@ -1,6 +1,7 @@
 <template name="_navBar">
     {{#if isInRole 'admin'}}
         <a class="navi-link admin-only" id="page_users_link" href="javascript: Router.go('/users/all');">Users</a>
+        <a class="navi-link admin-only" id="page_oneOffs_link" href="javascript: Router.go('oneOffs');">ONE-OFFS ()</a>
         <a class="navi-link admin-only" id="page_allVenues_link" href="javascript: Router.go('allVenues');">All Venues</a>
         <a class="navi-link admin-only" id="page_flavors_link" href="javascript: Router.go('flavors');">Edit flavors</a>
     {{/if}}

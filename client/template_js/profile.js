@@ -29,5 +29,25 @@ Template.profile.events({
             Router.go('myProfileEdit');
         else
             Router.go('editProfile', {id: this.user_id});
+    },
+    'click .user-venues-btn' : function(){
+        var user = Meteor.users.findOne(this.user_id);
+        if( !user )
+            return alert('User not found.');
+
+        if( Meteor.userId() == this.user_id )
+            Router.go('myVenues');
+        else
+            Router.go('clientVenues', {id: this.user_id});
+    },
+    'click .user-orders-btn' : function(){
+        var user = Meteor.users.findOne(this.user_id);
+        if( !user )
+            return alert('User not found.');
+
+        if( Meteor.userId() == this.user_id )
+            Router.go('myOrders');
+        else
+            Router.go('clientOrders', {id: this.user_id});
     }
 });

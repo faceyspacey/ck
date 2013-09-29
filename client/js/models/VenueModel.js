@@ -1,35 +1,22 @@
 
 VenueModel = function(doc){
-    var _id = '',
-        user_id = '',
-        name = '',
-        address = '',
-        email = '',
-        phone = '',
-        facebook = '',
-        twitter = '',
-        instagram = '',
-        youtube = '',
-        usedFlavors = [],
-        //kegs = [],
-        createdAt = 0,
-        updatedAt = 0;
-    var modelAttributes = [
-        '_id',
-        'user_id',
-        'name',
-        'address',
-        'email',
-        'phone',
-        'facebook',
-        'twitter',
-        'instagram',
-        'youtube',
-        'usedFlavors',
-        //'kegs',
-        'createdAt',
-        'updatedAt'
-    ];
+    var defaultValues = {
+        _id: '',
+        user_id: '',
+        name: '',
+        address: '',
+        email: '',
+        phone: '',
+        facebook: '',
+        //kegerators: 0,
+        twitter: '',
+        instagram: '',
+        youtube: '',
+        usedFlavors: '',
+        createdAt: 0,
+        updatedAt: 0
+    };
+
     //var requiredAttrs = ['name', 'address', 'email'];
     this.errors = {};
 
@@ -278,6 +265,19 @@ VenueModel = function(doc){
 
         return html;
     }
+
+
+    this.getObjectValues = function(doc){
+        var object = {};
+
+        _.extend(object, defaultValues);
+
+        _.extend(object, doc);
+
+        return object;
+    }
+
+    this.getObjectValues(doc);
 
     _.extend(this, doc);
 

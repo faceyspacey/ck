@@ -1,14 +1,10 @@
-<template name="page_myOrders">
-    {{>orders}}
-</template>
-
-<template name="page_clientOrders">
+<template name="page_orders">
     {{>orders}}
 </template>
 
 <template name="orders">
     <div class="page-background" id="orders">
-        <h1 class="page_title">Orders</h1>
+        <h1 class="page_title" style="margin-bottom:25px;">{{title}}</h1>
 
         {{userId}}
 

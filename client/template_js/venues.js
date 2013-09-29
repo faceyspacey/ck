@@ -14,7 +14,7 @@ Template.venues.events({
     },
     'click .add-venue-btn' : function(event){
         var venueFormElements = document.newVenueForm.elements;
-        var attributes = {kegerators: []};
+        var attributes = {};
         _.each(venueFormElements, function(elem){
             attributes[elem.name] = elem.value;
             elem.value = "";

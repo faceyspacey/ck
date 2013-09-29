@@ -14,6 +14,7 @@
                 <th>Email</th>
                 <th>Venues</th>
                 <th>Roles</th>
+                <th>Actions</th>
             </tr>
             {{#if clientList }}
                 {{#each clientList }}
@@ -23,6 +24,11 @@
                     <td>{{emails.0.address}}</td>
                     <td>{{{venues}}}</td>
                     <td>{{{listRoles roles}}}</td>
+                    <td class="user-buttons">
+                        <div class="user-profile-btn customButton-blue"> Profile </div>
+                        <div class="user-venues-btn customButton-blue"> Venues </div>
+                        <div class="user-orders-btn customButton-blue"> Orders </div>
+                    </td>
                 </tr>
                 {{/each}}
             {{else}}

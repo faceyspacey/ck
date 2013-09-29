@@ -36,8 +36,8 @@ Router.map(function() {
     });
     this.route('myOrders', {
         path: '/myOrders',
-        template: 'page_myOrders',
-        data: {user_id: Meteor.userId()},
+        template: 'page_orders',
+        data: {title: "My Orders", user_id: Meteor.userId()},
     });
     this.route('myVenues', {
         path: '/myVenues',
@@ -58,8 +58,8 @@ Router.map(function() {
     });
     this.route('clientOrders', {
         path: '/clientOrders/:id',
-        template: 'page_clientOrders',
-        data: function(){ return {user_id: this.params.id}; },
+        template: 'page_orders',
+        data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Orders", user_id: this.params.id}; },
     });
     this.route('users', {
         path: '/users/:role',
