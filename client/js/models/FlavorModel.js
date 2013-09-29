@@ -69,4 +69,5 @@ FlavorModel = function(doc){
     };*/
 
     _.extend(this, doc);
+    return this;
 };

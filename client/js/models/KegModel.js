@@ -1,24 +1,26 @@
 
 KegModel = function(doc){
-    var _id = '',
+    /*
+    var _id = '';
         flavor_id = '',
         user_id = '',
         venue_id = '',
         paymentCycle = 'weekly',
         paymentDay = 'monday',
+        type_id = 1,
         createdAt = 0,
-        updatedAt = 0;
-    var modelAttributes = [
-        '_id',
-        'falvor_id',
-        'user_id',
-        'venue_id',
-        'paymentCycle',
-        'paymentDay',
-        'createdAt',
-        'updatedAt'
-    ];
-    var requiredAttrs = ['flavor_id', 'venue_id', 'user_id'];
+        updatedAt = 0;*/
+    var defaultValues = {
+        _id: '',
+        flavor_id: '',
+        user_id: '',
+        venue_id: '',
+        paymentCycle: 'weekly',
+        paymentDay: 'monday',
+        type_id: 1,
+        createdAt: 0,
+        updatedAt: 0
+    };
     this.errors = {};
 
     this.user = function(){
@@ -34,6 +36,11 @@ KegModel = function(doc){
 
         return Venues.findOne(this.venue_id);
     }
+
+    this.price = function(){
+        return App.getKegPrice(this.type_id);
+    }
+
     this.flavor = function(){
         var flavor = Flavors.findOne(this.flavor_id);
         if( !flavor )
@@ -58,6 +65,10 @@ KegModel = function(doc){
         return flavor.kegIcon;
     }
 
+    this.chargePeriod = function(){
+        return this.paymentCycle + '-' + this.paymentDay;
+    }
+
     this.cycleRadios = function(){
         var radios = '';
         for(var i = 0; i < App.paymentCycles.length; i++){
@@ -76,20 +87,15 @@ KegModel = function(doc){
         return radios;
     }
 
-    this.setAttributes = function(doc){
-        for(i = 0; i < modelAttributes.length; i++){
-            var attr = modelAttributes[i];
-            if( typeof doc[attr] == 'undefined' )
-                continue;
+    this.getObjectValues = function(doc){
+        var object = {};
 
-            if( requiredAttrs.indexOf(attr) != -1 ){
-                if( !doc[attr].length )
-                    this.errors[attr] = 'Can not be blank.';
-            }
+        _.extend(object, defaultValues);
 
-            this[attr] = doc[attr];
-        }
-    };
+        _.extend(object, doc);
+
+        return object;
+    }
 
     _.extend(this, doc);
 

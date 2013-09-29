@@ -32,3 +32,18 @@
     font-weight: normal;
     font-size: 14px;
 }
+
+.profile-buttons td{
+    text-align: left !important;
+    height: 28px !important;
+    line-height: 28px !important;
+    padding: 0px 5px 10px 5px !important;
+}
+.profile-buttons .customButton-blue {
+    display:inline-block;
+    width: 90px;
+    height: 28px;
+    line-height: 28px;
+    font-weight: normal;
+    font-size: 14px;
+}

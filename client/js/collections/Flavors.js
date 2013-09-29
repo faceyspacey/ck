@@ -1,6 +1,6 @@
 
 Flavors = new Meteor.Collection('flavors', {
-    reactive: true,
+    //reactive: true,
     transform: function (doc) { return new FlavorModel(doc); }
 });
 

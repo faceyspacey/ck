@@ -7,12 +7,22 @@ App = (function(){
         {id: 'monday', name: 'Monday'},
         {id: 'thursday', name: 'Thursday'}
     ];
+    var kegTypes = {
+        1: { gallon: 5, price: 120 },
+    };
 
     function getPaymentCycles(){
         return paymentCycles;
     }
     function getPaymentDays(){
         return paymentDays;
+    }
+
+    function getKegPrice(kegType){
+        if( typeof kegTypes[kegType] != 'undefined' )
+            return kegTypes[kegType].price;
+
+        return 0;
     }
 
     function maxOfAssociative(object, allowMulti){
@@ -62,11 +72,12 @@ App = (function(){
     }
 
     return {
+        paymentCycles: getPaymentCycles(),
+        paymentDays: getPaymentDays(),
+        getKegPrice: getKegPrice,
         maxOfAssociative: maxOfAssociative,
         minOfAssociative: minOfAssociative,
         activateLink: activateLink,
-        paymentCycles: getPaymentCycles(),
-        paymentDays: getPaymentDays(),
     };
 })();
 

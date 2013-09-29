@@ -1,11 +1,20 @@
 
-Kegs = new Meteor.Collection('kegs');
+Kegs = new Meteor.Collection("kegs");
 
+/*
 Meteor.publish("kegs", function () {
     if( Roles.userIsInRole(this.userId, ['admin']) ){
         return Kegs.find({}); // everything
     } else {
         return Kegs.find({user_id: this.userId}); // owned kegs
+    }
+});*/
+
+Meteor.publish("kegs", function () {
+    if( Roles.userIsInRole(this.userId, ['admin']) ){
+        return Kegs.find(); // everything
+    }else{
+        return Kegs.find({user_id: this.userId});
     }
 });
 
@@ -15,7 +24,8 @@ Kegs.allow({
         doc.createdAt = (new Date()).getTime();
         doc.updatedAt = (new Date()).getTime();
 
-        return (userId && (doc.user_id = userId));
+        return true;
+        //return userId ? true : false;
     },
     update: function(userId, doc, fields, modifier) {
         doc.updatedAt = (new Date()).getTime();
@@ -28,4 +38,3 @@ Kegs.allow({
     },
     fetch: ['user_id, createdAt, updatedAt']
 });
-

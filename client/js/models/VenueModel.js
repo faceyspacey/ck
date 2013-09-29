@@ -10,10 +10,8 @@ VenueModel = function(doc){
         twitter = '',
         instagram = '',
         youtube = '',
-        status_id = 0,
         usedFlavors = [],
-        kegerators = [],
-        kegs = [], //['mcFT3z9ECqyPthdHf', 'jtRGkxMp6g8E8vZtb'],
+        //kegs = [],
         createdAt = 0,
         updatedAt = 0;
     var modelAttributes = [
@@ -28,8 +26,7 @@ VenueModel = function(doc){
         'instagram',
         'youtube',
         'usedFlavors',
-        'kegerators',
-        'kegs',
+        //'kegs',
         'createdAt',
         'updatedAt'
     ];
@@ -51,21 +48,25 @@ VenueModel = function(doc){
         if( typeof attributes == 'undefined' )
             return;
 
+
         attributes.flavor_id = this.getHalfRandomFlavor();
-        attributes.paymentCycle = 'weekly';
-        attributes.paymentDay = 'monday';
-        var kegId = Kegs.insert(attributes);
+        attributes = (new KegModel()).getObjectValues(attributes);
+        delete attributes._id;
+
+        var keg_id = Kegs.insert(attributes);
+
+       // Kegs.update(kegId, {$set: attributes});
 
         this.updateUsedFlavors();
 
-        return kegId;
+        return keg_id;
     };
 
-    this.updateKeg = function(kegId, attributes){
-        if( typeof kegId == 'undefined' || typeof attributes == 'undefined' )
+    this.updateKeg = function(keg_id, attributes){
+        if( typeof keg_id == 'undefined' || typeof attributes == 'undefined' )
             return;
 
-        Kegs.update(kegId, {$set: attributes});
+        Kegs.update(keg_id, {$set: attributes});
 
         this.updateUsedFlavors();
 
@@ -189,56 +190,96 @@ VenueModel = function(doc){
             return sum;
     }
 
-    this.renderKegCharges = function(){
-        return '';
-        var user = Meteor.users.findOne(this.user_id);
-        if( !user )
-            return '';
-        var paymentCycle = App.getPaymentCycle(user.profile.paymentCycle);
+    this.getKegCharges = function(){
 
-        var html = '<div class="keg-charges-container">' +
-                        '<h3 class="subtitle" style="border-bottom: 1px solid #c7c7c7; padding-bottom: 15px;">Weekly charges of venue</h3>';
-        for(var i = 0; i < this.kegerators.length; i++){
-            html += '<div class="keg-charges-keg-row">';
-            html +=     '<div class="keg-charges-keg-row-subtotal">Kegerator subtotal: <b><span class="keg-charge" style="margin-right: 10px;">$'+((138 - 10*this.kegerators[i].tapsCount) * this.kegerators[i].tapsCount) +'</span></b></div>';
-            for(var c = 0; c < this.kegerators[i].taps.length; c++){
-                var flavor = Flavors.findOne(this.kegerators[i].taps[c].flavor);
-                var numText = c+1 == 1 ? '1st' : (c+1 == 2 ? '2nd' : '3rd');
-                html += '<div class="keg-charges-tap-row">' +
-                            '<div class="keg-charges-tap-row-label">'+numText+' tap:</div>'+ '<img class="keg-charges-tap-row-icon tap-row-icon" src="'+flavor.icon+'" />' + flavor.name +
-                            '<span class="keg-charge">$'+(138 - 10*this.kegerators[i].tapsCount)+'</span>' +
-                        '</div>';
+        var charging = {};
+        _.each(App.paymentCycles, function(cycle){
+            charging[cycle.id] = {name: cycle.name, count: 0, total: 0, cycles: {}};
+            _.each(App.paymentDays, function(day){
+                charging[cycle.id].cycles[cycle.id+'-'+day.id] = {
+                    name: cycle.name+' on '+day.name,
+                    count: 0,
+                    total: 0,
+                    kegs: [],
+                    flavors: {}
+                };
+            });
+        });
+
+        this.getKegs().forEach(function(keg){
+            var period = keg.chargePeriod();
+
+            if( typeof charging[keg.paymentCycle].cycles[period] == 'undefined' )
+                charging[keg.paymentCycle].cycles[period] = {
+                    name: keg.paymentCycle+' on '+keg.paymentDay,
+                    count: 0,
+                    total: 0,
+                    kegs: [],
+                    flavors: {}
+                };
+
+            charging[keg.paymentCycle].total += keg.price();
+            charging[keg.paymentCycle].count += 1;
+            charging[keg.paymentCycle].cycles[period].count += 1;
+            charging[keg.paymentCycle].cycles[period].total += keg.price();
+            charging[keg.paymentCycle].cycles[period].kegs.push(keg);
+
+            if( typeof charging[keg.paymentCycle].cycles[period].flavors[keg.flavor_id] == 'undefined' ){
+                charging[keg.paymentCycle].cycles[period].flavors[keg.flavor_id] = {
+                    icon: keg.flavor().icon,
+                    name: keg.flavor().name,
+                    count: 1,
+                    total: keg.price(),
+                }
+            }else{
+                charging[keg.paymentCycle].cycles[period].flavors[keg.flavor_id].count += 1;
+                charging[keg.paymentCycle].cycles[period].flavors[keg.flavor_id].total += keg.price();
             }
-            html += '</div>';
+        });
+
+        return charging;
+    }
+
+    this.renderKegCharges = function(){
+        var charging = this.getKegCharges();
+        var html = '<div class="keg-charges-container">' +
+                        '<h3 class="subtitle" style="margin-bottom: 20px;">Keg Charges</h3>';
+        for(var i in charging){
+            if( charging[i].total == 0 )
+                continue;
+            html +=     '<div class="keg-charges-cycle">';
+            html +=         '<div class="keg-charges-cycle-total">' +
+                                '<div class="keg-charges-cycle-name">' + charging[i].name + '</div>' +
+                                '<div class="keg-charges-cycle-count">' + charging[i].count + ' keg(s) </div>' +
+                                '<span class="keg-charge">$'+charging[i].total+'</span>' +
+                            '</div>';
+            for(var c in charging[i].cycles){
+                if( charging[i].cycles[c].total == 0 )
+                    continue;
+                html +=     '<div class="keg-charges-period">';
+                html +=         '<div class="keg-charges-period-subtotal">' +
+                                    '<div class="keg-charges-period-name">' + charging[i].cycles[c].name + '</div>' +
+                                    '<div class="keg-charges-period-count">' + charging[i].cycles[c].count + ' keg(s) </div>' +
+                                    '<span class="keg-charge">$'+charging[i].cycles[c].total+'</span>' +
+                                '</div>';
+                for(var d in charging[i].cycles[c].flavors){
+                    html +=     '<div class="keg-charges-flavor-row">' +
+                                    '<div class="keg-charges-flavor-icon" style="background-image:url('+charging[i].cycles[c].flavors[d].icon+');"></div>' +
+                                    '<div class="keg-charges-flavor-name">' + charging[i].cycles[c].flavors[d].name + '</div>' +
+                                    '<div class="keg-charges-flavor-count">' + charging[i].cycles[c].flavors[d].count + ' keg(s) </div>' +
+                                    '<span class="keg-charge">$'+charging[i].cycles[c].flavors[d].total+'</span>' +
+                                '</div>';
+                }
+                html +=     '</div>';
+            }
+            html +=     '</div>';
         }
-        var sum = this.summarizedCost();
-        html +=     '<div class="keg-charges-total">Weekly charge: ' +
-                        '<span class="keg-charge">$'+sum+'</span>' +
-                    '</div>' +
-                    '<div class="keg-charges-total">Total: ' +
-                        '<span style="font-weight: normal; font-size: 14px;">(Charged on every '+paymentCycle.text1+')</span> ' +
-                        '<span class="keg-charge">' + paymentCycle.multiplier + ' &times; $'+ sum +' = $'+(paymentCycle.multiplier*sum)+'</span>' +
-                    '</div>' +
-                '</div>';
+        html +=     '</div>';
 
         return html;
     }
 
-    /*
-    this.setAttributes = function(doc){
-        for(i = 0; i < modelAttributes.length; i++){
-            var attr = modelAttributes[i];
-            if( typeof doc[attr] == 'undefined' )
-                continue;
-
-            if( requiredAttrs.indexOf(attr) != -1 ){
-                if( !doc[attr].length )
-                    this.errors[attr] = 'Can not be blank.';
-            }
-
-            this[attr] = doc[attr];
-        }
-    };*/
-
     _.extend(this, doc);
+
+    return this;
 };

@@ -1,6 +1,6 @@
 
 Venues = new Meteor.Collection("venues", {
-    reactive: true,
+   // reactive: true,
     transform: function (doc) { return new VenueModel(doc); }
 });
 

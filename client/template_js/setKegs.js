@@ -49,7 +49,7 @@ Template.setKegs.helpers({
     },
     renderKegCharges: function(){
         var venue = Venues.findOne(this.venue_id);
-        return '';
+        //return '';
         if( venue )
             return venue.renderKegCharges();
         else
@@ -68,11 +68,13 @@ Template.setKegs.events({
         Venues.findOne(this.venue_id).updateKeg(this._id, {paymentDay: event.target.value});
     },
     'click .add-keg-btn' : function(){
+        console.log('add keg');
         var venue = Venues.findOne(this.venue_id);
         if( !Flavors.find({is_public: true}).count() || !venue )
             return;
+        console.log('add keg continue');
 
-        venue.addKeg({flavor_id: '', venue_id: this.venue_id});
+        venue.addKeg({venue_id: venue._id, user_id: venue.user_id});
     },
     'click .remove-keg-btn' : function(){
         if( confirm('Are you sure you want to drop this keg?') )

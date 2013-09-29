@@ -11,14 +11,10 @@ Meteor.users.allow({
             return true;
     },
     update: function(userId, doc, fields, modifier) {
-        if( (doc._id == userId) )
-            return true;
-        else
-            return false;
+        return ( (doc._id == userId) || Roles.userIsInRole(this.userId, ['admin']) );
     },
     remove: function() {
-        if( Roles.userIsInRole(this.userId, ['admin']) )
-        return true;
+        return ( (doc._id == userId) || Roles.userIsInRole(this.userId, ['admin']) );
     }
 });
 
