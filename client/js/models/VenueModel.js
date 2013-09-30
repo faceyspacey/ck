@@ -10,6 +10,8 @@ VenueModel = function(doc){
         facebook: '',
         //kegerators: 0,
         twitter: '',
+        need_kegerator: true,
+        kegeRequestedAt: 0,
         instagram: '',
         youtube: '',
         usedFlavors: '',
@@ -19,6 +21,24 @@ VenueModel = function(doc){
 
     //var requiredAttrs = ['name', 'address', 'email'];
     this.errors = {};
+
+    this.save = function(attributes){
+        if( this._id ){
+            Venues.update(this._id, {$set: this.getObjectValues(attributes, true)});
+        }else{
+            var id = '';
+            if( id = Venues.insert(this.getObjectValues(attributes, true)) ){
+                this._id = id;
+                this.addAfterSave();
+            }
+        }
+        return this._id;
+    }
+
+    this.addAfterSave = function(){
+        var kegerator = new KegeratorModel();
+        kegerator.save({venue_id: this._id});
+    }
 
     this.user = function(){
         if( !this.user_id )
@@ -31,6 +51,37 @@ VenueModel = function(doc){
         return Kegs.find({venue_id: this._id});
     };
 
+    this.getKegerators = function(options){
+        var defOptions = {venue_id: this._id};
+        _.extend(defOptions, options);
+        return Kegerators.find(defOptions);
+    };
+    this.getKegeratorTaps = function(){
+        var taps = 0;
+        Kegerators.find({venue_id: this._id}).forEach(function(kegerator){
+            taps += kegerator.taps();
+        });
+
+        return taps;
+    };
+
+    this.installedKegerators = function(){
+        return this.getKegerators({installed: true});
+    };
+    this.kegeratorsToInstall = function(){
+        return this.getKegerators({installed: {$not: true}});
+    };
+
+    this.checkKegeratorRequests = function(){
+        if( this.kegeratorsToInstall().count() ){
+            this.need_kegerator = true;
+        }else{
+            this.need_kegerator = false;
+            this.kegeRequestedAt = 0;
+        }
+        this.save();
+    }
+
     this.addKeg = function(attributes){
         if( typeof attributes == 'undefined' )
             return;
@@ -40,7 +91,8 @@ VenueModel = function(doc){
         attributes = (new KegModel()).getObjectValues(attributes);
         delete attributes._id;
 
-        var keg_id = Kegs.insert(attributes);
+        var keg = new KegModel(attributes);
+        var keg_id = keg.save();
 
        // Kegs.update(kegId, {$set: attributes});
 
@@ -59,18 +111,6 @@ VenueModel = function(doc){
 
         return true;
     }
-
-    /*
-    this.setKegs = function(){
-        var kegIds = [];
-        Kegs.find({venue_id: this._id}).forEach(function(keg){
-            kegIds.push(keg._id)
-        });
-
-        Venues.update(this._id, {$set: {kegs: kegIds}});
-
-        return kegIds;
-    };*/
 
     this.removeKeg = function(kegId){
         if( typeof kegId == 'undefined' )
@@ -138,26 +178,7 @@ VenueModel = function(doc){
         kegsHtml +=     '</div>';
 
         return kegsHtml;
-/*
-         var fees = venue.kegerators[i].tapsCount == 1 ? 128 : (venue.kegerators[i].tapsCount == 2 ? 118 : 108);
-        var kegsHtml = '<div class="venue-kegs-container">';
-        var flavor;
-        this.getKegsByCycles().forEach(function(keg){
-            kegsHtml += '<div class="table-keg-flavor-div" style="background-image:url('+keg.flavorIcon()+');"></div>';
-        });
 
-        for(var i = 0; i < venue.kegerators.length; i++){
-            var fees = venue.kegerators[i].tapsCount == 1 ? 128 : (venue.kegerators[i].tapsCount == 2 ? 118 : 108);
-            kegsHtml += '<div class="table-kegerator-div"> '+venue.kegerators[i].tapsCount+' tap(s): ';
-            for(var c = 0; c < venue.kegerators[i].taps.length; c++){
-                flavor = Flavors.findOne(venue.kegerators[i].taps[c].flavor);
-                kegsHtml += '<div class="table-kegerator-flavor-div" style="background-image:url(\''+(flavor ? flavor.icon : '') +'\');"></div>';
-            }
-            kegsHtml += '<div style="font-size: 12px;">'+venue.kegerators[i].tapsCount+' &times; $'+fees+' = <b>$'+ (fees*venue.kegerators[i].tapsCount) +'</b>/week</div>';
-            kegsHtml += '</div>';
-        }
-
-        return kegsHtml;*/
     }
 
     this.summarizedCost = function(multiplier){
@@ -196,6 +217,8 @@ VenueModel = function(doc){
         this.getKegs().forEach(function(keg){
             var period = keg.chargePeriod();
 
+            if( typeof charging[keg.paymentCycle] == 'undefined' )
+                charging[keg.paymentCycle] = {name: keg.paymentCycle, count: 0, total: 0, cycles: {}};
             if( typeof charging[keg.paymentCycle].cycles[period] == 'undefined' )
                 charging[keg.paymentCycle].cycles[period] = {
                     name: keg.paymentCycle+' on '+keg.paymentDay,
@@ -267,19 +290,28 @@ VenueModel = function(doc){
     }
 
 
-    this.getObjectValues = function(doc){
+    this.getObjectValues = function(doc, withOutId){
+        if( typeof doc == 'undefined' )
+            doc = {};
+
         var object = {};
 
         _.extend(object, defaultValues);
 
+        for(i in defaultValues){
+            if( typeof this[i] != 'undefined' )
+                object[i] = this[i];
+        }
+
         _.extend(object, doc);
+
+        if( withOutId == true )
+            delete object._id;
 
         return object;
     }
 
-    this.getObjectValues(doc);
-
-    _.extend(this, doc);
+    _.extend(this, this.getObjectValues(doc));
 
     return this;
 };

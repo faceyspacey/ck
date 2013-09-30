@@ -1,0 +1,41 @@
+<template name="page_kegeratorInstalls">
+    {{>kegeratorInstalls}}
+</template>
+
+<template name="kegeratorInstalls">
+    <div class="page-background" id="kegeratorInstalls">
+        <!-- <div class="open-dialog-btn">+ Add Venue</div> -->
+
+        <h1 class="page_title" style="margin-bottom:25px;">Kegerator Installs</h1>
+
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th style="width: 15%;">Venue Name</th>
+                <th style="width: 20%;">Address</th>
+                <th style="">Installed</th>
+                <th style="">Waiting for Installation</th>
+                <!--<th style="width: 18%;">Actions</th> -->
+            </tr>
+            {{#if venuesList }}
+                {{#each venuesList }}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{address}}</td>
+                    <td>{{>installed_kegerators}}</td>
+                    <td>{{>kegerators_to_install}}</td>
+                    <!-- <td class="action-buttons">
+                        <div class="edit-venue-btn customButton"> Edit flavors </div>
+                    </td> -->
+                </tr>
+                {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="4"> There is no venue waiting for kegerator installation. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+    </div>
+</template>

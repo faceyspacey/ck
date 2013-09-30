@@ -32,9 +32,9 @@ Template.users.events({
             return alert('User not found.');
 
         if( Meteor.userId() == this._id )
-            Router.go('myProfileEdit');
+            Router.go('myProfile');
         else
-            Router.go('editProfile', {id: this._id});
+            Router.go('profile', {id: this._id});
     },
     'click .user-venues-btn' : function(){
         var user = Meteor.users.findOne(this._id);

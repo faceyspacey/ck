@@ -1,0 +1,38 @@
+
+.installed-kegerators-container {
+    width: 420px;
+}
+
+.kegerator-count-row {
+    text-align: center;
+}
+
+.installed-kegerator-intable {
+    display: inline-block;
+    font-size: 12px;
+    width: 200px;
+    border:1px solid #c7c7c7;
+    margin:3px;
+    padding:0px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 6px;
+    -webkit-box-shadow: -2px 2px 6px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow:    -2px 2px 6px rgba(50, 50, 50, 0.61);
+    box-shadow:         -2px 2px 6px rgba(50, 50, 50, 0.61);
+}
+.installed-kegerator-intable .kegerator-row {
+    padding:3px;
+    position:relative;
+    color: DimGrey;
+    text-shadow: 1px 1px 1px white;
+    border-bottom:  1px dotted #c7c7c7;
+}
+.installed-kegerator-intable .kegerator-row:last-child {
+    border-bottom: 0;
+}
+
+.installed-kegerator-intable .kegerator-row span {
+    float:right;
+    color: #0069aa;
+    text-shadow: 1px 1px 1px white;
+}

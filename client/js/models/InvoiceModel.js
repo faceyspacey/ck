@@ -1,23 +1,20 @@
 
-FlavorModel = function(doc){
+InvoiceModel = function(doc){
     var defaultValues = {
         _id: '',
-        name: '',
-        icon: '',
-        kegIcon: '',
-        is_public: false,
         user_id: '',
+        amount: 0,
+        status: 0,
         createdAt: 0,
-        updatedAt: 0,
     };
     this.errors = {};
 
     this.save = function(attributes){
         if( this._id ){
-            Flavors.update(this._id, {$set: this.getObjectValues(attributes, true)});
+            Invoices.update(this._id, {$set: this.getObjectValues(attributes, true)});
         }else{
             var id = '';
-            if( id = Flavors.insert(this.getObjectValues(attributes, true)) ){
+            if( id = Invoices.insert(this.getObjectValues(attributes, true)) ){
                 this._id = id;
             }
         }
@@ -29,10 +26,6 @@ FlavorModel = function(doc){
             return false;
 
         return Meteor.users.findOne(this.user_id);
-    }
-
-    this.usage = function(){
-        return Venues.find({usedFlavors: {$in: [this._id]}}).count();
     }
 
     this.getObjectValues = function(doc, withOutId){

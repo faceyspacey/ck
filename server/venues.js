@@ -3,7 +3,7 @@ Venues = new Meteor.Collection("venues");
 
 Meteor.publish("venues", function () {
     if( Roles.userIsInRole(this.userId, ['admin']) ){
-        return Venues.find(); // everything
+        return Venues.find({}); // everything
     }else{
         return Venues.find({user_id: this.userId});
     }
@@ -12,12 +12,18 @@ Meteor.publish("venues", function () {
 
 Venues.allow({
     insert: function(userId, doc) {
-        doc.createdAt = (new Date()).getTime();
-        doc.updatedAt = (new Date()).getTime();
-        return (userId && (doc.user_id = userId));
+        if( !userId )
+            return false;
+
+        doc.createdAt = +(new Date());
+        doc.updatedAt = +(new Date());
+        doc.kegeRequestedAt = +(new Date());
+        doc.user_id = userId;
+
+        return userId;
     },
     update: function(userId, doc, fields, modifier) {
-        doc.updatedAt = (new Date()).getTime();
+        doc.updatedAt = +(new Date());
 
         return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
     },

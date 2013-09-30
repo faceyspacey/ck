@@ -19,11 +19,14 @@ Template.flavors.events({
         for(var i = 0; i < flavorFormElements.length; i++){
             attributes[flavorFormElements[i].name] = flavorFormElements[i].value;
         }
-        if( id = Flavors.insert(attributes) ){
+        var flavor = new FlavorModel(attributes);
+        var id = flavor.save();
+        if( id ){
             //var venue = new VenueModel(id, attributes);
             for(var i = 0; i < flavorFormElements.length; i++){
                 document.newFlavorForm.elements[i].value = '';
             }
+            document.getElementById('addFlavorDialog').style.display = 'none';
         }
         //console.log(id);
     },

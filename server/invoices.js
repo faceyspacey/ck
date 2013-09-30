@@ -1,22 +1,24 @@
 
-Kegerators = new Meteor.Collection("kegerators");
+Invoices = new Meteor.Collection('invoices');
 
-Meteor.publish("kegerators", function () {
+Meteor.publish("invoices", function () {
     if( Roles.userIsInRole(this.userId, ['admin']) ){
-        return Kegerators.find(); // everything
-    }else{
-        return Kegerators.find({user_id: this.userId});
+        return Invoices.find({}); // everything
+    } else {
+        return Invoices.find({is_public: true}); // own invoices
     }
 });
 
 
-Kegerators.allow({
+Invoices.allow({
     insert: function(userId, doc) {
-        doc.requestedAt = +(new Date());
+        doc.createdAt = (new Date()).getTime();
+        doc.updatedAt = (new Date()).getTime();
 
         return Roles.userIsInRole(userId, ['admin']);
     },
     update: function(userId, doc, fields, modifier) {
+        doc.updatedAt = (new Date()).getTime();
 
         return Roles.userIsInRole(userId, ['admin']);
     },

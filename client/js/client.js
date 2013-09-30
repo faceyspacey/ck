@@ -34,10 +34,10 @@ Router.map(function() {
         template: 'page_editProfile',
         data: {user_id: Meteor.userId()},
     });
-    this.route('myOrders', {
-        path: '/myOrders',
-        template: 'page_orders',
-        data: {title: "My Orders", user_id: Meteor.userId()},
+    this.route('myInvoices', {
+        path: '/myInvoices',
+        template: 'page_invoices',
+        data: {title: "My Invoices", user_id: Meteor.userId()},
     });
     this.route('myVenues', {
         path: '/myVenues',
@@ -56,10 +56,10 @@ Router.map(function() {
         template: 'page_flavors',
         data: {},
     });
-    this.route('clientOrders', {
-        path: '/clientOrders/:id',
-        template: 'page_orders',
-        data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Orders", user_id: this.params.id}; },
+    this.route('clientInvoices', {
+        path: '/clientInvoices/:id',
+        template: 'page_invoices',
+        data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Invoices", user_id: this.params.id}; },
     });
     this.route('users', {
         path: '/users/:role',
@@ -86,6 +86,16 @@ Router.map(function() {
         template: 'page_venues',
         data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Venues", user_id: this.params.id}; },
     });
+    this.route('kegeratorInstallsAll', {
+        path: '/kegeratorInstalls',
+        template: 'page_kegeratorInstalls',
+        data: function(){ return {user_id: false}; },
+    });
+    this.route('kegeratorInstalls', {
+        path: '/kegeratorInstalls/:id',
+        template: 'page_kegeratorInstalls',
+        data: function(){ return {user_id: (this.params.id != 'all' ? this.params.id : false)}; },
+    });
 });
 
 Router.configure({
@@ -104,6 +114,9 @@ Router.configure({
     before: function() {
         var routeName = this.context.route.name;
         // no need to check at these URLs
+        if (_.include(['home'], routeName))
+            return;
+
         if (_.include(['home'], routeName))
             return;
 

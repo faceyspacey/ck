@@ -10,12 +10,19 @@ App = (function(){
     var kegTypes = {
         1: { gallon: 5, price: 120 },
     };
+    var kegeratorTypes = {
+        1: { taps: 1 },
+        2: { taps: 2 },
+    };
 
     function getPaymentCycles(){
         return paymentCycles;
     }
     function getPaymentDays(){
         return paymentDays;
+    }
+    function getKegeratorTypes(){
+        return kegeratorTypes;
     }
 
     function getKegPrice(kegType){
@@ -71,13 +78,36 @@ App = (function(){
         $('#page_'+page+'_link').addClass('active');
     }
 
+    function formatTime(time){
+        if( !time )
+            return '-';
+        var d = new Date(time);
+        var date = checkTime(d.getDate());
+        var month = checkTime(d.getMonth() + 1);
+        var year = checkTime(d.getFullYear());
+        var hour = checkTime(d.getHours());
+        var min = checkTime(d.getMinutes());
+        var sec = checkTime(d.getSeconds());
+
+        return year +'-'+ month +'-'+ date +' '+ hour +':'+ min +':'+ sec;
+    }
+
+    function checkTime(i){
+        if (i<10){
+            i="0" + i;
+        }
+        return i;
+    }
+
     return {
         paymentCycles: getPaymentCycles(),
         paymentDays: getPaymentDays(),
+        kegeratorTypes: getKegeratorTypes(),
         getKegPrice: getKegPrice,
         maxOfAssociative: maxOfAssociative,
         minOfAssociative: minOfAssociative,
         activateLink: activateLink,
+        formatTime: formatTime,
     };
 })();
 

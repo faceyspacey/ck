@@ -1,9 +1,9 @@
-<template name="page_orders">
-    {{>orders}}
+<template name="page_invoices">
+    {{>invoices}}
 </template>
 
-<template name="orders">
-    <div class="page-background" id="orders">
+<template name="invoices">
+    <div class="page-background" id="invoices">
         <h1 class="page_title" style="margin-bottom:25px;">{{title}}</h1>
 
         {{userId}}
@@ -11,14 +11,14 @@
         <table class="items">
             <tbody>
             <tr>
-                <th style="">Order</th>
+                <th style="">Invoice ID</th>
                 <th style="">Day of Week</th>
                 <th style="">Date</th>
                 <th style="">Kegs</th>
                 <th style="">Total</th>
             </tr>
-            {{#if orderList}}
-                {{#each orderList}}
+            {{#if invoiceList}}
+                {{#each invoiceList}}
                 <tr>
                     <td></td>
                     <td></td>
@@ -29,7 +29,7 @@
                 {{/each}}
             {{else}}
             <tr>
-                <td colspan="5"> You have no orders yet. </td>
+                <td colspan="5"> You have no invoices yet. </td>
             </tr>
             {{/if}}
             </tbody>

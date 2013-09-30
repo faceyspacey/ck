@@ -19,7 +19,9 @@ Template.venues.events({
             attributes[elem.name] = elem.value;
             elem.value = "";
         });
-        Venues.insert(attributes);
+        var venue = new VenueModel();
+        venue.save(attributes);
+        document.getElementById('addVenueDialog').style.display = 'none';
     },
     'click .delete-venue-btn' : function(event){
         if( confirm('Are you sure you want to delete this venue?') )

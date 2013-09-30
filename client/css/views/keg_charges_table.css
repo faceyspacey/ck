@@ -1,5 +1,7 @@
 
 .keg-charges-table {
+    width: 350px;
+    display: inline-block;
 }
 .keg-charges-table .keg-charge {
     display: inline-block;
@@ -78,7 +80,7 @@
     text-align: left;
     vertical-align: middle;
     display: inline-block;
-    width: 180px;
+    width: 140px;
     height: 18px;
     line-height: 18px;
 }
@@ -119,7 +121,7 @@
     text-align: left;
     vertical-align: middle;
     display: inline-block;
-    width: 130px;
+    width: 110px;
     height: 16px;
     line-height: 16px;
 }

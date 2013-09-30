@@ -1,15 +1,5 @@
 
 KegModel = function(doc){
-    /*
-    var _id = '';
-        flavor_id = '',
-        user_id = '',
-        venue_id = '',
-        paymentCycle = 'weekly',
-        paymentDay = 'monday',
-        type_id = 1,
-        createdAt = 0,
-        updatedAt = 0;*/
     var defaultValues = {
         _id: '',
         flavor_id: '',
@@ -22,6 +12,19 @@ KegModel = function(doc){
         updatedAt: 0
     };
     this.errors = {};
+
+    this.save = function(attributes){
+        if( this._id ){
+            Kegs.update(this._id, {$set: this.getObjectValues(attributes, true)});
+        }else{
+            console.log(this.getObjectValues(attributes, true));
+            var id = '';
+            if( id = Kegs.insert(this.getObjectValues(attributes, true)) ){
+                this._id = id;
+            }
+        }
+        return this._id;
+    }
 
     this.user = function(){
         if( !this.user_id )
@@ -87,17 +90,28 @@ KegModel = function(doc){
         return radios;
     }
 
-    this.getObjectValues = function(doc){
+    this.getObjectValues = function(doc, withOutId){
+        if( typeof doc == 'undefined' )
+            doc = {};
+
         var object = {};
 
         _.extend(object, defaultValues);
 
+        for(i in defaultValues){
+            if( typeof this[i] != 'undefined' )
+                object[i] = this[i];
+        }
+
         _.extend(object, doc);
+
+        if( withOutId == true )
+            delete object._id;
 
         return object;
     }
 
-    _.extend(this, doc);
+    _.extend(this, this.getObjectValues(doc));
 
     return this;
 };

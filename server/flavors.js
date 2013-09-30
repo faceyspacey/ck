@@ -12,13 +12,14 @@ Meteor.publish("flavors", function () {
 
 Flavors.allow({
     insert: function(userId, doc) {
-        doc.createdAt = (new Date()).getTime();
-        doc.updatedAt = (new Date()).getTime();
+        doc.user_id = userId;
+        doc.createdAt = +(new Date());
+        doc.updatedAt = +(new Date());
 
         return Roles.userIsInRole(userId, ['admin']);
     },
     update: function(userId, doc, fields, modifier) {
-        doc.updatedAt = (new Date()).getTime();
+        doc.updatedAt = +(new Date());
 
         return Roles.userIsInRole(userId, ['admin']);
     },
