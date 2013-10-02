@@ -105,6 +105,9 @@ VenueModel = function(doc){
         if( typeof keg_id == 'undefined' || typeof attributes == 'undefined' )
             return;
 
+		//add bi-weekly oddEven week, but only the first time that the keg is made bi-weekly
+		if(attributes.paymentCycle == 'bi-weekly' && Kegs.findOne(keg_id).paymentCycle != 'bi-weekly') attributes.oddEven = oddEvenWeek();
+		
         Kegs.update(keg_id, {$set: attributes});
 
         this.updateUsedFlavors();

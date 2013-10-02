@@ -1,0 +1,50 @@
+<template name="page_daily_flavors">
+    {{>daily_flavors}}
+</template>
+
+<template name="daily_flavors">
+    <div class="page-background" id="daily_flavors">
+
+        <h1 class="page_title" style="margin-bottom:15px;">Weekly Kegs to Be Distributed</h1>
+			{{{kegsToDeliver flavors 'monday' 'weekly'}}}
+			{{{kegsToDeliver flavors 'thursday' 'weekly'}}}
+		<div style="clear:both;"></div>	
+		<br /><br />
+			
+		<h1 class="page_title" style="margin-bottom:15px;">Bi-Weekly Kegs (<span style="{{oddColor}}">Odd</span> Weeks)</h1>		
+			{{{kegsToDeliver flavors 'monday' 'bi-weekly' 'odd'}}}
+			{{{kegsToDeliver flavors 'thursday' 'bi-weekly'  'odd'}}}
+		<div style="clear:both"></div>		
+		<br /><br />
+		
+		<h1 class="page_title" style="margin-bottom:15px;">Bi-Weekly Kegs (<span style="{{evenColor}}">Even</span> Weeks)</h1>		
+			{{{kegsToDeliver flavors 'monday' 'bi-weekly' 'even'}}}
+			{{{kegsToDeliver flavors 'thursday' 'bi-weekly' 'even'}}}
+		<div style="clear:both;"></div>
+   </div>
+</template>
+
+<template name="daily_kegs_table">
+	<table class="items" style="width: 49%; float:left; margin-left:1%;">
+        <tbody>
+        <tr>
+            <th style="">{{day}} Flavors</th>
+            <th style="width: 60px;">Icon</th>
+            <th style="width: 100px;">Quantity</th>
+        </tr>
+
+  		{{#each flavors}}
+            <tr>
+                <td>{{name}}</td>
+                <td class="align-center">
+                    <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
+                </td>
+
+				<!-- MATHEUS, using ../ looks for variables in the scope above the #each -->
+                <td class="align-center">{{kegQuantity _id ../flavorCountFunction}} kegs</td>
+            </tr>
+         {{/each}}
+
+        </tbody>
+    </table>
+</template>

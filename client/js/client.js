@@ -56,6 +56,11 @@ Router.map(function() {
         template: 'page_flavors',
         data: {},
     });
+	this.route('dailyFlavors', {
+        path: '/daily_flavors',
+        template: 'page_daily_flavors',
+        data: {},
+    });
     this.route('clientInvoices', {
         path: '/clientInvoices/:id',
         template: 'page_invoices',

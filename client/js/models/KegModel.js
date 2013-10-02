@@ -13,7 +13,7 @@ KegModel = function(doc){
     };
     this.errors = {};
 
-    this.save = function(attributes){
+    this.save = function(attributes){	
         if( this._id ){
             Kegs.update(this._id, {$set: this.getObjectValues(attributes, true)});
         }else{
