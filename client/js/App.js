@@ -11,8 +11,8 @@ App = (function(){
         1: { gallon: 5, price: 120 },
     };
     var kegeratorTypes = {
-        1: { taps: 1 },
-        2: { taps: 2 },
+        1: { id: 1, taps: 1, name: 'Single Tap Tower' },
+        2: { id: 2, taps: 2, name: 'Double Tap Tower' },
     };
 
     function getPaymentCycles(){

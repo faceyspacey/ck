@@ -46,6 +46,12 @@
                 <div class="save-kegs-btn customButton-blue">Save Settings</div>
             </div>
 
+            <p class="note">
+                You have <b>{{{venue.getKegs.count}}} keg(s)</b> and <b>{{{venue.getKegerators.count}}} kegerator(s)</b>
+                with <b>{{{venue.getKegeratorTaps}}} tap(s)</b>. You can request more kegerators here:
+                <a href="javascript: Router.go('requestKegerator', {id: '{{venue_id}}' });">Request Kegerator</a>
+            </p>
+
         </div>
 
     </div>

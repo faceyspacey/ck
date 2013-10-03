@@ -24,6 +24,13 @@ KegeratorModel = function(doc){
         return this._id;
     }
 
+    this.typeName = function(){
+        if( typeof App.kegeratorTypes[this.type_id] != "undefined" )
+            return App.kegeratorTypes[this.type_id].name;
+
+        return "";
+    }
+
     this.formattedRequestedAt = function(){
         return App.formatTime(this.requestedAt);
     }

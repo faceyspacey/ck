@@ -1,0 +1,5 @@
+<template name="select_options">
+    {{#each options}}
+        <option value="{{value}}" {{{selected ../selected_id}}} >{{name}}</option>
+    {{/each}}
+</template>

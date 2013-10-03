@@ -54,6 +54,16 @@ Router.map(function() {
         template: 'page_billingInfo',
         data: {user_id: Meteor.userId()},
     });
+    this.route('requestKegerator', {
+        path: '/requestKegerator',
+        template: 'page_requestKegerator',
+        data: {venue_id: false},
+    });
+    this.route('requestKegerator', {
+        path: '/requestKegerator/:id',
+        template: 'page_requestKegerator',
+        data: function(){ return {venue_id: this.params.id}; },
+    });
 
     /* ----- Admin Pages ----- */
     this.route('flavors', {

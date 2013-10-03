@@ -11,6 +11,7 @@
     padding: 10px 5px 0 5px;
 }
 
+/*
 .delete-venue-btn {
     display: inline-block;
     padding: 3px !important;
@@ -23,15 +24,22 @@
 }
 .delete-venue-btn:hover {
     color: red;
-}
-
+}*/
+/*
 .edit-venue-btn {
     padding: 3px 20px !important;
     display: inline-block;
     height: 24px;
     line-height: 24px;
-}
+}*/
 
+.customButton {
+    margin: 3px auto;
+    padding: 3px 10px !important;
+    display: block;
+    height: 24px;
+    line-height: 24px;
+}
 .table-keg-div{
     display: inline-block;
     padding: 5px;

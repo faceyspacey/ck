@@ -26,10 +26,6 @@ Template.venues.events({
     'click .delete-venue-btn' : function(event){
         if( confirm('Are you sure you want to delete this venue?') )
             Venues.remove(this._id);
-    },
-    'click .edit-venue-btn' : function(event){
-        //console.log(Venues.findOne(this._id));
-        Router.go('setKegs', {id: this._id});
     }
 });
 
@@ -38,3 +34,10 @@ Template.venues.venuesList = function(){
     //console.log(Venues.find(condition, {sort: {name: 1}}));
     return Venues.find(condition, {sort: {name: 1}});
 }
+
+Template.venues.helpers({
+    'info': function(){
+        return ' <span class="label">Kegs count:</span> <br/><b>'+this.getKegs().count()+' keg(s)</b><br/>' +
+                '<span class="label">Kegerators:</span> <br/><b>'+this.getKegerators().count()+' kegerators <br/>('+this.getKegeratorTaps()+' taps)</b>';
+    }
+});

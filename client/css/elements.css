@@ -85,7 +85,8 @@ table.styled-vertical-table tbody .section-title td {
     width: 90px;
 }
 
-.form-row input[type="text"] {
+.form-row input[type="text"],
+.form-row textarea {
     display: inline-block;
     width: 290px;
     padding: 5px;
@@ -103,11 +104,15 @@ table.styled-vertical-table tbody .section-title td {
     -moz-transition: all 0.25s ease-in-out;
 }
 
-.form-row input:focus {
+.form-row input:focus,
+.form-row textarea:focus {
     border: 1px solid #72C4FC;
     box-shadow: 0 0 5px #72C4FC;
     -webkit-box-shadow: 0 0 5px #72C4FC;
     -moz-box-shadow: 0 0 5px #72C4FC;
+}
+.form-row textarea {
+    resize: vertical;
 }
 
 .styled-select {

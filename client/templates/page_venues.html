@@ -12,11 +12,11 @@
         <table class="items">
             <tbody>
                 <tr>
-                    <th style="width: 15%;">Venue Name</th>
-                    <th style="width: 20%;">Address</th>
+                    <th style="width: 10%;">Venue Name</th>
+                    <th style="width: 15%;">Address</th>
                     <th style="">Keg Charges</th>
                     <th style="">Kegerators</th>
-                    <th style="width: 18%;">Actions</th>
+                    <th style="width: 20%;">Actions</th>
                 </tr>
                 {{#if venuesList }}
                     {{#each venuesList }}
@@ -24,10 +24,11 @@
                             <td>{{name}}</td>
                             <td>{{address}}</td>
                             <td>{{>keg_charges_table}}</td>
-                            <td></td>
+                            <td>{{{info}}}</td>
                             <td class="action-buttons">
-                                <div class="edit-venue-btn customButton"> Edit flavors </div>
-                                <div class="delete-venue-btn customButton"> &times; </div>
+                                <div class="edit-venue-btn customButton" onclick="Router.go('setKegs', {id: '{{_id}}'});"> Set Kegs </div>
+                                <div class="edit-venue-btn customButton" onclick="Router.go('requestKegerator', {id: '{{_id}}'});"> Request Kegerator </div>
+                                <div class="delete-venue-btn customButton"> Delete </div>
                             </td>
                         </tr>
                     {{/each}}

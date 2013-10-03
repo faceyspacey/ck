@@ -1,31 +1,46 @@
-<template name="page_venueKegerators">
-    {{>venues}}
+<template name="page_requestKegerator">
+    {{>requestKegerator}}
 </template>
 
-<template name="venueKegerators">
-    <div class="page-background" id="venueKegerators">
+<template name="requestKegerator">
+    <div class="page-background" id="requestKegerator">
         <!-- <div class="open-dialog-btn">+ Add Venue</div> -->
 
-        <h1 class="page_title" style="margin-bottom:25px;">{{title}}</h1>
+        <h1 class="page_title" style="margin-bottom:25px;">Request Kegerators</h1>
 
-        <div class="venuekegerators-container">
-            <div class="venueKegerators-left">
-                {{#each kegsInKegerators}}
+        <div class="requestKegerators-container">
 
-                {{/each}}
-            </div>
-            <div class="venueKegerators-right">
+            <form id="requestKegeratorForm" name="requestKegeratorForm">
 
-                <form id="requestKegeratorForm" name="requestKegeratorForm">
+                <div class="form-row">
+                    <label for="kegeratorForm_venue_id">Venue:</label>
 
-                    <div class="form-row">
-                        <label for="venueForm_name">Name:</label>
-                        <input id="venueForm_name" type="text" name="name"/>
+                    {{#unless venue_id}}
+                    <select id="kegeratorForm_venue_id" class="styled-select" name="venue_id">
+                        {{{venueDropDown}}}
+                    </select>
+                    {{/unless}}
+                    <div style="padding: 5px 5px 5px 15px;">
+                        {{{actual_venue venueId}}}
                     </div>
+                </div>
 
-                </form>
+                <div class="form-row">
+                    <label for="kegeratorForm_type_id">Type:</label>
+                    <select id="kegeratorForm_type_id" class="styled-select" name="type_id">
+                        {{{typeDropDown}}}
+                    </select>
+                </div>
 
-            </div>
+                <div class="form-row">
+                    <label for="kegeratorForm_comment">Comment:</label>
+                    <textarea id="kegeratorForm_comment" name="comment" rows="6"></textarea>
+                </div>
+
+                <div id="request-kegerator-btn" class="customButton-blue"> Request Kegerator </div>
+
+            </form>
+
         </div>
 
         <!--
