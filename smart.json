@@ -2,6 +2,7 @@
   "packages": {
     "router": {},
     "iron-router": {},
-    "roles": {}
+    "roles": {},
+    "stripe": {}
   }
 }

@@ -49,6 +49,11 @@ Router.map(function() {
         template: 'page_setKegs',
         data: function(){ return {venue_id: this.params.id} },
     });
+	this.route('billingInfo', {
+        path: '/billing-info',
+        template: 'page_billingInfo',
+        data: {user_id: Meteor.userId()},
+    });
 
     /* ----- Admin Pages ----- */
     this.route('flavors', {

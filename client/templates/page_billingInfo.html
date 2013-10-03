@@ -1,0 +1,76 @@
+<template name="page_billingInfo">
+    {{> editBillingInfo}}
+</template>
+
+<template name="editBillingInfo">
+    <div class="page-background" id="editProfile">
+        <h1 class="page_title" style="margin-bottom:25px;">Update Billing Info</h1>
+
+        <div id="edit_profile_content">
+            <form id="billingInfoForm" class="styled-form" method="POST">
+	
+				<input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="9USO6XB3TGfux6OqXBs7D/tOg6zr7wtGqgVOUeV8jSg="></div>
+				<input id="user_stripe_card_token" name="user[stripe_card_token]" type="hidden">
+				<input id="user_update_credit_card" name="user[update_credit_card]" type="hidden" value="true">
+				
+				
+                <div id="edit_profile_left">
+                    <div class="form-row">
+                        <label for="profile_name">Card Number:</label>
+                        <input type="text" id="user_card_number" name="name" value="4242424242424242"/>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="profile_email">Card Code:</label>
+                        <input type="text" id="user_card_code" name="email" value="123"/>
+                    </div>
+
+
+                    <div class="form-row">
+                        <label for="profile_paymentCycle">Expiration Month:</label>
+                        <select class="styled-select" id="user_card_month" name="paymentCycle">
+                            <option value="1" selected="selected">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+                        </select>
+                    </div>
+
+					<div class="form-row">
+                        <label for="profile_paymentCycle">Expiration Year:</label>
+                        <select class="styled-select" id="user_card_year" name="paymentCycle">
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+							<option value="2023">2023</option>
+							<option value="2024">2024</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="save-billing-info-btn" class="customButton-blue"> Save </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</template>
+
+
+
+

@@ -33,7 +33,7 @@ Template.daily_flavors.kegsToDeliver = function(flavors, day, cycle, oddEven) {
 };
 
 //this is a function helper nested in the flavor each iterations of the daily_kegs_table
-Template.daily_kegs_block.kegQuantity = function(flavorId, flavorCountFunction) {
+Template.daily_kegs_table.kegQuantity = function(flavorId, flavorCountFunction) {
 	return FlavorCountFunctions[flavorCountFunction](flavorId);
 };
 

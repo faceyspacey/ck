@@ -8,7 +8,8 @@
     "basePackages": {
       "router": {},
       "iron-router": {},
-      "roles": {}
+      "roles": {},
+      "stripe": {}
     },
     "packages": {
       "router": {
@@ -25,6 +26,11 @@
         "git": "https://github.com/alanning/meteor-roles.git",
         "tag": "v1.0.6",
         "commit": "f81cbf7c765a4ed7e16a580c288db6f10a90856b"
+      },
+      "stripe": {
+        "git": "https://github.com/appleifreak/stripe-meteor.git",
+        "tag": "v1.2.0",
+        "commit": "4f156b5d8208fd449a5689cc259a95e673ef1252"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
