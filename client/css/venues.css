@@ -40,6 +40,36 @@
     height: 24px;
     line-height: 24px;
 }
+.customButton-blue {
+    margin: 0px auto;
+    display: block;
+}
+
+.delivered-btn-container {
+    display: block;
+    height: auto;
+}
+
+.venue-delivered-row {
+    padding:3px;
+    position:relative;
+    color: DimGrey;
+    text-align:left;
+    display: block;
+    text-shadow: 1px 1px 1px white;
+}
+
+.venue-delivered-row div.info {
+    display: block;
+    text-align: center;
+    color: #0069aa;
+    text-shadow: 1px 1px 1px white;
+}
+
+.delivered-venue-btn {
+    text-transform: uppercase;
+}
+
 .table-keg-div{
     display: inline-block;
     padding: 5px;
@@ -65,4 +95,17 @@ span.keg-fee{
 }
 .venue-kegs-container {
     width: 365px;
+}
+
+.venue-rare-flavor-icon{
+    color: #0069aa;
+    text-shadow: 1px 1px 1px white;
+    display: block;
+    padding: 3px 3px 6px 25px;
+    height: 16px;
+    margin-bottom: 3px;
+    border-bottom: 1px dashed #0069aa;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 20px;
 }

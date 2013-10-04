@@ -7,6 +7,7 @@ KegModel = function(doc){
         venue_id: '',
         paymentCycle: 'weekly',
         paymentDay: 'monday',
+        oddEven: oddEvenWeek(),
         type_id: 1,
         createdAt: 0,
         updatedAt: 0

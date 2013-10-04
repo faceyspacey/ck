@@ -27,6 +27,10 @@ Template.requestKegerator.events({
                     need_kegerator: true,
                     kegeRequestedAt: +(new Date)
                 });
+            }else{
+                venue.save({
+                    need_kegerator: true
+                });
             }
         }
 

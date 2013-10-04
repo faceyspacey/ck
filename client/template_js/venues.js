@@ -26,7 +26,10 @@ Template.venues.events({
     'click .delete-venue-btn' : function(event){
         if( confirm('Are you sure you want to delete this venue?') )
             Venues.remove(this._id);
-    }
+    },
+    'click .delivered-venue-btn': function(){
+        this.makeDelivered();
+    },
 });
 
 Template.venues.venuesList = function(){

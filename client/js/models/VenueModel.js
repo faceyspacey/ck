@@ -12,6 +12,8 @@ VenueModel = function(doc){
         twitter: '',
         need_kegerator: true,
         kegeRequestedAt: 0,
+        delivered: true,
+        deliveredAt: 0,
         instagram: '',
         youtube: '',
         usedFlavors: '',
@@ -47,8 +49,10 @@ VenueModel = function(doc){
         return Meteor.users.findOne(this.user_id);
     };
 
-    this.getKegs = function(){
-        return Kegs.find({venue_id: this._id});
+    this.getKegs = function(conditions){
+        var condition = conditions ? conditions : {};
+        condition.venue_id = this._id;
+        return Kegs.find(condition);
     };
 
     this.getKegerators = function(options){
@@ -80,6 +84,69 @@ VenueModel = function(doc){
             this.kegeRequestedAt = 0;
         }
         this.save();
+    }
+
+    this.makeDelivered = function(){
+        this.delivered = true;
+        var d = new Date();
+        this.deliveredAt = d.toUTC();
+        this.save();
+    }
+
+    this.readyToDeliver = function(){
+        this.delivered = false;
+        this.deliveredAt = 0;
+        this.save();
+    }
+
+    this.formattedDeliveredAt = function(){
+        if( !this.deliveredAt )
+            return '-';
+
+        // time calculated in Californian time
+        var caliTime = App.calcTime(this.deliveredAt, -8);
+
+        var date = App.checkTime(caliTime.getDate());
+        var month = App.checkTime(caliTime.getMonth() + 1);
+        var year = caliTime.getFullYear();
+        var hour = Math.abs(caliTime.getHours()-12);
+        var min = App.checkTime(caliTime.getMinutes());
+        var signal = caliTime.getHours() >= 12 ? 'pm' : 'am';
+
+        return year +'-'+ month +'-'+ date +' '+ hour +':'+ min + signal;
+    }
+
+    this.getRareFlavorToday = function(){
+        var currentWeek = oddEvenWeek();
+        var currentDay = getWeekDay();
+
+        var flavors = {};
+        var flavorKeys = [];
+        this.getKegs({$or: [
+            {paymentCycle: 'bi-weekly', oddEven: currentWeek, paymentDay: currentDay},
+            {paymentCycle: 'weekly', paymentDay: currentDay},
+        ]}).forEach(function(keg){
+            if( typeof flavors[keg.flavor_id] != 'undefined' )
+                flavors[keg.flavor_id] += 1 ;
+            else
+                flavors[keg.flavor_id] = 1 ;
+
+            if( flavorKeys.indexOf(keg.flavor_id) == -1 )
+                flavorKeys.push(keg.flavor_id);
+        });
+
+        Flavors.find({_id: {$nin: flavorKeys}, is_public: true}).forEach(function(nchFlavor){
+            if( flavorKeys.indexOf(nchFlavor._id) < 0 )
+                flavors[nchFlavor._id] = 0;
+        });
+
+        var min = App.minOfAssociative(flavors, true);
+        var flavorId = min.keys[Math.floor((Math.random()*min.keys.length))];
+        var flavor;
+        if( flavor = Flavors.findOne(flavorId) )
+            return flavor;
+        else
+            {};
     }
 
     this.addKeg = function(attributes){

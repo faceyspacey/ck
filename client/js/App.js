@@ -99,6 +99,20 @@ App = (function(){
         return i;
     }
 
+    function calcTime(time, offset) {
+        // create Date object for current location
+        var d = new Date();
+
+        // get UTC time in msec
+        var utc = d.toUTC(time);
+
+        // create new Date object for different timezone
+        // using supplied offset + Daylight Saving Time
+        //console.log((3600000*offset) + (d.dst() ? 60 : 0));
+        //console.log(utc.getTime());
+        return new Date(utc + (3600000*(offset + (d.dst() ? 1 : 0))));
+    }
+
     return {
         paymentCycles: getPaymentCycles(),
         paymentDays: getPaymentDays(),
@@ -108,6 +122,8 @@ App = (function(){
         minOfAssociative: minOfAssociative,
         activateLink: activateLink,
         formatTime: formatTime,
+        calcTime: calcTime,
+        checkTime: checkTime,
     };
 })();
 
