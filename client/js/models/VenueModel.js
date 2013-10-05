@@ -117,49 +117,31 @@ VenueModel = function(doc){
         return year +'-'+ month +'-'+ date +' '+ hour +':'+ min + signal;
     }
 
-    this.getRareFlavorToday = function(id){
+    this.getRareFlavorToday = function(id, day){
         var venue = id ? Venues.findOne(id) : Venues.findOne(this._id);
-        if( !venue )
-            return [];
+        if( !venue ) return [];
 
-        //console.log(venue);
         var currentWeek = oddEvenWeek();
-        var currentDay = getWeekDay();
-
-        var flavors = {};
-        var flavorKeys = [];
-        var count = venue.getKegs({$or: [
+        var currentDay = day ? day : getWeekDay();
+        var condition = {$or: [
             {paymentCycle: 'bi-weekly', oddEven: currentWeek, paymentDay: currentDay},
             {paymentCycle: 'weekly', paymentDay: currentDay},
-        ]}).count();
-        //console.log(count);
-        venue.getKegs({$or: [
-            {paymentCycle: 'bi-weekly', oddEven: currentWeek, paymentDay: currentDay},
-            {paymentCycle: 'weekly', paymentDay: currentDay},
-        ]}).forEach(function(keg){
-            if( typeof flavors[keg.flavor_id] != 'undefined' )
-                flavors[keg.flavor_id] += 1 ;
-            else
-                flavors[keg.flavor_id] = 1 ;
+        ]};
 
-            if( flavorKeys.indexOf(keg.flavor_id) == -1 )
-                flavorKeys.push(keg.flavor_id);
+        if( !(venue.getKegs(condition).count() > 0) )
+            return [{name: 'No kegs for '+currentDay, icon: ''}];
+
+        var flavors = _.countBy(venue.getKegs(condition).fetch(), function(keg) {
+            return keg.flavor_id;
         });
+        var flavorKeys = _.keys(flavors);
 
-        Flavors.find({_id: {$nin: flavorKeys}, is_public: true}).forEach(function(nchFlavor){
-            if( flavorKeys.indexOf(nchFlavor._id) < 0 )
-                flavors[nchFlavor._id] = 0;
+        _.each(Flavors.find({_id: {$nin: flavorKeys}}).fetch(), function(flavor) {
+            flavors[flavor._id] = 0;
         });
 
         var min = App.minOfAssociative(flavors, true);
-        var flavorId = min.keys[Math.floor((Math.random()*min.keys.length))];
-        //console.log(flavors);
-        var flavor;
-        if( flavor = Flavors.findOne(flavorId) ){
-            //console.log(flavor);
-            return [flavor];
-        }else
-            return [];
+        return Flavors.find({_id: {$in: min.keys}});
     }
 
     this.addKeg = function(attributes){
@@ -223,22 +205,13 @@ VenueModel = function(doc){
         if( typeof venue == 'undefined' )
             venue = this;
 
-        var flavors = {};
-        var flavorKeys = [];
-
-        this.getKegs().forEach(function(keg){
-            if( typeof flavors[keg.flavor_id] != 'undefined' )
-                flavors[keg.flavor_id] += 1 ;
-            else
-                flavors[keg.flavor_id] = 1 ;
-
-            if( flavorKeys.indexOf(keg.flavor_id) == -1 )
-                flavorKeys.push(keg.flavor_id);
+        var flavors = _.countBy(venue.getKegs().fetch(), function(keg) {
+            return keg.flavor_id;
         });
+        var flavorKeys = _.keys(flavors);
 
-        Flavors.find({_id: {$nin: flavorKeys}, is_public: true}).forEach(function(nchFlavor){
-            if( flavorKeys.indexOf(nchFlavor._id) < 0 )
-                flavors[nchFlavor._id] = 0;
+        _.each(Flavors.find({_id: {$nin: flavorKeys}}).fetch(), function(flavor) {
+            flavors[flavor._id] = 0;
         });
 
         var min = App.minOfAssociative(flavors, true);
@@ -264,6 +237,7 @@ VenueModel = function(doc){
 
     }
 
+    /*
     this.summarizedCost = function(multiplier){
         return '';
         //console.log(multiplier);
@@ -279,7 +253,7 @@ VenueModel = function(doc){
             return multiplier*sum;
         else
             return sum;
-    }
+    }*/
 
     this.getKegCharges = function(){
 

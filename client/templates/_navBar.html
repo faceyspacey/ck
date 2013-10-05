@@ -1,18 +1,19 @@
 <template name="_navBar">
     {{#if isInRole 'admin'}}
-        <a class="navi-link admin-only {{{isActive '/oneOffs'}}}" id="page_oneOffs_link" href="javascript: Router.go('oneOffs');">ONE-OFFS (#)</a>
-        <a class="navi-link admin-only {{{isActive '/kegeratorInstalls'}}}" id="page_kegeratorInstalls_link" href="javascript: Router.go('kegeratorInstallsAll');">Kegerator Installs {{{getKegeratorsInstalls}}}</a>
-        <a class="navi-link admin-only" id="page_users_link" href="javascript: Router.go('/users/all');">Users</a>
-        <a class="navi-link admin-only" id="page_allVenues_link" href="javascript: Router.go('allVenues');">All Venues</a>
-        <a class="navi-link admin-only" id="page_flavors_link" href="javascript: Router.go('flavors');">Edit flavors</a>
-		<a class="navi-link admin-only" id="page_daily_flavors_link" href="javascript: Router.go('dailyFlavors');">Daily flavors</a>
+        <a class="navi-link admin-only {{active 'delivery'}}" id="page_delivery_link" href="javascript: Router.go('delivery');">Delivery</a>
+        <a class="navi-link admin-only {{active 'oneOffs'}}" id="page_oneOffs_link" href="javascript: Router.go('oneOffs');">ONE-OFFS (#)</a>
+        <a class="navi-link admin-only {{active 'kegeratorInstalls' 'kegeratorInstallsAll'}}" id="page_kegeratorInstalls_link" href="javascript: Router.go('kegeratorInstallsAll');">Kegerator Installs {{{getKegeratorsInstalls}}}</a>
+        <a class="navi-link admin-only {{active 'users'}}" id="page_users_link" href="javascript: Router.go('/users/all');">Users</a>
+        <a class="navi-link admin-only {{active 'allVenues' 'clientVenues'}}" id="page_allVenues_link" href="javascript: Router.go('allVenues');">All Venues</a>
+        <a class="navi-link admin-only {{active 'flavors'}}" id="page_flavors_link" href="javascript: Router.go('flavors');">Edit flavors</a>
+		<a class="navi-link admin-only {{active 'dailyFlavors'}}" id="page_daily_flavors_link" href="javascript: Router.go('dailyFlavors');">Daily flavors</a>
     {{/if}}
 
-    <a class="navi-link" id="page_home_link" href="javascript: Router.go('home');">Home</a>
+    <a class="navi-link {{active 'home'}}" id="page_home_link" href="javascript: Router.go('home');">Home</a>
 
     {{#if currentUser}}
-        <a class="navi-link" id="page_myVenues_link" href="javascript: Router.go('myVenues');">Venues</a>
-        <a class="navi-link" id="page_myProfile_link" href="javascript: Router.go('myProfile');">Profile</a>
+        <a class="navi-link {{active 'myVenues'}}" id="page_myVenues_link" href="javascript: Router.go('myVenues');">Venues</a>
+        <a class="navi-link {{active 'myProfile'}}" id="page_myProfile_link" href="javascript: Router.go('myProfile');">Profile</a>
     {{/if}}
 
 </template>

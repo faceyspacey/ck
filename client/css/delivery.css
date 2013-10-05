@@ -1,0 +1,16 @@
+
+.venue-kegs-container {
+    width: 365px;
+}
+
+.venue-rare-flavor-icon{
+    color: #0069aa;
+    text-shadow: 1px 1px 1px white;
+    display: block;
+    padding: 3px 3px 6px 25px;
+    height: 16px;
+    margin-bottom: 3px;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
