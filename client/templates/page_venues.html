@@ -27,7 +27,9 @@
                             <td>
                                 {{#if isInRole 'admin'}}
                                 Random rare flavor: <br/>
-                                <div class="venue-rare-flavor-icon" style="background-image:url('{{getRareFlavorToday.icon}}');">{{getRareFlavorToday.name}}</div>
+                                    {{#each getRareFlavorToday _id}}
+                                        <div class="venue-rare-flavor-icon" style="background-image:url('{{icon}}');">{{name}}</div>
+                                    {{/each}}
                                 {{/if}}
                                 {{{info}}}
                             </td>

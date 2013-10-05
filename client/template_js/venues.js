@@ -38,6 +38,7 @@ Template.venues.venuesList = function(){
     return Venues.find(condition, {sort: {name: 1}});
 }
 
+
 Template.venues.helpers({
     'info': function(){
         return ' <span class="label">Kegs count:</span> <br/><b>'+this.getKegs().count()+' keg(s)</b><br/>' +

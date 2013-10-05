@@ -50,8 +50,9 @@ VenueModel = function(doc){
     };
 
     this.getKegs = function(conditions){
-        var condition = conditions ? conditions : {};
-        condition.venue_id = this._id;
+        var condition = {};
+        _.extend(condition, conditions);
+        _.extend(condition, {venue_id: this._id});
         return Kegs.find(condition);
     };
 
@@ -116,13 +117,23 @@ VenueModel = function(doc){
         return year +'-'+ month +'-'+ date +' '+ hour +':'+ min + signal;
     }
 
-    this.getRareFlavorToday = function(){
+    this.getRareFlavorToday = function(id){
+        var venue = id ? Venues.findOne(id) : Venues.findOne(this._id);
+        if( !venue )
+            return [];
+
+        //console.log(venue);
         var currentWeek = oddEvenWeek();
         var currentDay = getWeekDay();
 
         var flavors = {};
         var flavorKeys = [];
-        this.getKegs({$or: [
+        var count = venue.getKegs({$or: [
+            {paymentCycle: 'bi-weekly', oddEven: currentWeek, paymentDay: currentDay},
+            {paymentCycle: 'weekly', paymentDay: currentDay},
+        ]}).count();
+        //console.log(count);
+        venue.getKegs({$or: [
             {paymentCycle: 'bi-weekly', oddEven: currentWeek, paymentDay: currentDay},
             {paymentCycle: 'weekly', paymentDay: currentDay},
         ]}).forEach(function(keg){
@@ -142,11 +153,13 @@ VenueModel = function(doc){
 
         var min = App.minOfAssociative(flavors, true);
         var flavorId = min.keys[Math.floor((Math.random()*min.keys.length))];
+        //console.log(flavors);
         var flavor;
-        if( flavor = Flavors.findOne(flavorId) )
-            return flavor;
-        else
-            {};
+        if( flavor = Flavors.findOne(flavorId) ){
+            //console.log(flavor);
+            return [flavor];
+        }else
+            return [];
     }
 
     this.addKeg = function(attributes){
