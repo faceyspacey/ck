@@ -9,6 +9,7 @@ KegModel = function(doc){
         paymentDay: 'monday',
         oddEven: oddEvenWeek(),
         type_id: 1,
+        price: 120,
         createdAt: 0,
         updatedAt: 0
     };
@@ -41,9 +42,11 @@ KegModel = function(doc){
         return Venues.findOne(this.venue_id);
     }
 
-    this.price = function(){
-        return App.getKegPrice(this.type_id);
-    }
+    /*
+    calcPrice = function(){
+        console.log('type_id: '+this.type_id);
+        this.price = App.getKegPrice(this.type_id);
+    }*/
 
     this.flavor = function(){
         var flavor = Flavors.findOne(this.flavor_id);
@@ -108,6 +111,8 @@ KegModel = function(doc){
 
         if( withOutId == true )
             delete object._id;
+
+        //calcPrice();
 
         return object;
     }

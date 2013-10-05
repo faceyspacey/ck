@@ -16,6 +16,9 @@ Template.profile.helpers({
     },
     'user' : function(){
         return Meteor.users.findOne(this.user_id);
+    },
+    'userKegCharges': function(user_id){
+        return User.renderKegCharges(user_id);
     }
 });
 

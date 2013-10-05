@@ -1,7 +1,8 @@
 App = (function(){
     var paymentCycles = [
         {id: 'weekly', name: 'Weekly'},
-        {id: 'bi-weekly', name: 'Bi-Weekly'}
+        {id: 'bi-weekly-odd', name: 'Bi-Weekly (Odd)'},
+        {id: 'bi-weekly-even', name: 'Bi-Weekly (Even)'}
     ];
     var paymentDays = [
         {id: 'monday', name: 'Monday'},
@@ -26,9 +27,9 @@ App = (function(){
     }
 
     function getKegPrice(kegType){
+        console.log('price '+kegType);
         if( typeof kegTypes[kegType] != 'undefined' )
             return kegTypes[kegType].price;
-
         return 0;
     }
 

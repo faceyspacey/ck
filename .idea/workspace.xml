@@ -2,31 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab780d15-ed56-4034-a954-81edd1255e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/css/delivery.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/template_js/delivery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/page_delivery.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/App.js" afterPath="$PROJECT_DIR$/client/js/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/KegModel.js" afterPath="$PROJECT_DIR$/client/js/models/KegModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/User.js" afterPath="$PROJECT_DIR$/client/js/User.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/VenueModel.js" afterPath="$PROJECT_DIR$/client/js/models/VenueModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/_navBar.html" afterPath="$PROJECT_DIR$/client/templates/_navBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/client.js" afterPath="$PROJECT_DIR$/client/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/navBar.js" afterPath="$PROJECT_DIR$/client/template_js/navBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_venues.html" afterPath="$PROJECT_DIR$/client/templates/page_venues.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/venues.css" afterPath="$PROJECT_DIR$/client/css/venues.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/views/keg_charges_table.css" afterPath="$PROJECT_DIR$/client/css/views/keg_charges_table.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/page_profile.html" afterPath="$PROJECT_DIR$/client/templates/page_profile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/profile.css" afterPath="$PROJECT_DIR$/client/css/profile.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/profile.js" afterPath="$PROJECT_DIR$/client/template_js/profile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/setKegs.css" afterPath="$PROJECT_DIR$/client/css/setKegs.css" />
     </list>
     <ignored path="ckhome.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380986051215" ignored="false" />
-    <file path="/VenueModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380992044272" ignored="false" />
+    <file path="/VenueModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381010631601" ignored="false" />
     <file path="/editFlavors.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380387131801" ignored="false" />
     <file path="/venues.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380930344181" ignored="false" />
     <file path="/main.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380380258314" ignored="false" />
     <file path="/page_venues.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380986686501" ignored="false" />
-    <file path="/User.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380930666118" ignored="false" />
-    <file path="/page_profile.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380485095262" ignored="false" />
+    <file path="/User.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381012136356" ignored="false" />
+    <file path="/page_profile.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381012201060" ignored="false" />
     <file path="/client.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380834674739" ignored="false" />
     <file path="/_navBar.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380999764097" ignored="false" />
-    <file path="/profile.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380488980778" ignored="false" />
+    <file path="/profile.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381012190628" ignored="false" />
     <file path="/elements.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380833611544" ignored="false" />
     <file path="/accounts.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380052954837" ignored="false" />
     <file path="/profile.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380486065322" ignored="false" />
@@ -40,7 +38,7 @@
     <file path="/admins.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380062664183" ignored="false" />
     <file path="/clients.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380323147708" ignored="false" />
     <file path="/page_clients.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380063542533" ignored="false" />
-    <file path="/App.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380991863829" ignored="false" />
+    <file path="/App.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381006930419" ignored="false" />
     <file path="/navBar.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380998932144" ignored="false" />
     <file path="/page_orders.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380552778069" ignored="false" />
     <file path="/orders.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380552744916" ignored="false" />
@@ -56,13 +54,13 @@
     <file path="/header.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380366538725" ignored="false" />
     <file path="/a.dummy" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380930459857" ignored="false" />
     <file path="/FlavorModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380577434055" ignored="false" />
-    <file path="/KegModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380928712346" ignored="false" />
+    <file path="/KegModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381007207756" ignored="false" />
     <file path="/users.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380490062018" ignored="false" />
     <file path="/UserModel.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380382202802" ignored="false" />
     <file path="/flavors.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380577998062" ignored="false" />
     <file path="/kegs.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380461140329" ignored="false" />
     <file path="/Kegs.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380401215983" ignored="false" />
-    <file path="/setKegs.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380562197655" ignored="false" />
+    <file path="/setKegs.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381009226361" ignored="false" />
     <file path="/page_flavors.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380393348643" ignored="false" />
     <file path="/flavors.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380393416099" ignored="false" />
     <file path="/page_editProfile.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1380402504194" ignored="false" />
@@ -123,35 +121,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VenueModel.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="VenueModel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/models/VenueModel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="309" column="39" selection-start="9559" selection-end="9559" vertical-scroll-proportion="0.65486723">
+            <state line="293" column="0" selection-start="9603" selection-end="9603" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1381003747092" expanded="true" signature="6552:6573" placeholder="..." />
-                <marker date="1381003747092" expanded="true" signature="9717:9737" placeholder="..." />
-                <marker date="1381003747092" expanded="true" signature="11212:11233" placeholder="..." />
+                <marker date="1381011379938" expanded="true" signature="6552:6573" placeholder="..." />
+                <marker date="1381011379938" expanded="true" signature="9834:9854" placeholder="..." />
+                <marker date="1381011379938" expanded="true" signature="11329:11350" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_navBar.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/_navBar.html">
+      <file leaf-file-name="setKegs.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/css/setKegs.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="47" selection-start="1483" selection-end="1483" vertical-scroll-proportion="-9.375">
+            <state line="68" column="21" selection-start="1460" selection-end="1460" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="navBar.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/template_js/navBar.js">
+      <file leaf-file-name="keg_charges_setKegs.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/css/views/keg_charges_setKegs.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1380998952208" expanded="false" signature="195:216" placeholder="..." />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,7 +155,7 @@
       <file leaf-file-name="KegModel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/models/KegModel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="22" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0">
+            <state line="113" column="0" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -168,61 +164,55 @@
       <file leaf-file-name="App.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="0" selection-start="3946" selection-end="3946" vertical-scroll-proportion="0.0">
+            <state line="29" column="38" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page_delivery.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/page_delivery.html">
+      <file leaf-file-name="User.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/User.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="16" selection-start="682" selection-end="682" vertical-scroll-proportion="-8.75">
+            <state line="19" column="10" selection-start="398" selection-end="398" vertical-scroll-proportion="-3.235294">
               <folding>
-                <element signature="n#style#0;n#h1#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#2;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#3;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="true" />
+                <marker date="1381012185626" expanded="true" signature="2938:2958" placeholder="..." />
+                <marker date="1381012185626" expanded="true" signature="4234:4255" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delivery.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/template_js/delivery.js">
+      <file leaf-file-name="profile.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/css/profile.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="23" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0">
+            <state line="16" column="1" selection-start="273" selection-end="273" vertical-scroll-proportion="-8.6">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/js/client.js">
+      <file leaf-file-name="profile.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/template_js/profile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="28" selection-start="3244" selection-end="3244" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="venues.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/venues.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="1" selection-start="1630" selection-end="1630" vertical-scroll-proportion="0.0">
+            <state line="19" column="40" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delivery.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/delivery.css">
+      <file leaf-file-name="page_profile.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/templates/page_profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="23" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0">
+            <state line="51" column="46" selection-start="2238" selection-end="2238" vertical-scroll-proportion="0.6092184">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="keg_charges_table.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/css/views/keg_charges_table.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="13" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -246,22 +236,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/client/templates/page_requestKegerator.html" />
-        <option value="$PROJECT_DIR$/client/template_js/requestKegerator.js" />
-        <option value="$PROJECT_DIR$/client/js/date_utilities.js" />
-        <option value="$PROJECT_DIR$/client/js/models/KegModel.js" />
-        <option value="$PROJECT_DIR$/client/js/User.js" />
-        <option value="$PROJECT_DIR$/client/template_js/venues.js" />
-        <option value="$PROJECT_DIR$/client/templates/page_venues.html" />
         <option value="$PROJECT_DIR$/client/js/client.js" />
         <option value="$PROJECT_DIR$/client/css/venues.css" />
         <option value="$PROJECT_DIR$/client/css/delivery.css" />
         <option value="$PROJECT_DIR$/client/templates/page_delivery.html" />
         <option value="$PROJECT_DIR$/client/template_js/delivery.js" />
-        <option value="$PROJECT_DIR$/client/js/App.js" />
         <option value="$PROJECT_DIR$/client/template_js/navBar.js" />
         <option value="$PROJECT_DIR$/client/templates/_navBar.html" />
+        <option value="$PROJECT_DIR$/client/js/App.js" />
+        <option value="$PROJECT_DIR$/client/js/models/KegModel.js" />
+        <option value="$PROJECT_DIR$/client/css/setKegs.css" />
+        <option value="$PROJECT_DIR$/client/css/views/keg_charges_table.css" />
         <option value="$PROJECT_DIR$/client/js/models/VenueModel.js" />
+        <option value="$PROJECT_DIR$/client/css/profile.css" />
+        <option value="$PROJECT_DIR$/client/js/User.js" />
+        <option value="$PROJECT_DIR$/client/template_js/profile.js" />
+        <option value="$PROJECT_DIR$/client/templates/page_profile.html" />
       </list>
     </option>
   </component>
@@ -410,6 +400,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ckhome" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ckhome" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -548,66 +560,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/js/date_utilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="25" selection-start="735" selection-end="735" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/templates/views/keg_charges_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="64" selection-start="1191" selection-end="1191" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/views/keg_charges_table.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="29" selection-start="2888" selection-end="2888" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="21" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/templates/page_venues.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="41" selection-start="657" selection-end="657" vertical-scroll-proportion="-8.125">
-          <folding>
-            <element signature="n#style#0;n#th#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#template#1;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/venues.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="0" selection-end="1690" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/venues.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="1" selection-start="1630" selection-end="1630" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/delivery.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/page_delivery.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="16" selection-start="682" selection-end="682" vertical-scroll-proportion="-8.75">
@@ -622,25 +574,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/models/KegModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="22" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="0" selection-start="3946" selection-end="3946" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/template_js/navBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1380998952208" expanded="false" signature="195:216" placeholder="..." />
+            <marker date="1380998952208" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -668,14 +606,87 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/models/FlavorModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="38" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/models/KegModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="0" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/setKegs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="21" selection-start="1460" selection-end="1460" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/views/keg_charges_setKegs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/views/keg_charges_table.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="13" selection-start="1277" selection-end="1277" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/js/models/VenueModel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="309" column="39" selection-start="9559" selection-end="9559" vertical-scroll-proportion="0.65486723">
+        <state line="293" column="0" selection-start="9603" selection-end="9603" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1381003747092" expanded="true" signature="6552:6573" placeholder="..." />
-            <marker date="1381003747092" expanded="true" signature="9717:9737" placeholder="..." />
-            <marker date="1381003747092" expanded="true" signature="11212:11233" placeholder="..." />
+            <marker date="1381011379938" expanded="true" signature="6552:6573" placeholder="..." />
+            <marker date="1381011379938" expanded="true" signature="9834:9854" placeholder="..." />
+            <marker date="1381011379938" expanded="true" signature="11329:11350" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/profile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="1" selection-start="273" selection-end="273" vertical-scroll-proportion="-8.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="10" selection-start="398" selection-end="398" vertical-scroll-proportion="-3.235294">
+          <folding>
+            <marker date="1381012185626" expanded="true" signature="2938:2958" placeholder="..." />
+            <marker date="1381012185626" expanded="true" signature="4234:4255" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="40" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/templates/page_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="46" selection-start="2238" selection-end="2238" vertical-scroll-proportion="0.6092184">
+          <folding />
         </state>
       </provider>
     </entry>
