@@ -2,9 +2,12 @@
 InvoiceModel = function(doc){
     var defaultValues = {
         _id: '',
+        order_id: '',
+        day: '',
+        cycle: '',
         user_id: '',
-        amount: 0,
-        status: 0,
+        kegsCount: 0,
+        total: 0,
         createdAt: 0,
     };
     this.errors = {};
@@ -22,10 +25,22 @@ InvoiceModel = function(doc){
     }
 
     this.user = function(){
-        if( !this.user_id )
-            return false;
-
         return Meteor.users.findOne(this.user_id);
+    }
+
+    this.LineItems = function(options){
+        var option = {};
+        _.extend(option, options);
+        option.invoice_id = this._id;
+        return LineItems.find(option);
+    }
+
+    this.formattedCreatedAt = function(){
+        //date formatting comes here
+    }
+
+    this.paymentPeriod = function(){
+        // payment period rendering comes here
     }
 
     this.getObjectValues = function(doc, withOutId){

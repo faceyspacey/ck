@@ -19,7 +19,6 @@ KegModel = function(doc){
         if( this._id ){
             Kegs.update(this._id, {$set: this.getObjectValues(attributes, true)});
         }else{
-            console.log(this.getObjectValues(attributes, true));
             var id = '';
             if( id = Kegs.insert(this.getObjectValues(attributes, true)) ){
                 this._id = id;

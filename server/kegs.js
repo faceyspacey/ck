@@ -24,8 +24,7 @@ Kegs.allow({
         doc.createdAt = (new Date()).getTime();
         doc.updatedAt = (new Date()).getTime();
 
-        return true;
-        //return userId ? true : false;
+        return userId ? true : false;
     },
     update: function(userId, doc, fields, modifier) {
         doc.updatedAt = (new Date()).getTime();
