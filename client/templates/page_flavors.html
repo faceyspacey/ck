@@ -13,6 +13,7 @@
             <tbody>
             <tr>
                 <th style="">Name</th>
+				<th style="width: 60px;">One-Offs</th>
                 <th style="width: 60px;">Icon</th>
                 <th style="width: 150px;">Keg Icon</th>
                 <th style="width: 100px;">Popularity</th>
@@ -21,29 +22,7 @@
             </tr>
             {{#if flavorsList}}
                 {{#each flavorsList}}
-                <tr>
-                    <td>{{name}}</td>
-                    <td class="align-center">
-                        <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
-                    </td>
-                    <td class="align-center">
-                        <div class="flavor-list-kegIcon" style="background-image:url('{{kegIcon}}');"> </div>
-                    </td>
-                    <td class="align-center">{{usage}} Venues</td>
-                    <td class="align-center">
-                        {{#if notPublic}}
-                        <span style="color: orange;">No</span>
-                        {{else}}
-                        <span style="color: green;">Yes</span>
-                        {{/if}}
-                    </td>
-                    <td class="action-buttons">
-                        {{#if notPublic}}
-                            <div class="make-public-btn customButton">Make public!</div>
-                        {{/if}}
-                        <div class="delete-flavor-btn customButton"> &times; </div>
-                    </td>
-                </tr>
+                	{{>edit_flavor_row}}
                 {{/each}}
             {{else}}
                 <tr>
@@ -53,30 +32,75 @@
             </tbody>
         </table>
 
-        <div id="addFlavorDialog" class="dialog-box" style="display: none;">
-            <div class="close-dialog-btn"> &times; </div>
-            <h2 class="subtitle">New Flavor</h2>
-            <form id="new-flavor-form" name="newFlavorForm" class="styled-form" method="POST">
-
-                <div class="form-row">
-                    <label for="flavorForm_name">Name:</label>
-                    <input id="flavorForm_name" type="text" name="name"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="flavorForm_icon">Icon (Url):</label>
-                    <input id="flavorForm_icon" type="text" name="icon"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="flavorForm_kegIcon">Keg Icon (Url):</label>
-                    <input id="flavorForm_kegIcon" type="text" name="kegIcon"/>
-                </div>
-
-            </form>
-
-            <div class="add-flavor-btn customButton-blue">Add Flavor</div>
-        </div>
-
+		{{#if newFlavorModel}}
+			{{#with newFlavorModel}}
+	        	{{>new_flavor_form}}
+			{{/with}}
+		{{/if}}		
+			
     </div>
 </template>
+
+
+
+<template name="edit_flavor_row">
+	<tr>
+        <td>{{name}}</td>
+		<td>{{oneOffQuantityAvailable}}</td>
+        <td class="align-center">
+            <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
+        </td>
+        <td class="align-center">
+            <div class="flavor-list-kegIcon" style="background-image:url('{{kegIcon}}');"> </div>
+        </td>
+        <td class="align-center">{{usage}} Venues</td>
+        <td class="align-center">
+            {{#if notPublic}}
+            <span style="color: orange;">No</span>
+            {{else}}
+            <span style="color: green;">Yes</span>
+            {{/if}}
+        </td>
+        <td class="action-buttons">
+            {{#if notPublic}}
+                <div class="make-public-btn customButton">Make public!</div>
+            {{/if}}
+			<div class="edit-flavor-btn customButton" style="font-size: 16px; width: 130px; margin-left:10px;"> Edit </div>
+			<div class="decrement-quantity customButton flavor-btn" style="margin-left:10px;"> - </div>
+			<div class="increment-quantity customButton flavor-btn" style="margin-left:10px;"> + </div>
+            <div class="delete-flavor-btn customButton flavor-btn" style="margin-left:10px;"> &times; </div>
+        </td>
+    </tr>
+</template>
+
+
+
+<template name="new_flavor_form">
+	<div id="addFlavorDialog" class="dialog-box" style="position:absolute; top:25px; left:50%; margin-left:-220px;">
+		
+        <div class="close-dialog-btn"> &times; </div>
+        <h2 class="subtitle">New/Edit Flavor</h2>
+
+
+       	 <form id="new-flavor-form" name="newFlavorForm" class="styled-form" method="POST">
+	        <div class="form-row">
+                <label for="flavorForm_name">Name:</label>
+                <input id="flavorForm_name" type="text" name="name" value="{{name}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="flavorForm_icon">Icon (Url):</label>
+                <input id="flavorForm_icon" type="text" name="icon" value="{{icon}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="flavorForm_kegIcon">Keg Icon (Url):</label>
+                <input id="flavorForm_kegIcon" type="text" name="kegIcon" value="{{kegIcon}}"/>
+            </div>
+        </form>
+
+		
+        <div class="add-flavor-btn customButton-blue">Save Flavor</div>
+    </div>
+</template>
+

@@ -3,6 +3,8 @@
     "router": {},
     "iron-router": {},
     "roles": {},
-    "stripe": {}
+    "stripe": {},
+    "moment": {},
+    "flash-messages": {}
   }
 }

@@ -15,6 +15,13 @@ App = (function(){
         2: { id: 2, taps: 2, name: 'Double Tap Tower' },
     };
 
+	var prices = {
+		fiveGallons: 120,
+		fiveGallonsOneOff: 150,
+		fiveGallonsDiscounted: 100,
+		fifteenGallons: 300
+	};
+
     function getPaymentCycles(){
         return paymentCycles;
     }
@@ -118,6 +125,7 @@ App = (function(){
         paymentDays: getPaymentDays(),
         kegeratorTypes: getKegeratorTypes(),
         getKegPrice: getKegPrice,
+		prices: prices,
         maxOfAssociative: maxOfAssociative,
         minOfAssociative: minOfAssociative,
         activateLink: activateLink,

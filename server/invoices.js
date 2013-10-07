@@ -5,7 +5,7 @@ Meteor.publish("invoices", function () {
     if( Roles.userIsInRole(this.userId, ['admin']) ){
         return Invoices.find({}); // everything
     } else {
-        return Invoices.find({is_public: true}); // own invoices
+        return Invoices.find({user_id: this.userId}); // own invoices
     }
 });
 
@@ -15,12 +15,12 @@ Invoices.allow({
         doc.createdAt = (new Date()).getTime();
         doc.updatedAt = (new Date()).getTime();
 
-        return Roles.userIsInRole(userId, ['admin']);
+        return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
     },
     update: function(userId, doc, fields, modifier) {
         doc.updatedAt = (new Date()).getTime();
 
-        return Roles.userIsInRole(userId, ['admin']);
+        return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
     },
     remove: function(userId, doc) {
 

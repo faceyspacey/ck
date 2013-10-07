@@ -9,7 +9,9 @@
       "router": {},
       "iron-router": {},
       "roles": {},
-      "stripe": {}
+      "stripe": {},
+      "moment": {},
+      "flash-messages": {}
     },
     "packages": {
       "router": {
@@ -31,6 +33,16 @@
         "git": "https://github.com/appleifreak/stripe-meteor.git",
         "tag": "v1.2.0",
         "commit": "4f156b5d8208fd449a5689cc259a95e673ef1252"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.2.1",
+        "commit": "9ee12e714afe56b189f53076447b7b54f3012065"
+      },
+      "flash-messages": {
+        "git": "https://github.com/camilosw/flash-messages.git",
+        "tag": "v0.2.1",
+        "commit": "62cf1ee531684808b91dbe3ff15e63f6d5af1c66"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

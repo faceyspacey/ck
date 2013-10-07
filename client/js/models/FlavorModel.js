@@ -34,6 +34,10 @@ FlavorModel = function(doc){
     this.usage = function(){
         return Venues.find({usedFlavors: {$in: [this._id]}}).count();
     }
+	
+	this.oneOffQuantityAvailable = function() {
+		return this.one_off_quantity_availible || 0
+	};
 
     this.getObjectValues = function(doc, withOutId){
         if( typeof doc == 'undefined' )

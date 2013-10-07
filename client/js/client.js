@@ -54,6 +54,18 @@ Router.map(function() {
         template: 'page_billingInfo',
         data: {user_id: Meteor.userId()},
     });
+	this.route('orderKegs', {
+        path: '/order-keg',
+        template: 'page_orderKegs',
+        data: function() {
+			OrderedFlavors = new Meteor.Collection(null, { //create local-only (temporary) mini-mongo collection
+			    reactive: true,
+			    transform: function (doc) { return new OrderedFlavorModel(doc); }
+			});
+			
+			OrderedFlavors.insert({});
+		}
+    });
     this.route('requestKegerator', {
         path: '/requestKegerator',
         template: 'page_requestKegerator',
@@ -111,6 +123,11 @@ Router.map(function() {
         template: 'page_kegeratorInstalls',
         data: function(){ return {user_id: false}; },
     });
+	this.route('oneOffs', {
+        path: '/one-offs',
+        template: 'page_oneOffs',
+        data: function(){ return {user_id: false}; },
+    });
     this.route('kegeratorInstalls', {
         path: '/kegeratorInstalls/:id',
         template: 'page_kegeratorInstalls',
@@ -125,9 +142,8 @@ Router.configure({
     loadingTemplate: 'loading',*/
 
     renderTemplates: {
-        /* render the templated named footer to the 'footer' yield */
+
         'header': { to: 'header' },
-        /* render the templated named footer to the 'footer' yield */
         'footer': { to: 'footer' },
     },
 
@@ -147,3 +163,8 @@ Router.configure({
         }
     },
 });
+
+FlashMessages.configure({
+    autoHide: true,
+	hideDelay: 7000
+  });

@@ -18,16 +18,19 @@
 
     </nav>
 
+
     <!-- the main template will be rendered here -->
 
     <div id="container">
         <!-- <div class="row_container"> -->
-
+	
             <header>
                 <!-- render to the header yield -->
                 {{yield 'header'}}
             </header>
 
+			{{> flashMessages}}
+			
             {{yield}}
 
         <!--</div> -->
