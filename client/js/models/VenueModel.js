@@ -121,6 +121,7 @@ VenueModel = function(doc){
         var venue = id ? Venues.findOne(id) : Venues.findOne(this._id);
         if( !venue ) return [];
 
+		//prepare condition to search for kegs in getKegs()
         var currentWeek = oddEvenWeek();
         var currentDay = day ? day : getWeekDay();
         var condition = {$or: [
@@ -131,15 +132,18 @@ VenueModel = function(doc){
         if( !(venue.getKegs(condition).count() > 0) )
             return [{name: 'No kegs for '+currentDay, icon: ''}];
 
+		//find kegs with pre-set flavors for delivery on the current day
         var flavors = _.countBy(venue.getKegs(condition).fetch(), function(keg) {
             return keg.flavor_id;
         });
         var flavorKeys = _.keys(flavors);
 
+		//mark kegs without pre-set flavors (i.e. random kegs) to quantity of 0
         _.each(Flavors.find({_id: {$nin: flavorKeys}}).fetch(), function(flavor) {
             flavors[flavor._id] = 0;
         });
 
+		//produce collection of least used flavors by venue
         var min = App.minOfAssociative(flavors, true);
         return Flavors.find({_id: {$in: min.keys}});
     }

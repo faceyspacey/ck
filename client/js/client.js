@@ -39,6 +39,11 @@ Router.map(function() {
         template: 'page_invoices',
         data: {title: "My Invoices", user_id: Meteor.userId()},
     });
+	this.route('order', {
+        path: '/orders/:order_num',
+        template: 'page_order',
+        data: function(){ return {_id: this.params.order_num} },
+    });
     this.route('myVenues', {
         path: '/myVenues',
         template: 'page_venues',

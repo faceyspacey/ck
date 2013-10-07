@@ -10,19 +10,25 @@
             <tbody>
             <tr>
                 <th style="">Order #</th>
-                <th style="">Payment Period</th>
-                <th style="">Date</th>
+				<th style="">Type</th>
+				<th style="">Day</th>
+                <th style="">Payment Date</th>
                 <th style="">Kegs</th>
                 <th style="">Total</th>
+				<th style="">Paid</th>
+				<th style="">Delivered</th>
             </tr>
             {{#if invoiceList}}
                 {{#each invoiceList}}
                 <tr>
-                    <td><a class="invoice-order-id-link" href="javascript: return;">#{{order_id}}</a></td>
-                    <td>{{paymentPeriod}}</td>
-                    <td>{{formattedCreatedAt}}</td>
-                    <td>{{kegsCount}}</td>
-                    <td>{{total}}</td>
+                    <td><a class="invoice-order-id-link" href="/orders/{{order_num}}">#{{order_num}}</a></td>
+					<td>{{paymentPeriodType}}</td>
+					<td>{{deliveryDayOfWeek}}</td>
+                    <td>{{actualPaidDate}}</td>
+                    <td>{{keg_quantity}}</td>
+                    <td>${{total}}</td>
+					<td>{{paidInfo}}</td>
+                    <td>{{actualDeliveryDate}}</td>
                 </tr>
                 {{/each}}
             {{else}}

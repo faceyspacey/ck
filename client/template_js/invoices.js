@@ -1,11 +1,6 @@
-
-
 Template.invoices.helpers({
-    'invoiceList' : function(){
-        var user = Meteor.users.findOne(this.user_id);
-        if( !user )
-            return;
-
-        return Invoices.find({user_id: user._id});
+    'invoiceList' : function(){		
+		var conditions = Roles.userIsInRole(Meteor.userId(), ['admin']) ? {} :{user_id: Meteor.userId()};
+		return Invoices.find(conditions, {sort: {updatedAt: -1}});
     }
 });

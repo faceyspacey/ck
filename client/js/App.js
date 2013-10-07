@@ -64,17 +64,13 @@ App = (function(){
     function minOfAssociative(object, allowMulti){
         var min = {keys: [], val: 0};
         for(i in object){
-            if( min.keys.length == 0 )
-            min = {keys: [i], val: object[i]};
-            if( allowMulti ){
-                if( object[i] < min.val )
-                    min = {keys: [i], val: object[i]};
-                if( object[i] == min.val ){
-                    min.keys.push(i);
-                }
-            }else{
-                if( object[i] < min.val )
-                    min = {key: i, val: object[i]};
+            if(min.keys.length == 0) min = {keys: [i], val: object[i]};
+
+            if(allowMulti) {
+                if(object[i] < min.val) min = {keys: [i], val: object[i]};
+                if(object[i] == min.val) min.keys.push(i);
+            } else {
+                if(object[i] < min.val) min = {key: i, val: object[i]};
             }
         }
 

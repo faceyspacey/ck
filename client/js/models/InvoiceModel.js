@@ -6,20 +6,19 @@ InvoiceModel = function(doc){
 	//so I added a new method to get these base prop/vals: getMongoValues().
     var defaultValues = {
         _id: '',
-        order_id: '',
+        stripe_order_id: '',
+		order_num: 0,
         day: '',
         cycle: '',
         user_id: '',
         kegsCount: 0,
-        total: 0,
+		keg_quantity: 0, //lets remove kegsCount; all db fields should use underscores like MySQL
+        total: 0, 
         createdAt: 0,
 		venue_id: '',
-		day: '',
-		month: '',
-		year: '',
 		type: '',
 		delivered: '',
-		keg_quantity: 0
+		paid: false
     };
     this.errors = {};
 
@@ -31,7 +30,7 @@ InvoiceModel = function(doc){
         } else {
             var id = '';
             if(id = Invoices.insert(this.getObjectValues(attributes, true))) { //i like how you save default values here however :)
-                this._id = id;
+                this._id = id;			
             }
         }
         return this._id;
@@ -53,16 +52,33 @@ InvoiceModel = function(doc){
         return InvoiceItems.find({invoice_id: this._id});
     };
 
+	this.paymentPeriodType = function() {
+		if(this.type == 'one_off') return 'One Off Order';
+		else return this.paymentCycle.substr(0, 1).toUpperCase() + this.paymentCycle.substr(1)
+	};
+	
+	this.deliveryDayOfWeek = function() {
+		if(this.type == 'one_off') return this.requestedDeliveryDayOfWeek();
+		else this.paymentDay;
+	};
+	
+	//for one off kegs
 	this.requestedDeliveryDayOfWeek = function() {
 		return moment(this.requested_delivery_date).format('ddd');
 	};
 	
 	this.actualDeliveryDate = function() {
-		return moment(this.actual_delivery_date).format("ddd, MMM Do, h:mm a");
+		return this.actual_delivery_date ? moment(this.actual_delivery_date).format("ddd, MMM Do, h:mm a") : 'Not Delivered Yet';
 	};
 	
 	this.actualPaidDate = function() {
 		return moment(this.actual_paid_date).format("ddd, MMM Do, h:mm a");
+	};
+	                                                                                       
+	this.paidInfo = function() {
+		if(this.paid) return 'PAID';
+		if(this.payment_failed) return 'FAILED';
+		if(!this.is_stripe_customer && !this.paid) return 'AWAITING CHECK';
 	};
 
     this.LineItems = function(options){
