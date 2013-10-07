@@ -1,0 +1,112 @@
+<template name="page_oneOffs">
+    <div class="page-background" id="kegeratorInstalls">
+        <!-- <div class="open-dialog-btn">+ Add Venue</div> -->
+
+        <h1 class="page_title" style="margin-bottom:25px;">One-Off Keg Orders (Stripe Paid)</h1>
+
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th style="width: 20%">Venue Name</th>
+                <th style="width: 20%;">Address</th>
+                <th style="width: 30%;">Kegs</th>
+				<th style="width: 7%;">Amount</th>
+				<th style="width: 5%">Day</th>
+				<th style="width: 16%;">Actions</th>
+            </tr>
+            {{#if recentOneOffs }}
+                {{#each recentOneOffs}}
+                <tr>
+                    <td>{{venue.name}}</td>
+                    <td>{{venue.address}}</td>
+
+                    <td>
+						{{#each invoiceItems}}
+							{{>one_off_keg}}
+						{{/each}}
+					</td>
+					
+					<td>${{total}}</td>
+					<td>{{requestedDeliveryDayOfWeek}}</td>
+					<td>{{>delivered_one_off}}</td>
+                </tr>
+                {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="4"> There are no venues waiting for one-off kegs. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+		
+		<h1 class="page_title" style="margin-top: 50px; margin-bottom:25px;">One-Off Keg Orders (Non-Stripe Customers)</h1>
+		
+		<table class="items">
+            <tbody>
+            <tr>
+                <th style="width: 20%">Venue Name</th>
+                <th style="width: 20%;">Address</th>
+                <th style="width: 30%;">Kegs</th>
+				<th style="width: 7%;">Amount</th>
+				<th style="width: 5%">Day</th>
+				<th style="width: 16%;">Actions</th>
+            </tr>
+            {{#if recentOneOffsNonStripe }}
+                {{#each recentOneOffsNonStripe}}
+                <tr>
+                    <td>{{venue.name}}</td>
+                    <td>{{venue.address}}</td>
+
+                    <td>
+						{{#each invoiceItems}}
+							{{>one_off_keg}}
+						{{/each}}
+					</td>
+					
+					<td>${{total}}</td>
+					<td>{{requestedDeliveryDayOfWeek}}</td>
+					<td>
+						{{>delivered_one_off}}
+						{{>non_stripe_paid}}
+					</td>
+                </tr>
+                {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="4"> There are no venues waiting for one-off kegs. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="one_off_keg">
+	<div class="form-row" style="width: 100%; margin: 0 auto 10px;">
+      	 <span style="display: inline-block; width: 10px;">{{quantity}}</span>
+	
+		<img src="{{flavor_icon}}" style="width:25px; display:inline-block; margin-left:20px; position:relative; top:5px;"/>
+	
+		<span>{{flavor_name}}</span>
+	
+		<span style="font-weight:bold; color:#0069aa; display:inline-block; margin-left:10px;">${{subtotal}}</span>		
+    </div>
+</template>
+
+<template name="delivered_one_off">
+	{{#if delivered}}
+		DELIVERED: <br />{{actualDeliveryDate}}
+	{{else}}
+		<div class="customButton delivered">Delivered</div>
+	{{/if}}
+</template>
+
+<template name="non_stripe_paid">
+	{{#if paid}}
+		PAID ON: <br />{{actualPaidDate}}
+	{{else}}
+		<div class="customButton paid">PAID</div>
+	{{/if}}
+</template>

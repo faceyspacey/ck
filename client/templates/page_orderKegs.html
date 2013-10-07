@@ -1,0 +1,101 @@
+<template name="page_orderKegs">
+    <div class="page-background" id="editProfile">
+        <h1 class="page_title" style="margin-bottom:25px;">Order Kegs</h1>
+
+		{{#if availableFlavors}}
+        	{{#each orderedFlavors}}
+				{{>flavor_row}}
+			{{/each}}
+
+			<a id="add_another_flavor" href="#" style="margin: 0 auto; display:block; width:150px;">add another flavor</a>
+		
+			{{>place_one_off_order}}
+		
+        	<div id="order_kegs" class="add-venue-btn customButton-blue">Order Kegs</div>
+		{{else}}
+			<div style="text-align:center;">Sorry, but no kegs are currently available for one-off delivery.</div>
+		{{/if}}
+    </div>
+</template>
+
+
+
+<template name="flavor_row">
+	<div class="form-row" style="width: 500px; margin: 0 auto 10px;">
+		<label for="quantity_dropdown" style="float:left;">Quantity:</label>
+		
+
+      	 <select class="quantity_dropdown" style="float:left;">
+			{{#each quantities}}
+				<option value="{{this}}" {{quantitySelected ../quantity}}>{{this}}</option>
+			{{/each}}
+		</select>
+	
+		<img src="{{flavor_icon}}" style="width:25px; float:left; margin-left:20px;"/>
+	
+		<select class="flavor_dropdown" style="float:left; margin-left:10px; width: 150px; ">
+			{{#each flavors}}
+				<option value="{{_id}}" {{flavorSelected ../flavor_id}}>{{name}}</option>
+			{{/each}}			
+		</select>
+	
+		{{#if isInRole 'admin'}}
+			<select class="price_dropdown" style="float:left;">
+				{{#each prices}}
+					<option value="{{this}}" {{priceSelected ../price}}>${{this}}</option>
+				{{/each}}
+			</select>
+		
+			{{#if false}} <!-- not needed yet -->
+				<select class="keg_type_dropdown" style="float:left;">
+					{{#each kegTypes}}
+						<option value="{{this}}" {{kegTypeSelected ../keg_type}}>{{this}}</option>
+					{{/each}}
+				</select>
+			{{/if}}
+		{{/if}}
+		
+		<span style="font-weight:bold; color:#0069aa; display:block; float:left; margin-left:10px;">${{subtotal}}</span>
+		
+		
+		<div class="remove-keg-btn" style="float:right; background:rgb(245, 82, 82); position:static; display:block; position:relative; top: -3px;"> × </div>
+		
+		<div style="clear:both;"></div>
+    </div>
+</template>
+
+
+
+<template name="place_one_off_order">
+	<div id="keg_order_total" style="margin: 50px auto 0px; width:250px; color:#0069aa; font-weight:bold; font-size: 24px;">ORDER TOTAL: ${{total}}</div>
+		
+	<div class="form-row" style="width:460px; margin:20px auto 20px;">
+		<label for="day_dropdown" style="float:left;width: 150px; text-align:left;">Delivery Date:</label>		
+		<select id="day_dropdown" style="float:left;">
+			{{#each days}}
+				<option value="{{this}}">{{this}}</option>
+			{{/each}}
+		</select>
+		
+		<select id="month_dropdown" style="float:left;">
+			{{#each months}}
+				<option value="{{index}}">{{name}}</option>
+			{{/each}}
+		</select>
+	
+		<select id="year_dropdown" style="float:left;">
+			{{#each years}}
+				<option value="{{this}}">{{this}}</option>
+			{{/each}}
+		</select>
+	
+		<select id="venue_dropdown" style="float:left;">
+			{{#each venues}}
+				<option value="{{_id}}">{{name}}</option>
+			{{/each}}
+		</select>
+	
+		<div style="clear:both"></div>
+	</div>
+</template>
+
