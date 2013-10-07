@@ -83,6 +83,11 @@ Router.map(function() {
         template: 'page_flavors',
         data: {},
     });
+    this.route('delivery', {
+        path: '/delivery',
+        template: 'page_delivery',
+        data: {},
+    });
 	this.route('dailyFlavors', {
         path: '/daily_flavors',
         template: 'page_daily_flavors',

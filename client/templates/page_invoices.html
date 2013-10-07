@@ -6,13 +6,11 @@
     <div class="page-background" id="invoices">
         <h1 class="page_title" style="margin-bottom:25px;">{{title}}</h1>
 
-        {{userId}}
-
         <table class="items">
             <tbody>
             <tr>
-                <th style="">Invoice ID</th>
-                <th style="">Day of Week</th>
+                <th style="">Order #</th>
+                <th style="">Payment Period</th>
                 <th style="">Date</th>
                 <th style="">Kegs</th>
                 <th style="">Total</th>
@@ -20,11 +18,11 @@
             {{#if invoiceList}}
                 {{#each invoiceList}}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><a class="invoice-order-id-link" href="javascript: return;">#{{order_id}}</a></td>
+                    <td>{{paymentPeriod}}</td>
+                    <td>{{formattedCreatedAt}}</td>
+                    <td>{{kegsCount}}</td>
+                    <td>{{total}}</td>
                 </tr>
                 {{/each}}
             {{else}}

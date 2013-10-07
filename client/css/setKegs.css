@@ -1,14 +1,14 @@
 #setKegs {
-    width: 840px;
+    /*width: 840px;*/
 }
 
 
 .keg-box {
     position: relative;
     display: inline-block;
-    width: 220px;
+    width: 270px;
     margin: 10px;
-    padding: 12px 164px 12px 12px;
+    padding: 17px 170px 17px 12px;
     height: 140px;
     border:1px solid #c7c7c7;
     background: rgba(255,255,255,0.5);
@@ -20,8 +20,8 @@
 
 .keg-illustration {
     position: absolute;
-    top: 11px;
-    right: 11px;
+    top: 16px;
+    right: 16px;
     width: 140px;
     height: 140px;
     background-color: white;
@@ -48,6 +48,7 @@
     width: inherit !important;
     text-align: left;
     margin-left: 10px;
+    display:block;
 }
 
 .keg-settings select,
@@ -61,15 +62,16 @@
 
 .keg-pcycle-left, .keg-pcycle-right {
     display: inline-block;
-    width: 100px;
+    vertical-align: top;
 }
 .keg-pcycle-right {
     margin-top: 5px;
-    border-left: 1px solid #0069aa;
-    padding-left:10px;
+    margin-left: 5px;
+    width: 110px;
 }
 .keg-pcycle-left {
-    padding-right:5px;
+    border-right: 1px solid #0069aa;
+    width: 145px;
 }
 
 .remove-keg-btn {

@@ -48,7 +48,7 @@
     text-align: left;
     vertical-align: middle;
     display: inline-block;
-    width: 120px;
+    width: 150px;
     height: 20px;
     line-height: 20px;
 }
@@ -57,7 +57,7 @@
     vertical-align: middle;
     display: inline-block;
     float: right;
-    width: 100px;
+    width: 80px;
     height: 20px;
     line-height: 20px;
 }
@@ -80,7 +80,7 @@
     text-align: left;
     vertical-align: middle;
     display: inline-block;
-    width: 140px;
+    width: 180px;
     height: 18px;
     line-height: 18px;
 }
@@ -89,7 +89,7 @@
     vertical-align: middle;
     display: inline-block;
     float: right;
-    width: 100px;
+    width: 80px;
     height: 18px;
     line-height: 18px;
 }
@@ -121,7 +121,7 @@
     text-align: left;
     vertical-align: middle;
     display: inline-block;
-    width: 110px;
+    width: 130px;
     height: 16px;
     line-height: 16px;
 }
@@ -130,7 +130,7 @@
     vertical-align: middle;
     display: inline-block;
     float: right;
-    width: 100px;
+    width: 80px;
     height: 16px;
     line-height: 16px;
 }

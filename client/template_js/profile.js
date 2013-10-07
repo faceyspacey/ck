@@ -16,6 +16,9 @@ Template.profile.helpers({
     },
     'user' : function(){
         return Meteor.users.findOne(this.user_id);
+    },
+    'userKegCharges': function(user_id){
+        return User.renderKegCharges(user_id);
     }
 });
 
@@ -40,14 +43,14 @@ Template.profile.events({
         else
             Router.go('clientVenues', {id: this.user_id});
     },
-    'click .user-orders-btn' : function(){
+    'click .user-invoices-btn' : function(){
         var user = Meteor.users.findOne(this.user_id);
         if( !user )
             return alert('User not found.');
 
         if( Meteor.userId() == this.user_id )
-            Router.go('myOrders');
+            Router.go('myInvoices');
         else
-            Router.go('clientOrders', {id: this.user_id});
+            Router.go('clientInvoices', {id: this.user_id});
     }
 });

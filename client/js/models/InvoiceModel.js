@@ -1,4 +1,3 @@
-
 InvoiceModel = function(doc){
 	
 	//one downside of your defaultValues and getObjectValues() tools is you cannot rely on getObjectValues()
@@ -7,9 +6,12 @@ InvoiceModel = function(doc){
 	//so I added a new method to get these base prop/vals: getMongoValues().
     var defaultValues = {
         _id: '',
+        order_id: '',
+        day: '',
+        cycle: '',
         user_id: '',
-        amount: 0,
-        status: 0,
+        kegsCount: 0,
+        total: 0,
         createdAt: 0,
 		venue_id: '',
 		day: '',
@@ -17,7 +19,6 @@ InvoiceModel = function(doc){
 		year: '',
 		type: '',
 		delivered: '',
-		utc_delivery_time: '',
 		keg_quantity: 0
     };
     this.errors = {};
@@ -37,9 +38,6 @@ InvoiceModel = function(doc){
     }
 
     this.user = function(){
-        if( !this.user_id )
-            return false;
-
         return Meteor.users.findOne(this.user_id);
     }
 
@@ -66,6 +64,21 @@ InvoiceModel = function(doc){
 	this.actualPaidDate = function() {
 		return moment(this.actual_paid_date).format("ddd, MMM Do, h:mm a");
 	};
+
+    this.LineItems = function(options){
+        var option = {};
+        _.extend(option, options);
+        option.invoice_id = this._id;
+        return LineItems.find(option);
+    }
+
+    this.formattedCreatedAt = function(){
+        //date formatting comes here
+    }
+
+    this.paymentPeriod = function(){
+        // payment period rendering comes here
+    }
 
 	//Matheus, would you say the main purpose of this function is to provide default values?
     this.getObjectValues = function(doc, withOutId){
