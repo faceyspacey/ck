@@ -1,23 +1,10 @@
 /** page_profile HELPERS, EVENTS & CALLBACKS **/
 
 Template.page_profile.helpers({
-    'paymentCycleOptions' : function(){
-        var html = '';
-        var user = Meteor.users.findOne(Session.get('profileId'));
-        if(!user) return html;
-
-        var cyclesAvailable = App.paymentCycles();
-        console.log(cyclesAvailable);
-        for(i in cyclesAvailable){
-            html += '<option value="'+cyclesAvailable[i].id+'" '+(user.profile.paymentCycle == cyclesAvailable[i].id ? 'selected="selected"' : '')+'>'+cyclesAvailable[i].name+'</option>';
-        }
-
-        return html;
-    },
-    'user' : function(){
+    user : function(){
         return Meteor.users.findOne(this.user_id);
     },
-    'userKegCharges': function(user_id){
+    userKegCharges: function(user_id){
         return User.renderKegCharges(user_id);
     }
 });
