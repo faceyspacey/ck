@@ -259,6 +259,8 @@ VenueModel = function(doc){
         var charging = {};
         _.each(App.paymentCycles, function(cycle){
             charging[cycle.id] = {
+                onlyOne: false,
+                id: cycle.id,
                 name: cycle.name,
                 count: venue.getKegs({paymentCycle: cycle.id}).count(),
                 total: _.reduce(_.pluck(venue.getKegs({paymentCycle: cycle.id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
@@ -289,6 +291,11 @@ VenueModel = function(doc){
                 })(cycle),
             };
         });
+
+        var nonEmptyCycles = [];
+        _.each(charging, function(cycle){ if( cycle.count > 0 ){nonEmptyCycles.push(cycle.id);} });
+        if( nonEmptyCycles.length == 1 )
+            charging[nonEmptyCycles[0]].onlyOne = true;
 
         return charging;
     }

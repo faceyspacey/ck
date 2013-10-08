@@ -16,7 +16,7 @@
     border: 1px solid #c7c7c7;
 }
 .keg-charges-cycle.closed .keg-charges-hideable {
-    display: none;
+    /* display: none; */
 }
 .keg-charges-table .keg-charges-cycle-total {
     padding: 5px;

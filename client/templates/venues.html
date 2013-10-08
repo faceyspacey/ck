@@ -53,15 +53,17 @@
 <template name="keg_charges_table">
     <div class="keg-charges-table">
         {{#each kegCharges}}
+            {{#if count}}
+            {{#unless onlyOne}}
             <div class="keg-charges-cycle closed">
                 <div class="keg-charges-cycle-total">
-                    <div class="keg-charges-cycle-arrow"> </div>
+                    <!-- <div class="keg-charges-cycle-arrow"> </div> -->
                     <div class="keg-charges-cycle-name">{{name}}</div>
                     <span class="keg-charge">${{total}}</span>
                     <div class="keg-charges-cycle-count">{{count}} keg(s) </div>
                 </div>
+            {{/unless}}
 
-                {{#if count}}
                 	<div class="keg-charges-hideable">
 	
                     	{{#each cycles}}
@@ -87,9 +89,11 @@
 	                    {{/each}}
 	
 	                 </div>
-                {{/if}}
 
+            {{#unless onlyOne}}
             </div>
+            {{/unless}}
+            {{/if}}
         {{/each}}
     </div>
 </template>
