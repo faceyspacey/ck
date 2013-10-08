@@ -1,7 +1,7 @@
 KegModel = function(doc){
     var defaultValues = {
         _id: '',
-        flavor_id: '',
+        flavor_id: 'random',
         user_id: '',
         venue_id: '',
         paymentCycle: 'weekly',
@@ -31,17 +31,24 @@ KegModel = function(doc){
         return Venues.findOne(this.venue_id);
     }
 
+    this.isRandom = function(){
+        return this.flavor_id == 'random';
+    }
 
     this.flavor = function(){
-        return Flavors.findOne(this.flavor_id);
+        if( this.flavor_id == 'random' ){
+            var flavors = _.shuffle(Flavors.find({is_public: true}).fetch());
+            return flavors[0];
+        }else
+            return Flavors.findOne(this.flavor_id);
     }
 
     this.flavorIcon = function(){
-        return Flavors.findOne(this.flavor_id).icon;
+        return this.flavor_id == 'random' ? '' : Flavors.findOne(this.flavor_id).icon;
     }
 
     this.icon = function(){
-        return Flavors.findOne(this.flavor_id).kegIcon;
+        return this.flavor_id == 'random' ? '/images/flavor-icons/keg_140x140.png' : Flavors.findOne(this.flavor_id).kegIcon;
     }
 
     this.chargePeriod = function(){

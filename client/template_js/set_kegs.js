@@ -20,7 +20,9 @@ Template.page_set_kegs.events({
 
 Template.subscription_keg_row.helpers({
 	flavors: function(flavorId){
-        return Flavors.find({is_public: true});
+        var flavors = Flavors.find({is_public: true}).fetch();
+        flavors.unshift({_id: 'random', name: 'Random'});
+        return flavors;
     },
 	cycles: function(){
 		return App.paymentCycles;

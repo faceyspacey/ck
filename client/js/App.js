@@ -1,8 +1,7 @@
 App = (function(){
     var paymentCycles = [
         {id: 'weekly', name: 'Weekly'},
-        {id: 'bi-weekly-odd', name: 'Bi-Weekly (Odd)'},
-        {id: 'bi-weekly-even', name: 'Bi-Weekly (Even)'}
+        {id: 'bi-weekly', name: 'Bi-Weekly'},
     ];
     var paymentDays = [
         {id: 'monday', name: 'Monday'},
