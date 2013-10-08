@@ -1,0 +1,137 @@
+<template name="page_venues">
+    <div class="page-background" id="venues">
+        <div class="open-dialog-btn">+ Add Venue</div>
+
+        <h1 class="page_title" style="margin-bottom:25px;">{{title}}</h1>
+
+        <table class="items">
+            <tbody>
+                <tr>
+                    <th style="width: 10%;">Venue Name</th>
+                    <th style="">Address</th>
+                    <th style="width:350px;">Keg Charges</th>
+                    <th style="width: 20%;">Actions</th>
+                </tr>
+
+                {{#if venues }}
+                    {{#each venues }}
+                        {{>venue_grid_row}}
+                    {{/each}}
+                {{else}}
+                    <tr>
+                        <td colspan="4"> You have no venues added yet. </td>
+                    </tr>
+                {{/if}}
+            </tbody>
+        </table>
+
+		{{#if model}}
+			{{#with model}}
+	        	{{>venue_form}}
+			{{/with}}
+		{{/if}}
+		
+    </div>
+</template>
+
+
+<template name="venue_grid_row">
+	<tr>
+        <td>{{name}}</td>
+        <td>{{address}}</td>
+        <td>{{>keg_charges_table}}</td>
+        <td class="action-buttons">
+            <div class="set-kegs-btn customButton"> Set Kegs </div>
+            <div class="request-kegerator-btn customButton"> Request Kegerator </div>
+            <div class="edit-venue-btn customButton"> Edit </div>
+			<div class="delete-venue-btn customButton"> Delete </div>
+        </td>
+    </tr>
+</template>
+
+
+<template name="keg_charges_table">
+    <div class="keg-charges-table">
+        {{#each kegCharges}}
+            <div class="keg-charges-cycle closed">
+                <div class="keg-charges-cycle-total">
+                    <div class="keg-charges-cycle-arrow"> </div>
+                    <div class="keg-charges-cycle-name">{{name}}</div>
+                    <span class="keg-charge">${{total}}</span>
+                    <div class="keg-charges-cycle-count">{{count}} keg(s) </div>
+                </div>
+
+                {{#if count}}
+                	<div class="keg-charges-hideable">
+	
+                    	{{#each cycles}}
+	                        {{#if count}}
+	                        	<div class="keg-charges-period">
+	                            	<div class="keg-charges-period-subtotal">
+		                                <div class="keg-charges-period-name">{{name}}</div>
+		                                <span class="keg-charge">${{total}}</span>
+		                                <div class="keg-charges-period-count">{{count}} keg(s) </div>
+		                            </div>
+
+	                           	 	{{#each flavors}}
+		                            	<div class="keg-charges-flavor-row">
+			                                <div class="keg-charges-flavor-icon" style="background-image:url('{{icon}}');"></div>
+			                                <div class="keg-charges-flavor-name">{{name}}</div>
+			                                <span class="keg-charge">${{total}}</span>
+			                                <div class="keg-charges-flavor-count">{{count}} keg(s) </div>
+			                            </div>
+		                            {{/each}}
+
+	                        	</div>
+	                        {{/if}}
+	                    {{/each}}
+	
+	                 </div>
+                {{/if}}
+
+            </div>
+        {{/each}}
+    </div>
+</template>
+
+
+<template name="venue_form">
+	<div id="addVenueDialog" class="dialog-box" style="position:absolute; top:25px; left:50%; margin-left:-220px; background: rgba(182, 183, 184, 1);">
+        <div class="close-dialog-btn"> &times; </div>
+        <h2 class="subtitle">New Venue</h2>
+        <form id="new-venue-form" name="newVenueForm" class="styled-form" method="POST">
+
+            <div class="form-row">
+                <label for="venueForm_name">Name:</label>
+                <input id="venueForm_name" type="text" name="name"  value="{{name}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="venueForm_address">Address:</label>
+                <input id="venueForm_address" type="text" name="address"  value="{{address}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="venueForm_email">Email:</label>
+                <input id="venueForm_email" type="text" name="email"  value="{{email}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="venueForm_phone">Phone:</label>
+                <input id="venueForm_phone" type="text" name="phone"  value="{{phone}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="venueForm_facebook">Facebook:</label>
+                <input id="venueForm_facebook" type="text" name="facebook"  value="{{facebook}}"/>
+            </div>
+
+            <div class="form-row">
+                <label for="venueForm_twitter">Twitter:</label>
+                <input id="venueForm_twitter" type="text" name="twitter"  value="{{twitter}}"/>
+            </div>
+        </form>
+
+        <div class="add-venue-btn customButton-blue">Add Venue</div>
+    </div>
+</template>

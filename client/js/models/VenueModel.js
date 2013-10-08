@@ -43,23 +43,21 @@ VenueModel = function(doc){
     }
 
     this.user = function(){
-        if( !this.user_id )
-            return false;
-
         return Meteor.users.findOne(this.user_id);
     };
 
-    this.getKegs = function(conditions){
+    this.getKegs = function(options){
         var condition = {};
-        _.extend(condition, conditions);
+        _.extend(condition, options);
         _.extend(condition, {venue_id: this._id});
         return Kegs.find(condition);
     };
 
     this.getKegerators = function(options){
-        var defOptions = {venue_id: this._id};
-        _.extend(defOptions, options);
-        return Kegerators.find(defOptions);
+		var condition = {};
+        _.extend(condition, options);
+        _.extend(condition, {venue_id: this._id});
+        return Kegerators.find(condition);
     };
     this.getKegeratorTaps = function(){
         var taps = 0;
@@ -149,9 +147,10 @@ VenueModel = function(doc){
     }
 
     this.addKeg = function(attributes){
-        if( typeof attributes == 'undefined' )
-            return;
+        if(typeof attributes == 'undefined') attributes = {};
 
+		attributes.venue_id = this._id;
+		attributes.user_id = this.user_id;
 
         attributes.flavor_id = this.getHalfRandomFlavor();
         attributes = (new KegModel()).getObjectValues(attributes);
@@ -182,13 +181,8 @@ VenueModel = function(doc){
     }
 
     this.removeKeg = function(kegId){
-        if( typeof kegId == 'undefined' )
-            return;
-
-        Kegs.remove(kegId);
-
+  		Kegs.remove(kegId);
         this.updateUsedFlavors();
-
         return true;
     };
 
@@ -339,7 +333,98 @@ VenueModel = function(doc){
         return html;
     }
 
+	this.placeOrder = function(orderedKegs, deliveryDate) {	
+		var alertMessage;
+			
+		if(alertMessage = this.orderedMoreThanAvailable(orderedKegs)) {
+			alert(alertMessage)
+			return false;
+		}
+		
+		var invoiceId = this.createInvoice(deliveryDate);
+		this.createInvoiceItems(orderedKegs, invoiceId);
+		this.chargeCustomer();
+			
+		return invoiceId;
+	};
+	
+	this.orderedMoreThanAvailable = function(orderedKegs) {
+		var stopOrder = false,
+			message = '',
+			availableFlavors = {};
+			
+		orderedKegs.forEach(function(keg) {
+			var kegFlavor = Flavors.findOne(keg.flavor_id),
+				kegFlavorQuantity = kegFlavor.one_off_quantity_availible;
+		
+			if(_.isUndefined(availableFlavors[keg.flavor_id])) availableFlavors[keg.flavor_id] = 0;
+			availableFlavors[keg.flavor_id] += keg.quantity; //sum quantity used across the same flavor in multiple flavor rows
+			
+			//if ordered more kegs than we have available for the current flavor
+			if(availableFlavors[keg.flavor_id] > kegFlavorQuantity) {
+				stopOrder = true;
+				message = 'Sorry, you ordered more '+ kegFlavor.name + ' kegs than we have available. Please modify your order.';
+			}
+		});
+		
+		return stopOrder ? message : false;
+	};
+	
+	this.createInvoice = function(deliveryDate) {	
+		return Invoices.insert({
+			type: 'one_off',
+			delivered: false,
+			order_num: Invoices.find().count() + 1,
+			user_id: this.user_id,
+			venue_id: this._id,
+			requested_delivery_date: deliveryDate.toDate()
+		});
+	};
+	
+	this.createInvoiceItems = function(orderedKegs, invoiceId) {
+		var total = 0,
+			quantity = 0;
+			
+		orderedKegs.forEach(function(keg) {	
+			InvoiceItems.insert({
+				invoice_id: invoiceId,
+				user_id: this.user_id,
+				venue_id: this._id,
+				quantity: keg.quantity,
+				subtotal: keg.subtotal(),
+				flavor_id: keg.flavor_id,
+				flavor_icon: keg.flavor_icon,
+				flavor_name: keg.flavor_name
+			});
+			total += keg.subtotal();
+			quantity += keg.quantity;
+			
+			//decrement Flavor.one_off_quantity_available
+			Flavors.update(keg.flavor_id, {$inc: {one_off_quantity_availible: -1 * keg.quantity}});
+		});
+		
+		this.finalizeInvoice(invoiceId, total, quantity);
+	};
 
+	//update the total and quantity amounts on the invoice
+	this.finalizeInvoice = function(invoiceId, total, quantity) {
+		Invoices.update(invoiceId, {$set: {
+			total: total,
+			keg_quantity: quantity,
+			is_stripe_customer: this.user().stripeCustomerToken ? true : false,
+			paid: false
+		}});
+	};
+	
+	this.chargeCustomer = function() {
+		if(this.user().stripeCustomerToken != undefined) {
+			//charge the user now
+		}
+		else {
+			
+		}
+	};
+	
     this.getObjectValues = function(doc, withOutId){
         if( typeof doc == 'undefined' )
             doc = {};

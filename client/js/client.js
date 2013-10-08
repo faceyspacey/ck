@@ -31,7 +31,7 @@ Router.map(function() {
     });
     this.route('myProfileEdit', {
         path: '/myProfile/edit',
-        template: 'page_editProfile',
+        template: 'page_edit_profile',
         data: {user_id: Meteor.userId()},
     });
     this.route('myInvoices', {
@@ -51,17 +51,17 @@ Router.map(function() {
     });
     this.route('setKegs', {
         path: '/venue/:id/setKegs',
-        template: 'page_setKegs',
+        template: 'page_set_kegs',
         data: function(){ return {venue_id: this.params.id} },
     });
 	this.route('billingInfo', {
         path: '/billing-info',
-        template: 'page_billingInfo',
+        template: 'page_billing_info',
         data: {user_id: Meteor.userId()},
     });
 	this.route('orderKegs', {
         path: '/order-keg',
-        template: 'page_orderKegs',
+        template: 'page_order_kegs',
         data: function() {
 			OrderedFlavors = new Meteor.Collection(null, { //create local-only (temporary) mini-mongo collection
 			    reactive: true,
@@ -73,12 +73,12 @@ Router.map(function() {
     });
     this.route('requestKegerator', {
         path: '/requestKegerator',
-        template: 'page_requestKegerator',
+        template: 'page_request_kegerator',
         data: {venue_id: false},
     });
     this.route('requestKegerator', {
         path: '/requestKegerator/:id',
-        template: 'page_requestKegerator',
+        template: 'page_request_kegerator',
         data: function(){ return {venue_id: this.params.id}; },
     });
 
@@ -115,7 +115,7 @@ Router.map(function() {
     });
     this.route('editProfile', {
         path: '/profile/:id/edit',
-        template: 'page_editProfile',
+        template: 'page_edit_profile',
         data: function(){ return {user_id: this.params.id}},
     });
     this.route('allVenues', {
@@ -130,17 +130,17 @@ Router.map(function() {
     });
     this.route('kegeratorInstallsAll', {
         path: '/kegeratorInstalls',
-        template: 'page_kegeratorInstalls',
+        template: 'page_kegerator_installs',
         data: function(){ return {user_id: false}; },
     });
 	this.route('oneOffs', {
         path: '/one-offs',
-        template: 'page_oneOffs',
+        template: 'page_one_offs',
         data: function(){ return {user_id: false}; },
     });
     this.route('kegeratorInstalls', {
         path: '/kegeratorInstalls/:id',
-        template: 'page_kegeratorInstalls',
+        template: 'page_kegerator_installs',
         data: function(){ return {user_id: (this.params.id != 'all' ? this.params.id : false)}; },
     });
 });

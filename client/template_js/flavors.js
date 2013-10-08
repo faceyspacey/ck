@@ -1,12 +1,33 @@
-Template.flavors.events({
+/** page_flavors HELPERS **/
+
+Template.page_flavors.helpers({
+	flavors: function(){
+	    return Flavors.find({});
+	},
+	model: function() {
+		if(Session.get('flavor_id') == 'new_flavor') return new FlavorModel;
+		if(Session.get('flavor_id')) return  Flavors.findOne(Session.get('flavor_id'));
+		return false; 
+	}
+});
+
+Template.page_flavors.events({
 	'click .open-dialog-btn' : function(e) {
 		Session.set('flavor_id', 'new_flavor');
     }
 });
 
-//I made the edit_flavor_row its own template so that 'this' would refer to the corresponding
-//flavor object from the database when searched in an each loop. Look at 'click .edit-flavor-btn' below:
-Template.edit_flavor_row.events({
+
+/** flavor_grid_row HELPERS **/
+
+Template.flavor_grid_row.helpers({
+	notPublic: function(){
+		if(!Flavors.findOne(this._id)) return true;
+	    return Flavors.findOne(this._id).is_public != true;
+	}
+});
+
+Template.flavor_grid_row.events({
     'click .delete-flavor-btn' : function(e){
         if(confirm('Are you sure you want to delete this flavor?')) Flavors.remove(this._id);
     },
@@ -25,37 +46,19 @@ Template.edit_flavor_row.events({
 });
 
 
-Template.flavors.flavorsList = function(){
-    return Flavors.find({});
-};
 
-Template.flavors.notPublic = function(){
-	if(!Flavors.findOne(this._id)) return true;
-    return Flavors.findOne(this._id).is_public != true;
-}
+/** flavor_form HELPERS **/
 
-
-
-Template.flavors.newFlavorModel = function() {
-	//code re-use here, cuz new model is used the same as edit model
-	if(Session.get('flavor_id') == 'new_flavor') return new FlavorModel;
-	if(Session.get('flavor_id')) return  Flavors.findOne(Session.get('flavor_id'));
-	return false; 
-}
-
-Template.new_flavor_form.events({
+Template.flavor_form.events({
 	'click .close-dialog-btn' : function(e){
 		Session.set('flavor_id', null);
     },
-    'click .add-flavor-btn' : function(e){
-		//it would be dope if Meteor had two way form/model bindings so we could just do this.save()
-		//google it. they dont have it yet. 
+    'click .add-flavor-btn' : function(e){ 
 		this.save({
 			name: $('#flavorForm_name').val(),
 			icon: $('#flavorForm_icon').val(),
 			kegIcon: $('#flavorForm_kegIcon').val()
 		});
-		console.log(this);
 		
 		Session.set('flavor_id', null);
     },

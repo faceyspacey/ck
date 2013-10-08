@@ -1,4 +1,3 @@
-// In your server code: define a method that the client can call
 Meteor.methods({
   emailMe: function (info) {
     // Let other method calls from the same client start running,

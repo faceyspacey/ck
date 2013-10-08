@@ -1,4 +1,3 @@
-
 KegeratorModel = function(doc){
     var defaultValues = {
         _id: '',
@@ -13,22 +12,16 @@ KegeratorModel = function(doc){
     this.errors = {};
 
     this.save = function(attributes){
-        if( this._id ){
-            Kegerators.update(this._id, {$set: this.getObjectValues(attributes, true)});
-        }else{
+        if(this._id) Kegerators.update(this._id, {$set: this.getObjectValues(attributes, true)});
+        else {
             var id = '';
-            if( id = Kegerators.insert(this.getObjectValues(attributes, true)) ){
-                this._id = id;
-            }
+            if(id = Kegerators.insert(this.getObjectValues(attributes, true))) this._id = id;
         }
         return this._id;
     }
 
     this.typeName = function(){
-        if( typeof App.kegeratorTypes[this.type_id] != "undefined" )
-            return App.kegeratorTypes[this.type_id].name;
-
-        return "";
+        return typeof App.kegeratorTypes[this.type_id] != "undefined" ? App.kegeratorTypes[this.type_id].name : '';
     }
 
     this.formattedRequestedAt = function(){
@@ -45,25 +38,17 @@ KegeratorModel = function(doc){
     }
 
     this.user = function(){
-        if( !this.user_id )
-            return false;
-
         return Meteor.users.findOne(this.user_id);
     }
 
     this.venue = function(){
-        if( !this.venue_id )
-            return false;
-
         return Venues.findOne(this.venue_id);
     }
 
     this.taps = function(){
-        var types = App.kegeratorTypes;
-        if( !this.type_id || (typeof types[this.type_id] == 'undefined') )
-            return 0;
+        if(!this.type_id || (typeof App.kegeratorTypes[this.type_id] == 'undefined')) return 0;
 
-        return types[this.type_id].taps;
+        return App.kegeratorTypes[this.type_id].taps;
     }
 
     this.getObjectValues = function(doc, withOutId){

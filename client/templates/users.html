@@ -1,0 +1,39 @@
+<template name="page_users">
+    <div class="page-background" id="users">
+        <h1 class="page_title" style="margin-bottom: 25px;">{{title}}</h1>
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th style="width: 40px; text-align: center;">Avatar</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Venues</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+            {{#if users }}
+                {{#each users }}
+                <tr>
+                    <td><div class="user-info-avatar" style="background-image: url('{{profile.avatar}}');"></div></td>
+                    <td class="user-name">{{profile.name}}</td>
+                    <td>{{emails.0.address}}</td>
+                    <td>{{{venues}}}</td>
+                    <td>{{{listRoles roles}}}</td>
+                    <td class="user-buttons">
+                        <div class="user-profile-btn customButton-blue"> Profile </div>
+                        <div class="user-venues-btn customButton-blue"> Venues </div>
+                        <div class="user-orders-btn customButton-blue"> Orders </div>
+                    </td>
+                </tr>
+                {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="4"> No clients registered yet. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+    </div>
+</template>

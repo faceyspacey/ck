@@ -1,10 +1,10 @@
+/** page_profile HELPERS, EVENTS & CALLBACKS **/
 
-Template.profile.helpers({
+Template.page_profile.helpers({
     'paymentCycleOptions' : function(){
         var html = '';
         var user = Meteor.users.findOne(Session.get('profileId'));
-        if( !user )
-            return html;
+        if(!user) return html;
 
         var cyclesAvailable = App.paymentCycles();
         console.log(cyclesAvailable);
@@ -22,35 +22,17 @@ Template.profile.helpers({
     }
 });
 
-Template.profile.events({
+Template.page_profile.events({
     'click #edit-profile-btn' : function(){
-        var user = Meteor.users.findOne(this.user_id);
-        if( !user )
-            return alert('User not found.');
-
-        if( Meteor.userId() == this.user_id )
-            Router.go('myProfileEdit');
-        else
-            Router.go('editProfile', {id: this.user_id});
+        if(Meteor.userId() == this.user_id) Router.go('myProfileEdit');
+        else Router.go('editProfile', {id: this.user_id});
     },
     'click .user-venues-btn' : function(){
-        var user = Meteor.users.findOne(this.user_id);
-        if( !user )
-            return alert('User not found.');
-
-        if( Meteor.userId() == this.user_id )
-            Router.go('myVenues');
-        else
-            Router.go('clientVenues', {id: this.user_id});
+        if(Meteor.userId() == this.user_id) Router.go('myVenues');
+        else Router.go('clientVenues', {id: this.user_id});
     },
     'click .user-invoices-btn' : function(){
-        var user = Meteor.users.findOne(this.user_id);
-        if( !user )
-            return alert('User not found.');
-
-        if( Meteor.userId() == this.user_id )
-            Router.go('myInvoices');
-        else
-            Router.go('clientInvoices', {id: this.user_id});
+        if(Meteor.userId() == this.user_id) Router.go('myInvoices');
+        else Router.go('clientInvoices', {id: this.user_id});
     }
 });

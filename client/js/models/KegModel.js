@@ -1,4 +1,3 @@
-
 KegModel = function(doc){
     var defaultValues = {
         _id: '',
@@ -16,81 +15,37 @@ KegModel = function(doc){
     this.errors = {};
 
     this.save = function(attributes){	
-        if( this._id ){
-            Kegs.update(this._id, {$set: this.getObjectValues(attributes, true)});
-        }else{
+        if( this._id ) Kegs.update(this._id, {$set: this.getObjectValues(attributes, true)});
+        else {
             var id = '';
-            if( id = Kegs.insert(this.getObjectValues(attributes, true)) ){
-                this._id = id;
-            }
+            if(id = Kegs.insert(this.getObjectValues(attributes, true))) this._id = id;
         }
         return this._id;
     }
 
     this.user = function(){
-        if( !this.user_id )
-            return false;
-
         return Meteor.users.findOne(this.user_id);
     }
 
     this.venue = function(){
-        if( !this.venue_id )
-            return false;
-
         return Venues.findOne(this.venue_id);
     }
 
-    /*
-    calcPrice = function(){
-        console.log('type_id: '+this.type_id);
-        this.price = App.getKegPrice(this.type_id);
-    }*/
 
     this.flavor = function(){
-        var flavor = Flavors.findOne(this.flavor_id);
-        if( !flavor )
-            return {};
-
-        return flavor;
+        return Flavors.findOne(this.flavor_id);
     }
 
     this.flavorIcon = function(){
-        var flavor = Flavors.findOne(this.flavor_id);
-        if( !flavor )
-            return '';
-
-        return flavor.icon;
+        return Flavors.findOne(this.flavor_id).icon;
     }
 
     this.icon = function(){
-        var flavor = Flavors.findOne(this.flavor_id);
-        if( !flavor )
-            return '';
-
-        return flavor.kegIcon;
+        return Flavors.findOne(this.flavor_id).kegIcon;
     }
 
     this.chargePeriod = function(){
         return this.paymentCycle + '-' + this.paymentDay;
-    }
-
-    this.cycleRadios = function(){
-        var radios = '';
-        for(var i = 0; i < App.paymentCycles.length; i++){
-            radios += i > 0 ? '<br />' : '';
-            radios += '<input type="radio" class="radio-cycle" name="'+this._id+'_cycle" '+(App.paymentCycles[i].id == this.paymentCycle ? 'checked="checked"' : '')+' value="'+App.paymentCycles[i].id+'">'+App.paymentCycles[i].name
-        }
-        return radios;
-    }
-
-    this.dayRadios = function(){
-        var radios = '';
-        for(var i = 0; i < App.paymentDays.length; i++){
-            radios += i > 0 ? '<br />' : '';
-            radios += '<input type="radio" class="radio-day" name="'+this._id+'_day" '+(App.paymentDays[i].id == this.paymentDay ? 'checked="checked"' : '')+' value="'+App.paymentDays[i].id+'">'+App.paymentDays[i].name
-        }
-        return radios;
     }
 
     this.getObjectValues = function(doc, withOutId){
@@ -110,8 +65,6 @@ KegModel = function(doc){
 
         if( withOutId == true )
             delete object._id;
-
-        //calcPrice();
 
         return object;
     }

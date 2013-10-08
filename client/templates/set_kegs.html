@@ -1,0 +1,108 @@
+<template name="page_set_kegs">
+    <div class="page-background" id="setKegs">
+        <h1 class="page_title">{{venue.name}}</h1>
+        <h3 class="subtitle" style="margin-bottom: 25px;">(Keg settings)</h3>
+
+        <div id="kegerator-list">
+            <form id="editFlavorsForm" name="editFlavorsForm" methos="POST">
+                {{#each kegs}}
+                    {{>subscription_keg_row}}
+                {{/each}}
+            </form>
+
+            <div class="buttons-container">
+                <div class="add-keg-btn customButton-blue">+ Add Keg</div>
+            </div>
+
+            {{>keg_charges_set_kegs}}
+
+            <div class="buttons-container">
+                <div class="save-kegs-btn customButton-blue">Save Settings</div>
+            </div>
+
+            <p class="note">
+                You have <b>{{{venue.getKegerators.count}}} kegerator(s)</b>
+                with <b>{{{venue.getKegeratorTaps}}} tap(s)</b>. You can request more kegerators here:
+                <a href="javascript: Router.go('requestKegerator', {id: '{{venue_id}}' });">Request Kegerator</a>
+            </p>
+
+        </div>
+
+    </div>
+</template>
+
+
+<template name="subscription_keg_row">
+	<div class="keg-box">
+        <div class="remove-keg-btn"> &times; </div>
+        <div class="keg-illustration" style="background-image: url('{{icon}}');">
+            <div class="keg-flavor-illustration" style="background-image: url('{{flavorIcon}}');"></div>
+        </div>
+        <div class="keg-settings">
+
+            <div class="form-row">
+                <label>Flavor: </label>
+
+		        <select class="keg-flavor-select">
+		        	{{#each flavors}}
+						<option value="{{_id}}" {{flavorSelected ../flavor_id}}>{{name}}</option>
+					{{/each}}
+		        </select>;
+		
+            </div>
+
+            <div class="form-row">
+                <label>Payment Cycle: </label>
+                <div class="keg-pcycle-left">
+                    {{#each cycles}}
+						<input title="{{../_id}}" type="radio" class="radio-cycle" name="{{../_id}}_cycle" value="{{id}}" {{cycleSelected ../paymentCycle}} />{{name}}			
+						<br />
+					{{/each}}
+                </div>
+                <div class="keg-pcycle-right">
+                    {{#each days}}
+						<input title="{{../_id}}" type="radio" class="radio-day" name="{{../_id}}_day" value="{{id}}" {{daySelected  ../paymentDay}} />{{name}}
+						<br />							
+					{{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="keg_charges_set_kegs">
+    <div class="keg-charges-setKegs">
+        <h3 class="subtitle" style="margin-bottom: 20px;">Keg Charges</h3>
+        {{#each kegCharges}}
+            <div class="keg-charges-cycle">
+                <div class="keg-charges-cycle-total">
+                    <div class="keg-charges-cycle-name">{{name}}</div>
+                    <div class="keg-charges-cycle-count">{{count}} keg(s) </div>
+                    <span class="keg-charge">${{total}}</span>
+                </div>
+                {{#if count}}
+                {{#each cycles}}
+                    {{#if count}}
+                    <div class="keg-charges-period">
+                        <div class="keg-charges-period-subtotal">
+                            <div class="keg-charges-period-name">{{name}}</div>
+                            <div class="keg-charges-period-count">{{count}} keg(s) </div>
+                            <span class="keg-charge">${{total}}</span>
+                        </div>
+                    {{#each flavors}}
+                        <div class="keg-charges-flavor-row">
+                            <div class="keg-charges-flavor-icon" style="background-image:url('{{icon}}');"></div>
+                            <div class="keg-charges-flavor-name">{{name}}</div>
+                            <div class="keg-charges-flavor-count">{{count}} keg(s) </div>
+                            <span class="keg-charge">${{total}}</span>
+                        </div>
+                    {{/each}}
+                    </div>
+                    {{/if}}
+                {{/each}}
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</template>
