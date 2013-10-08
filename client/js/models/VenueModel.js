@@ -1,6 +1,7 @@
 
 VenueModel = function(doc){
     var defaultValues = {
+        collectionName: 'Venues',
         _id: '',
         user_id: '',
         name: '',
@@ -146,13 +147,32 @@ VenueModel = function(doc){
         return Flavors.find({_id: {$in: min.keys}});
     }
 
+    this.getRandomFlavorToday = function(id, day){
+        var venue = id ? Venues.findOne(id) : Venues.findOne(this._id);
+        if( !venue ) return [];
+
+        //prepare condition to search for kegs in getKegs()
+        var currentWeek = oddEvenWeek();
+        var currentDay = day ? day : getWeekDay();
+        var condition = {$or: [
+            {flavor_id: 'random', paymentCycle: 'bi-weekly', oddEven: currentWeek, paymentDay: currentDay},
+            {flavor_id: 'random', paymentCycle: 'weekly', paymentDay: currentDay},
+        ]};
+
+        if( !(venue.getKegs(condition).count() > 0) )
+            return [{name: 'No random kegs for '+currentDay, icon: ''}];
+
+        var flavors = _.shuffle(Flavors.find({is_public: true, _id: {$nin: ['random']}}).fetch());
+        return [flavors[0]];
+    }
+
     this.addKeg = function(attributes){
         if(typeof attributes == 'undefined') attributes = {};
 
 		attributes.venue_id = this._id;
 		attributes.user_id = this.user_id;
 
-        attributes.flavor_id = this.getHalfRandomFlavor();
+        attributes.flavor_id = 'random';
         attributes = (new KegModel()).getObjectValues(attributes);
         delete attributes._id;
 
@@ -235,109 +255,77 @@ VenueModel = function(doc){
 
     }
 
-    /*
-    this.summarizedCost = function(multiplier){
-        return '';
-        //console.log(multiplier);
-        var kegerators = this.kegerators;
-        var sum = 0;
-        if( typeof kegerators != 'undefined' ){
-            for(var i = 0; i < kegerators.length; i++){
-                sum += (138 - 10*kegerators[i].tapsCount) * kegerators[i].tapsCount;
-            }
-        }
+    this.getKegCharges = function(model){
+        model = model ? model : this;
 
-        if( multiplier )
-            return multiplier*sum;
-        else
-            return sum;
-    }*/
-
-    this.getKegCharges = function(){
-        var venue = this;
-
-        var charging = {};
+        var charging = [];
         _.each(App.paymentCycles, function(cycle){
-            charging[cycle.id] = {
+            charging.push({
                 onlyOne: false,
                 id: cycle.id,
                 name: cycle.name,
-                count: venue.getKegs({paymentCycle: cycle.id}).count(),
-                total: _.reduce(_.pluck(venue.getKegs({paymentCycle: cycle.id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
+                count: model.getKegs({paymentCycle: cycle.id}).count(),
+                total: _.reduce(_.pluck(model.getKegs({paymentCycle: cycle.id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
                 cycles: (function(cycle){
-                    var cycles = {};
+                    var cycles = [];
                     _.each(App.paymentDays, function(day){
-                        cycles[cycle.id+'-'+day.id] = {
+                        cycles.push({
                             name: cycle.name+' on '+day.name,
-                            count: venue.getKegs({paymentCycle: cycle.id, paymentDay: day.id}).count(),
-                            total:  _.reduce(_.pluck(venue.getKegs({paymentCycle: cycle.id, paymentDay: day.id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
+                            count: model.getKegs({paymentCycle: cycle.id, paymentDay: day.id}).count(),
+                            total:  _.reduce(_.pluck(model.getKegs({paymentCycle: cycle.id, paymentDay: day.id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
                             flavors: (function(cycle, day){
-                                var flavors = {};
-                                _.each(venue.getKegs({paymentCycle: cycle.id, paymentDay: day.id}).fetch(), function(keg){
-                                    if( typeof flavors[keg.flavor_id] == 'undefined' ){
-                                        flavors[keg.flavor_id] = {
-                                            icon: keg.flavor().icon,
-                                            name: keg.flavor().name,
-                                            count: venue.getKegs({paymentCycle: cycle.id, paymentDay: day.id, flavor_id: keg.flavor_id}).count(),
-                                            total: _.reduce(_.pluck(venue.getKegs({paymentCycle: cycle.id, paymentDay: day.id, flavor_id: keg.flavor_id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
-                                        }
-                                    }
+                                var flavors = [];
+                                _.each(_.groupBy(model.getKegs({paymentCycle: cycle.id, paymentDay: day.id}).fetch(), function(keg){ return keg.flavor_id;}), function(kegs, flavor_id){
+                                        var flavor = Flavors.findOne(flavor_id);
+                                        flavors.push({
+                                            icon: flavor.icon,
+                                            name: flavor.name,
+                                            count: kegs.length,
+                                            total: _.reduce(_.pluck(model.getKegs({paymentCycle: cycle.id, paymentDay: day.id, flavor_id: flavor_id}).fetch(), 'price'), function(memo, num){ return memo + num; }, 0),
+                                        });
                                 });
                                 return flavors;
                             })(cycle, day),
-                        };
+                        });
                     });
                     return cycles;
                 })(cycle),
-            };
+            });
         });
 
         var nonEmptyCycles = [];
         _.each(charging, function(cycle){ if( cycle.count > 0 ){nonEmptyCycles.push(cycle.id);} });
         if( nonEmptyCycles.length == 1 )
-            charging[nonEmptyCycles[0]].onlyOne = true;
+            charging[0].onlyOne = true;
 
         return charging;
     }
 
-    this.renderKegCharges = function(){
-        var charging = this.getKegCharges();
+    this.getKegChargesNew = function(venueModel){
+        var venue = venueModel ? venueModel : this;
 
-        var html = '<div class="keg-charges-container">' +
-                        '<h3 class="subtitle" style="margin-bottom: 20px;">Keg Charges</h3>';
-        for(var i in charging){
-            if( charging[i].total == 0 )
-                continue;
-            html +=     '<div class="keg-charges-cycle">';
-            html +=         '<div class="keg-charges-cycle-total">' +
-                                '<div class="keg-charges-cycle-name">' + charging[i].name + '</div>' +
-                                '<div class="keg-charges-cycle-count">' + charging[i].count + ' keg(s) </div>' +
-                                '<span class="keg-charge">$'+charging[i].total+'</span>' +
-                            '</div>';
-            for(var c in charging[i].cycles){
-                if( charging[i].cycles[c].total == 0 )
-                    continue;
-                html +=     '<div class="keg-charges-period">';
-                html +=         '<div class="keg-charges-period-subtotal">' +
-                                    '<div class="keg-charges-period-name">' + charging[i].cycles[c].name + '</div>' +
-                                    '<div class="keg-charges-period-count">' + charging[i].cycles[c].count + ' keg(s) </div>' +
-                                    '<span class="keg-charge">$'+charging[i].cycles[c].total+'</span>' +
-                                '</div>';
-                for(var d in charging[i].cycles[c].flavors){
-                    html +=     '<div class="keg-charges-flavor-row">' +
-                                    '<div class="keg-charges-flavor-icon" style="background-image:url('+charging[i].cycles[c].flavors[d].icon+');"></div>' +
-                                    '<div class="keg-charges-flavor-name">' + charging[i].cycles[c].flavors[d].name + '</div>' +
-                                    '<div class="keg-charges-flavor-count">' + charging[i].cycles[c].flavors[d].count + ' keg(s) </div>' +
-                                    '<span class="keg-charge">$'+charging[i].cycles[c].flavors[d].total+'</span>' +
-                                '</div>';
-                }
-                html +=     '</div>';
-            }
-            html +=     '</div>';
-        }
-        html +=     '</div>';
+        var charging = [];
+        _.each(App.paymentCycles, function(cycle){
+            //console.log(cycle);
+            _.each(App.paymentDays, function(day){
+                //console.log(day);
+                _.each(_.groupBy(Kegs.find({venue_id: venue._id, paymentCycle: cycle.id, paymentDay: day.id}).fetch(), function(keg){ return keg.paymentCycle+'-'+keg.paymentDay; }), function(kegType){
 
-        return html;
+                    _.each(_.groupBy(kegType, function(keg){ return keg.flavor_id; }), function(kegs, flavor_id){
+                        var flavor = Flavors.findOne(flavor_id);
+                        charging.push({
+                            flavor_name: flavor.name,
+                            flavor_icon: flavor.icon,
+                            payment_period: kegs[0].chargePeriodName(),
+                            kegs_count: kegs.length,
+                            total: kegs.length * 120,
+                        });
+                    });
+                });
+            });
+        });
+
+        return charging;
     }
 
 	this.placeOrder = function(orderedKegs, deliveryDate) {	
@@ -431,7 +419,7 @@ VenueModel = function(doc){
 			
 		}
 	};
-	
+
     this.getObjectValues = function(doc, withOutId){
         if( typeof doc == 'undefined' )
             doc = {};

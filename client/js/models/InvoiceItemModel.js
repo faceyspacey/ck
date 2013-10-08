@@ -1,6 +1,7 @@
 
 InvoiceItemModel = function(doc){
         var defaultValues = {
+            collectionName: 'InvoiceItems',
             _id: '',
             user_id: '',
             flavor_id: '',

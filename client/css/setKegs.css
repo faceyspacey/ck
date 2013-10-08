@@ -48,7 +48,6 @@
     width: inherit !important;
     text-align: left;
     margin-left: 10px;
-    margin-bottom: 10px;
     display:block;
 }
 
@@ -62,6 +61,7 @@
 }
 
 .keg-pcycle-left, .keg-pcycle-right {
+    margin-top: 10px;
     display: inline-block;
     vertical-align: top;
 }

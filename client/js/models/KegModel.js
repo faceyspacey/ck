@@ -1,5 +1,6 @@
 KegModel = function(doc){
     var defaultValues = {
+        collectionName: 'Kegs',
         _id: '',
         flavor_id: 'random',
         user_id: '',
@@ -36,23 +37,30 @@ KegModel = function(doc){
     }
 
     this.flavor = function(){
-        if( this.flavor_id == 'random' ){
-            var flavors = _.shuffle(Flavors.find({is_public: true}).fetch());
-            return flavors[0];
-        }else
-            return Flavors.findOne(this.flavor_id);
+        return Flavors.findOne(this.flavor_id);
     }
 
     this.flavorIcon = function(){
-        return this.flavor_id == 'random' ? '' : Flavors.findOne(this.flavor_id).icon;
+        return Flavors.findOne(this.flavor_id).icon;
     }
 
     this.icon = function(){
-        return this.flavor_id == 'random' ? '/images/flavor-icons/keg_140x140.png' : Flavors.findOne(this.flavor_id).kegIcon;
+        return Flavors.findOne(this.flavor_id).kegIcon;
     }
 
     this.chargePeriod = function(){
         return this.paymentCycle + '-' + this.paymentDay;
+    }
+
+    this.chargePeriodName = function(){
+        return this.getPaymentCycle().name + ' on ' + this.getPaymentDay().name;
+    }
+
+    this.getPaymentCycle = function(){
+        return _.findWhere(App.paymentCycles, {id: this.paymentCycle});
+    }
+    this.getPaymentDay = function(){
+        return _.findWhere(App.paymentDays, {id: this.paymentDay});
     }
 
     this.getObjectValues = function(doc, withOutId){

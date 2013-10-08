@@ -10,6 +10,7 @@ OrderedFlavorModel = function(doc){
 		});
 		
     var defaultValues = {
+        collectionName: 'OrderedFlavors',
         _id: '',
         user_id: Meteor.userId(),
         quantity: 1,

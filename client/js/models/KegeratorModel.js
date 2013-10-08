@@ -1,5 +1,6 @@
 KegeratorModel = function(doc){
     var defaultValues = {
+        collectionName: 'Kegerators',
         _id: '',
         user_id: '',
         venue_id: '',

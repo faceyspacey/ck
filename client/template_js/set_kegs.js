@@ -60,27 +60,13 @@ Template.subscription_keg_row.events({
 /** keg_charges_set_kegs HELPERS, EVENTS & CALLBACKS **/
 
 Template.keg_charges_set_kegs.helpers({
-	kegCharges: function(){
-	    var venue = Venues.findOne(this.venue_id);
-	    if( !venue )
-	        return '';
+	kegCharges: function(perspective, b, c){
+        if( this.perspective == 'user' )
+            return User.getKegCharges(this.model_id);
+        else{
+            var model = Venues.findOne(this.venue_id);
+            return model ? model.getKegCharges() : '';
+        }
 
-	    var array = [];
-	    var charges = venue.getKegCharges();
-	    console.log( charges );
-	    for(var i in charges){
-	        var cyclesArray = [];
-	        for(var c in charges[i].cycles){
-	            var flavorsArray = [];
-	            for(var d in charges[i].cycles[c].flavors){
-	                flavorsArray.push(charges[i].cycles[c].flavors[d]);
-	            }
-	            charges[i].cycles[c].flavors = flavorsArray;
-	            cyclesArray.push(charges[i].cycles[c]);
-	        }
-	        charges[i].cycles = cyclesArray;
-	        array.push(charges[i]);
-	    }
-	    return array;
 	}
 });

@@ -5,6 +5,7 @@ InvoiceModel = function(doc){
 	//I have been using your getObjectValues() method to look at pure database object props/vals.
 	//so I added a new method to get these base prop/vals: getMongoValues().
     var defaultValues = {
+        collectionName: 'Invoices',
         _id: '',
         stripe_order_id: '',
 		order_num: 0,

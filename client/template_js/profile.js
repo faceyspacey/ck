@@ -6,6 +6,9 @@ Template.page_profile.helpers({
     },
     userKegCharges: function(user_id){
         return User.renderKegCharges(user_id);
+    },
+    kegChargesProfile: function(perspective, id){
+        return Template.keg_charges_set_kegs({perspective: perspective, model_id: id});
     }
 });
 

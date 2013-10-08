@@ -1,6 +1,7 @@
 
 FlavorModel = function(doc){
     var defaultValues = {
+        collectionName: 'Flavors',
         _id: '',
         name: '',
         icon: '',

@@ -36,9 +36,7 @@
 	<div class="keg-box">
         <div class="remove-keg-btn"> &times; </div>
         <div class="keg-illustration" style="background-image: url('{{icon}}');">
-            {{#unless isRandom}}
-                <div class="keg-flavor-illustration" style="background-image: url('{{flavorIcon}}');"></div>
-            {{/unless}}
+            <div class="keg-flavor-illustration" style="background-image: url('{{flavorIcon}}');"></div>
         </div>
         <div class="keg-settings">
 
@@ -76,13 +74,16 @@
 <template name="keg_charges_set_kegs">
     <div class="keg-charges-setKegs">
         <h3 class="subtitle" style="margin-bottom: 20px;">Keg Charges</h3>
-        {{#each kegCharges}}
+        {{#each kegCharges 'user'}}
+            {{#if count}}
             <div class="keg-charges-cycle">
+                {{#unless onlyOne}}
                 <div class="keg-charges-cycle-total">
                     <div class="keg-charges-cycle-name">{{name}}</div>
                     <div class="keg-charges-cycle-count">{{count}} keg(s) </div>
                     <span class="keg-charge">${{total}}</span>
                 </div>
+                {{/unless}}
                 {{#if count}}
                 {{#each cycles}}
                     {{#if count}}
@@ -105,6 +106,7 @@
                 {{/each}}
                 {{/if}}
             </div>
+            {{/if}}
         {{/each}}
     </div>
 </template>

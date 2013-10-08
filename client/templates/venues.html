@@ -51,51 +51,24 @@
 
 
 <template name="keg_charges_table">
+    {{#if kegCharges}}
     <div class="keg-charges-table">
         {{#each kegCharges}}
-            {{#if count}}
-            {{#unless onlyOne}}
-            <div class="keg-charges-cycle closed">
-                <div class="keg-charges-cycle-total">
-                    <!-- <div class="keg-charges-cycle-arrow"> </div> -->
-                    <div class="keg-charges-cycle-name">{{name}}</div>
-                    <span class="keg-charge">${{total}}</span>
-                    <div class="keg-charges-cycle-count">{{count}} keg(s) </div>
-                </div>
-            {{/unless}}
-
-                	<div class="keg-charges-hideable">
-	
-                    	{{#each cycles}}
-	                        {{#if count}}
-	                        	<div class="keg-charges-period">
-	                            	<div class="keg-charges-period-subtotal">
-		                                <div class="keg-charges-period-name">{{name}}</div>
-		                                <span class="keg-charge">${{total}}</span>
-		                                <div class="keg-charges-period-count">{{count}} keg(s) </div>
-		                            </div>
-
-	                           	 	{{#each flavors}}
-		                            	<div class="keg-charges-flavor-row">
-			                                <div class="keg-charges-flavor-icon" style="background-image:url('{{icon}}');"></div>
-			                                <div class="keg-charges-flavor-name">{{name}}</div>
-			                                <span class="keg-charge">${{total}}</span>
-			                                <div class="keg-charges-flavor-count">{{count}} keg(s) </div>
-			                            </div>
-		                            {{/each}}
-
-	                        	</div>
-	                        {{/if}}
-	                    {{/each}}
-	
-	                 </div>
-
-            {{#unless onlyOne}}
+            <div class="keg-charges-flavor-row">
+                <div class="keg-charges-flavor-icon" style="background-image:url('{{flavor_icon}}');"></div>
+                <div class="keg-charges-flavor-name">{{flavor_name}}:</div>
+                <div class="keg-charges-flavor-count">{{kegs_count}} keg(s) {{payment_period}}</div>
+                <span class="keg-charge">${{total}}</span>
             </div>
-            {{/unless}}
-            {{/if}}
         {{/each}}
     </div>
+    {{else}}
+    <div class="keg-charges-table">
+        <div class="keg-charges-flavor-row">
+            You have no kegs set for this venue.
+        </div>
+    </div>
+    {{/if}}
 </template>
 
 

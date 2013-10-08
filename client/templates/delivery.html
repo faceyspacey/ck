@@ -8,8 +8,7 @@
             <tr>
                 <th style="width: 10%;">Venue Name</th>
                 <th style="width: 15%;">Address</th>
-                <th style="">Monday <br>(least ordered flavors)</th>
-                <th style="">Thursday <br>(least ordered flavors)</th>
+                <th style="">Monday</th>
                 <th style="width: 15%;">Actions</th>
             </tr>
             {{#if venues }}
@@ -18,14 +17,8 @@
 	                <td>{{name}}</td>
 	                <td>{{address}}</td>
 	                <td>
-	                    Least ordered:
-	                    {{#each getRareFlavorToday _id 'monday'}}
-	                    	<div class="venue-rare-flavor-icon" style="background-image:url('{{icon}}');">{{name}}</div>
-	                    {{/each}}
-	                </td>
-	                <td>
-	                    Least ordered:
-	                    {{#each getRareFlavorToday _id 'thursday'}}
+                        Random flavor:
+	                    {{#each getRandomFlavorToday _id 'monday'}}
 	                    	<div class="venue-rare-flavor-icon" style="background-image:url('{{icon}}');">{{name}}</div>
 	                    {{/each}}
 	                </td>
@@ -40,6 +33,45 @@
 	                </td>
 	            </tr>
 	            {{/each}}
+            {{else}}
+            <tr>
+                <td colspan="4"> You have no venues added yet. </td>
+            </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th style="width: 10%;">Venue Name</th>
+                <th style="width: 15%;">Address</th>
+                <th style="">Thursday</th>
+                <th style="width: 15%;">Actions</th>
+            </tr>
+            {{#if venues }}
+            {{#each venues }}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{address}}</td>
+                <td>
+                    {{#each getRandomFlavorToday _id 'thursday'}}
+                    Random flavor:
+                    <div class="venue-rare-flavor-icon" style="background-image:url('{{icon}}');">{{name}}</div>
+                    {{/each}}
+                </td>
+                <td class="action-buttons">
+                    <div class="delivered-btn-container">
+                        {{#if delivered}}
+                        <div class="venue-delivered-row">Delivered at: <div class="info">{{formattedDeliveredAt}}</div></div>
+                        {{else}}
+                        <div class="delivered-venue-btn customButton-blue"> Delivered </div>
+                        {{/if}}
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
             {{else}}
             <tr>
                 <td colspan="4"> You have no venues added yet. </td>
