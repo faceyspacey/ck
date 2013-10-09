@@ -1,15 +1,6 @@
-
-// It's just for trying to do the inheritance
-
-Model = function(){
-    var collectionName = '';
-    var defaultValues = {
-        collectionName: '',
-        _id: '',
-    };
-    this.errors = {};
-
-    this.collection = function(){
+Model = {
+	errors: {},
+	collection: function(){
         switch(this.collectionName){
             case 'Flavors': return Flavors;
             case 'InvoiceItems': return InvoiceItems;
@@ -17,48 +8,37 @@ Model = function(){
             case 'Kegerators': return Kegerators;
             case 'Kegs': return Kegs;
             case 'OrderedFlavors': return OrderedFlavors;
-            case 'Users': return Users;
+            case 'Users': return Meteor.users;
             case 'Venues': return Venues;
         }
-    }
-
-    this.save = function(attributes){
-        if( this._id ){
-            this.collection().update(this._id, {$set: this.getObjectValues(attributes, true)});
-        }else{
-            var id = '';
-            if( id = this.collection().insert(this.getObjectValues(attributes, true)) ){
-                this._id = id;
-                this.afterSave();
-            }
+    },
+	save: function(attributes){
+        if(this._id) this.collection().update(this._id, {$set: attributes});
+        else {
+            var insertValues = this.prepareDefaults(attributes);
+			this._id = this.collection().insert(insertValues);
+				
+            if(this._id) this.afterInsert();
         }
         return this._id;
-    }
-
-    this.afterSave = function(){};
-
-    this.getObjectValues = function(doc, withOutId){
-        if( typeof doc == 'undefined' )
-            doc = {};
-
-        var object = {};
-
-        _.extend(object, defaultValues);
-
-        for(i in defaultValues){
-            if( typeof this[i] != 'undefined' )
-                object[i] = this[i];
-        }
-
-        _.extend(object, doc);
-
-        if( withOutId == true )
-            delete object._id;
-
-        return object;
-    }
-
-    _.extend(this, this.getObjectValues(doc));
-
-    return this;
+    },
+	afterInsert: function() {
+		
+	},
+	prepareDefaults: function(attributes){
+		var object = {};
+		_.extend(object, this.defaultValues, attributes); 
+		return object;
+    },
+	getMongoValues: function() {
+		var mongoValues = {};
+		for(var prop in this) {
+			if(!_.isFunction(this[prop])) mongoValues[prop] = this[prop];
+		}
+		delete mongoValues.errors;
+		return mongoValues;
+	},
+	extend: function(doc) {
+		_.extend(this, this.defaultValues, doc);
+	}
 };

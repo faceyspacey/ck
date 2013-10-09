@@ -12,17 +12,19 @@ Meteor.publish("kegerators", function () {
 
 Kegerators.allow({
     insert: function(userId, doc) {
-        doc.requestedAt = +(new Date());
+		doc.created_at = new Date;
+        doc.updated_at = new Date;
+        doc.request_date = new Date;
 
         return Roles.userIsInRole(userId, ['admin']);
     },
     update: function(userId, doc, fields, modifier) {
-
+        doc.updated_at = new Date;
         return Roles.userIsInRole(userId, ['admin']);
     },
     remove: function(userId, doc) {
 
         return Roles.userIsInRole(userId, ['admin']);
     },
-    fetch: ['user_id, createdAt, updatedAt']
+    fetch: ['user_id, created_at, updated_at']
 });

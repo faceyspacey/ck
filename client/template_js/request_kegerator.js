@@ -1,73 +1,41 @@
 /** page_request_kegerator HELPERS, EVENTS & CALLBACKS **/
 
+//this page has some imperfections. the venue dropdown needs to be factored in properly.
+//we should change the overall model for the page when this dropdown is adjusted
+//via a Session property similar to this based on the select change event
 Template.page_request_kegerator.helpers({
-	kegsInKegerators: function(){
-	    var venue = Venues.findOne(this.venue_id),
-			kegs = venue.getKegs(),
-			kegsCount = kegs.count(),
-			kegerators = venue.getKegerators(),
-			kegeratorTaps = venue.getKegeratorTaps();
+	venue: function() {
+		return Venues.findOne(this.venue_id);
 	},
-	venueDropDown: function(){
-        var options = [];
-        Venues.find({user_id: Meteor.userId()}, {sort: {name: 1}}).forEach(function(venue){
-            options.push({value: venue._id, name: venue.name});
-        });
-
-        return Template.select_options({options: options, selected_id: this.venue_id});
+    kegeratorTypes: function(){
+		return App.kegeratorTypes;
     },
-    typeDropDown: function(){
-        var options = [];
-        _.each(App.kegeratorTypes,function(kegerator){
-            options.push({value: kegerator.id, name: kegerator.name});
-        });
-
-        var templateMap = {options: options, selected_id: false};
-        return Template.select_options(templateMap);
+	selectedKegeratorType: function(selectedId){
+	    return selectedId == this.id ? 'selected' : '';
+	},
+	venues: function(){
+		return Venues.find({user_id: Meteor.userId()})
     },
-    actual_venue: function(){
-        var venue = Venues.findOne(this.venue_id);
-
-        return ' <span class="label">Name:</span> <b>'+venue.name+'</b><br/>'+
-                '<span class="label">Address:</span> <b>'+venue.address+'</b><br/>' +
-                '<span class="label">Kegs count:</span> <b>'+venue.getKegs().count()+' keg(s)</b><br/>' +
-                '<span class="label">Kegerators:</span> <b>'+venue.getKegerators().count()+' kegerators ('+venue.getKegeratorTaps()+' taps)</b>';
-    }
+	selectedVenue: function(selectedId){
+	    return selectedId == this._id ? 'selected' : '';
+	}
 });
 
 Template.page_request_kegerator.events({
     'click #request-kegerator-btn': function(){
-        var request = {
-            venue_id: this.venue_id ? this.venue_id : document.getElementById('kegeratorForm_venue_id').value,
-            type_id: document.getElementById('kegeratorForm_type_id').value,
-        }
-
-        var comment = document.getElementById('kegeratorForm_comment').value;
-        var venue = Venues.findOne(request.venue_id);
-
-        if(venue){
-            var kegerator = new KegeratorModel(request);
-            var id = kegerator.save();
-
-            if( venue.need_kegerator != true ){
-                venue.save({
-                    need_kegerator: true,
-                    kegeRequestedAt: +(new Date)
-                });
-            }
-			else venue.save({need_kegerator: true});
-        }
+		var venue = Venues.findOne($('#kegeratorForm_venue_id').val());
+		
+		Kegerators.insert({
+			user_id: venue.user_id,
+			venue_id: venue._id,
+        	type_id: $('#kegeratorForm_type_id').val(),
+			installed: false,
+			requested_date: new Date
+		});
+		
+        venue.save({need_kegerator: true, kegerator_request_date: new Date});
     },
     'change #kegeratorForm_venue_id': function(){
-        this.venueId = document.getElementById('kegeratorForm_venue_id').value;
+        this.venueId = $('#kegeratorForm_venue_id').val();
     }
-});
-
-
-/** select_options HELPERS, EVENTS & CALLBACKS **/
-
-Template.select_options.helpers({
-	selected: function(selected_id){
-	    return selected_id == this.value ? 'selected' : '';
-	}
 });

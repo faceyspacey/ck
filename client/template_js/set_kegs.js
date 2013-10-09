@@ -5,7 +5,7 @@ Template.page_set_kegs.helpers({
         return Venues.findOne(this.venue_id);
     },
     kegs: function(){
-        return Venues.findOne(this.venue_id).getKegs();
+        return Venues.findOne(this.venue_id).kegs();
     }
 });
 
@@ -19,10 +19,8 @@ Template.page_set_kegs.events({
 /** subscription_keg_row HELPERS, EVENTS & CALLBACKS **/
 
 Template.subscription_keg_row.helpers({
-	flavors: function(flavorId){
-        var flavors = Flavors.find({is_public: true}).fetch();
-        flavors.unshift({_id: 'random', name: 'Random'});
-        return flavors;
+	flavors: function(){
+        return Flavors.find({is_public: true});
     },
 	cycles: function(){
 		return App.paymentCycles;
@@ -43,30 +41,16 @@ Template.subscription_keg_row.helpers({
 
 Template.subscription_keg_row.events({
 	'click .remove-keg-btn' : function(e, instance){
-        if(confirm('Are you sure you want to drop this keg?')) Venues.findOne(instance.data.venue_id).removeKeg(this._id);
+        if(confirm('Are you sure you want to drop this keg?')) Kegs.remove(this._id);
     },
     'change .keg-flavor-select' : function(e, instance){
-        Venues.findOne(instance.data.venue_id).updateKeg(this._id, {flavor_id: e.target.value});
+		Kegs.update(this._id, {$set: {flavor_id: e.target.value}});
     },
     'change .radio-cycle' : function(e, instance){
-        Venues.findOne(instance.data.venue_id).updateKeg(e.target.title, {paymentCycle: e.target.value}); //this refers to radio. weird
+		Kegs.update(e.target.title, {$set: {payment_cycle: e.target.value}});
     },
-    'change .radio-day' : function(e, instance){
-        Venues.findOne(instance.data.venue_id).updateKeg(e.target.title, {paymentDay: e.target.value}); //this refers to radio. weird
+    'change .radio-day' : function(e, instance) {
+		Kegs.update(e.target.title, {$set: {payment_day: e.target.value}});
     }
 });
 
-
-/** keg_charges_set_kegs HELPERS, EVENTS & CALLBACKS **/
-
-Template.keg_charges_set_kegs.helpers({
-	kegCharges: function(perspective, b, c){
-        if( this.perspective == 'user' )
-            return User.getKegCharges(this.model_id);
-        else{
-            var model = Venues.findOne(this.venue_id);
-            return model ? model.getKegCharges() : '';
-        }
-
-	}
-});

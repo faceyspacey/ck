@@ -11,20 +11,28 @@
                 <div class="form-row">
                     <label for="kegeratorForm_venue_id">Venue:</label>
 
-                    {{#unless venue_id}}
+                    {{#if venue_id}}
+						<input type="hidden" id="kegeratorForm_venue_id" value="{{venue_id}}"/>
+						<div style="padding: 5px 5px 5px 15px;">
+							{{#with venue}}
+	                        	{{>actual_venue}}
+							{{/with}}
+	                    </div>
+					{{else}}
                     <select id="kegeratorForm_venue_id" class="styled-select" name="venue_id">
-                        {{{venueDropDown}}}
+                        {{#each venues}}
+					        <option value="{{_id}}" {{selectedVenue ../venue_id}}} >{{name}}</option>
+					    {{/each}}
                     </select>
-                    {{/unless}}
-                    <div style="padding: 5px 5px 5px 15px;">
-                        {{{actual_venue venueId}}}
-                    </div>
+                    {{/if}}                
                 </div>
 
                 <div class="form-row">
                     <label for="kegeratorForm_type_id">Type:</label>
                     <select id="kegeratorForm_type_id" class="styled-select" name="type_id">
-                        {{{typeDropDown}}}
+                        {{#each kegeratorTypes}}
+							<option value="{{id}}" {{selectedKegeratorType ../type_id}}>{{name}}</option>
+						{{/each}}
                     </select>
                 </div>
 
@@ -39,63 +47,14 @@
 
         </div>
 
-        <!--
-        <div id="addVenueDialog" class="dialog-box" style="display: none;">
-            <div class="close-dialog-btn"> &times; </div>
-            <h2 class="subtitle">New Venue</h2>
-            <form id="new-venue-form" name="newVenueForm" class="styled-form" method="POST">
-
-                <div class="form-row">
-                    <label for="venueForm_name">Name:</label>
-                    <input id="venueForm_name" type="text" name="name"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_address">Address:</label>
-                    <input id="venueForm_address" type="text" name="address"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_email">Email:</label>
-                    <input id="venueForm_email" type="text" name="email"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_phone">Phone:</label>
-                    <input id="venueForm_phone" type="text" name="phone"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_facebook">Facebook:</label>
-                    <input id="venueForm_facebook" type="text" name="facebook"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_twitter">Twitter:</label>
-                    <input id="venueForm_twitter" type="text" name="twitter"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_instagram">Instagram:</label>
-                    <input id="venueForm_instagram" type="text" name="instagram"/>
-                </div>
-
-                <div class="form-row">
-                    <label for="venueForm_youtube">Youtube:</label>
-                    <input id="venueForm_youtube" type="text" name="youtube"/>
-                </div>
-
-            </form>
-
-            <div class="add-venue-btn customButton-blue">Add Venue</div>
-        </div> -->
-
     </div>
 </template>
 
 
-<template name="select_options">
-    {{#each options}}
-        <option value="{{value}}" {{{selected ../selected_id}}} >{{name}}</option>
-    {{/each}}
+
+<template name="actual_venue">
+	<span class="label">Name:</span> <b>{{name}}</b><br/>
+	<span class="label">Address:</span> <b>{{address}}</b><br/>
+	<span class="label">Kegs count:</span> <b>{{kegs.count}} keg(s)</b><br/>' 
+	<span class="label">Kegerators:</span> <b>{{getKegerators.count}} kegerators ({{getKegeratorTaps}} taps)</b>
 </template>

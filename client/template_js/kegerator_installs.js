@@ -2,7 +2,7 @@
 
 Template.page_kegerator_installs.helpers({
 	venues: function(){
-	    return Venues.find({need_kegerator: true}, {sort: {kegeRequestedAt: 1}});
+	    return Venues.find({need_kegerator: true}, {sort: {kegerator_request_date: 1}});
 	}
 });
 

@@ -14,12 +14,6 @@
                 <div class="add-keg-btn customButton-blue">+ Add Keg</div>
             </div>
 
-            {{>keg_charges_set_kegs}}
-
-            <div class="buttons-container">
-                <div class="save-kegs-btn customButton-blue">Save Settings</div>
-            </div>
-
             <p class="note">
                 You have <b>{{{venue.getKegerators.count}}} kegerator(s)</b>
                 with <b>{{{venue.getKegeratorTaps}}} tap(s)</b>. You can request more kegerators here:
@@ -35,8 +29,8 @@
 <template name="subscription_keg_row">
 	<div class="keg-box">
         <div class="remove-keg-btn"> &times; </div>
-        <div class="keg-illustration" style="background-image: url('{{icon}}');">
-            <div class="keg-flavor-illustration" style="background-image: url('{{flavorIcon}}');"></div>
+        <div class="keg-illustration" style="background-image: url('{{flavor.keg_icon}}');">
+            <div class="keg-flavor-illustration" style="background-image: url('{{flavor.icon}}');"></div>
         </div>
         <div class="keg-settings">
 
@@ -55,58 +49,17 @@
                 <label>Payment Cycle: </label>
                 <div class="keg-pcycle-left">
                     {{#each cycles}}
-						<input title="{{../_id}}" type="radio" class="radio-cycle" name="{{../_id}}_cycle" value="{{id}}" {{cycleSelected ../paymentCycle}} />{{name}}			
+						<input title="{{../_id}}" type="radio" class="radio-cycle" name="{{../_id}}_cycle" value="{{id}}" {{cycleSelected ../payment_cycle}} />{{name}}			
 						<br />
 					{{/each}}
                 </div>
                 <div class="keg-pcycle-right">
                     {{#each days}}
-						<input title="{{../_id}}" type="radio" class="radio-day" name="{{../_id}}_day" value="{{id}}" {{daySelected  ../paymentDay}} />{{name}}
+						<input title="{{../_id}}" type="radio" class="radio-day" name="{{../_id}}_day" value="{{id}}" {{daySelected  ../payment_day}} />{{name}}
 						<br />							
 					{{/each}}
                 </div>
             </div>
         </div>
-    </div>
-</template>
-
-
-<template name="keg_charges_set_kegs">
-    <div class="keg-charges-setKegs">
-        <h3 class="subtitle" style="margin-bottom: 20px;">Keg Charges</h3>
-        {{#each kegCharges 'user'}}
-            {{#if count}}
-            <div class="keg-charges-cycle">
-                {{#unless onlyOne}}
-                <div class="keg-charges-cycle-total">
-                    <div class="keg-charges-cycle-name">{{name}}</div>
-                    <div class="keg-charges-cycle-count">{{count}} keg(s) </div>
-                    <span class="keg-charge">${{total}}</span>
-                </div>
-                {{/unless}}
-                {{#if count}}
-                {{#each cycles}}
-                    {{#if count}}
-                    <div class="keg-charges-period">
-                        <div class="keg-charges-period-subtotal">
-                            <div class="keg-charges-period-name">{{name}}</div>
-                            <div class="keg-charges-period-count">{{count}} keg(s) </div>
-                            <span class="keg-charge">${{total}}</span>
-                        </div>
-                    {{#each flavors}}
-                        <div class="keg-charges-flavor-row">
-                            <div class="keg-charges-flavor-icon" style="background-image:url('{{icon}}');"></div>
-                            <div class="keg-charges-flavor-name">{{name}}</div>
-                            <div class="keg-charges-flavor-count">{{count}} keg(s) </div>
-                            <span class="keg-charge">${{total}}</span>
-                        </div>
-                    {{/each}}
-                    </div>
-                    {{/if}}
-                {{/each}}
-                {{/if}}
-            </div>
-            {{/if}}
-        {{/each}}
     </div>
 </template>

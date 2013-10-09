@@ -1,4 +1,4 @@
-/** page_flavors HELPERS **/
+/** page_flavors HELPERS, EVENTS & CALLBACKS **/
 
 Template.page_flavors.helpers({
 	flavors: function(){
@@ -18,7 +18,7 @@ Template.page_flavors.events({
 });
 
 
-/** flavor_grid_row HELPERS **/
+/** flavor_grid_row HELPERS, EVENTS & CALLBACKS **/
 
 Template.flavor_grid_row.helpers({
 	notPublic: function(){
@@ -47,17 +47,17 @@ Template.flavor_grid_row.events({
 
 
 
-/** flavor_form HELPERS **/
+/** flavor_form HELPERS, EVENTS & CALLBACKS **/
 
 Template.flavor_form.events({
-	'click .close-dialog-btn' : function(e){
+	'click .close-dialog-btn' : function(e) {
 		Session.set('flavor_id', null);
     },
-    'click .add-flavor-btn' : function(e){ 
+    'click .add-flavor-btn' : function(e) { 
 		this.save({
 			name: $('#flavorForm_name').val(),
 			icon: $('#flavorForm_icon').val(),
-			kegIcon: $('#flavorForm_kegIcon').val()
+			keg_icon: $('#flavorForm_kegIcon').val()
 		});
 		
 		Session.set('flavor_id', null);

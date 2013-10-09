@@ -168,7 +168,7 @@ Router.configure({
 
         var user = Meteor.user();
         if (! user) {
-            this.render('home');
+            this.render('page_home');
             return this.stop();
         }
     },

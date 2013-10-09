@@ -42,7 +42,11 @@
                     </tbody>
                 </table>
 
-                {{{kegChargesProfile 'user' user._id}}}
+				<h3 class="subtitle" style="margin-bottom: 20px;">Keg Charges</h3>
+                {{#each venues}}
+					<div>{{name}}</div>
+					{{>keg_charges_table}}
+				{{/each}}
             </div>
         </div>
 

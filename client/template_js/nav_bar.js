@@ -3,8 +3,7 @@
 Template._nav_bar.helpers({
     'kegerator_installs_count' : function(){
         var count = Kegerators.find({
-				installed: false, 
-				venue_id: {$not: ''}
+				installed: false
 			}).count();
 			
         return count ? '<span style="color:red !important;">( '+count+' )</span>': '( '+count+' )';

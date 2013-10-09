@@ -25,38 +25,9 @@ getWeekDay = function(d){
     return days[day];
 }
 
-
-
-Date.prototype.stdTimezoneOffset = function() {
-    var jan = new Date(this.getFullYear(), 0, 1);
-    var jul = new Date(this.getFullYear(), 6, 1);
-    return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
-}
-
-Date.prototype.dst = function() {
-    return this.getTimezoneOffset() < this.stdTimezoneOffset();
-}
-
-Date.prototype.toUTC = function(time) {
-    if( time )
-        var d = new Date(time);
-    else
-        var d = this;
-
-    // convert to msec
-    // add local time zone offset
-    // get UTC time in msec
-    return d.getTime() + ((d.getTimezoneOffset()+(d.dst() ? 60 : 0)) * 60000);
-}
-
-
 dayOfWeek = function(month, day, year) {
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 	return days[(new Date(month + ' ' + day + ' ' + year)).getDay()];
-};
-
-UTCTime = function(month, day, year) {
-	return (new Date(month + ' ' + day + ' ' + year)).toUTC();
 };
 
 monthsArray = function() {

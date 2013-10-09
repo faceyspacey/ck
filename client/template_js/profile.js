@@ -4,11 +4,8 @@ Template.page_profile.helpers({
     user : function(){
         return Meteor.users.findOne(this.user_id);
     },
-    userKegCharges: function(user_id){
-        return User.renderKegCharges(user_id);
-    },
-    kegChargesProfile: function(perspective, id){
-        return Template.keg_charges_set_kegs({perspective: perspective, model_id: id});
+    venues: function(){
+        return Venues.find({user_id: this.user_id});
     }
 });
 

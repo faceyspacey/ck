@@ -21,7 +21,7 @@ Template.page_order_kegs.events({
 					day: $("#day_dropdown").val(), 
 					month: $("#month_dropdown").val(), 
 					year: $("#year_dropdown").val()
-				}),
+				}).toDate(),
 			invoiceId = venue.placeOrder(orderedKegs, deliveryDate);
 			
 		if(!invoiceId) return; //order failed

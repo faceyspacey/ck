@@ -51,14 +51,14 @@
 
 
 <template name="keg_charges_table">
-    {{#if kegCharges}}
+    {{#if kegs}}
     <div class="keg-charges-table">
-        {{#each kegCharges}}
+        {{#each kegs}}
             <div class="keg-charges-flavor-row">
-                <div class="keg-charges-flavor-icon" style="background-image:url('{{flavor_icon}}');"></div>
-                <div class="keg-charges-flavor-name">{{flavor_name}}:</div>
-                <div class="keg-charges-flavor-count">{{kegs_count}} keg(s) {{payment_period}}</div>
-                <span class="keg-charge">${{total}}</span>
+                <div class="keg-charges-flavor-icon" style="background-image:url('{{flavor.icon}}');"></div>
+                <div class="keg-charges-flavor-name">{{flavor.name}}:</div>
+                <div class="keg-charges-flavor-count">{{chargePeriod}}</div>
+                <span class="keg-charge">${{price}}</span>
             </div>
         {{/each}}
     </div>

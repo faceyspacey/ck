@@ -40,8 +40,8 @@ Template.venue_grid_row.events({
 /** keg_charges_table HELPERS, EVENTS & CALLBACKS **/
 
 Template.keg_charges_table.helpers({
-	kegCharges: function(venue){
-        return this.getKegChargesNew();
+	kegs: function(){
+        return this.kegs();
 	}
 });
 
@@ -49,7 +49,6 @@ Template.keg_charges_table.events({
     'click .keg-charges-cycle-total': function(event){
         var cycleBox = $(event.toElement).parents().filter('.keg-charges-cycle');
         $(cycleBox).toggleClass('closed');
-        //console.log(cycleBox);
     }
 });
 
