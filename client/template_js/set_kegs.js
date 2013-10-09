@@ -47,7 +47,10 @@ Template.subscription_keg_row.events({
 		Kegs.update(this._id, {$set: {flavor_id: e.target.value}});
     },
     'change .radio-cycle' : function(e, instance){
-		Kegs.update(e.target.title, {$set: {payment_cycle: e.target.value}});
+		var attributes = {payment_cycle: e.target.value};
+		if(e.target.value == 'bi-weekly') attributes.odd_even = oddEvenWeek();
+		
+		Kegs.update(e.target.title, {$set: attributes});
     },
     'change .radio-day' : function(e, instance) {
 		Kegs.update(e.target.title, {$set: {payment_day: e.target.value}});
