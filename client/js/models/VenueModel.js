@@ -1,12 +1,19 @@
 // Since we dont store default values, we need to track what variables we have for each models.
 
 /** VenueModel attributes:
-*
-*   @kegerator_count            Intiger
-*   @tap_count                  Intiger
-*   @delivery_date              Date
-*   @kegerator_request_date     Date
-*   @tap_request_date           Date
+ *
+ *  _id                         Str
+ *  user_id                     Str
+ *  name                        Str
+ *  email                       Str
+ *  facebook                    Str
+ *  twitter                     Str
+ *  phone                       Str
+ *  kegerator_count             Int
+ *  tap_count                   Int
+ *  delivery_date               Date
+ *  kegerator_request_date      Date
+ *  tap_request_date            Date
 */
 
 VenueModel = function(doc){

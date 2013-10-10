@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ab780d15-ed56-4034-a954-81edd1255e67" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/VenueModel.js" afterPath="$PROJECT_DIR$/client/js/models/VenueModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/delivery.css" afterPath="$PROJECT_DIR$/client/css/delivery.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/delivery.html" afterPath="$PROJECT_DIR$/client/templates/delivery.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/delivery.js" afterPath="$PROJECT_DIR$/client/template_js/delivery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/venues.js" afterPath="$PROJECT_DIR$/client/template_js/venues.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ckhome.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -145,19 +140,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="venues.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="venues.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/template_js/venues.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="54" selection-start="1546" selection-end="1546" vertical-scroll-proportion="0.44117647">
+            <state line="61" column="0" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VenueModel.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="VenueModel.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/js/models/VenueModel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="28" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
+            <state line="15" column="36" selection-start="561" selection-end="561" vertical-scroll-proportion="0.39823008">
               <folding />
             </state>
           </provider>
@@ -256,10 +251,10 @@
         <option value="$PROJECT_DIR$/client/css/setKegs.css" />
         <option value="$PROJECT_DIR$/client/templates/profile.html" />
         <option value="$PROJECT_DIR$/client/css/delivery.css" />
-        <option value="$PROJECT_DIR$/client/js/models/VenueModel.js" />
         <option value="$PROJECT_DIR$/client/templates/delivery.html" />
         <option value="$PROJECT_DIR$/client/template_js/delivery.js" />
         <option value="$PROJECT_DIR$/client/template_js/venues.js" />
+        <option value="$PROJECT_DIR$/client/js/models/VenueModel.js" />
       </list>
     </option>
   </component>
@@ -661,13 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/models/VenueModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="28" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/js/models/UserModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -677,7 +665,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/template_js/venues.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="54" selection-start="1546" selection-end="1546" vertical-scroll-proportion="0.44117647">
+        <state line="61" column="0" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/models/VenueModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="36" selection-start="561" selection-end="561" vertical-scroll-proportion="0.39823008">
           <folding />
         </state>
       </provider>
