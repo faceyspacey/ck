@@ -170,7 +170,7 @@ Router.configure({
 OrdersController = RouteController.extend({
 
     data: function () {
-        return Invoices.findOne({order_num: parseInt(this.params.order_num)});
+        return {invoice: Invoices.findOne({order_num: parseInt(this.params.order_num)})};
     },
 
     show: function () {
