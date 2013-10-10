@@ -2,20 +2,20 @@
     <div class="page-background" id="daily_flavors">
 
         <h1 class="page_title" style="margin-bottom:15px;">Weekly Kegs to Be Distributed</h1>
-			{{{kegsToDeliver 'monday' 'weekly'}}}
-			{{{kegsToDeliver 'thursday' 'weekly'}}}
+			{{>daily_kegs_table mondayWeekly}}
+			{{>daily_kegs_table thursdayWeekly}}
 		<div style="clear:both;"></div>	
 		<br /><br />
 			
 		<h1 class="page_title" style="margin-bottom:15px;">Bi-Weekly Kegs (<span style="{{oddColor}}">Odd</span> Weeks)</h1>		
-			{{{kegsToDeliver 'monday' 'bi-weekly' 'odd'}}}
-			{{{kegsToDeliver 'thursday' 'bi-weekly'  'odd'}}}
+			{{>daily_kegs_table mondayBiWeeklyOdd}}
+			{{>daily_kegs_table thursdayBiWeeklyOdd}}
 		<div style="clear:both"></div>		
 		<br /><br />
 		
 		<h1 class="page_title" style="margin-bottom:15px;">Bi-Weekly Kegs (<span style="{{evenColor}}">Even</span> Weeks)</h1>		
-			{{{kegsToDeliver 'monday' 'bi-weekly' 'even'}}}
-			{{{kegsToDeliver 'thursday' 'bi-weekly' 'even'}}}
+			{{>daily_kegs_table mondayBiWeeklyEven}}
+			{{>daily_kegs_table thursdayBiWeeklyEven}}
 		<div style="clear:both;"></div>
    </div>
 </template>
@@ -29,14 +29,13 @@
 	            <th style="width: 100px;">Quantity</th>
 	        </tr>
 
-	  		{{#each flavors day cycle oddEven}}
+	  		{{#each flavors this}}
 	            <tr>
 	                <td>{{name}}</td>
 	                <td class="align-center">
 	                    <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
 	                </td>
 
-					<!-- MATHEUS, using ../ looks for variables in the scope above the #each -->
 	                <td class="align-center">{{quantity}} keg(s)</td>
 	            </tr>
 	         {{/each}}

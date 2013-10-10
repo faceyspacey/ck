@@ -4,7 +4,6 @@ OrderedFlavorModel = function(doc){
 	var defaultFlavor = Flavors.findOne({one_off_quantity_availible: {$gt: 0}});
 		
     this.defaultValues = {
-        _id: '',
         user_id: Meteor.userId(),
         quantity: 1,
 		price: App.prices.fiveGallonsOneOff,

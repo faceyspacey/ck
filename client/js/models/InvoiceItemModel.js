@@ -1,14 +1,6 @@
 InvoiceItemModel = function(doc) {
 	this.collectionName ='InvoiceItems';
-    this.defaultValues = {
-        _id: '',
-        user_id: '',
-        flavor_id: '',
-        venue_id: '',
-        invoice_id: '',
-        quantity: '',
-        price: '',
-    };
+    this.defaultValues = {};
 
     this.user = function(){
         if( !this.user_id )

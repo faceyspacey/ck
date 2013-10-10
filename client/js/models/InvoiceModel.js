@@ -1,19 +1,9 @@
 InvoiceModel = function(doc){
 	this.collectionName ='Invoices';
     this.defaultValues = {
-        _id: '',
-        stripe_order_id: '',
 		order_num: 0,
-        day: '',
-        cycle: '',
-        user_id: '',
-        kegsCount: 0,
-		keg_quantity: 0, //lets remove kegsCount; all db fields should use underscores like MySQL
+		keg_quantity: 0, 
         total: 0, 
-        created_at: 0,
-		venue_id: '',
-		type: '',
-		delivered: '',
 		paid: false
     };
 

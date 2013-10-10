@@ -1,44 +1,26 @@
 <template name="layout">
 
     <nav>
-        <!-- static content here like nav links -->
         <div id="navi-top" style="">
             <div class="navi-links-holder">
+				{{loginButtons align="right"}}
                 {{> _nav_bar}}
 
                 {{#if currentUser}}
-                <div id="loggedIn-user-info">
-                    <div id="user-info-avatar" style="background-image: url('{{Meteor.user.profile.avatar}}')"></div>
-                </div>
-                {{/if}}
 
-                {{loginButtons align="right"}}
+                {{/if}}                
             </div>
         </div>
-
     </nav>
 
-
-    <!-- the main template will be rendered here -->
-
     <div id="container">
-        <!-- <div class="row_container"> -->
-	
-            <header>
-                <!-- render to the header yield -->
-                {{yield 'header'}}
-            </header>
+         <header>{{yield 'header'}}</header>
 
-			{{> flashMessages}}
-			
-            {{yield}}
-
-        <!--</div> -->
+		{{> flashMessages}}
+		
+        {{yield}}
     </div>
 
-    <footer>
-        <!-- render to the footer yield -->
-        {{yield 'footer'}}
-    </footer>
+    <footer style="position:relative; z-index: 1;">{{yield 'footer'}}</footer>
 
 </template>

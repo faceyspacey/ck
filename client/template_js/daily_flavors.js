@@ -3,28 +3,30 @@
 Template.page_daily_flavors.helpers({
 	oddColor: function() { return oddEvenWeek() == 'odd' ? 'color: rgb(9, 97, 194)' : ''; },
 	evenColor: function() { return oddEvenWeek() == 'even' ? 'color: rgb(9, 97, 194)' : ''; },
-	kegsToDeliver: function(day, cycle, oddEven) {
-		return Template.daily_kegs_table({day: day, cycle: cycle, oddEven: oddEven});
-	}
+	
+	/** dayCycleAttributes **/
+	mondayWeekly: {payment_day: 'monday', payment_cycle: 'weekly'},
+	thursdayWeekly: {payment_day: 'thursday', payment_cycle: 'weekly'},
+	mondayBiWeeklyOdd: {payment_day: 'monday', payment_cycle: 'bi-weekly', odd_even: 'odd'},
+	thursdayBiWeeklyOdd: {payment_day: 'thursday', payment_cycle: 'bi-weekly', odd_even: 'odd'},
+	mondayBiWeeklyEven: {payment_day: 'monday', payment_cycle: 'bi-weekly', odd_even: 'even'},
+	thursdayBiWeeklyEven: {payment_day: 'thursday', payment_cycle: 'bi-weekly', odd_even: 'even'}
 });
 
 
 /** daily_kegs_table HELPERS, EVENTS & CALLBACKS **/
 
 Template.daily_kegs_table.helpers({
-	flavors: function(day, cycle, oddEven) {
-		var attributes = {payment_day: day, payment_cycle: cycle};		
-		if(_.isString(oddEven)) attributes.oddEven = oddEven;			
-		var kegs =  Kegs.find(attributes).fetch();
-
-		var flavors = _.countBy(kegs, function(keg) {
-			return keg.randomCompensatedFlavor()._id;
-		}); //returns {Orange: 4, Apple: 2, Cherry 7, etc:#}, but ids instead of names: {dfgljkdfg: 4, sljksdfljs:2}
+	flavors: function(dayCycleAttributes) {		
+		var kegs =  Kegs.find(dayCycleAttributes).fetch(),
+			flavors = _.countBy(kegs, function(keg) {
+				return keg.randomCompensatedFlavor()._id;
+			}); //returns {Orange: 4, Cherry 7}, but ids instead of names: {dfgljkdfg: 4, sljksdfljs: 7}
 	
 		return _.map(flavors, function(value, key) {
 			var flavor = Flavors.findOne(key);
-			return {name: flavor.name, icon: flavor.icon, quantity: value};
-		});
+			return {name: flavor.name, icon: flavor.icon, quantity: value}; 
+		}); //returns [{name: 'orange', etc: }, {name: 'strawberry, etc: }]
 	}
 });
 

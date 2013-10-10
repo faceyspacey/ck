@@ -1,17 +1,16 @@
 <template name="page_kegerator_installs">
     <div class="page-background" id="kegeratorInstalls">
-        <!-- <div class="open-dialog-btn">+ Add Venue</div> -->
 
         <h1 class="page_title" style="margin-bottom:25px;">Kegerator Installs</h1>
-
 
         <table class="items">
             <tbody>
             <tr>
                 <th style="width: 15%;">Venue Name</th>
                 <th style="width: 20%;">Address</th>
-                <th style="">Installed</th>
-                <th style="">Waiting for Installation</th>
+                <th style="">Equipment</th>
+                <th style="">Kegerator Requests</th>
+				<th style="">Tap Requests</th>
             </tr>
 
             {{#if venues }}
@@ -19,8 +18,27 @@
                 <tr>
                     <td>{{name}}</td>
                     <td>{{address}}</td>
-                    <td>{{>installed_kegerators}}</td>
-                    <td>{{>kegerators_to_install}}</td>
+
+                    <td>
+						<div class="kegerator-row"><span>{{tap_count}} Tap(s)</span> and <span>{{kegerator_count}} Kegerator(s)</span></div>
+					</td>
+					
+                    <td>
+						{{#if kegeratorInstalled}}
+							<div class="kegerator-row">Last Install: <br /> {{time kegerator_install_date}}</div>
+						{{else}}
+							<div class="kegerator-row">Requested on: <br /> {{time kegerator_request_date}}</div>
+							<div class="kegerator-installed-button customButton-blue">Installed</div>
+						{{/if}}
+					</td>
+					<td>
+						{{#if tapInstalled}}
+							<div class="kegerator-row">Last Install: <br /> {{time tap_install_date}}</div>
+						{{else}}
+							<div class="kegerator-row">Requested on: <br /> {{time tap_request_date}}</div>
+							<div class="tap-installed-button customButton-blue">Installed</div>
+						{{/if}}
+					</td>
                 </tr>
                 {{/each}}
             {{else}}
@@ -30,35 +48,6 @@
             {{/if}}
             </tbody>
         </table>
+
     </div>
-</template>
-
-
-<template name="installed_kegerators">
-    <div class="kegerator-count-row">{{{installedKegerators.count}}} kegerator(s) installed: </div>
-
-    <div class="installed-kegerators-container">
-        {{#each installedKegerators}}
-            <div class="installed-kegerator-intable">
-                <div class="kegerator-row">Type: <span>{{typeName}}</span></div>
-                <div class="kegerator-row">Requested at: <span>{{formattedRequestedAt}}</span></div>
-                <div class="kegerator-row">Installed at: <span>{{formattedInstalledAt}}</span></div>
-            </div>
-        {{/each}}
-    </div>
-</template>
-
-
-<template name="kegerators_to_install">
-    <div class="kegerator-count-row">{{{kegeratorsToInstall.count}}} kegerator(s) waiting: </div>
-
-    {{#each kegeratorsToInstall}}
-    	<div class="kegerator-to-install-intable">
-	        <div class="kegerator-row">Type: <span>{{typeName}}</span></div>
-	        <div class="kegerator-row">Requested at: <span>{{formattedRequestedAt}}</span></div>
-	        <div class="kegerator-row">
-	            <div class="installed-button customButton-blue">Installed</div>
-	        </div>
-	    </div>
-    {{/each}}
 </template>

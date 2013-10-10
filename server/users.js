@@ -20,7 +20,10 @@ Accounts.onCreateUser(function(options, user){
     var emailsWithRoles = [
         {email: "90.matheus@gmail.com", roles: ['admin']},
         {email: "james@faceyspacey.com", roles: ['admin']},
-        {email: "Tyler@consciouskombucha.com", roles: ['admin']},
+        {email: "tyler@consciouskombucha.com", roles: ['admin']},
+		{email: "tylerbeerman@gmail.com", roles: ['admin']},
+		{email: "sales@consciouskombucha.com", roles: ['admin']},
+		{email: "james@consciouskombucha.com", roles: ['admin']}
     ];
 
     var foundRoles = false;

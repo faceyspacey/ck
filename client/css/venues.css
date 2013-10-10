@@ -93,3 +93,60 @@ span.keg-fee{
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+
+/** keg charges **/
+
+.keg-charges-table {
+    width: 350px;
+    display: inline-block;
+    border: 1px solid #c7c7c7;
+}
+.keg-charges-table .keg-charge {
+    display: inline-block;
+    float: right;
+    text-align: right;
+    font-weight: bold;
+    width: 45px;
+}
+.keg-charges-table .keg-charges-flavor-row {
+    position: relative;
+    padding: 5px;
+    height: 20px;
+    font-size:12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px dotted #c7c7c7;
+    color: #444;
+    line-height: 20px;
+}
+.keg-charges-table .keg-charges-flavor-row:last-child {
+    border-bottom: 0;
+}
+.keg-charges-table .keg-charges-flavor-row .keg-charge{
+    margin-right: 0px;
+}
+.keg-charges-table .keg-charges-flavor-icon {
+    vertical-align: middle;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.keg-charges-table .keg-charges-flavor-name {
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
+}
+.keg-charges-table .keg-charges-flavor-count {
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+    width: 170px;
+    height: 20px;
+    line-height: 20px;
+}

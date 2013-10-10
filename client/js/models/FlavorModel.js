@@ -1,9 +1,6 @@
 FlavorModel = function(doc){
 	this.collectionName = 'Flavors';
     this.defaultValues = {
-        name: '',
-        icon: '',
-        keg_icon: '',
         is_public: false
     };
 

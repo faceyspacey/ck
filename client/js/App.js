@@ -7,14 +7,6 @@ App = (function(){
         {id: 'monday', name: 'Monday'},
         {id: 'thursday', name: 'Thursday'}
     ];
-    var kegTypes = {
-        1: { gallon: 5, price: 120 }
-    };
-    var kegeratorTypes = [
-		{}, //this is a temporary hack since I switched this to being an array
-        { id: 1, taps: 1, name: 'Single Tap Tower' },
-        { id: 2, taps: 2, name: 'Double Tap Tower' }
-    ];
 
 	var prices = {
 		fiveGallons: 120,
@@ -33,13 +25,6 @@ App = (function(){
         return kegeratorTypes;
     }
 
-    function getKegPrice(kegType){
-        console.log('price '+kegType);
-        if( typeof kegTypes[kegType] != 'undefined' )
-            return kegTypes[kegType].price;
-        return 0;
-    }
-
     function activateLink(page){
         $('#navi-top .navi-link').removeClass('active');
         $('#page_'+page+'_link').addClass('active');
@@ -48,8 +33,6 @@ App = (function(){
     return {
         paymentCycles: getPaymentCycles(),
         paymentDays: getPaymentDays(),
-        kegeratorTypes: getKegeratorTypes(),
-        getKegPrice: getKegPrice,
 		prices: prices,
         activateLink: activateLink
     };

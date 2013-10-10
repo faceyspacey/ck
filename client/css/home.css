@@ -1,4 +1,5 @@
 #home {
+	/**
     margin-top: -55px;
     margin-bottom: -55px;
     border-top: 55px solid black;
@@ -7,6 +8,7 @@
     height: 3703px;
     background: url('/images/home-bg.jpg') no-repeat top;
     background-color: black;
+**/
 }
 
 .action {

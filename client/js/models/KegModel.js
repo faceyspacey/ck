@@ -1,15 +1,10 @@
 KegModel = function(doc){
 	this.collectionName ='Kegs';
     this.defaultValues = {
-        _id: '',
-        flavor_id: '',
-        user_id: '',
-        venue_id: '',
         payment_cycle: 'weekly',
         payment_day: 'monday',
         odd_even: oddEvenWeek(),
-        type_id: 1,
-        price: 120,
+        price: App.prices.fiveGallons,
         keg_num: 1
     };
 

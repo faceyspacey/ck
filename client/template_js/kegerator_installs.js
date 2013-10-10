@@ -2,12 +2,15 @@
 
 Template.page_kegerator_installs.helpers({
 	venues: function(){
-	    return Venues.find({need_kegerator: true}, {sort: {kegerator_request_date: 1}});
+	    return Venues.find({}, {sort: {kegerator_request_date: -1, tap_request_date: -1}});
 	}
 });
 
 Template.page_kegerator_installs.events({
-    'click .installed-button': function(){
-        this.makeItInstalled();
+    'click .kegerator-installed-button': function() {
+		Venues.update(this._id, {$set: {kegerator_install_date: new Date}, $inc: {kegerator_count: 1}});
+    },
+	'click .tap-installed-button': function() {
+		Venues.update(this._id, {$set: {tap_install_date: new Date}, $inc: {tap_count: 1}});
     }
 });

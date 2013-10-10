@@ -38,6 +38,9 @@ Model = {
 		delete mongoValues.errors;
 		return mongoValues;
 	},
+	time: function(field) {
+		return moment(this[field]).format("ddd, MMM Do, h:mm a");
+	},
 	extend: function(doc) {
 		_.extend(this, this.defaultValues, doc);
 	}

@@ -38,66 +38,6 @@ overflow-y: scroll;
 overflow-x: hidden;
 }
 
-#navi-top {
-    position: fixed;
-    top:0;
-    width:100%;
-    min-height: 45px;
-    border-bottom: 1px solid #0069aa;
-    z-index: 1000;
-    box-shadow: 0 -2px 10px 10px rgba(0,0,0,0.5) !important;
-    -webkit-box-shadow: 0 -2px 10px 10px rgba(0,0,0,0.5) !important;
-    -moz-box-shadow: 0 -2px 10px 10px rgba(0,0,0,0.5) !important;
-    background-color:rgba(20, 20, 20, 0.5);
-    background-repeat:repeat-x;
-    background-image:-khtml-gradient(linear, left top, left bottom, from(rgba(100, 100, 100, 0.9)), to(rgba(0, 0, 0, 0.5)));
-    background-image:-moz-linear-gradient(top, rgba(100, 100, 100, 0.9), rgba(0, 0, 0, 0.5));
-    background-image:-ms-linear-gradient(top, rgba(100, 100, 100, 0.9), rgba(0, 0, 0, 0.5));
-    background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(100, 100, 100, 0.9)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-    background-image:-webkit-linear-gradient(top, rgba(100, 100, 100, 0.9), rgba(0, 0, 0, 0.5));
-    background-image:-o-linear-gradient(top, rgba(100, 100, 100, 0.9), rgba(0, 0, 0, 0.5));
-    background-image:linear-gradient(top, rgba(100, 100, 100, 0.9), rgba(0, 0, 0, 0.5));
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0.9)', endColorstr='rgba(0, 0, 0, 0.5)', GradientType=0);
-}
-.navi-links-holder{
-    /*width: 100%;*/
-    margin: 0 auto;
-    /*height: 40px;*/
-    line-height: 40px;
-    text-align: right;
-}
-#navi-top a.login-link-text,
-#navi-top a.navi-link{
-    font-weight: bold;
-    color:  lightskyblue !important;
-    text-decoration: none;
-    text-shadow: 1px 1px 8px Black;
-}
-.navi-link {
-    margin-left: 10px;
-}
-#navi-top a.login-link-text:hover,
-#navi-top a.navi-link:hover{
-    color:  lightcyan !important;
-}
-#navi-top .navi-link.admin-only {
-    color: limegreen !important;
-}
-#navi-top .navi-link.admin-only:hover {
-    color: greenyellow !important;
-}
-#navi-top .navi-link.active {
-    text-shadow: 1px 1px 8px Black,
-                0px 0px 30px White,
-                0px 0px 30px White,
-                0px 0px 30px White;
-}
-
-#login-buttons {
-    float: right;
-    margin: 12px 16px;
-}
-
 .page-background{
     display: block;
     width:960px;
@@ -131,6 +71,8 @@ overflow-x: hidden;
 #container {
     padding-top: 50px;
     margin-bottom: 60px;
+	z-index: 2;
+	position: relative;
 }
 
 .row_container {
@@ -284,22 +226,7 @@ h3.subtitle {
     height: 30px;
     line-height:30px;
     text-align: center;
-    box-shadow: 0 2px 10px 10px rgba(0,0,0,0.5) !important;
-    -webkit-box-shadow: 0 2px 10px 10px rgba(0,0,0,0.5) !important;
-    -moz-box-shadow: 0 2px 10px 10px rgba(0,0,0,0.5) !important;
-    border-top: 1px solid #0069aa;
-    background-color:rgba(20, 20, 20, 0.5);
-    background-repeat:repeat-x;
-    background-image:-khtml-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(100, 100, 100, 0.9)));
-    background-image:-moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.9));
-    background-image:-ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.9));
-    background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.9)), color-stop(100%, rgba(100, 100, 100, 0.9)));
-    background-image:-webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.9));
-    background-image:-o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.9));
-    background-image:linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(100, 100, 100, 0.9));
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0.5)', endColorstr='rgba(100, 100, 100, 0.9)', GradientType=0);
-/*position: fixed;
-left: 36%;*/
+
 }
 .learn {
 background: url('../../images/lrnmre.png') 0 0 no-repeat;

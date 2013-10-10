@@ -1,0 +1,16 @@
+.alert {
+    display: block;
+    width:960px;
+    position: relative;
+    margin: 20px auto;
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border:1px solid rgba(29, 69, 99, 0.29);
+    background: url('/images/diagonal-noise.png') repeat;
+    box-shadow: 0 0 10px #72C4FC !important;
+    -webkit-box-shadow: 0 0 10px #72C4FC !important;
+    -moz-box-shadow: 0 0 10px #72C4FC !important;
+    /*background: rgba(173, 216, 230, 0.8);*/
+}

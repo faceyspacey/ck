@@ -32,7 +32,14 @@ Template.venue_grid_row.events({
 		Router.go('setKegs', {id: this._id});
 	},
 	'click .request-kegerator-btn': function(e) {
-		Router.go('requestKegerator', {id: this._id})
+		if(confirm("Are you sure you'd like another (FREE!) kegerator for your venue?")) {
+			Venues.update(this._id, {$set: {kegerator_request_date: new Date}});
+		}
+	},
+	'click .add-double-tap-btn': function(e) {
+		if(confirm("Are you sure you'd like to replace your current tap tower with a {FREE!) double tower?")) {
+			Venues.update(this._id, {$set: {tap_request_date: new Date}});
+		}
 	}
 });
 

@@ -1,75 +1,29 @@
 VenueModel = function(doc){
 	this.collectionName ='Venues';
 	this.defaultValues = {
-        user_id: '',
-        name: '',
-        address: '',
-        email: '',
-        phone: '',
-        facebook: '',
-        //kegerators: 0,
-        twitter: '',
-        need_kegerator: true,
-        kegerator_request_date: 0,
-        delivered: true,
-        delivery_date: 0,
-        instagram: '',
-        youtube: '',
-        usedFlavors: '',
-        created_at: 0,
-        updated_at: 0
-    };
-
+		kegerator_count: 0,
+		tap_count: 0,
+		kegerator_request_date: new Date,
+		tap_request_date: new Date
+	};
+	
     this.afterInsert = function(){
-        var kegerator = new KegeratorModel();
-        kegerator.save({venue_id: this._id});
     };
 
+	this.kegeratorInstalled = function() {
+		return this.kegerator_install_date > this.kegerator_request_date;
+	};
+	
+	this.tapInstalled = function() {
+		return this.tap_install_date > this.tap_request_date;
+	};
+		
     this.user = function(){
         return Meteor.users.findOne(this.user_id);
     };
 
     this.kegs = function() {
         return Kegs.find({venue_id: this._id});
-    };
-
-    this.getKegerators = function(options){
-		var condition = {};
-        _.extend(condition, options);
-        _.extend(condition, {venue_id: this._id});
-        return Kegerators.find(condition);
-    };
-    this.getKegeratorTaps = function(){
-        var taps = 0;
-        Kegerators.find({venue_id: this._id}).forEach(function(kegerator){
-            taps += kegerator.taps();
-        });
-
-        return taps;
-    };
-
-    this.installedKegerators = function(){
-        return this.getKegerators({installed: true});
-    };
-    this.kegeratorsToInstall = function(){
-        return this.getKegerators({installed: {$not: true}});
-    };
-
-    this.checkKegeratorRequests = function(){
-        if(this.kegeratorsToInstall().count()) this.save({need_kegerator: false});
-        else this.save({need_kegerator: false, kegerator_request_date: 0});
-    };
-
-    this.makeDelivered = function(){
-        this.save({delivered: true, delivery_date: new Date});
-    };
-
-    this.readyToDeliver = function(){
-		this.save({delivered: false, delivery_date: 0});
-    };
-
-    this.formattedDeliveredAt = function() {
-		return this.delivery_date ? '-' : moment(this.deliveredAt).format("ddd, MMM Do, h:mm a");
     };
 
     this.addKeg = function(attributes) {

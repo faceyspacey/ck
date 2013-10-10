@@ -1,16 +1,3 @@
-/** Matheus, this is the old Router system from the Meteorite package manager.
-I don't know if this is how they do it anymore, but feel free to implement your
-own way of creating pages **/
-
-/*
-Meteor.Router.add({
-    '/:page': function(page) {
-        Session.set('page', page);
-        return 'page_'+page;
-    }
-});
-*/
-
 Router.map(function() {
 
     /* ----- Public pages ----- */
@@ -159,15 +146,9 @@ Router.configure({
 
     before: function() {
         var routeName = this.context.route.name;
-        // no need to check at these URLs
-        if (_.include(['home'], routeName))
-            return;
+        if (_.include(['home'], routeName)) return;
 
-        if (_.include(['home'], routeName))
-            return;
-
-        var user = Meteor.user();
-        if (! user) {
+        if (!Meteor.user()) {
             this.render('page_home');
             return this.stop();
         }
@@ -176,5 +157,5 @@ Router.configure({
 
 FlashMessages.configure({
     autoHide: true,
-	hideDelay: 7000
+	delay: 7000
   });
