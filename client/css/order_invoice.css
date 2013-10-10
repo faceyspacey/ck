@@ -1,0 +1,13 @@
+
+#order-container {
+    margin: 0 !important;
+    padding: 60px;
+    height: 100%;
+    background: white;
+}
+
+#order-container-table {
+    box-shadow: -3px 3px 10px -2px grey;
+    -webkit-box-shadow: -3px 3px 10px -2px grey;
+    -moz-box-shadow: -3px 3px 10px -2px grey;
+}

@@ -2,7 +2,7 @@ Flavors = new Meteor.Collection('flavors');
 
 Meteor.publish("flavors", function () {
     if(Roles.userIsInRole(this.userId, ['admin'])) return Flavors.find({});
-    else return Flavors.find({public: true});
+    else return Flavors.find({is_public: true});
 });
 
 

@@ -14,10 +14,10 @@
 				<th style="">Paid</th>
 				<th style="">Delivered</th>
             </tr>
-            {{#if invoiceList}}
-                {{#each invoiceList}}
+            {{#if invoices}}
+                {{#each invoices}}
                 <tr>
-                    <td><a class="invoice-order-id-link" href="/orders/{{order_num}}">#{{order_num}}</a></td>
+                    <td><a class="invoice-order-id-link" href="javascript: Router.go('order', {order_num: '{{order_num}}'});">#{{order_num}}</a></td>
 					<td>{{paymentPeriodType}}</td>
 					<td>{{deliveryDayOfWeek}}</td>
                     <td>{{actualPaidDate}}</td>

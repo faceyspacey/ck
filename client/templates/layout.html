@@ -1,5 +1,7 @@
 <template name="layout">
-
+    {{#if isCurrentPage 'order'}}
+        {{yield}}
+    {{else}}
     <nav>
         <div id="navi-top" style="">
             <div class="navi-links-holder">
@@ -17,10 +19,12 @@
          <header>{{yield 'header'}}</header>
 
 		{{> flashMessages}}
-		
+
         {{yield}}
     </div>
 
     <footer style="position:relative; z-index: 1;">{{yield 'footer'}}</footer>
+
+    {{/if}}
 
 </template>

@@ -5,10 +5,22 @@ Router.map(function() {
         path: '/',
         template: 'page_home',
         renderTemplates: {
-            'footer': {to: 'footer'}
+            'footer': {to: 'footer'},
         },
         data: {}
     });
+    this.route('order', {
+        path: '/order/:order_num',
+        template: 'page_order_invoice',
+        controller: 'OrdersController',
+        action: 'show',
+    });
+    /*this.route('order', {
+        path: '/orders/:id',
+        layout: 'layout_empty',
+        template: 'page_order_invoice',
+        data: function(){ return {order_id: this.params.id}; }
+    });*/
 
     /* ----- Login-required pages ----- */
     this.route('myProfile', {
@@ -26,11 +38,11 @@ Router.map(function() {
         template: 'page_invoices',
         data: {title: "My Invoices", user_id: Meteor.userId()},
     });
-	this.route('order', {
+	/*this.route('order', {
         path: '/orders/:order_num',
         template: 'page_order',
         data: function(){ return {_id: this.params.order_num} },
-    });
+    });*/
     this.route('myVenues', {
         path: '/myVenues',
         template: 'page_venues',
@@ -155,7 +167,28 @@ Router.configure({
     },
 });
 
+OrdersController = RouteController.extend({
+
+    data: function () {
+        return Invoices.findOne({order_num: parseInt(this.params.order_num)});
+    },
+
+    show: function () {
+        // render the RouteController's template into the main yield location
+        this.render();
+    }
+});
+
 FlashMessages.configure({
     autoHide: true,
 	delay: 7000
   });
+
+
+Handlebars.registerHelper("isCurrentPage", function(page) {
+    //console.log(Router.current());
+    if( Router.current() )
+        return Router.current().route.name == page;
+    return false;
+});
+
