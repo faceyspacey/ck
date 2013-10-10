@@ -3,82 +3,73 @@
 
         <h1 class="page_title" style="margin-bottom:25px;">Delivery</h1>
 
-        <table class="items">
-            <tbody>
-            <tr>
-                <th style="width: 10%;">Venue Name</th>
-                <th style="width: 15%;">Address</th>
-                <th style="">Monday</th>
-                <th style="width: 15%;">Actions</th>
-            </tr>
-            {{#if venues }}
-            	{{#each venues }}
-	            <tr>
-	                <td>{{name}}</td>
-	                <td>{{address}}</td>
-	                <td>
-                        Random flavor:
-	                    {{#each getRandomFlavorToday _id 'monday'}}
-	                    	<div class="venue-rare-flavor-icon" style="background-image:url('{{icon}}');">{{name}}</div>
-	                    {{/each}}
-	                </td>
-	                <td class="action-buttons">
-	                    <div class="delivered-btn-container">
-	                        {{#if delivered}}
-	                        	<div class="venue-delivered-row">Delivered at: <div class="info">{{formattedDeliveredAt}}</div></div>
-	                        {{else}}
-	                        	<div class="delivered-venue-btn customButton-blue"> Delivered </div>
-	                        {{/if}}
-	                    </div>
-	                </td>
-	            </tr>
-	            {{/each}}
-            {{else}}
-            <tr>
-                <td colspan="4"> You have no venues added yet. </td>
-            </tr>
-            {{/if}}
-            </tbody>
-        </table>
+        <h2 class="subtitle" style="margin:10px auto;">Subscriptions for Monday</h1>
 
+        {{>delivery_table mondayObject}}
 
-        <table class="items">
-            <tbody>
-            <tr>
-                <th style="width: 10%;">Venue Name</th>
-                <th style="width: 15%;">Address</th>
-                <th style="">Thursday</th>
-                <th style="width: 15%;">Actions</th>
-            </tr>
-            {{#if venues }}
-            {{#each venues }}
-            <tr>
-                <td>{{name}}</td>
-                <td>{{address}}</td>
-                <td>
-                    {{#each getRandomFlavorToday _id 'thursday'}}
-                    Random flavor:
-                    <div class="venue-rare-flavor-icon" style="background-image:url('{{icon}}');">{{name}}</div>
-                    {{/each}}
-                </td>
-                <td class="action-buttons">
-                    <div class="delivered-btn-container">
-                        {{#if delivered}}
-                        <div class="venue-delivered-row">Delivered at: <div class="info">{{formattedDeliveredAt}}</div></div>
-                        {{else}}
+        <h2 class="subtitle" style="margin:10px auto;">Subscriptions for Thursday</h1>
+
+        {{>delivery_table thursdayObject}}
+
+    </div>
+</template>
+
+<template name="delivery_table">
+    <table class="items">
+        <tbody>
+        <tr>
+            <th style="width: 15%;">Venue Name</th>
+            <th style="width: 20%;">Address</th>
+            <th style="">Kegs to deliver on Monday</th>
+            <th style="width: 25%;">Actions</th>
+        </tr>
+        {{#unless venues }}
+        <tr>
+            <td colspan="4"> You have no venues added yet. </td>
+        </tr>
+        {{/unless}}
+
+        {{#each venues }}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{address}}</td>
+            <td>
+                <div class="kegs-to-deliver-container">
+                {{#each kegsToDeliverByFlavor ../this}}
+                    {{>delivery_kegs_flavor_row this}}
+                {{/each}}
+
+                {{#unless kegsToDeliverByFlavor ../this}}
+                    {{>delivery_kegs_flavor_row_empty}}
+                {{/unless}}
+                </div>
+            </td>
+            <td class="action-buttons">
+                <div class="delivered-btn-container">
+                    {{#if canBeDelivered}}
                         <div class="delivered-venue-btn customButton-blue"> Delivered </div>
-                        {{/if}}
-                    </div>
-                </td>
-            </tr>
-            {{/each}}
-            {{else}}
-            <tr>
-                <td colspan="4"> You have no venues added yet. </td>
-            </tr>
-            {{/if}}
-            </tbody>
-        </table>
+                    {{else}}
+                        <div class="venue-delivered-row">Last delivery: <div class="info">{{time delivery_date}}</div></div>
+                    {{/if}}
+                </div>
+            </td>
+        </tr>
+        {{/each}}
 
+        </tbody>
+    </table>
+</template>
+
+<template name="delivery_kegs_flavor_row">
+        <div class="delivery-kegs-flavor-row">
+            <div class="delivery-kegs-flavor-icon" style="background-image:url('{{icon}}');"></div>
+            <div class="delivery-kegs-flavor-name">{{name}}:</div>
+            <span class="delivery-kegs-flavor-count">{{count}} keg(s)</span>
+        </div>
+</template>
+
+<template name="delivery_kegs_flavor_row_empty">
+    <div class="delivery-kegs-flavor-row">
+        You have no kegs set for this venue.
     </div>
 </template>

@@ -14,3 +14,49 @@
     background-repeat: no-repeat;
     background-size: 20px;
 }
+
+
+.kegs-to-deliver-container {
+    width: 250px;
+    border: 1px solid #c7c7c7;
+}
+
+.kegs-to-deliver-container  .delivery-kegs-flavor-row {
+    position: relative;
+    padding: 5px;
+    height: 20px;
+    font-size:12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px dotted #c7c7c7;
+    color: #444;
+    line-height: 20px;
+}
+
+.kegs-to-deliver-container .delivery-kegs-flavor-count {
+    display: inline-block;
+    float: right;
+    text-align: right;
+    font-weight: bold;
+    width: 80px;
+}
+.kegs-to-deliver-container  .delivery-kegs-flavor-row:last-child {
+    border-bottom: 0;
+}
+
+.kegs-to-deliver-container .delivery-kegs-flavor-icon {
+    vertical-align: middle;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.kegs-to-deliver-container .delivery-kegs-flavor-name {
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
+}

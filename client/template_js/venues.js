@@ -48,7 +48,7 @@ Template.venue_grid_row.events({
 
 Template.keg_charges_table.helpers({
 	kegs: function(){
-        return this.kegs();
+        return this.kegs().count() ? this.kegs() : '';
 	}
 });
 

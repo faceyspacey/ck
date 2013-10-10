@@ -1,10 +1,22 @@
+// Since we dont store default values, we need to track what variables we have for each models.
+
+/** VenueModel attributes:
+*
+*   @kegerator_count            Intiger
+*   @tap_count                  Intiger
+*   @delivery_date              Date
+*   @kegerator_request_date     Date
+*   @tap_request_date           Date
+*/
+
 VenueModel = function(doc){
 	this.collectionName ='Venues';
 	this.defaultValues = {
 		kegerator_count: 0,
 		tap_count: 0,
 		kegerator_request_date: new Date,
-		tap_request_date: new Date
+		tap_request_date: new Date,
+        delivery_date : new Date(0),
 	};
 	
     this.afterInsert = function(){
