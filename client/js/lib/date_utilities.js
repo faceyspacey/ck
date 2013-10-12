@@ -13,6 +13,20 @@ getWeekNumber = function(d) {
     return weekNumber;
 }
 
+nextDateObj = function(d, dayOfWeek, partOfDay){
+    dayOfWeek = dayOfWeek ? dayOfWeek.toLowerCase() : 'mon';
+    var today = d ? new Date(d) : new Date(),
+        indexOfDay = dayOfWeek.length == 3 ? shortDaysArray().indexOf(dayOfWeek) : longDaysArray().indexOf(dayOfWeek),
+        correction = (today.getDay() == 0 || today.getDay() == indexOfDay) ? indexOfDay : indexOfDay+7,
+        nextMonday = new Date(today.getFullYear(), today.getMonth(), today.getDate()-today.getDay()+correction);
+
+    switch(partOfDay){
+        case 'end':     return new Date(nextMonday.getTime() + 24*60*60*1000 - 1); // 23:59:59.999
+        case 'start':   return nextMonday; // 00:00:00.0
+        default:        return nextMonday;
+    }
+}
+
 oddEvenWeek = function(d) {
 	var weekNumber = getWeekNumber(d);
 	return weekNumber % 2 ? 'odd' : 'even';
@@ -45,4 +59,20 @@ monthsArray = function() {
 		{index:10, name: 'November'},
 		{index:11, name: 'December'}
 	];
+};
+
+shortDaysArray = function() {
+    return ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+};
+
+longDaysArray = function() {
+    return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+};
+
+Date.prototype.setString = function(string){
+    var splitted = string.split(" ");
+    if( splitted.length == 1 ){
+        this.setTime( this.getTime() + parseInt(splitted[0]) );
+    }
+    return this;
 };

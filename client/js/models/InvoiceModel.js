@@ -1,3 +1,17 @@
+
+/** InvoiceModel attributes:
+ *
+ *  _id                         Str
+ *  user_id                     Str
+ *  venue_id                    Str
+ *  type                        Str     =>  "one_off", "subscription"
+ *  order_num                   Int
+ *  keg_quantity                Int
+ *  total                       Int
+ *  paid                        Bool
+ *
+ */
+
 InvoiceModel = function(doc){
 	this.collectionName ='Invoices';
     this.defaultValues = {
@@ -19,13 +33,14 @@ InvoiceModel = function(doc){
         return Venues.findOne(this.venue_id);
     };
 
-	this.invoiceItems = function(){
-        return InvoiceItems.find({invoice_id: this._id});
+	this.invoiceItems = function(condition){
+        var attributes = _.extend(_.extend({}, condition), {invoice_id: this._id});
+        return InvoiceItems.find(attributes);
     };
 
 	this.paymentPeriodType = function() {
 		if(this.type == 'one_off') return 'One Off Order';
-		else return this.payment_cycle.substr(0, 1).toUpperCase() + this.payment_cycle.substr(1)
+		else return 'Weekly'; //this.payment_cycle.substr(0, 1).toUpperCase() + this.payment_cycle.substr(1)
 	};
 	
 	this.deliveryDayOfWeek = function() {
@@ -51,13 +66,6 @@ InvoiceModel = function(doc){
 		if(this.payment_failed) return 'FAILED';
 		if(!this.is_stripe_customer && !this.paid) return 'AWAITING CHECK';
 	};
-
-    this.LineItems = function(options){
-        var option = {};
-        _.extend(option, options);
-        option.invoice_id = this._id;
-        return LineItems.find(option);
-    };
 
     this.formattedCreatedAt = function(){
         //date formatting comes here

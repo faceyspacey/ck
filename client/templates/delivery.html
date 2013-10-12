@@ -47,7 +47,7 @@
             <td class="action-buttons">
                 <div class="delivered-btn-container">
                     {{#if canBeDelivered}}
-                        <div class="delivered-venue-btn customButton-blue"> Delivered </div>
+                        <div class="delivered-venue-btn customButton-blue" data-pday="{{../../payment_day}}"> Delivered </div>
                     {{else}}
                         <div class="venue-delivered-row">Last delivery: <div class="info">{{time delivery_date}}</div></div>
                     {{/if}}

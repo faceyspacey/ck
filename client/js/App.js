@@ -8,6 +8,12 @@ App = (function(){
         {id: 'thursday', name: 'Thursday'}
     ];
 
+    var kegTypes = {
+        1: {price: 120, size: 5, name: '5 Gallons'},
+        2: {price: 150, size: 5, name: '5 Gallons'},
+        3: {price: 100, size: 5, name: '5 Gallons'},
+        4: {price: 300, size: 15, name: '15 Gallons'}
+    };
 	var prices = {
 		fiveGallons: 120,
 		fiveGallonsOneOff: 150,
@@ -34,6 +40,7 @@ App = (function(){
         paymentCycles: getPaymentCycles(),
         paymentDays: getPaymentDays(),
 		prices: prices,
+        kegTypes: kegTypes,
         activateLink: activateLink
     };
 })();
@@ -48,6 +55,3 @@ Array.min = function( array ){
     return Math.min.apply( Math, array );
 };
 
-String.prototype.ucfirst = function() {
-    return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
-}

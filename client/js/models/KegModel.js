@@ -5,6 +5,7 @@ KegModel = function(doc){
         payment_day: 'monday',
         odd_even: oddEvenWeek(),
         price: App.prices.fiveGallons,
+        type: 1,
         keg_num: 1
     };
 
@@ -31,6 +32,10 @@ KegModel = function(doc){
     this.venue = function(){
         return Venues.findOne(this.venue_id);
     };
+
+    this.getType = function(){
+        return App.kegTypes[this.type];
+    }
 
     this.chargePeriod = function(){
         return this.payment_cycle + '-' + this.payment_day;

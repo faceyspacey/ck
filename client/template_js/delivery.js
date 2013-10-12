@@ -10,12 +10,11 @@ Template.page_delivery.helpers({
 
 Template.delivery_table.helpers({
     venues: function(){
-        var venue_ids = _.keys(_.groupBy(Kegs.find({payment_day: this.payment_day}).fetch(), function(keg){ return keg.venue_id; }));
+        var venue_ids = _.keys(_.groupBy(Kegs.find({payment_day: this.payment_day}).fetch(), 'venue_id'));
         return Venues.find({_id: {$in: venue_ids}}, {sort: {name: 1}});
     },
     kegsToDeliverByFlavor: function(dayObject){
         var flavors = [];
-        console.log(Kegs.find({payment_day: dayObject.payment_day, venue_id: this._id}).fetch());
         _.each(_.groupBy(Kegs.find({payment_day: dayObject.payment_day, venue_id: this._id}).fetch(), function(keg){ return keg.randomCompensatedFlavor()._id;}), function(kegs, flavor_id){
             var flavor = Flavors.findOne(flavor_id);
             flavors.push({
@@ -26,15 +25,24 @@ Template.delivery_table.helpers({
         });
         return flavors;
     },
-    canBeDelivered: function(){
-        return this.delivery_date < ((new Date)-2.2*24*60*60*1000);
+    canBeDelivered: function(searchObject){
+        return Invoices.find({
+                created_at: {$gte: nextDateObj(new Date, searchObject.day, 'start')},
+                venue_id: this._id,
+                type: 'subscription'
+        }).count() == 0 && Invoices.find({
+                venue_id: this._id,
+                type: 'subscription',
+                paid: false
+        }).count() == 0;
     }
 });
 
 Template.delivery_table.events({
-    'click .delivered-venue-btn': function(){
+    'click .delivered-venue-btn': function(e){
+        var payment_day = $(e.target).data('pday');
         if( confirm('Are all ordered items delivered to this venue? ('+this.name+')') )
-            this.save({delivery_date: new Date});
-    },
+            this.placeSubscriptionOrder({payment_day: payment_day});
+    }
 });
 

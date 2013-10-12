@@ -38,8 +38,8 @@ background-size: cover;
 overflow-y: scroll;
 overflow-x: hidden;
 }
-body.order_invoice {
-    background: white;
+body.white-bg {
+    background: white !important;
 }
 
 .page-background{
