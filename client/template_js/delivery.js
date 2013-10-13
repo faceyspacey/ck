@@ -14,7 +14,7 @@ Template.delivery_table.helpers({
             {payment_day: this.payment_day, payment_cycle: 'bi-weekly', odd_even: oddEvenWeek(nextDateObj(new Date, this.payment_day))},
             {payment_day: this.payment_day, payment_cycle: 'weekly'},
         ]}).fetch(), 'venue_id'));
-        console.log(venue_ids);
+        //console.log(venue_ids);
         return Venues.find({_id: {$in: venue_ids}}, {sort: {name: 1}});
     },
     kegsToDeliverByFlavor: function(dayObject){
@@ -33,12 +33,13 @@ Template.delivery_table.helpers({
         return flavors;
     },
     canBeDelivered: function(payment_day){
-        return Invoices.find({
-                created_at: {$gte: new Date(-2*24*60*60*1000)},
-                payment_day: payment_day,
-                venue_id: this._id,
-                type: 'subscription'
-        }).count() == 0 && Invoices.find({
+        return Invoices.find({$and: [
+            {requested_delivery_date: {$gte: nextDateObj(new Date(), payment_day, 'start')}},
+            {requested_delivery_date: {$lte: nextDateObj(new Date(), payment_day, 'end')}},
+            {payment_day: payment_day,
+            venue_id: this._id,
+            type: 'subscription'},
+        ]}).count() == 0 && Invoices.find({
                 venue_id: this._id,
                 type: 'subscription',
                 paid: false

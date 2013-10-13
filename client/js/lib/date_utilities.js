@@ -21,9 +21,10 @@ nextDateObj = function(d, dayOfWeek, partOfDay){
         nextMonday = new Date(today.getFullYear(), today.getMonth(), today.getDate()-today.getDay()+correction);
 
     switch(partOfDay){
-        case 'end':     return new Date(nextMonday.getTime() + 24*60*60*1000 - 1); // 23:59:59.999
-        case 'start':   return nextMonday; // 00:00:00.0
-        default:        return nextMonday;
+        case 'end':         return new Date(nextMonday.getTime() + 24*60*60*1000 - 1); // 23:59:59.999
+        case 'noon':        return new Date(nextMonday.getTime() + 12*60*60*1000); // 12:00:00.0
+        case 'start':       return nextMonday; // 00:00:00.0
+        default:            return nextMonday;
     }
 }
 
@@ -69,10 +70,7 @@ longDaysArray = function() {
     return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 };
 
-Date.prototype.setString = function(string){
-    var splitted = string.split(" ");
-    if( splitted.length == 1 ){
-        this.setTime( this.getTime() + parseInt(splitted[0]) );
-    }
+Date.prototype.add = function(miliseconds){
+    this.setTime( this.getTime() + parseInt(miliseconds) );
     return this;
 };

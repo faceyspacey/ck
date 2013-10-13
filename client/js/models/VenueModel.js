@@ -70,10 +70,17 @@ VenueModel = function(doc){
         return invoice ? invoice.actualDeliveryDate() : 'Not Delivered Yet';
     }
 
+    this.hasUnpaidInvoice = function(){
+        return Invoices.find({
+            venue_id: this._id,
+            type: 'subscription',
+            paid: false
+        }).count();
+    }
+
     this.kegsForSubscription = function(condition){
         var flavors = [];
 
-        var oddEven =
         _.each(_.groupBy(_.sortBy(this.kegs(condition).fetch(), 'payment_cycle'), function(keg){
             return keg.payment_cycle + '-' + keg.payment_day + '-' + keg.flavor_id + '-' + keg.price;
         }), function(kegs, period){
@@ -102,7 +109,7 @@ VenueModel = function(doc){
         var invoiceId = this.createInvoice({
             type: 'subscription',
             payment_day: subscriptionAttributes.payment_day,
-            requested_delivery_date: new Date,
+            requested_delivery_date: nextDateObj(new Date(), subscriptionAttributes.payment_day, 'noon'),
             actual_delivery_date: new Date,
             delivered: true
         });
