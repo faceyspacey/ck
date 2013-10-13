@@ -47,3 +47,17 @@
     font-weight: normal;
     font-size: 14px;
 }
+
+.profile-venue-charges-box{
+    vertical-align: top;
+    display:inline-block;
+    width: 46%;
+    border:1px solid #c7c7c7;
+    padding: 5px 6px 5px 4px;
+    margin: 5px;
+    background: rgba(255,255,255,0.4);
+}
+
+.profile-venue-charges-box .keg-charges-table {
+    width: 100%;
+}
