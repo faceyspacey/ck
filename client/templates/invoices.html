@@ -13,6 +13,9 @@
                 <th style="">Total</th>
 				<th style="">Paid</th>
 				<th style="">Delivered</th>
+                {{#if isAllInvoice this}}
+                    <th style="">Venue</th>
+                {{/if}}
             </tr>
             {{#if invoices}}
                 {{#each invoices}}
@@ -25,6 +28,9 @@
                     <td>${{total}}</td>
 					<td>{{paidInfo}}</td>
                     <td>{{actualDeliveryDate}}</td>
+                    {{#if isAllInvoice ../../this}}
+                        <td style="">{{venue.name}}<br/>{{venue.address}}</td>
+                    {{/if}}
                 </tr>
                 {{/each}}
             {{else}}

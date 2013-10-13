@@ -29,7 +29,7 @@ Template.page_users.events({
         else Router.go('clientVenues', {id: this._id});
     },
     'click .user-orders-btn' : function(){
-        if(Meteor.userId() == this._id) Router.go('myOrders');
-        else Router.go('clientOrders', {id: this._id});
+        if(Meteor.userId() == this._id) Router.go('myInvoices');
+        else Router.go('clientInvoices', {id: this._id});
     }
 });

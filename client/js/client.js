@@ -102,6 +102,11 @@ Router.map(function() {
         template: 'page_invoices',
         data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Invoices", user_id: this.params.id}; },
     });
+    this.route('allInvoices', {
+        path: '/allInvoices',
+        template: 'page_invoices',
+        data: function(){ return {title: "All Invoices", user_id: 'all'}; },
+    });
     this.route('users', {
         path: '/users/:role',
         template: 'page_users',
