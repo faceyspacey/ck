@@ -43,23 +43,21 @@
 	color: white;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px gray;
-	width: 100%;
 	text-align: left;
-	text-indent: 10px;
-	
-	
+	text-indent: 9px;
+    border: 1px solid transparent;
+    margin: 0px -1px;
 }
 
 .nav-menu a:hover {
     color:  white;
-	background-color: black;
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
 	border-radius: 2px;
 
 	border-left: 1px solid #0069aa;
 	border-right: 1px solid #0069aa;
-	margin-left:-1px;
+    margin-left: -1px;
 
 	background: rgb(34,34,38); /* Old browsers */
 	background: -moz-linear-gradient(top,  rgba(34,34,38,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
@@ -92,16 +90,13 @@
 
 **/
 
-#admin_links {
-	position: absolute;
-	right: 330px;
-	opacity: .95;
-}
-
+#admin_links,
 #customer_links {
-	width: 120px;
 	position: absolute;
-	right: 205px;
+    width: 100%;
+	top: 0px;
+    left: 0px;
+    margin: 0;
 	opacity: .95;
 }
 
@@ -120,12 +115,18 @@
 }
 
 .nav-link {
-	font-size: 14px;
-	float: right;
-	color: white;
-	text-shadow: 1px 1px gray;
-	text-decoration: underline;
-	margin: 1px 5px;
+}
+
+.links-parent {
+    font-size: 14px;
+    float: right;
+    color: white;
+    text-shadow: 1px 1px gray;
+    text-decoration: underline;
+    position: relative;
+    margin: 0px 5px;
+    padding: 2px 8px;
+    text-indent: 2px;
 }
 
 #administration_panel_link {

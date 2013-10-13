@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab780d15-ed56-4034-a954-81edd1255e67" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/_nav_bar.css" afterPath="$PROJECT_DIR$/client/css/_nav_bar.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/_nav_bar.html" afterPath="$PROJECT_DIR$/client/templates/_nav_bar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/client.js" afterPath="$PROJECT_DIR$/client/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/invoices.html" afterPath="$PROJECT_DIR$/client/templates/invoices.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/invoices.js" afterPath="$PROJECT_DIR$/client/template_js/invoices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/users.js" afterPath="$PROJECT_DIR$/client/template_js/users.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ckhome.iws" />
@@ -117,7 +114,8 @@
     <file path="/order_invoice.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381623518573" ignored="false" />
     <file path="/main_order.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381604536185" ignored="false" />
     <file path="/order_kegs.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381606175993" ignored="false" />
-    <file path="/_nav_bar.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381626988334" ignored="false" />
+    <file path="/_nav_bar.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381680813280" ignored="false" />
+    <file path="/_nav_bar.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381682264031" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,28 +135,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="client.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="34" selection-start="2987" selection-end="2987" vertical-scroll-proportion="0.026548672">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="delivery.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/template_js/delivery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="42" selection-start="1479" selection-end="1479" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/templates/users.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="87" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.0">
+            <state line="123" column="7" selection-start="3811" selection-end="3811" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -194,17 +174,41 @@
       <file leaf-file-name="_nav_bar.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/templates/_nav_bar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="2321" selection-end="2321" vertical-scroll-proportion="0.0">
+            <state line="12" column="28" selection-start="795" selection-end="795" vertical-scroll-proportion="-7.5">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="23" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="invoices.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/invoices.js">
+      <file leaf-file-name="_nav_bar.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/css/_nav_bar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="3" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
+            <state line="51" column="19" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.6637168">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_nav_bar.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/template_js/_nav_bar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="17" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1381682399901" expanded="false" signature="366:387" placeholder="..." />
+                <marker date="1381682399901" expanded="false" signature="587:608" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -245,8 +249,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/client/js/models/KegModel.js" />
-        <option value="$PROJECT_DIR$/client/js/App.js" />
         <option value="$PROJECT_DIR$/client/js/lib/string_utilities.js" />
         <option value="$PROJECT_DIR$/server/invoices.js" />
         <option value="$PROJECT_DIR$/client/js/models/InvoiceModel.js" />
@@ -257,10 +259,12 @@
         <option value="$PROJECT_DIR$/client/templates/delivery.html" />
         <option value="$PROJECT_DIR$/client/template_js/delivery.js" />
         <option value="$PROJECT_DIR$/client/template_js/users.js" />
-        <option value="$PROJECT_DIR$/client/templates/_nav_bar.html" />
         <option value="$PROJECT_DIR$/client/js/client.js" />
         <option value="$PROJECT_DIR$/client/template_js/invoices.js" />
         <option value="$PROJECT_DIR$/client/templates/invoices.html" />
+        <option value="$PROJECT_DIR$/client/templates/_nav_bar.html" />
+        <option value="$PROJECT_DIR$/client/template_js/_nav_bar.js" />
+        <option value="$PROJECT_DIR$/client/css/_nav_bar.css" />
       </list>
     </option>
   </component>
@@ -555,21 +559,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/template_js/order_kegs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="26" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/one_offs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="11" selection-start="544" selection-end="544" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/css/order_invoice.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="419" selection-end="419" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/order_invoice.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="76" selection-start="786" selection-end="786" vertical-scroll-proportion="-6.875" />
@@ -604,13 +593,6 @@
     <entry file="file://$PROJECT_DIR$/server/invoices.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="3" selection-start="253" selection-end="253" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/templates/_nav_bar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="2321" selection-end="2321" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -652,7 +634,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/js/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="34" selection-start="2987" selection-end="2987" vertical-scroll-proportion="0.026548672">
+        <state line="123" column="7" selection-start="3811" selection-end="3811" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="23" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/templates/_nav_bar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="28" selection-start="795" selection-end="795" vertical-scroll-proportion="-7.5">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/_nav_bar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="17" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1381682399901" expanded="false" signature="366:387" placeholder="..." />
+            <marker date="1381682399901" expanded="false" signature="587:608" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/css/_nav_bar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="19" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.6637168">
           <folding />
         </state>
       </provider>
