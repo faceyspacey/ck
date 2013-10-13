@@ -1,3 +1,19 @@
+
+/** FlavorModel attributes:
+ *
+ *  collectionName              'Flavors'
+ *  _id                         Str
+ *  created_at                  Date
+ *  icon                        Str
+ *  is_public                   Bool
+ *  kegIcon                     Str
+ *  name                        Str
+ *  one_off_quantity_available  Int
+ *  updated_at                  Date
+ *  user_id                     Str
+ *
+ */
+
 FlavorModel = function(doc){
 	this.collectionName = 'Flavors';
     this.defaultValues = {
@@ -9,7 +25,7 @@ FlavorModel = function(doc){
     };
 	
 	this.oneOffQuantityAvailable = function() {
-		return this.one_off_quantity_availible || 0;
+		return this.one_off_quantity_available || 0;
 	};
 
 	_.extend(this, Model);

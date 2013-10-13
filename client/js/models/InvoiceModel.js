@@ -1,6 +1,7 @@
 
 /** InvoiceModel attributes:
  *
+ *  collectionName              'Invoices'
  *  _id                         Str
  *  user_id                     Str
  *  venue_id                    Str

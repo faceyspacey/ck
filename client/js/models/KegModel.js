@@ -1,3 +1,20 @@
+
+/** KegModel attributes:
+ *
+ *  collectionName              'Kegs'
+ *  _id                         Str
+ *  venue_id                    Str
+ *  user_id                     Str
+ *  flavor_id                   Str
+ *  type                        Int
+ *  price                       Int
+ *  keg_num                     Int
+ *  odd_even                    Str
+ *  payment_cycle               Str
+ *  payment_day                 Str
+ *
+ */
+
 KegModel = function(doc){
 	this.collectionName ='Kegs';
     this.defaultValues = {

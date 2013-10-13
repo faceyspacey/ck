@@ -142,7 +142,7 @@ VenueModel = function(doc){
 			
 		orderedKegs.forEach(function(keg) {
 			var kegFlavor = Flavors.findOne(keg.flavor_id),
-				kegFlavorQuantity = kegFlavor.one_off_quantity_availible;
+				kegFlavorQuantity = kegFlavor.one_off_quantity_available;
 		
 			if(_.isUndefined(availableFlavors[keg.flavor_id])) availableFlavors[keg.flavor_id] = 0;
 			availableFlavors[keg.flavor_id] += keg.quantity; //sum quantity used across the same flavor in multiple flavor rows

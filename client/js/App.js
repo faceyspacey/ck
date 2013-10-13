@@ -7,7 +7,6 @@ App = (function(){
         {id: 'monday', name: 'Monday'},
         {id: 'thursday', name: 'Thursday'}
     ];
-
     var kegTypes = {
         1: {price: 120, size: 5, name: '5 Gallons'},
         2: {price: 150, size: 5, name: '5 Gallons'},
@@ -20,6 +19,11 @@ App = (function(){
 		fiveGallonsDiscounted: 100,
 		fifteenGallons: 300
 	};
+    var messageTypes = {
+        1: {id: 1, type: 'General Question'},
+        2: {id: 2, type: 'Payment Question'},
+        3: {id: 3, type: 'Bug Report'}
+    };
 
     function getPaymentCycles(){
         return paymentCycles;
@@ -41,6 +45,7 @@ App = (function(){
         paymentDays: getPaymentDays(),
 		prices: prices,
         kegTypes: kegTypes,
+        messageTypes: messageTypes,
         activateLink: activateLink
     };
 })();
