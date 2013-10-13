@@ -47,6 +47,11 @@ VenueModel = function(doc){
         return Kegs.find(attributes);
     };
 
+    this.invoices = function(condition) {
+        var attributes = _.extend(_.extend({}, condition), {venue_id: this._id});
+        return Invoices.find(attributes);
+    };
+
     this.addKeg = function(attributes) {
 		return Kegs.insert({
 			venue_id: this._id,
@@ -59,6 +64,11 @@ VenueModel = function(doc){
             price: App.kegTypes[1].price,
 		});
     };
+
+    this.lastDeliveryDate = function(){
+        var invoice = Invoices.findOne({venue_id: this._id}, {sort: {created_at: -1}});
+        return invoice ? invoice.actualDeliveryDate() : 'Not Delivered Yet';
+    }
 
     this.kegsForSubscription = function(condition){
         var flavors = [];
@@ -98,7 +108,7 @@ VenueModel = function(doc){
         });
         var flavorRows = this.kegsForSubscription({payment_day: subscriptionAttributes.payment_day});
         this.createSubscriptionInvoiceItems(flavorRows, invoiceId);
-        this.chargeCustomer();
+        this.chargeCustomer(invoiceId);
 
         return invoiceId;
     };
@@ -206,7 +216,7 @@ VenueModel = function(doc){
 		}});
 	};
 	
-	this.chargeCustomer = function() {
+	this.chargeCustomer = function(invoiceId) {
 		if(this.user().stripeCustomerToken != undefined) {
 			//charge the user now
 		}

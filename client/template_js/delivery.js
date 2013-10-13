@@ -10,12 +10,19 @@ Template.page_delivery.helpers({
 
 Template.delivery_table.helpers({
     venues: function(){
-        var venue_ids = _.keys(_.groupBy(Kegs.find({payment_day: this.payment_day}).fetch(), 'venue_id'));
+        var venue_ids = _.keys(_.groupBy(Kegs.find({$or: [
+            {payment_day: this.payment_day, payment_cycle: 'bi-weekly', odd_even: oddEvenWeek(nextDateObj(new Date, this.payment_day))},
+            {payment_day: this.payment_day, payment_cycle: 'weekly'},
+        ]}).fetch(), 'venue_id'));
+        console.log(venue_ids);
         return Venues.find({_id: {$in: venue_ids}}, {sort: {name: 1}});
     },
     kegsToDeliverByFlavor: function(dayObject){
         var flavors = [];
-        _.each(_.groupBy(Kegs.find({payment_day: dayObject.payment_day, venue_id: this._id}).fetch(), function(keg){ return keg.randomCompensatedFlavor()._id;}), function(kegs, flavor_id){
+        _.each(_.groupBy(Kegs.find({$or: [
+            {venue_id: this._id, payment_day: dayObject.payment_day, payment_cycle: 'bi-weekly', odd_even: oddEvenWeek(nextDateObj(new Date, dayObject.payment_day))},
+            {venue_id: this._id, payment_day: dayObject.payment_day, payment_cycle: 'weekly'},
+        ]}).fetch(), function(keg){ return keg.randomCompensatedFlavor()._id;}), function(kegs, flavor_id){
             var flavor = Flavors.findOne(flavor_id);
             flavors.push({
                 icon: flavor.icon,
@@ -25,9 +32,10 @@ Template.delivery_table.helpers({
         });
         return flavors;
     },
-    canBeDelivered: function(searchObject){
+    canBeDelivered: function(payment_day){
         return Invoices.find({
-                created_at: {$gte: nextDateObj(new Date, searchObject.day, 'start')},
+                created_at: {$gte: new Date(-2*24*60*60*1000)},
+                payment_day: payment_day,
                 venue_id: this._id,
                 type: 'subscription'
         }).count() == 0 && Invoices.find({

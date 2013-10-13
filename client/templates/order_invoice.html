@@ -1,5 +1,10 @@
 
 <template name="page_order_invoice">
+        <style>
+            body {
+                background: white !important;
+            }
+        </style>
         <title>Conscious Kombucha/{{customer.name}} Invoice #{{invoice.order_num}}</title>
 
         <div id="order-container" style="">
@@ -11,9 +16,11 @@
                 </div>
 
                 <div class="order-invoice-info">
-                    Invoice Num: <span>{{invoice.order_num}}</span> <br/>
-                    Invoice Date: <span>{{invoice.actualDeliveryDate}}</span> <br/>
-                    Due: <span>${{invoice.total}}</span>
+                    Invoice Number: <span>#{{invoice.order_num}}</span> <br/>
+                    Invoice Date: <span>{{requestedDeliveryDate}}</span> <br/>
+                    Delivery Date: <span>{{actualDeliveryDate}}</span> <br/>
+                    Due: <span>${{invoice.total}}</span> <br/>
+                    Paid: <span>{{paymentStatus}}</span>
                 </div>
 
                 <div class="order-invoice-ck-info">

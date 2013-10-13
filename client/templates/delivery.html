@@ -29,7 +29,7 @@
         </tr>
         {{/unless}}
 
-        {{#each venues }}
+        {{#each venues}}
         <tr>
             <td>{{name}}</td>
             <td>{{address}}</td>
@@ -46,10 +46,10 @@
             </td>
             <td class="action-buttons">
                 <div class="delivered-btn-container">
-                    {{#if canBeDelivered}}
+                    {{#if canBeDelivered ../payment_day}}
                         <div class="delivered-venue-btn customButton-blue" data-pday="{{../../payment_day}}"> Delivered </div>
                     {{else}}
-                        <div class="venue-delivered-row">Last delivery: <div class="info">{{time delivery_date}}</div></div>
+                        <div class="venue-delivered-row">Last delivery: <div class="info">{{lastDeliveryDate}}</div></div>
                     {{/if}}
                 </div>
             </td>

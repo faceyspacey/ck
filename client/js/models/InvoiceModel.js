@@ -52,6 +52,10 @@ InvoiceModel = function(doc){
 	this.requestedDeliveryDayOfWeek = function() {
 		return moment(this.requested_delivery_date).format('ddd');
 	};
+
+    this.requestedDeliveryDate = function() {
+        return moment(this.requested_delivery_date).format("ddd, MMM Do, h:mm a");
+    };
 	
 	this.actualDeliveryDate = function() {
 		return this.actual_delivery_date ? moment(this.actual_delivery_date).format("ddd, MMM Do, h:mm a") : 'Not Delivered Yet';
