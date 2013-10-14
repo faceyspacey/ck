@@ -128,7 +128,7 @@ tr.invoice-item-row:last-child td{
 tr.invoice-item-row td span.flavor-info {
     float: right;
     text-align: left;
-    width: 150px;
+    width: 200px;
 }
 
 .invoice-item-row td.invoice-item-rate,

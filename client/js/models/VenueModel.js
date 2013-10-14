@@ -84,17 +84,26 @@ VenueModel = function(doc){
             {payment_cycle: 'weekly', payment_day: payment_day},
             {payment_cycle: 'bi-weekly', payment_day: payment_day, odd_even: oddEvenWeek(nextDateObj(new Date(), payment_day))}
         ]};
-        _.each(_.groupBy(_.sortBy(this.kegs(condition).fetch(), 'payment_cycle'), function(keg){
-            return keg.payment_cycle + '-' + keg.payment_day + '-' + keg.flavor_id + '-' + keg.price;
-        }), function(kegs, period){
-            var keg = kegs[0],
-                kegsInstance = kegs,
+
+        var kegsSortedByCycle = _.sortBy(this.kegs(condition).fetch(), 'payment_cycle');
+        var kegGroups = _.groupBy(kegsSortedByCycle, function(keg){ return keg.payment_cycle + '-' + keg.payment_day + '-' + keg.flavor_id + keg.randomCompensatedFlavor()._id + '-' + keg.price; })
+        /* {
+                "weekly-monday-random-x5sa9XRpgHATsDyAQ-120": [],
+                "bi-weekly-monday-x5sa9XRpgHATsDyAQ-x5sa9XRpgHATsDyAQ-120": []
+                ....
+        }
+            We have to separate each random keg by their randomCompensatedFlavor too
+        */
+
+        _.each(kegGroups, function(kegGroup, groupKey){
+            var keg = kegGroup[0],
+                kegsInstance = kegGroup,
                 kegs_subtotal = _.reduce(kegsInstance, function(memo, num){ return memo + num.price; }, 0);
             flavors.push({
                 period: keg.payment_cycle + '-' + keg.payment_day,
                 period_name: keg.payment_cycle + ' on ' + keg.payment_day,
-                name: keg.getType().name + ' keg(s) ' + keg.payment_cycle.ucfirst()+ ', ',
-                quantity: kegs.length,
+                name: keg.getType().name + ' keg(s) ' + keg.payment_cycle.ucfirst()+ '',
+                quantity: kegGroup.length,
                 subtotal: kegs_subtotal,
                 rate: keg.price,
                 flavor_id: keg.flavor_id,
@@ -103,7 +112,6 @@ VenueModel = function(doc){
             });
         });
 
-        //console.log(flavors);
         return flavors;
     }
 
@@ -221,15 +229,15 @@ VenueModel = function(doc){
 		Invoices.update(invoiceId, {$set: {
 			total: total,
 			keg_quantity: quantity,
-			is_stripe_customer: this.user().stripeCustomerToken ? true : false,
+			is_stripe_customer: this.user().stripe_customer_token ? true : false,
 			paid: false
 		}});
 	};
 	
 	this.chargeCustomer = function(invoiceId) {
-		if(this.user().stripeCustomerToken != undefined) {
+		if(this.user().stripe_customer_token != undefined) {
             Meteor.call('chargeCustomer', this.user(), invoiceId, function(error, result){
-                console.log(error, result);
+                Invoices.update(invoiceId, {$set: {paymentInProgress: false}});
             });
 		}
 		else {

@@ -1,0 +1,15 @@
+
+.invoices-pay-off-column {
+    position: relative;
+}
+
+.payment-process-protector {
+    margin: 3px 0;
+    padding: 5px;
+    width: 81px;
+    text-align: center;
+    font-size:14px;
+    text-shadow: 1px 1px 1px white;
+    border: 1px solid #0069aa;
+    background: rgba(255,255,255,0.3);
+}

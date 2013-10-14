@@ -48,13 +48,8 @@
                 <div class="delivered-btn-container">
                     {{#if canBeDelivered ../payment_day}}
                         <div class="delivered-venue-btn customButton-blue" data-pday="{{../../payment_day}}"> Delivered </div>
-                    {{else}}
-                        {{#if hasUnpaidInvoice}}
-                            <div class="venue-delivered-row"><div class="info">Unpaid Invoices: {{hasUnpaidInvoice}}</div></div>
-                        {{else}}
-                            <div class="venue-delivered-row">Last delivery: <div class="info">{{lastDeliveryDate ../../../payment_day}}</div></div>
-                        {{/if}}
                     {{/if}}
+                    <div class="venue-delivered-row">Last delivery: <div class="info">{{lastDeliveryDate ../payment_day}}</div></div>
                 </div>
             </td>
         </tr>
@@ -66,9 +61,9 @@
 
 <template name="delivery_kegs_flavor_row">
         <div class="delivery-kegs-flavor-row">
-            <div class="delivery-kegs-flavor-icon" style="background-image:url('{{icon}}');"></div>
-            <div class="delivery-kegs-flavor-name">{{name}}:</div>
-            <span class="delivery-kegs-flavor-count">{{count}} keg(s)</span>
+            <div class="delivery-kegs-flavor-icon" style="background-image:url('{{flavor_icon}}');"></div>
+            <div class="delivery-kegs-flavor-name">{{flavor_name}}:</div>
+            <span class="delivery-kegs-flavor-count">{{quantity}} keg(s)</span>
         </div>
 </template>
 

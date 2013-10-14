@@ -29,7 +29,7 @@ Meteor.methods({
         Stripe.charges.create({
             amount: invoice.total*100,
             currency: "USD",
-            customer: user.stripeCustomerToken
+            customer: user.stripe_customer_token
         }, function (err, res) {
             error = err;
             result = res;

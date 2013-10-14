@@ -40,6 +40,14 @@ InvoiceModel = function(doc){
 		Meteor.call('sendCustomerEmail', this.user().getEmail(), 'Message sent in regards to Order #'+this.order_num);
 	};
 
+    this.payItOff = function() {
+        if( this.paid )
+            return;
+
+        this.save({paymentInProgress: true});
+        this.venue().chargeCustomer(this._id);
+    }
+
 	this.invoiceItems = function(condition){
         var attributes = _.extend(_.extend({}, condition), {invoice_id: this._id});
         return InvoiceItems.find(attributes);

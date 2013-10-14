@@ -17,6 +17,7 @@
                     <th style="">Venue</th>
                 {{/if}}
 				<th style="">Reply</th>
+                <th style="">Pay Off</th>
             </tr>
             {{#if invoices}}
                 {{#each invoices}}
@@ -33,6 +34,15 @@
                         <td style="">{{venue.name}}<br/>{{venue.address}}</td>
                     {{/if}}
 					<td><div class="reply-button customButton">REPLY</div></td>
+                    <td class="invoices-pay-off-column">
+                        {{#unless paid}}
+                            {{#if paymentInProgress}}
+                                <div class="payment-process-protector" style="">Awaiting...</div>
+                            {{else}}
+                                <div class="pay-button customButton">PAY OFF</div>
+                            {{/if}}
+                        {{/unless}}
+                    </td>
                 </tr>
                 {{/each}}
             {{else}}

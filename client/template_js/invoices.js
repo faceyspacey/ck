@@ -30,5 +30,9 @@ Template.page_invoices.events({
     'click .reply-button': function(e) {
 		var message = prompt('Anything wrong with the order?', 'Tell us');		
 		this.addReplyMessage(message, this._id);
-	}
+	},
+    'click .pay-button': function(e) {
+        //console.log(this);
+        this.payItOff();
+    }
 });

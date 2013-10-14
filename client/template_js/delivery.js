@@ -18,7 +18,8 @@ Template.delivery_table.helpers({
         return Venues.find({_id: {$in: venue_ids}}, {sort: {name: 1}});
     },
     kegsToDeliverByFlavor: function(dayObject){
-        var flavors = [];
+        return this.kegsForSubscription(dayObject.payment_day);
+        /*var flavors = [];
         _.each(_.groupBy(Kegs.find({$or: [
             {venue_id: this._id, payment_day: dayObject.payment_day, payment_cycle: 'bi-weekly', odd_even: oddEvenWeek(nextDateObj(new Date, dayObject.payment_day))},
             {venue_id: this._id, payment_day: dayObject.payment_day, payment_cycle: 'weekly'},
@@ -30,7 +31,7 @@ Template.delivery_table.helpers({
                 count: kegs.length
             });
         });
-        return flavors;
+        return flavors;*/
     },
     canBeDelivered: function(payment_day){
         return Invoices.find({$and: [
@@ -39,11 +40,7 @@ Template.delivery_table.helpers({
             {payment_day: payment_day,
             venue_id: this._id,
             type: 'subscription'},
-        ]}).count() == 0 && Invoices.find({
-                venue_id: this._id,
-                type: 'subscription',
-                paid: false
-        }).count() == 0;
+        ]}).count() == 0;
     }
 });
 
