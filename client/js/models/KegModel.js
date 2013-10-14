@@ -1,3 +1,20 @@
+
+/** KegModel attributes:
+ *
+ *  collectionName              'Kegs'
+ *  _id                         Str
+ *  venue_id                    Str
+ *  user_id                     Str
+ *  flavor_id                   Str
+ *  type                        Int
+ *  price                       Int
+ *  keg_num                     Int
+ *  odd_even                    Str
+ *  payment_cycle               Str
+ *  payment_day                 Str
+ *
+ */
+
 KegModel = function(doc){
 	this.collectionName ='Kegs';
     this.defaultValues = {
@@ -5,6 +22,7 @@ KegModel = function(doc){
         payment_day: 'monday',
         odd_even: oddEvenWeek(),
         price: App.prices.fiveGallons,
+        type: 1,
         keg_num: 1
     };
 
@@ -31,6 +49,10 @@ KegModel = function(doc){
     this.venue = function(){
         return Venues.findOne(this.venue_id);
     };
+
+    this.getType = function(){
+        return App.kegTypes[this.type];
+    }
 
     this.chargePeriod = function(){
         return this.payment_cycle + '-' + this.payment_day;

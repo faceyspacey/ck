@@ -1,5 +1,5 @@
 <template name="page_one_offs">
-    <div class="page-background" id="kegeratorInstalls">
+    <div class="page-background" id="oneOffs">
 
         <h1 class="page_title" style="margin-bottom:25px;">One-Off Keg Orders (Stripe Paid)</h1>
 
@@ -83,21 +83,20 @@
 
 
 <template name="one_off_keg">
-	<div class="form-row" style="width: 100%; margin: 0 auto 10px;">
-      	 <span style="display: inline-block; width: 10px;">{{quantity}}</span>
-	
-		<img src="{{flavor_icon}}" style="width:25px; display:inline-block; margin-left:20px; position:relative; top:5px;"/>
-	
-		<span>{{flavor_name}}</span>
-	
-		<span style="font-weight:bold; color:#0069aa; display:inline-block; margin-left:10px;">${{subtotal}}</span>		
+	<div class="one-off-keg-row" style="">
+        <div class="one-off-keg-row-quantity" style="">{{quantity}} keg(s)</div>
+		<img class="one-off-keg-row-flavor-icon" src="{{flavor_icon}}" style=""/>
+        <div class="one-off-keg-row-flavor-name">{{flavor_name}}</div>
+		<div class="one-off-keg-row-subtotal">${{subtotal}}</div>
     </div>
 </template>
 
 
 <template name="delivered_one_off">
 	{{#if delivered}}
-		DELIVERED: <br />{{actualDeliveryDate}}
+        <div class="one-offs-actions-text-container">
+		    DELIVERED: <br /><span>{{actualDeliveryDate}}</span>
+        </div>
 	{{else}}
 		<div class="customButton delivered">Delivered</div>
 	{{/if}}
@@ -106,7 +105,9 @@
 
 <template name="non_stripe_paid">
 	{{#if paid}}
-		PAID ON: <br />{{actualPaidDate}}
+        <div class="one-offs-actions-text-container">
+		    PAID ON: <br /><span>{{actualPaidDate}}</span>
+        </div>
 	{{else}}
 		<div class="customButton paid">PAID</div>
 	{{/if}}

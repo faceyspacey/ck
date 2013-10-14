@@ -7,13 +7,23 @@ App = (function(){
         {id: 'monday', name: 'Monday'},
         {id: 'thursday', name: 'Thursday'}
     ];
-
+    var kegTypes = {
+        1: {price: 120, size: 5, name: '5 Gallons'},
+        2: {price: 150, size: 5, name: '5 Gallons'},
+        3: {price: 100, size: 5, name: '5 Gallons'},
+        4: {price: 300, size: 15, name: '15 Gallons'}
+    };
 	var prices = {
 		fiveGallons: 120,
 		fiveGallonsOneOff: 150,
 		fiveGallonsDiscounted: 100,
 		fifteenGallons: 300
 	};
+    var messageTypes = {
+        1: {id: 1, type: 'General Question'},
+        2: {id: 2, type: 'Payment Question'},
+        3: {id: 3, type: 'Bug Report'}
+    };
 
     function getPaymentCycles(){
         return paymentCycles;
@@ -34,6 +44,8 @@ App = (function(){
         paymentCycles: getPaymentCycles(),
         paymentDays: getPaymentDays(),
 		prices: prices,
+        kegTypes: kegTypes,
+        messageTypes: messageTypes,
         activateLink: activateLink
     };
 })();
@@ -48,6 +60,3 @@ Array.min = function( array ){
     return Math.min.apply( Math, array );
 };
 
-String.prototype.ucfirst = function() {
-    return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase();
-}

@@ -5,7 +5,7 @@ Template.page_profile.helpers({
         return Meteor.users.findOne(this.user_id);
     },
     venues: function(){
-        return Venues.find({user_id: this.user_id});
+        return _.sortBy(Venues.find({user_id: this.user_id}).fetch(), function(venue){ return -1*venue.kegs().count(); });
     }
 });
 

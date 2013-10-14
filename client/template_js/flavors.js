@@ -38,10 +38,10 @@ Template.flavor_grid_row.events({
 		Session.set('flavor_id', this._id);
 	},
 	'click .increment-quantity': function(e) {
-		Flavors.update(this._id, {$inc: {one_off_quantity_availible: 1}});
+		Flavors.update(this._id, {$inc: {one_off_quantity_available: 1}});
 	},
 	'click .decrement-quantity': function(e) {
-		Flavors.update(this._id, {$inc: {one_off_quantity_availible: -1}});
+		Flavors.update(this._id, {$inc: {one_off_quantity_available: -1}});
 	}
 });
 

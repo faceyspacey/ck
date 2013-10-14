@@ -44,17 +44,10 @@ Template.flavor_row.helpers({
 			});
 	},
 	prices: function() {
-		return [
-			'100',
-			'120',
-			'150',
-		];
+		return _.keys(_.countBy(App.kegTypes, function(keg){ return keg.price}));
 	},
 	kegTypes: function() {
-		return [
-			'5 Gallons',
-			'15 Gallons'
-		];
+		return _.keys(_.countBy(App.kegTypes, function(keg){ return keg.name}));;
 	},
 	quantitySelected: function(quantity) {
 		return quantity == this ? 'selected' : '';

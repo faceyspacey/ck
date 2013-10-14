@@ -13,6 +13,9 @@
                 <th style="">Total</th>
 				<th style="">Paid</th>
 				<th style="">Delivered</th>
+                {{#if isAllInvoice this}}
+                    <th style="">Venue</th>
+                {{/if}}
 				<th style="">Reply</th>
             </tr>
             {{#if invoices}}
@@ -26,6 +29,9 @@
                     <td>${{total}}</td>
 					<td>{{paidInfo}}</td>
                     <td>{{actualDeliveryDate}}</td>
+                    {{#if isAllInvoice ../../this}}
+                        <td style="">{{venue.name}}<br/>{{venue.address}}</td>
+                    {{/if}}
 					<td><div class="reply-button customButton">REPLY</div></td>
                 </tr>
                 {{/each}}

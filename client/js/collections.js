@@ -3,11 +3,13 @@ Meteor.users._transform = function(doc) {
 }
 Meteor.subscribe('users');
 
+
 Venues = new Meteor.Collection("venues", {
     reactive: true,
     transform: function (doc) { return new VenueModel(doc); }
 });
 Meteor.subscribe('venues');
+
 
 Kegs = new Meteor.Collection("kegs", {
     reactive: true,
@@ -15,11 +17,13 @@ Kegs = new Meteor.Collection("kegs", {
 });
 Meteor.subscribe("kegs");
 
+
 Flavors = new Meteor.Collection('flavors', {
     reactive: true,
     transform: function (doc) { return new FlavorModel(doc); }
 });
 Meteor.subscribe('flavors');
+
 
 Invoices = new Meteor.Collection('invoices', {
     reactive: true,
@@ -27,8 +31,16 @@ Invoices = new Meteor.Collection('invoices', {
 });
 Meteor.subscribe('invoices');
 
+
 InvoiceItems = new Meteor.Collection("invoice_items", {
     reactive: true,
 	transform: function (doc) { return new InvoiceItemModel(doc); }
 });
 Meteor.subscribe('invoice_items');
+
+
+Messages = new Meteor.Collection("messages", {
+    reactive: true,
+    transform: function (doc) { return new MessageModel(doc); }
+});
+Meteor.subscribe('messages');

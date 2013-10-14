@@ -1,3 +1,18 @@
+
+/** OrderedFlavorModel attributes:
+ *
+ *  collectionName              'OrderedFlavors'
+ *  _id                         Str
+ *  user_id                     Str
+ *  quantity                    Str
+ *  price                       Int
+ *  keg_type                    Str
+ *  flavor_id                   Str
+ *  flavor_icon                 Str
+ *  flavor_name                 Str
+ *
+ */
+
 OrderedFlavorModel = function(doc){
 	this.collectionName ='OrderedFlavors';
 	

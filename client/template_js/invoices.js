@@ -2,8 +2,27 @@
 
 Template.page_invoices.helpers({
     invoices : function(){
-		var conditions = Roles.userIsInRole(Meteor.userId(), ['admin']) ? {} : {user_id: Meteor.userId()};
-		return Invoices.find(conditions, {sort: {updated_at: -1}});
+        if(Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+
+            if(this.user_id == 'all' || this.user_id == undefined)
+                return Invoices.find({}, {sort: {updated_at: -1}});
+            else if(this.user_id != 'all' && this.user_id != undefined)
+                return Invoices.find({user_id: this.user_id}, {sort: {updated_at: -1}});
+
+        } else if(Meteor.userId()) {
+
+            if(this.user_id != Meteor.userId()) {
+                Router.go('myInvoices');
+                return;
+            } else
+                return Invoices.find({user_id: Meteor.userId()}, {sort: {updated_at: -1}});
+
+        } else
+            Router.go('home');
+
+    },
+    'isAllInvoice' : function(page) {
+        return page.user_id == 'all' || page.user_id == undefined;
     }
 });
 

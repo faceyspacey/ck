@@ -15,6 +15,11 @@ Router.map(function() {
         controller: 'OrdersController',
         action: 'show',
     });
+    this.route('contactUs', {
+        path: '/contact_us',
+        template: 'page_contact_us',
+        data: {},
+    });
     /*this.route('order', {
         path: '/orders/:id',
         layout: 'layout_empty',
@@ -101,6 +106,11 @@ Router.map(function() {
         path: '/clientInvoices/:id',
         template: 'page_invoices',
         data: function(){ return {title: Meteor.users.findOne(this.params.id).profile.name+"'s Invoices", user_id: this.params.id}; },
+    });
+    this.route('allInvoices', {
+        path: '/allInvoices',
+        template: 'page_invoices',
+        data: function(){ return {title: "All Invoices", user_id: 'all'}; },
     });
     this.route('users', {
         path: '/users/:role',

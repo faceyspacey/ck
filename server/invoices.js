@@ -9,7 +9,9 @@ Invoices.allow({
     insert: function(userId, doc) {
         doc.created_at = new Date;
         doc.updated_at = new Date;
-        return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
+        doc.order_num = Invoices.find().count()+1;
+
+        return Roles.userIsInRole(userId, ['admin']);
     },
     update: function(userId, doc, fields, modifier) {
         doc.updated_at = new Date;
@@ -18,5 +20,5 @@ Invoices.allow({
     remove: function(userId, doc) {
         return Roles.userIsInRole(userId, ['admin']);
     },
-    fetch: ['user_id, created_at, updated_at']
+    fetch: ['user_id, created_at, updated_at, order_num']
 });

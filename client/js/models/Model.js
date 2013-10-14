@@ -2,14 +2,15 @@ Model = {
 	errors: {},
 	collection: function(){
         switch(this.collectionName){
-            case 'Flavors': return Flavors;
-            case 'InvoiceItems': return InvoiceItems;
-            case 'Invoices': return Invoices;
-            case 'Kegerators': return Kegerators;
-            case 'Kegs': return Kegs;
-            case 'OrderedFlavors': return OrderedFlavors;
-            case 'Users': return Meteor.users;
-            case 'Venues': return Venues;
+            case 'Flavors':         return Flavors;
+            case 'InvoiceItems':    return InvoiceItems;
+            case 'Invoices':        return Invoices;
+            case 'Kegerators':      return Kegerators;
+            case 'Kegs':            return Kegs;
+            case 'Messages':        return Messages;
+            case 'OrderedFlavors':  return OrderedFlavors;
+            case 'Users':           return Meteor.users;
+            case 'Venues':          return Venues;
         }
     },
 	save: function(attributes){

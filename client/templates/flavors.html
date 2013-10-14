@@ -61,10 +61,12 @@
             {{#if notPublic}}
                 <div class="make-public-btn customButton">Make public!</div>
             {{/if}}
-			<div class="edit-flavor-btn customButton" style="font-size: 16px; width: 130px; margin-left:10px;"> Edit </div>
-			<div class="decrement-quantity customButton flavor-btn" style="margin-left:10px;"> - </div>
-			<div class="increment-quantity customButton flavor-btn" style="margin-left:10px;"> + </div>
-            <div class="delete-flavor-btn customButton flavor-btn" style="margin-left:10px;"> &times; </div>
+			<div class="edit-flavor-btn customButton" style=""> Edit </div>
+            <div class="flavor-editing-btns">
+                <div class="decrement-quantity customButton flavor-btn" style=""> - </div>
+                <div class="increment-quantity customButton flavor-btn" style=""> + </div>
+                <div class="delete-flavor-btn customButton flavor-btn" style=""> &times; </div>
+            </div>
         </td>
     </tr>
 </template>
