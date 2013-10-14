@@ -42,7 +42,7 @@ Meteor.methods({
 	},
 	sendAdminEmail: function(from, subject, body) {
         var fullMessage = {
-            to: '90.matheus@gmail.com', //'sales@consciouskombucha.com',
+            to: 'sales@consciouskombucha.com',
             from: from,
             subject: subject,
             text: body

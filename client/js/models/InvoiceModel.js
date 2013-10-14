@@ -37,7 +37,7 @@ InvoiceModel = function(doc){
 	this.addReplyMessage = function(message) {
 		Invoices.update(this._id, {$push: {messages: message}});
 		Meteor.call('sendAdminEmail', this.user().getEmail(), 'Reply for Invoice: #'+this.order_num, message, function(err, res){});
-		Meteor.call('sendCustomerEmail', this.user().getEmail(), 'Message sent in regards to Order #'+this.order_num, 'Your message: <br/> '+message, function(err, res){});
+		Meteor.call('sendCustomerEmail', this.user().getEmail(), 'Message sent in regards to Order #'+this.order_num, 'Your message: '+message, function(err, res){});
 	};
 
     this.payItOff = function() {
