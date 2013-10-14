@@ -23,6 +23,9 @@ Model = {
         }
         return this._id;
     },
+    refresh: function(){
+        this.extend(this.collection().findOne(this._id));
+    },
 	afterInsert: function() {
 		
 	},

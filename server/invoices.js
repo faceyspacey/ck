@@ -9,7 +9,9 @@ Invoices.allow({
     insert: function(userId, doc) {
         doc.created_at = new Date;
         doc.updated_at = new Date;
-        doc.order_num = Invoices.find().count()+1;
+
+        var max = Invoices.findOne({}, {sort: {order_num: -1}});
+        doc.order_num = parseInt(max ? max.order_num : 0) +1;
 
         return Roles.userIsInRole(userId, ['admin']);
     },

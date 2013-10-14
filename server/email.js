@@ -21,27 +21,33 @@ Meteor.methods({
 		});
 	},
 	sendBasicEmail: function(to, from, message, subject, body) {
-		Email.send({
-			to: to,
-		    from: from,
-		    subject: subject,
-		    text: body
-		});
+        var fullMessage = {
+            to: to,
+            from: from,
+            subject: subject,
+            text: body
+        };
+        Email.send(fullMessage);
+        return fullMessage;
 	},
 	sendCustomerEmail: function(to, subject, body) {
-		Email.send({
-			to: to,
-		    from: 'sales@consciouskombucha.com',
-		    subject: subject,
-		    text: body
-		});
+        var fullMessage = {
+            to: to,
+            from: 'sales@consciouskombucha.com',
+            subject: subject,
+            text: body
+        };
+        Email.send(fullMessage);
+        return fullMessage;
 	},
 	sendAdminEmail: function(from, subject, body) {
-		Email.send({
-			to: 'sales@consciouskombucha.com',
-		    from: from,
-		    subject: subject,
-		    text: body
-		});
+        var fullMessage = {
+            to: '90.matheus@gmail.com', //'sales@consciouskombucha.com',
+            from: from,
+            subject: subject,
+            text: body
+        };
+		Email.send(fullMessage);
+        return fullMessage;
 	}
 });

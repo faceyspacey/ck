@@ -1,9 +1,79 @@
 <template name="page_contact_us">
     <div class="page-background" id="ontactUs">
+
         <h1 class="page_title" style="margin-bottom:25px;">Contact Us</h1>
+        {{>contact_us_form}}
 
+        {{#if isInRole 'admin'}}
+            <h1 class="page_title" style="margin:30px 0 10px 0;">Recent Messages</h1>
+            {{>recent_messages_grid}}
+        {{/if}}
 
-        <h2>Recent Messages</h2>
 
     </div>
+</template>
+
+<template name="contact_us_form">
+    {{#with message}}
+    <div class="contact-form-container">
+        <form class="styled-form" id="contactUsForm" name="contactUsForm">
+
+            <div class="form-row">
+                <label for="contactForm_type">Subject:</label>
+                <select id="contactForm_type" class="styled-select">
+                    {{#each messageTypes}}
+                    <option value="{{id}}">{{subject}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="contactForm_content">Message:</label>
+                <textarea id="contactForm_content" rows="6"></textarea>
+            </div>
+
+            <div id="send-message-btn" class="customButton-blue"> Send Message </div>
+
+        </form>
+    </div>
+    {{/with}}
+</template>
+
+
+<template name="recent_messages_grid">
+    <div class="recent-messages-container">
+
+        <table class="items">
+            <tbody>
+            <tr>
+                <th style="width: 10%;">Message Num</th>
+                <th style="width:130px;">Client</th>
+                <th style="width:160px;">From Email</th>
+                <th style="width:150px;">Subject</th>
+                <th style="">Content</th>
+            </tr>
+
+            {{#if messages }}
+            {{#each messages }}
+                {{>message_grid_row}}
+            {{/each}}
+            {{else}}
+                <tr>
+                    <td colspan="4"> No feedback from the clients yet.. </td>
+                </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+    </div>
+</template>
+
+<template name="message_grid_row">
+    <tr>
+        <td>#{{message_num}}</td>
+        <td><a href="javascript: Router.go('/profile/{{user_id}}');">{{user.profile.name}}</a></td>
+        <td><a href="mailto:{{from}}">{{from}}</a></td>
+        <td>{{getType.subject}}</td>
+        <td>{{content}}</td>
+    </tr>
 </template>

@@ -65,6 +65,14 @@ VenueModel = function(doc){
 		});
     };
 
+    this.sendDeliveryMessages = function(invoiceId){
+        var invoice = Invoices.findOne(invoiceId),
+            adminMessage = '',
+            customerMessage ='';
+        Meteor.call('sendAdminEmail', this.user().getEmail(), 'Order delivered: #'+invoice.order_num, adminMessage, function(err, res){});
+        Meteor.call('sendCustomerEmail', this.user().getEmail(), 'Order delivered: #'+invoice.order_num, customerMessage, function(err, res){});
+    }
+
     this.lastDeliveryDate = function(payment_day){
         var invoice = Invoices.findOne({venue_id: this._id, payment_day: payment_day}, {sort: {created_at: -1}});
         return invoice ? invoice.actualDeliveryDate() : 'Not Delivered Yet';

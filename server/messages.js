@@ -11,7 +11,9 @@ Messages.allow({
         doc.user_id = userId;
         doc.created_at = new Date;
         doc.updated_at = new Date;
-        doc.message_num = Messages.find().count()+1;
+
+        var max = Messages.findOne({}, {sort: {message_num: -1}});
+        doc.message_num = parseInt(max ? max.message_num : 0) +1;
 
         return Roles.userIsInRole(userId, ['admin']) || userId;
     },

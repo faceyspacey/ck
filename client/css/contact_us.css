@@ -1,0 +1,14 @@
+
+
+.contact-form-container {
+    margin:20px auto;
+    width: 340px;
+    padding: 10px;
+    border: 1px solid #c7c7c7;
+    background: rgba(255,255,255,0.4);
+}
+
+.contact-form-container .form-row label {
+    text-align: left;
+    display: block;
+}

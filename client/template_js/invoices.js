@@ -29,7 +29,7 @@ Template.page_invoices.helpers({
 Template.page_invoices.events({
     'click .reply-button': function(e) {
 		var message = prompt('Anything wrong with the order?', 'Tell us');		
-		this.addReplyMessage(message, this._id);
+		this.addReplyMessage(message);
 	},
     'click .pay-button': function(e) {
         //console.log(this);

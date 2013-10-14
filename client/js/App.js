@@ -20,9 +20,9 @@ App = (function(){
 		fifteenGallons: 300
 	};
     var messageTypes = {
-        1: {id: 1, type: 'General Question'},
-        2: {id: 2, type: 'Payment Question'},
-        3: {id: 3, type: 'Bug Report'}
+        1: {id: 1, subject: 'General Question'},
+        2: {id: 2, subject: 'Invoice Reply'},
+        3: {id: 3, subject: 'Bug Report'}
     };
 
     function getPaymentCycles(){
