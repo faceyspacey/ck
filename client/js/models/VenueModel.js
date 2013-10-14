@@ -65,8 +65,8 @@ VenueModel = function(doc){
 		});
     };
 
-    this.lastDeliveryDate = function(){
-        var invoice = Invoices.findOne({venue_id: this._id}, {sort: {created_at: -1}});
+    this.lastDeliveryDate = function(payment_day){
+        var invoice = Invoices.findOne({venue_id: this._id, payment_day: payment_day}, {sort: {created_at: -1}});
         return invoice ? invoice.actualDeliveryDate() : 'Not Delivered Yet';
     }
 
@@ -78,9 +78,12 @@ VenueModel = function(doc){
         }).count();
     }
 
-    this.kegsForSubscription = function(condition){
+    this.kegsForSubscription = function(payment_day){
         var flavors = [];
-
+        var condition = {$or: [
+            {payment_cycle: 'weekly', payment_day: payment_day},
+            {payment_cycle: 'bi-weekly', payment_day: payment_day, odd_even: oddEvenWeek(nextDateObj(new Date(), payment_day))}
+        ]};
         _.each(_.groupBy(_.sortBy(this.kegs(condition).fetch(), 'payment_cycle'), function(keg){
             return keg.payment_cycle + '-' + keg.payment_day + '-' + keg.flavor_id + '-' + keg.price;
         }), function(kegs, period){
@@ -113,7 +116,7 @@ VenueModel = function(doc){
             actual_delivery_date: new Date,
             delivered: true
         });
-        var flavorRows = this.kegsForSubscription({payment_day: subscriptionAttributes.payment_day});
+        var flavorRows = this.kegsForSubscription(subscriptionAttributes.payment_day);
         this.createSubscriptionInvoiceItems(flavorRows, invoiceId);
         this.chargeCustomer(invoiceId);
 
@@ -130,7 +133,7 @@ VenueModel = function(doc){
 
 		var invoiceId = this.createInvoice({type: 'one_off', delivered: false, requested_delivery_date: deliveryDate});
 		this.createInvoiceItems(orderedKegs, invoiceId);
-		this.chargeCustomer();
+		this.chargeCustomer(invoiceId);
 			
 		return invoiceId;
 	};
@@ -225,10 +228,12 @@ VenueModel = function(doc){
 	
 	this.chargeCustomer = function(invoiceId) {
 		if(this.user().stripeCustomerToken != undefined) {
-			//charge the user now
+            Meteor.call('chargeCustomer', this.user(), invoiceId, function(error, result){
+                console.log(error, result);
+            });
 		}
 		else {
-			
+			// charge non-stripe cutomers
 		}
 	};
 

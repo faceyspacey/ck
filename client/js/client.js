@@ -15,6 +15,11 @@ Router.map(function() {
         controller: 'OrdersController',
         action: 'show',
     });
+    this.route('contactUs', {
+        path: '/contact_us',
+        template: 'page_contact_us',
+        data: {},
+    });
     /*this.route('order', {
         path: '/orders/:id',
         layout: 'layout_empty',

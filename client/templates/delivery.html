@@ -52,7 +52,7 @@
                         {{#if hasUnpaidInvoice}}
                             <div class="venue-delivered-row"><div class="info">Unpaid Invoices: {{hasUnpaidInvoice}}</div></div>
                         {{else}}
-                            <div class="venue-delivered-row">Last delivery: <div class="info">{{lastDeliveryDate}}</div></div>
+                            <div class="venue-delivered-row">Last delivery: <div class="info">{{lastDeliveryDate ../../../payment_day}}</div></div>
                         {{/if}}
                     {{/if}}
                 </div>

@@ -8,9 +8,7 @@ Meteor.methods({
 		console.log('stripeCardToken', stripeCardToken);
 		var stripeReturn = Stripe.customers.create({
 			card: stripeCardToken,
-			plan: 'weekly',
 			email: Meteor.user().emails[0].address,
-			quantity: 1
 		}, function(error, result) {
 			console.log(error, result);
 			
@@ -23,5 +21,31 @@ Meteor.methods({
 		});
 		
 		console.log('stripeReturn', stripeReturn);
-	}
+	},
+    chargeCustomer: function(user, invoiceId) {
+        var invoice = Invoices.findOne(invoiceId);
+        var error, result;
+
+        Stripe.charges.create({
+            amount: invoice.total*100,
+            currency: "USD",
+            customer: user.stripeCustomerToken
+        }, function (err, res) {
+            error = err;
+            result = res;
+
+            if( error != undefined )
+                Fiber(function() {
+                    Invoices.update(invoice._id, {$set: {error: error}});
+                }).run();
+            else
+                Fiber(function() {
+                    Invoices.update(invoice._id, {$set: {paid: true}});
+                }).run();
+
+        });
+
+        return {error: error, result: result};
+
+    }
 });

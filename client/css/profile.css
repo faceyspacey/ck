@@ -61,3 +61,7 @@
 .profile-venue-charges-box .keg-charges-table {
     width: 100%;
 }
+
+#billingInfoForm .form-row label {
+    width: 150px;
+}

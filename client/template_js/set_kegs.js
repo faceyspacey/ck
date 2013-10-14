@@ -48,7 +48,7 @@ Template.subscription_keg_row.events({
     },
     'change .radio-cycle' : function(e, instance){
 		var attributes = {payment_cycle: e.target.value};
-		if(e.target.value == 'bi-weekly') attributes.odd_even = oddEvenWeek();
+		if(e.target.value == 'bi-weekly') attributes.odd_even = oddEvenWeek(new Date().add(7*24*60*60*1000));
 		
 		Kegs.update(e.target.title, {$set: attributes});
     },
