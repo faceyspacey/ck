@@ -2,7 +2,7 @@
     <div class="page-background" id="daily_flavors">
 
         <h1 class="page_title" style="margin-bottom:15px;">Weekly Kegs to Be Distributed</h1>
-			{{>daily_kegs_table mondayWeekly}}
+			{{>daily_kegs_table}}
 			{{>daily_kegs_table thursdayWeekly}}
 		<div style="clear:both;"></div>	
 		<br /><br />
@@ -17,19 +17,50 @@
 			{{>daily_kegs_table mondayBiWeeklyEven}}
 			{{>daily_kegs_table thursdayBiWeeklyEven}}
 		<div style="clear:both;"></div>
+		
+		<h1 class="page_title" style="margin-bottom:15px;">Offline Customer Kegs</h1>
+			{{>offline_customer_kegs}}
+		<div style="clear:both;"></div>	
+		<br /><br />
+		
    </div>
 </template>
+
 
 <template name="daily_kegs_table">
 	<table class="items" style="width: 49%; float:left; margin-left:1%;">
         <tbody>
         	<tr>
-	            <th style="">{{day}} Flavors</th>
+	            <th style="">{{payment_day}} Flavors</th>
 	            <th style="width: 60px;">Icon</th>
 	            <th style="width: 100px;">Quantity</th>
 	        </tr>
 
-	  		{{#each flavors this}}
+	  		{{#each flavors}}
+	            <tr>
+	                <td>{{name}}</td>
+	                <td class="align-center">
+	                    <div class="flavor-list-icon" style="background-image:url('{{icon}}');"> </div>
+	                </td>
+
+	                <td class="align-center">{{quantity}} keg(s)</td>
+	            </tr>
+	         {{/each}}
+        </tbody>
+    </table>
+</template>
+
+
+<template name="offline_customer_kegs">
+	<table class="items" style="width: 49%; float:left; margin-left:1%;">
+        <tbody>
+        	<tr>
+	            <th style="">Flavors</th>
+	            <th style="width: 60px;">Icon</th>
+	            <th style="width: 100px;">Quantity</th>
+	        </tr>
+
+	  		{{#each flavors}}
 	            <tr>
 	                <td>{{name}}</td>
 	                <td class="align-center">

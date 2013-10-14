@@ -19,13 +19,19 @@ InvoiceModel = function(doc){
         return Venues.findOne(this.venue_id);
     };
 
+	this.addReplyMessage = function(message) {
+		Invoices.update(this._id, {$push: {messages: message}});
+		Meteor.call('sendAdminEmail', this.user().getEmail(), message);
+		Meteor.call('sendCustomerEmail', this.user().getEmail(), 'Message sent in regards to Order #'+this.order_num);
+	};
+
 	this.invoiceItems = function(){
         return InvoiceItems.find({invoice_id: this._id});
     };
 
 	this.paymentPeriodType = function() {
 		if(this.type == 'one_off') return 'One Off Order';
-		else return this.payment_cycle.substr(0, 1).toUpperCase() + this.payment_cycle.substr(1)
+		else return this.payment_cycle.substr(0, 1).toUpperCase() + this.payment_cycle.substr(1);
 	};
 	
 	this.deliveryDayOfWeek = function() {

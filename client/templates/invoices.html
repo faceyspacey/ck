@@ -13,6 +13,7 @@
                 <th style="">Total</th>
 				<th style="">Paid</th>
 				<th style="">Delivered</th>
+				<th style="">Reply</th>
             </tr>
             {{#if invoices}}
                 {{#each invoices}}
@@ -25,6 +26,7 @@
                     <td>${{total}}</td>
 					<td>{{paidInfo}}</td>
                     <td>{{actualDeliveryDate}}</td>
+					<td><div class="reply-button customButton">REPLY</div></td>
                 </tr>
                 {{/each}}
             {{else}}

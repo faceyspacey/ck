@@ -82,7 +82,7 @@ table.styled-vertical-table tbody .section-title td {
 /* ----------- FORM --------- */
 .form-row label {
     display: inline-block;
-    width: 90px;
+    width: 50px;
 }
 
 .form-row input[type="text"],

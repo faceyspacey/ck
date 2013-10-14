@@ -17,7 +17,7 @@ Meteor.methods({
 			//A fiber is used to execute meteor code in this async callback, since meteor is syncronous.
 			//the fiber kinda forces our code back into the meteor synrconous environment
 			Fiber(function() {
-				Meteor.users.update(_this.userId, {$set: {stripeCustomerToken: result.id}});
+				Meteor.users.update(_this.userId, {$set: {stripe_customer_token: result.id}});
 			}).run();
 				
 		});

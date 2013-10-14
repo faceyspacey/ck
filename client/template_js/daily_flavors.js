@@ -31,6 +31,29 @@ Template.daily_kegs_table.helpers({
 });
 
 
+/** offline_customer_kegs HELPERS, EVENTS  & CALLBACKS  **/
+
+Template.offline_customer_kegs.helpers({
+	flavors: function() {
+		var flavors = Flavors.find({is_public: true, name: {$not: 'Random'}}),
+			flavorsCount = flavors.count(),
+			venuesCount = Venues.find({stripe_customer_token: undefined}).count()
+			offlineFlavors = [];
+				
+		flavors.forEach(function(flavor) {
+			offlineFlavors.push({
+				name: flavor.name,
+				icon: flavor.icon,
+				quantity: Math.ceil(venuesCount/flavorsCount)
+			});
+		});
+
+
+		return offlineFlavors;
+	}
+});
+
+
 
 
 
