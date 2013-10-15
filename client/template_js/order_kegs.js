@@ -58,9 +58,6 @@ Template.flavor_row.helpers({
 	priceSelected: function(price) {
 		return price == this ? 'selected' : '';
 	},
-	priceSelected: function(price) {
-		return price == this ? 'selected' : '';
-	},
 	kegTypeSelected: function(kegType) {
 		return kegType == this ? 'selected' : '';
 	}
@@ -85,7 +82,7 @@ Template.flavor_row.events({
 	},
 	'change select.price_dropdown': function(e) {
 		OrderedFlavors.update(this._id, {$set: {
-				price: parseInt($(e.currentTarget).val())
+				rate: parseInt($(e.currentTarget).val())
 			} 
 		});
 		return false;

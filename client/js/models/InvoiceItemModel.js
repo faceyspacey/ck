@@ -12,7 +12,7 @@
  *  flavor_name                 Str
  *  quantity                    Int
  *  rate                        Int
- *  subtotal                    Int
+ *  subtotal                    Int //get rid of this and use the method below instead
  *  updated_at                  Date
  *
  */
@@ -37,6 +37,10 @@ InvoiceItemModel = function(doc) {
         return flavor;
     }
 
+	this.subtotal = function() {
+		return this.quantity * this.rate;
+	};
+	
 	_.extend(this, Model);
 	this.extend(doc);
 

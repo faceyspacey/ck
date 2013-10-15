@@ -87,30 +87,26 @@ VenueModel = function(doc){
     }
 
     this.kegsForSubscription = function(payment_day){
-        var flavors = [];
-        var condition = {$or: [
-            {payment_cycle: 'weekly', payment_day: payment_day},
-            {payment_cycle: 'bi-weekly', payment_day: payment_day, odd_even: oddEvenWeek(nextDateObj(new Date(), payment_day))}
-        ]};
+        var flavors = [],
+ 			condition = {$or: [
+            		{payment_cycle: 'weekly', payment_day: payment_day},
+            		{payment_cycle: 'bi-weekly', payment_day: payment_day, odd_even: oddEvenWeek(nextDateObj(new Date(), payment_day))}
+        		]},
+ 			kegsSortedByCycle = _.sortBy(this.kegs(condition).fetch(), 'payment_cycle'),
+			kegGroups = _.groupBy(kegsSortedByCycle, function(keg){ 
+				return keg.payment_cycle + '-' + keg.payment_day + '-' + keg.flavor_id + keg.randomCompensatedFlavor()._id + '-' + keg.price; 
+			}); //{"weekly-monday-random-x5sa9XRpgHATsDyAQ-120": [],"bi-weekly-monday-x5sa9XRpgHATsDyAQ-x5sa9XRpgHATsDyAQ-120": []}
 
-        var kegsSortedByCycle = _.sortBy(this.kegs(condition).fetch(), 'payment_cycle');
-        var kegGroups = _.groupBy(kegsSortedByCycle, function(keg){ return keg.payment_cycle + '-' + keg.payment_day + '-' + keg.flavor_id + keg.randomCompensatedFlavor()._id + '-' + keg.price; })
-        /* {
-                "weekly-monday-random-x5sa9XRpgHATsDyAQ-120": [],
-                "bi-weekly-monday-x5sa9XRpgHATsDyAQ-x5sa9XRpgHATsDyAQ-120": []
-                ....
-        }
-            We have to separate each random keg by their randomCompensatedFlavor too
-        */
 
         _.each(kegGroups, function(kegGroup, groupKey){
             var keg = kegGroup[0],
                 kegsInstance = kegGroup,
                 kegs_subtotal = _.reduce(kegsInstance, function(memo, num){ return memo + num.price; }, 0);
+
             flavors.push({
                 period: keg.payment_cycle + '-' + keg.payment_day,
                 period_name: keg.payment_cycle + ' on ' + keg.payment_day,
-                name: keg.getType().name + ' keg(s) ' + keg.payment_cycle.ucfirst()+ '',
+                name: keg.getType().name + ' ' + keg.randomCompensatedFlavor().name + ' keg(s) ' + keg.payment_cycle.ucfirst()+ '',
                 quantity: kegGroup.length,
                 subtotal: kegs_subtotal,
                 rate: keg.price,
@@ -124,16 +120,16 @@ VenueModel = function(doc){
     }
 
     this.placeSubscriptionOrder = function(subscriptionAttributes) {
-
         var invoiceId = this.createInvoice({
-            type: 'subscription',
-            payment_day: subscriptionAttributes.payment_day,
-            requested_delivery_date: nextDateObj(new Date(), subscriptionAttributes.payment_day, 'noon'),
-            actual_delivery_date: new Date,
-            delivered: true
-        });
-        var flavorRows = this.kegsForSubscription(subscriptionAttributes.payment_day);
-        this.createSubscriptionInvoiceItems(flavorRows, invoiceId);
+            	type: 'subscription',
+	            payment_day: subscriptionAttributes.payment_day,
+	            requested_delivery_date: nextDateObj(new Date(), subscriptionAttributes.payment_day, 'noon'),
+	            actual_delivery_date: new Date,
+	            delivered: true
+	        }),
+			flavorRows = this.kegsForSubscription(subscriptionAttributes.payment_day);
+			
+        this.createInvoiceItems(flavorRows, invoiceId);
         this.chargeCustomer(invoiceId);
 
         return invoiceId;
@@ -148,7 +144,7 @@ VenueModel = function(doc){
 		}
 
 		var invoiceId = this.createInvoice({type: 'one_off', delivered: false, requested_delivery_date: deliveryDate});
-		this.createInvoiceItems(orderedKegs, invoiceId);
+		this.createInvoiceItems(orderedKegs, invoiceId, true);
 		this.chargeCustomer(invoiceId);
 			
 		return invoiceId;
@@ -180,46 +176,19 @@ VenueModel = function(doc){
         var attributes = _.extend(_.extend({}, attributes), { user_id: this.user_id, venue_id: this._id });
 		return Invoices.insert(attributes);
 	};
-	
-	this.createInvoiceItems = function(orderedKegs, invoiceId) {
-		var total = 0,
-			quantity = 0;
 
-		orderedKegs.forEach(function(keg) {
-			InvoiceItems.insert({
-				invoice_id: invoiceId,
-				user_id: this.user_id,
-				venue_id: this._id,
-				quantity: keg.quantity,
-				subtotal: keg.subtotal(),
-                rate: keg.price,
-				flavor_id: keg.flavor_id,
-				flavor_icon: keg.flavor_icon,
-				flavor_name: keg.flavor_name
-			});
-			total += keg.subtotal();
-			quantity += keg.quantity;
-			
-			//decrement Flavor.one_off_quantity_available
-			Flavors.update(keg.flavor_id, {$inc: {one_off_quantity_availible: -1 * keg.quantity}});
-		});
-		
-		this.finalizeInvoice(invoiceId, total, quantity);
-	};
-
-
-    this.createSubscriptionInvoiceItems = function(invoiceItems, invoiceId) {
+    this.createInvoiceItems = function(kegs, invoiceId, isOneOff) {
         var total = 0,
             quantity = 0;
-
-        _.each(invoiceItems, function(item) {
+		
+		kegs.forEach(function(item) {
             InvoiceItems.insert({
                 invoice_id: invoiceId,
                 user_id: this.user_id,
                 venue_id: this._id,
-                name: item.name,
+                name: isOneOff ? item.name() : item.name,
                 quantity: item.quantity,
-                subtotal: item.subtotal,
+                subtotal: item.quantity * item.rate,
                 rate: item.rate,
                 flavor_id: item.flavor_id,
                 flavor_icon: item.flavor_icon,
@@ -227,6 +196,8 @@ VenueModel = function(doc){
             });
             total += item.subtotal;
             quantity += item.quantity;
+
+			if(isOneOff) Flavors.update(keg.flavor_id, {$inc: {one_off_quantity_availible: -1 * keg.quantity}});
         });
 
         this.finalizeInvoice(invoiceId, total, quantity);

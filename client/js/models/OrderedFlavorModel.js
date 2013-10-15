@@ -5,7 +5,7 @@
  *  _id                         Str
  *  user_id                     Str
  *  quantity                    Str
- *  price                       Int
+ *  rate                        Int
  *  keg_type                    Str
  *  flavor_id                   Str
  *  flavor_icon                 Str
@@ -21,7 +21,7 @@ OrderedFlavorModel = function(doc){
     this.defaultValues = {
         user_id: Meteor.userId(),
         quantity: 1,
-		price: App.prices.fiveGallonsOneOff,
+		rate: App.prices.fiveGallonsOneOff,
 		keg_type: '5 Gallons',
 		flavor_id: defaultFlavor._id,
 		flavor_icon: defaultFlavor.icon,
@@ -33,7 +33,11 @@ OrderedFlavorModel = function(doc){
     };
 
 	this.subtotal = function() {
-		return this.quantity * this.price;
+		return this.quantity * this.rate;
+	};
+	
+	this.name = function() {
+		return this.keg_type + ' ' + this.flavor_name + 'keg(s)'
 	};
 
 	_.extend(this, Model);
