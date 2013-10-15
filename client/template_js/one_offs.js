@@ -18,10 +18,7 @@ Template.page_one_offs.helpers({
 		});
 
 	    return recentOneOffs.count() ? recentOneOffs : false;
-	},
-    invoiceItems: function (){
-        return this.invoiceItems();
-    }
+	}
 });
 
 

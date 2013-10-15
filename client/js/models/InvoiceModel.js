@@ -53,6 +53,10 @@ InvoiceModel = function(doc){
         return InvoiceItems.find(attributes);
     };
 
+	this.items = function(){
+        return InvoiceItems.find({invoice_id: this._id});
+    };
+
 	this.paymentPeriodType = function() {
 		if(this.type == 'one_off') return 'One Off Order';
 		else return 'Weekly'; //this.payment_cycle.substr(0, 1).toUpperCase() + this.payment_cycle.substr(1)
