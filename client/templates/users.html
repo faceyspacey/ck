@@ -14,18 +14,7 @@
             </tr>
             {{#if users }}
                 {{#each users }}
-                <tr>
-                    <td><div class="user-info-avatar" style="background-image: url('{{profile.avatar}}');"></div></td>
-                    <td class="user-name">{{profile.name}}</td>
-                    <td>{{emails.0.address}}</td>
-                    <td>{{{venues}}}</td>
-                    <td>{{{listRoles roles}}}</td>
-                    <td class="user-buttons">
-                        <div class="user-profile-btn customButton-blue"> Profile </div>
-                        <div class="user-venues-btn customButton-blue"> Venues </div>
-                        <div class="user-orders-btn customButton-blue"> Orders </div>
-                    </td>
-                </tr>
+                    {{>user_grid_row}}
                 {{/each}}
             {{else}}
             <tr>
@@ -36,4 +25,19 @@
         </table>
 
     </div>
+</template>
+
+<template name="user_grid_row">
+    <tr>
+        <td><div class="user-info-avatar" style="background-image: url('{{getAvatar}}');"></div></td>
+        <td class="user-name">{{profile.name}}</td>
+        <td>{{getEmail}}</td>
+        <td>{{{venues}}}</td>
+        <td>{{{listRoles roles}}}</td>
+        <td class="user-buttons">
+            <div class="user-profile-btn customButton-blue"> Profile </div>
+            <div class="user-venues-btn customButton-blue"> Venues </div>
+            <div class="user-orders-btn customButton-blue"> Orders </div>
+        </td>
+    </tr>
 </template>

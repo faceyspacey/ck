@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab780d15-ed56-4034-a954-81edd1255e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/server_errors.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/FlavorModel.js" afterPath="$PROJECT_DIR$/client/js/models/FlavorModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/InvoiceModel.js" afterPath="$PROJECT_DIR$/client/js/models/InvoiceModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/OrderedFlavorModel.js" afterPath="$PROJECT_DIR$/client/js/models/OrderedFlavorModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/models/UserModel.js" afterPath="$PROJECT_DIR$/client/js/models/UserModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/billing_info.html" afterPath="$PROJECT_DIR$/client/templates/billing_info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/billing_info.js" afterPath="$PROJECT_DIR$/client/template_js/billing_info.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/client.js" afterPath="$PROJECT_DIR$/client/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/edit_profile.html" afterPath="$PROJECT_DIR$/client/templates/edit_profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/edit_profile.js" afterPath="$PROJECT_DIR$/client/template_js/edit_profile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/elements.css" afterPath="$PROJECT_DIR$/client/css/elements.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/css/flash_messages.css" afterPath="$PROJECT_DIR$/client/css/flash_messages.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/flavors.js" afterPath="$PROJECT_DIR$/server/flavors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/order_kegs.html" afterPath="$PROJECT_DIR$/client/templates/order_kegs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/order_kegs.js" afterPath="$PROJECT_DIR$/client/template_js/order_kegs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/profile.html" afterPath="$PROJECT_DIR$/client/templates/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/users.js" afterPath="$PROJECT_DIR$/server/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/users.html" afterPath="$PROJECT_DIR$/client/templates/users.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/template_js/users.js" afterPath="$PROJECT_DIR$/client/template_js/users.js" />
     </list>
     <ignored path="ckhome.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -153,6 +137,7 @@
     <file path="/edit_profile.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381875288117" ignored="false" />
     <file path="/flash_messages.css" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381870530910" ignored="false" />
     <file path="/billing_info.js" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381874889419" ignored="false" />
+    <file path="/users.html" changelist="ab780d15-ed56-4034-a954-81edd1255e67" time="1381876212468" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,15 +192,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="elements.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/elements.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="235" column="31" selection-start="5439" selection-end="5439" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/js/client.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -252,19 +228,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit_profile.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="edit_profile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/template_js/edit_profile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="10" selection-start="712" selection-end="712" vertical-scroll-proportion="0.57093424">
+            <state line="22" column="10" selection-start="712" selection-end="712" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flash_messages.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/css/flash_messages.css">
+      <file leaf-file-name="users.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/templates/users.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+            <state line="36" column="33" selection-start="1122" selection-end="1122" vertical-scroll-proportion="-15.583333">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#template#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/template_js/users.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="31" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.7785467">
               <folding />
             </state>
           </provider>
@@ -288,8 +275,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/client/js/models/FlavorModel.js" />
-        <option value="$PROJECT_DIR$/client/templates/server_errors.html" />
         <option value="$PROJECT_DIR$/server/flavors.js" />
         <option value="$PROJECT_DIR$/client/js/models/OrderedFlavorModel.js" />
         <option value="$PROJECT_DIR$/client/template_js/order_kegs.js" />
@@ -304,6 +289,8 @@
         <option value="$PROJECT_DIR$/client/js/collections.js" />
         <option value="$PROJECT_DIR$/client/js/client.js" />
         <option value="$PROJECT_DIR$/client/template_js/edit_profile.js" />
+        <option value="$PROJECT_DIR$/client/templates/users.html" />
+        <option value="$PROJECT_DIR$/client/template_js/users.js" />
       </list>
     </option>
   </component>
@@ -642,20 +629,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/js/models/OrderedFlavorModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="118" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/template_js/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="6" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/order_kegs.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="23" selection-start="178" selection-end="178" vertical-scroll-proportion="-0.625">
@@ -752,7 +725,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/template_js/edit_profile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="10" selection-start="712" selection-end="712" vertical-scroll-proportion="0.57093424">
+        <state line="22" column="10" selection-start="712" selection-end="712" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/templates/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="33" selection-start="1122" selection-end="1122" vertical-scroll-proportion="-15.583333">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#template#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/template_js/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="31" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.7785467">
           <folding />
         </state>
       </provider>
