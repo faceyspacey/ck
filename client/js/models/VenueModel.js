@@ -194,10 +194,10 @@ VenueModel = function(doc){
                 flavor_icon: item.flavor_icon,
                 flavor_name: item.flavor_name
             });
-            total += item.subtotal;
+            total += item.quantity * item.rate;
             quantity += item.quantity;
 
-			if(isOneOff) Flavors.update(keg.flavor_id, {$inc: {one_off_quantity_availible: -1 * keg.quantity}});
+			if(isOneOff) Flavors.update(item.flavor_id, {$inc: {one_off_quantity_availible: -1 * item.quantity}});
         });
 
         this.finalizeInvoice(invoiceId, total, quantity);
