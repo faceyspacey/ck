@@ -42,7 +42,7 @@
 		{{#if isInRole 'admin'}}
 			<select class="price_dropdown" style="float:left;">
 				{{#each prices}}
-					<option value="{{this}}" {{priceSelected ../price}}>${{this}}</option>
+					<option value="{{this}}" {{priceSelected ../rate}}>${{this}}</option>
 				{{/each}}
 			</select>
 		

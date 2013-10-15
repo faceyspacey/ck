@@ -20,23 +20,23 @@
 <template name='user_form'>
 	<div id="edit_profile_left">
         <div class="form-row">
-            <label for="profile_name">Name:</label>
+            <label for="profile_name">Name:<span class="require">*</span></label>
             <input type="text" id="profile_name" name="name" value="{{profile.name}}"/>
         </div>
 
         <div class="form-row">
-            <label for="profile_email">Email:</label>
+            <label for="profile_email">Email:<span class="require">*</span></label>
             <input type="text" id="profile_email" name="email" value="{{getEmail}}"/>
         </div>
 
         <div class="form-row">
-            <label for="profile_phone">Phone:</label>
+            <label for="profile_phone">Phone:<span class="require">*</span></label>
             <input type="text" id="profile_phone" name="phone" value="{{profile.phone}}"/>
         </div>
     </div>
 
     <div id="edit_profile_right">
-        <div class="profile_avatar_img" style="background-image: url('{{profile.avatar}}')"></div>
+        <div class="profile_avatar_img" style="background-image: url('{{getAvatar}}')"></div>
         <div class="form-row">
             <label for="profile_avatar">Avatar Url:</label>
             <input type="text" id="profile_avatar" name="avatar" value="{{profile.avatar}}"/>

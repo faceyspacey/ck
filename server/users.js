@@ -40,8 +40,10 @@ Accounts.onCreateUser(function(options, user){
         user.roles = ['client'];
     }
 
-    if (options.profile) user.profile = options.profile;
-    else user.profile = {};
+    if( options.profile ) options.profile.sign_up_procedure = 1;
+    else options.profile = {sign_up_procedure: 1};
+
+    user.profile = options.profile;
 
     return user;
 });

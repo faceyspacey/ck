@@ -11,15 +11,23 @@ Template.page_edit_profile.helpers({
 
 Template.user_form.events({
     'click #save-profile-btn' : function(){
-        Meteor.users.update(this._id, {$set: {
-				emails: [{address: $('#profile_email').val()}], 
-				profile: {
-					name: $('#profile_name').val(),
-					phone: $('#profile_phone').val(),
-					avatar: $('#profile_avatar').val()
-				}
-			}
-		});
+        var suProcess = this.profile && this.profile.sign_up_procedure == 1 ? 2 : false,
+            user = {
+            emails: [{address: $('#profile_email').val()}],
+            profile: {
+                name: $('#profile_name').val(),
+                phone: $('#profile_phone').val(),
+                avatar: $('#profile_avatar').val(),
+                sign_up_procedure: suProcess,
+            }
+        };
+
+        if( !user.emails[0].address || !user.profile.name || !user.profile.phone ){
+            FlashMessages.sendError('Please, fill all required field.');
+            return;
+        }
+
+        Meteor.users.update(this._id, {$set: user});
 
         if(Meteor.userId() == this._id) Router.go('myProfile');
         else Router.go('profile', {id: this.user_id});

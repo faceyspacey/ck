@@ -239,3 +239,7 @@ table.styled-vertical-table tbody .section-title td {
 .customButton-blue:hover {
     background-position: bottom;
 }
+
+span.require {
+    color: red !important;
+}
