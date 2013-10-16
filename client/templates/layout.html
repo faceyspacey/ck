@@ -4,13 +4,15 @@
 	{{/unless}}
 	
     {{#if isDesktopSite}}
-		<a id="homepage-signup-button" class="toolbar-button" href="{{pathFor 'mobile'}}">SIGN UP</a>
+		{{#unless currentUser}}
+			<a id="homepage-signup-button" class="toolbar-button" href="{{pathFor 'mobile'}}">SIGN UP</a>
+		{{/unless}}
     	<nav>
 	        <div id="navi-top" style="">
 	            <div class="navi-links-holder">
 					{{loginButtons align="left"}}
 	                {{> _nav_bar}}
-	                {{#if currentUser}}{{/if}}                
+	                {{#unless currentUser}}{{/unless}}                
 	            </div>
 	        </div>
 	    </nav>
