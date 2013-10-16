@@ -1,0 +1,26 @@
+<template name="layout">
+    {{#unless isDesktopSite}}
+        {{yield}}
+	{{/unless}}
+	
+    {{#if isDesktopSite}}
+		<a id="homepage-signup-button" class="toolbar-button" href="{{pathFor 'mobile'}}">SIGN UP</a>
+    	<nav>
+	        <div id="navi-top" style="">
+	            <div class="navi-links-holder">
+					{{loginButtons align="left"}}
+	                {{> _nav_bar}}
+	                {{#if currentUser}}{{/if}}                
+	            </div>
+	        </div>
+	    </nav>
+
+	    <div id="container">
+	         <header>{{yield 'header'}}</header>
+			{{> flashMessages}}
+	        {{yield}}
+	    </div>
+
+	    <footer style="position:relative; z-index: 1;">{{yield 'footer'}}</footer>
+    {{/if}}
+</template>

@@ -10,7 +10,6 @@
  *  name                        Str
  *  one_off_quantity_available  Int
  *  updated_at                  Date
- *  user_id                     Str
  *
  */
 

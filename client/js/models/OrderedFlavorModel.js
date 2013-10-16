@@ -16,7 +16,7 @@
 OrderedFlavorModel = function(doc){
 	this.collectionName ='OrderedFlavors';
 	
-	var defaultFlavor = Flavors.findOne({one_off_quantity_availible: {$gt: 0}});
+	var defaultFlavor = Flavors.findOne({one_off_quantity_available: {$gt: 0}}, {sort: {one_off_quantity_available: -1}});
 		
     this.defaultValues = {
         user_id: Meteor.userId(),

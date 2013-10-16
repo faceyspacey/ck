@@ -102,11 +102,15 @@
 
 #login-buttons {
 	font-size:14px;
-	float:right;
+	float:left;
 	margin: 14px 16px;
 	color: white;
 	text-shadow: 1px 1px gray;
 	text-decoration: none;
+}
+
+#signup-link {
+	display:none;
 }
 
 #login-dropdown-list {

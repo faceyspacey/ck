@@ -4,37 +4,34 @@
                 background: white !important;
             }
         </style>
-        <title>Conscious Kombucha/{{customer.name}} Invoice #{{invoice.order_num}}</title>
+        <title>Conscious Kombucha/{{customerName}} Invoice #{{invoice.order_num}}</title>
 
         <div id="order-container" style="">
             <div id="order-invoice">
 
                 <div class="order-invoice-top">
                     INVOICE #{{invoice.order_num}}
-                    <div class="invoice-top-logo"></div>
+                    <div class="invoice-top-logo">
+						<img class="invoice-item-flavor-icon" src="/images/invoice/top-logo.png" width="335px;"/>
+					</div>
                 </div>
 
                 <div class="order-invoice-info">
-                    Invoice Number: <span>#{{invoice.order_num}}</span> <br/>
                     Invoice Date: <span>{{requestedDeliveryDate}}</span> <br/>
                     Delivery Date: <span>{{actualDeliveryDate}}</span> <br/>
                     Due: <span>${{invoice.total}}</span> <br/>
-                    Paid: <span>{{paymentStatus}}</span>
                 </div>
 
                 <div class="order-invoice-ck-info">
-                    <span class="blue-span">Service:</span> <br/>
                     <a style="color: #0069aa;" href="mailto:holly@faceyspacey.com">sales@consciouskombucha.com</a> <br/>
                     Conscious Kombucha, Inc. <br/>
-                    07 Cathedral Pointe LN <br/>
+                    707 Cathedral Pointe LN <br/>
                     Santa Barbara, CA 93111 <br/>
                 </div>
 
                 <div class="order-invoice-client-info">
-                    <span class="blue-span">Client:</span> <br/>
-                    <a style="color: #0069aa;" href="mailto:{{venue.email}}">{{venue.email}}</a> <br/>
-                    {{venue.name}} <br/>
-                    {{venue.address}} <br/>
+                    <span class="blue-span">Client:</span> 
+					{{venue.name}} (<a style="color: #0069aa;" href="mailto:{{venue.email}}">{{venue.email}}</a>) - {{venue.address}} 
                 </div>
 
 

@@ -24,10 +24,6 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    background-image: url(/images/invoice/top-logo.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .order-invoice-top {
@@ -44,9 +40,9 @@
     margin: -10px 0 20px 0;
 }
 .order-invoice-client-info {
-    width: 60%;
+    width: 100%;
     font-size: 14px;
-    margin: 0 0 20px 0;
+    margin: 50px 0 20px 0;
 }
 .order-invoice-info {
     float: right;
@@ -81,14 +77,23 @@ table.details > tbody > tr > td:last-child {
 }
 
 table.invoice-items-table {
+	border-collapse: collapse;
     border-spacing: 0;
     background: white;
     width: 100%;
     margin: 0 auto 30px auto;
 }
+ 
+table.invoice-items-table thead {
+	border-bottom: 6px solid #0069aa;
+}
+
+table.invoice-items-table thead tr {
+	border: 1px solid #0069aa;
+}
+
 table.invoice-items-table thead th {
-    background: #0069aa;
-    color: #ffffff;
+    color: #0069aa;
     padding: 6px 3px;
     height: 20px;
     line-height: 20px;

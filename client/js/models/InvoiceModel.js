@@ -8,6 +8,8 @@
  *  type                        Str     =>  "one_off", "subscription"
  *  order_num                   Int
  *  keg_quantity                Int
+ *  requested_delivery_date     Date
+ *
  *  total                       Int
  *  paid                        Bool
  *

@@ -10,48 +10,31 @@
 				<input id="user_update_credit_card" name="user[update_credit_card]" type="hidden" value="true">
 
                 <div class="form-row">
-                    <label for="user_card_number">Card Number:</label>
+                    <label for="user_card_number">Card Number:<span class="require">*</span></label>
                     <input type="text" id="user_card_number" name="name" value="4242424242424242"/>
                 </div>
 
                 <div class="form-row">
-                    <label for="user_card_code">Card Code:</label>
+                    <label for="user_card_code">Card Code:<span class="require">*</span></label>
                     <input type="text" id="user_card_code" name="email" value="123"/>
                 </div>
 
 
                 <div class="form-row">
-                    <label for="user_card_month">Expiration Month:</label>
-                    <select class="styled-select" id="user_card_month" name="paymentCycle">
-                        <option value="1" selected="selected">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                    <label for="user_card_month">Expiration Month:<span class="require">*</span></label>
+                    <select class="styled-select" id="user_card_month" name="cardExpMonth">
+                        {{#each months}}
+                            <option value="{{this}}" {{selected '1'}}>{{this}}</option>
+                        {{/each}}
                     </select>
                 </div>
 
                 <div class="form-row">
-                    <label for="user_card_year">Expiration Year:</label>
-                    <select class="styled-select" id="user_card_year" name="paymentCycle">
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
+                    <label for="user_card_year">Expiration Year:<span class="require">*</span></label>
+                    <select class="styled-select" id="user_card_year" name="cardExpYear">
+                        {{#each years}}
+                            <option value="{{this}}" {{selected yearNow}}>{{this}}</option>
+                        {{/each}}
                     </select>
                 </div>
 

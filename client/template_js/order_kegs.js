@@ -2,7 +2,7 @@
 
 Template.page_order_kegs.helpers({
 	availableFlavors: function() {
-		return Flavors.find({one_off_quantity_availible: {$gt: 0}}).count() || false;
+		return Flavors.find({one_off_quantity_available: {$gt: 0}}).count() || false;
 	},
 	orderedFlavors: function() {
 		return OrderedFlavors.find();
@@ -40,26 +40,26 @@ Template.flavor_row.helpers({
 	},
 	flavors: function() {
 		return Flavors.find({
-				one_off_quantity_availible: {$gt: 0}
+				one_off_quantity_available: {$gt: 0}
 			});
 	},
 	prices: function() {
-		return _.keys(_.countBy(App.kegTypes, function(keg){ return keg.price}));
+		return _.keys(_.countBy(_.values(App.kegTypes), function(keg){ return keg.price}));
 	},
 	kegTypes: function() {
 		return _.keys(_.countBy(App.kegTypes, function(keg){ return keg.name}));;
 	},
 	quantitySelected: function(quantity) {
-		return quantity == this ? 'selected' : '';
+		return quantity == this ? 'selected="selected"' : '';
 	},
 	flavorSelected: function(flavorId) {
-		return flavorId == this._id ? 'selected' : '';
+		return flavorId == this._id ? 'selected="selected"' : '';
 	},
 	priceSelected: function(price) {
-		return price == this ? 'selected' : '';
+		return price == parseInt(this) ? 'selected="selected"' : '';
 	},
 	kegTypeSelected: function(kegType) {
-		return kegType == this ? 'selected' : '';
+		return kegType == this ? 'selected="selected"' : '';
 	}
 });
 

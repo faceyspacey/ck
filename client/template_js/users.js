@@ -6,13 +6,6 @@ Template.page_users.helpers({
 			users = Meteor.users.find(condition);
 	    return users;
 	},
-    listRoles: function(roles){
-        var rolesText = "";
-		_.each(roles, function(role, index) {
-			rolesText += role + (index < roles.length-1 ? ',' : '');
-		});
-        return rolesText;
-    },
     venues: function(){
         var venues = Venues.find({user_id: this._id});
         return venues.count()+' venues';
@@ -32,4 +25,17 @@ Template.page_users.events({
         if(Meteor.userId() == this._id) Router.go('myInvoices');
         else Router.go('clientInvoices', {id: this._id});
     }
+});
+
+
+/** user_grid_row HELPERS, EVENTS & CALLBACKS **/
+
+Template.user_grid_row.helpers({
+    listRoles: function(roles){
+        var rolesText = "";
+        _.each(roles, function(role, index) {
+            rolesText += role + (index < roles.length-1 ? ',' : '');
+        });
+        return rolesText;
+    },
 });
