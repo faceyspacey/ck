@@ -3,7 +3,7 @@ Router.map(function() {
 	this.route('mobile', {
         path: '/mobile/step_1',
         controller: 'MobileController',
-		template: 'page_mobile_step_1'
+		template: 'mobile_container'
     });
 	
     /* ----- Public pages ----- */
