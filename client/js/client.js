@@ -237,7 +237,7 @@ Router.configure({
         }
 
 		//force user to go to billing page if card is invalid
-		if(!Meteor.user().valid_card && this.context.route.name != 'mobile') {
+		if(Meteor.user() && !Meteor.user().valid_card && this.context.route.name != 'mobile') {
 			Router.go('mobile');
 			Meteor.setTimeout(function() {
 				Session.set('signup_step', 4);
