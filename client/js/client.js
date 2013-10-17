@@ -3,7 +3,16 @@ Router.map(function() {
 	this.route('mobile', {
         path: '/mobile/step_1',
         controller: 'MobileController',
-		template: 'mobile_container'
+		template: 'mobile_container',
+        data: function() {
+            SignUpForms = new Meteor.Collection(null, { //create local-only (temporary) mini-mongo collection
+                reactive: true,
+                transform: function (doc) { return new SignUpForm(doc); }
+            });
+
+            var form = new SignUpForm();
+            return form.save();
+        }
     });
 	
     /* ----- Public pages ----- */

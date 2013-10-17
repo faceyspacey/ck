@@ -6,25 +6,29 @@
 			<a class="toolbar-button toolbar-back" href="#">BACK</a>
 			<a class="toolbar-button toolbar-next" href="#" style="display:none;">NEXT</a>
 		</div>
-		
+
+        {{#with signUpForm}}
 		<div id="sliding_page_wrapper">
-			{{>step_1}}
-			{{>step_2}}
-			{{>step_3}}
-			{{>step_4}}
-			{{>step_5}}
+			{{>step_1 step_1}}
+			{{>step_2 step_2}}
+			{{>step_3 step_3}}
+			{{>step_4 step_4}}
+			{{>step_5 step_5}}
 		</div>
+        {{/with}}
 	</div>
 </template>
 
 <template name="step_1">
 	<div id="signup_step_1" class="mobile_pages">
 		<p>So you want to serve Kombucha on Draft at your Venue, eh? Tell us about it.</p>
-		
-		<input type="name" placeholder="Venue Name" />
-		<input type="name" placeholder="Address" />
-		
-		<a id="step_1_complete" class="toolbar-button save-button" href="#">NEXT</a>
+
+        <input id="venue_name" type="name" data-placeholder="{{venue_name.placeholder}}" class="{{errorClass venue_name.error}} {{notEmptyClass venue_name.placeholder venue_name.value}}" value="{{placeholder venue_name.placeholder venue_name.value}}" />
+        {{{showError venue_name.error}}}
+        <input id="venue_address" type="address" data-placeholder="{{venue_address.placeholder}}" class="{{errorClass venue_address.error}} {{notEmptyClass venue_address.placeholder venue_address.value}}" value="{{placeholder venue_address.placeholder venue_address.value}}" />
+        {{{showError venue_address.error}}}
+
+		<a id="step_1_complete" class="toolbar-button save-button" href="javascript: ;" data-step="step_1">NEXT</a>
 	</div>
 </template>
 
@@ -79,29 +83,15 @@
 		<input placeholder="CVV Code" style="width: 164px; margin-left: 30px;"/>
 		
 		<select class="styled-select" id="user_card_month" name="cardExpMonth" style="float:left; width: 75px; margin-left:32px;">
-		    <option value="1" selected="selected">1</option>
-	        <option value="2">2</option>
-	        <option value="3">3</option>
-	        <option value="4">4</option>
-	        <option value="5">5</option>
-	        <option value="6">6</option>
-	        <option value="7">7</option>
-	        <option value="8">8</option>
-	        <option value="9">9</option>
-	        <option value="10">10</option>
-	        <option value="11">11</option>
-	        <option value="12">12</option>
+		    {{#each monthOptions}}
+                <option value="{{this}}" {{isSelectedOption 1 this}} >{{this}}</option>
+            {{/each}}
         </select>
 
 		<select class="styled-select" id="user_card_month" name="cardExpYear" style="float:left; width: 100px;">
-		    <option value="1" selected="selected">2013</option>
-	        <option value="2">2014</option>
-	        <option value="3">2015</option>
-	        <option value="4">2016</option>
-	        <option value="5">2017</option>
-	        <option value="6">2018</option>
-			<option value="6">2019</option>
-			<option value="6">2020</option>
+            {{#each yearOptions '2013' '2020'}}
+                <option value="{{this}}" {{isSelectedOption 2013 this}}>{{this}}</option>
+            {{/each}}
         </select>
 
 		<div style="clear:both;"></div>

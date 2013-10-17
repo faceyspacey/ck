@@ -1,7 +1,16 @@
+
+var renderedCodeRun = false;
+
 Template.mobile_container.rendered = function() {
+    var leftPos = 0,
+        stepCount = 5,
+        width = 400,
+        movingUntil = 0;
+
+
 	var resizeScreen = _.once(function() {
 		new Resizeable; //this is used to make this mobile screen work on all device sizes & orientations. dont worry about it too much
-		
+
 		//add touched bg to select flavor rows
 		$('#mobile_container ul li').live(START_EV, function() {
 			$(this).addClass('touched-bg');
@@ -17,13 +26,27 @@ Template.mobile_container.rendered = function() {
 		});
 		
 		//slide forward when SAVE buttons are pressed (or if the flavor row is pressed)
-		$('.save-button, li').live(END_EV, function() {
-			$('#sliding_page_wrapper').hardwareAnimate({translateX: -400}, 500, 'easeInBack');
+		$('.save-button, li').live(START_EV, function(e) {
+            if( leftPos <= -width*(stepCount-1) ) return false;
+
+            var stepName = $(e.currentTarget).data('step');
+            if( !StepValidation[stepName].call() )
+                return false;
+			else{
+                leftPos -= width;
+                $('#sliding_page_wrapper').hardwareAnimate({translateX: -width}, 500, 'easeInBack');
+            }
 		});
 		
 		//slide backwards when back button is pressed
 		$('.toolbar-back').live(START_EV, function() {
-			$('#sliding_page_wrapper').hardwareAnimate({translateX: 400}, 500, 'easeInBack');
+            console.log(leftPos);
+            if( leftPos >= 0 ){
+                return false;
+            }
+
+            leftPos += width;
+            $('#sliding_page_wrapper').hardwareAnimate({translateX: width}, 500, 'easeInBack');
 		});
 		
 		//fake day/cyle radio form checkmarks etc
@@ -36,16 +59,33 @@ Template.mobile_container.rendered = function() {
 			$(this).addClass('radio-button-selected');
 		});
 	});
-	resizeScreen();
+
+
+    if( !renderedCodeRun){
+	    resizeScreen();
+        renderedCodeRun = true;
+    }
+
+    var stepBackward = function(){
+    }
+
+    var getLeftPos = function(){ return leftPos; };
+
+    return {
+        stepBackward: stepBackward,
+        getLeftPos: getLeftPos,
+        stepCount: stepCount,
+        width:  width
+    };
 };
 
 
 Template.mobile_container.events({
-	'mouseup #step_1_complete, tap #step_1_complete': function() {
+	'mouseup #step_1_complete, tap #step_1_complete': function(e) {
 		//validate that both the venue and address fields are complete (display a simple alert)
 		//add an error class to an invalid field to generate the red border: http://snapplr.com/9d9a
 	},
-	'mouseup #signup_step_2 li, tap #signup_step_2 li': function() {
+	'mouseup #signup_step_2 li, tap #signup_step_2 li': function(e) {
 		//show our actual flavors
 		//store in a simple session variable the id of the selected flavor
 	},
@@ -64,8 +104,57 @@ Template.mobile_container.events({
 	'mouseup #step_5_complete, tap #step_5_complete': function() {
 		//i'll leave this up to you, but alert the user of any issues, and highlight bad fields with the red error class
 		//upon completion, send the user to My Venues
-	}
+	},
+    'focus .mobile_pages input, focus .mobile_pages textarea': function(e){
+        if( $(e.currentTarget).val() == $(e.currentTarget).data('placeholder') ){
+            $(e.currentTarget).val('');
+            $(e.currentTarget).addClass('notEmpty');
+        }
+    },
+    'blur .mobile_pages input, blur .mobile_pages textarea': function(e){
+        if( _.compact($(e.currentTarget).val().split(' ')).length == 0 ){
+            $(e.currentTarget).val($(e.currentTarget).data('placeholder'));
+            $(e.currentTarget).removeClass('notEmpty');
+        }
+    },
 });
+
+
+Template.mobile_container.helpers({
+    signUpForm: function() {
+        return SignUpForms.findOne();
+    }
+});
+
+Template.step_1.helpers({
+    stepData: function(){
+        return SignUpForms.findOne().step_1;
+    }
+});
+
+StepValidation = {
+    step_1: function(){
+        var form = SignUpForms.findOne();
+        //var sessionAttributes = Session.get('signUpData');
+        var step_1_form = {
+            venue_name: {
+                value: notEmptyInput($('#mobile_container #venue_name')) ? $('#mobile_container #venue_name').val() : '',
+                error: notEmptyInput($('#mobile_container #venue_name')) ? false : emptyFieldError('Venue Name'),
+            },
+            venue_address: {
+                value: notEmptyInput($('#mobile_container #venue_address')) ? $('#mobile_container #venue_address').val() : '',
+                error: notEmptyInput($('#mobile_container #venue_address')) ? false : emptyFieldError('Address'),
+            },
+        };
+        //form.step_1 = step_1_form;
+        form.save({step_1: step_1_form});
+
+        var noError = true;
+        _.each(_.values(step_1_form), function(attr){ noError = attr.error ? false : noError });
+        return noError;
+    },
+};
+
 //GLOBAL TO DOS:
 //1)  change the title of the toolbar with each page change
 

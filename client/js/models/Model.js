@@ -11,6 +11,7 @@ Model = {
             case 'OrderedFlavors':  return OrderedFlavors;
             case 'Users':           return Meteor.users;
             case 'Venues':          return Venues;
+            case 'SignUpForms':     return SignUpForms;
         }
     },
 	save: function(attributes){

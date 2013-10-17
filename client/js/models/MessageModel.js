@@ -29,7 +29,7 @@ MessageModel = function(doc){
 
     this.send = function(){
         this.refresh();
-        Meteor.call('sendAdminEmail', this.from, 'Client feedback: '+this.getType().subject, this.content, function(err, res){ console.log(res)});
+        Meteor.call('sendAdminEmail', this.from, 'Client feedback: '+this.getType().subject, Template.admin_contact_message(this), function(err, res){ console.log(res)});
         Meteor.call('sendCustomerEmail', this.from, 'Message sent with subject: '+this.getType().subject, 'Your message: '+this.content, function(err, res){ console.log(res)});
     };
 

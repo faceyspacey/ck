@@ -51,7 +51,6 @@
 	background-color: #f6f6f6;
 }
 
-
 #signup_step_1 {
 	background-color: #f6f6f6;
 }
@@ -90,7 +89,7 @@ text-align: center;
 text-overflow: ellipsis;
 white-space: nowrap;
 color: #FFFFFF;
-text-align-center;
+text-align:center;
 }
 
 
@@ -310,6 +309,20 @@ display: block;
 	margin: 34px;
 	text-shadow: 1px 1px 1px white;
 	line-height: 21px;
+}
+
+.mobile_pages input.notEmpty {
+    color: #303030 !important;
+}
+
+.input-error-msg {
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    color: red;
+    width: 80%;
+    margin: -20px auto;
+    text-align: left;
 }
 
 #homepage-signup-button {
