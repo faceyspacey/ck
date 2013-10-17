@@ -1,184 +1,200 @@
+/** GLOBAL CODE FOR THIS FILE **/
 
-var renderedCodeRun = false;
-
-Template.mobile_container.rendered = function() {
-    var leftPos = 0,
-        stepCount = 5,
-        width = 400,
-        movingUntil = 0;
-
-
-	var resizeScreen = _.once(function() {
-		new Resizeable; //this is used to make this mobile screen work on all device sizes & orientations. dont worry about it too much
-
-		//add touched bg to select flavor rows
-		$('#mobile_container ul li').live(START_EV, function() {
-			$(this).addClass('touched-bg');
-		}).live(END_EV, function() {
-			$(this).removeClass('touched-bg');
-		});
+var signupSteps = ['Add Your Venue', 'Select a Flavor', 'Delivery Times', 'Signup Info', 'Pay'],
+	currentStep = 0,
+	incrementStep = function() {
+		currentStep += 1;
+		Session.set('signup_step', currentStep);
+	},
+	decrementStep = function() {
+		currentStep -= 1;
+		Session.set('signup_step', currentStep);
+	},
+	nextPage = function() {
+		incrementStep();
+		$('#sliding_page_wrapper').hardwareAnimate({translateX: -400}, 500, 'easeInBack');
+	},
+	prevPage = function() {
+		decrementStep();
+		$('#sliding_page_wrapper').hardwareAnimate({translateX: 400}, 500, 'easeInBack');
+	},
+	resizeable = new Resizeable;
+	setupSignupForm = _.once(function() {
 		
-		//add touched class to toolbar buttons
-		$('#mobile_container .toolbar-button').live(START_EV, function() {
+		//prepare the slider wrapper to have the sub pages floated left and fitting properly
+		resizeable.resizeAllElements(); 
+
+		//add touched class to toolbar buttons & flavor rows
+		$('#mobile_container .toolbar-button, #mobile_container ul li').live(START_EV, function() {
 			$(this).addClass('touched');
 		}).live(END_EV, function() {
 			$(this).removeClass('touched');
 		});
-		
-		//slide forward when SAVE buttons are pressed (or if the flavor row is pressed)
-		$('.save-button, li').live(START_EV, function(e) {
-            if( leftPos <= -width*(stepCount-1) ) return false;
-
-            var stepName = $(e.currentTarget).data('step');
-            if( !StepValidation[stepName].call() )
-                return false;
-			else{
-                leftPos -= width;
-                $('#sliding_page_wrapper').hardwareAnimate({translateX: -width}, 500, 'easeInBack');
-            }
-		});
-		
+	
 		//slide backwards when back button is pressed
-		$('.toolbar-back').live(START_EV, function() {
-            console.log(leftPos);
-            if( leftPos >= 0 ){
-                return false;
-            }
-
-            leftPos += width;
-            $('#sliding_page_wrapper').hardwareAnimate({translateX: width}, 500, 'easeInBack');
-		});
-		
+		$('.toolbar-back').live(END_EV, prevPage);
+	
 		//fake day/cyle radio form checkmarks etc
-		$('.radio-button.radio-cycle:not(.radio-button-selected)').live(END_EV, function() {
+		$('.radio-button.radio-cycle:not(.radio-button-selected)').live(END_EV, function() { //cycle fake radios
 			$('.radio-button.radio-cycle').removeClass('radio-button-selected');
 			$(this).addClass('radio-button-selected');
 		});
-		$('.radio-button.radio-day:not(.radio-button-selected)').live(END_EV, function() {
+		$('.radio-button.radio-day:not(.radio-button-selected)').live(END_EV, function() { //day fake radios
 			$('.radio-button.radio-day').removeClass('radio-button-selected');
 			$(this).addClass('radio-button-selected');
 		});
+		
+		//setup hover states on buttons for desktop browsers
+		$('.toolbar-button').live('mouseenter', function() {
+		    $(this).css('opacity', .9);	
+		}).live('mouseleave', function() {
+		    $(this).css('opacity', 1)	
+		});
+		
+		//use shim to make placeholder input attributes work in older browsers :) :) :)
+		$.fn.placeholder();
+		
+		//set current step to 0 so the page 1 title shows in the toolbar
+		Session.set('signup_step', currentStep);
 	});
 
 
-    if( !renderedCodeRun){
-	    resizeScreen();
-        renderedCodeRun = true;
-    }
 
-    var stepBackward = function(){
-    }
+/** signup_toolbar HELPERS, EVENTS & CALLBACKS **/
 
-    var getLeftPos = function(){ return leftPos; };
-
-    return {
-        stepBackward: stepBackward,
-        getLeftPos: getLeftPos,
-        stepCount: stepCount,
-        width:  width
-    };
-};
-
-
-Template.mobile_container.events({
-	'mouseup #step_1_complete, tap #step_1_complete': function(e) {
-		//validate that both the venue and address fields are complete (display a simple alert)
-		//add an error class to an invalid field to generate the red border: http://snapplr.com/9d9a
+Template.signup_toolbar.helpers({
+	pageTitle: function() {
+		return signupSteps[Session.get('signup_step')]; //reactive title!
 	},
-	'mouseup #signup_step_2 li, tap #signup_step_2 li': function(e) {
-		//show our actual flavors
-		//store in a simple session variable the id of the selected flavor
+	showBackButton: function() {
+		return Session.get('signup_step') != 0 && Session.get('signup_step') != 4; //hide back button sometimes
+	}
+});
+
+
+
+/** step_2 HELPERS, EVENTS & CALLBACKS **/
+
+Template.step_2.helpers({
+	flavors: function() {
+		return Flavors.find();
+	}
+});
+
+
+
+/** signup_slider_wrapper HELPERS, EVENTS & CALLBACKS **/
+
+Template.signup_slider_wrapper.events({
+	//STEP 1
+	'mouseup #step_1_complete, tap #step_1_complete': function() {
+		$('#signup_step_1 input').each(function() {
+			if($(this).val() == '' || $(this).val() == $(this).attr('placeholder')) $(this).addClass('error');
+		});
+		
+		if($('#signup_step_1 input').hasClass('error')) alert('please complete the form');
+		else nextPage();
 	},
+	//STEP 2
+	'mouseup #signup_step_2 li, tap #signup_step_2 li': function() {
+		Session.set('signup_flavor_id', this._id);
+		nextPage();
+	},
+	//STEP 3
 	'mouseup #step_3_complete, tap #step_3_complete': function() {
-		//use jquery to find the selected fake radios and store it in 2 session vars
-		//also validate the page--make sure the user checked one of each set of radios (display a simple alert)
+		if($('.radio-button-selected').length < 2) alert('Please select the day and timing of your keg delivery');
+		else {
+			var cycle = $('.radio-day').index($('.radio-button-selected')) ? 'weekly' : 'bi-weekly',
+				day = $('.radio-day').index($('.radio-button-selected')) ? 'thursday' : 'monday';
+
+			Session.set('signup_cycle', cycle);
+			Session.set('signup_day', day);
+			
+			nextPage();
+		}
 	},
-	'mouseup #step_4_complete, tap #step_4_complete': function() {
-		//validate that fields are filled, that a proper email is used.
-		//validate that the phone is a 10 digit number not including a possible starting 1 that the user might enter.
-		//parse the string so that if they enter 19177417981, we store it as 9177417981, but we allow the user to enter a starting 1. 
-		//remove any spaces or hyphens from the number we store, and also count the characters after removing any hyphens or spaces.
-		//then create the user: http://docs.meteor.com/#accounts_createuser using the profile object to store the name and phone.
-		//at this time, create the first venue, and link it to the user in the db, same with the keg;
+	//STEP 4
+	'mouseup #step_4_complete, tap #step_4_complete': function() {		
+		var email = $('input[type=email]').val(),
+			phone = $('input[type=phone]').val();
+		
+		//if phone, email and password are valid		
+		if(isValidPhone(phone) && isValidEmail(email) && $('input[type=password]').val() != '') {
+			//create new user
+			Accounts.createUser({
+				email: email,
+				password: $('input[type=password]').val(),
+				profile: {
+					name: $('#signup_venue_name').val(),
+					phone: isValidPhone(phone) //returns cleaned phone #
+				}
+			}, function(error) {
+				if(error) {
+					alert('Oops! Something went wrong. Please try again.');
+					return;
+				}
+				
+				//insert & link venue to user
+				var venue_id = Venues.insert({
+					name: $('#signup_venue_name').val(),
+					address: $('#signup_venue_address').val(),
+					user_id: Meteor.userId()
+				});
+				
+				//insert and link keg to venue
+				Kegs.insert({
+					venue_id: venue_id,
+					user_id: Meteor.userId(),
+					flavor_id: Session.get('signup_flavor_id'),
+					payment_day: Session.get('signup_day'),
+					payment_cycle: Session.get('signup_cycle'),
+					odd_even: oddEvenWeek(moment().add('days', 7).toDate()),
+					keg_num: 1,
+		            type: 1,
+		            price: App.kegTypes[1].price
+				});
+				
+				//set user_id so subscriptions update & refresh is not needed
+				Session.set('new_user_id', Meteor.userId());
+				nextPage();
+			});
+		}
+		else {
+			//invalid submission: add error classes to inputs and alert() the user
+			if(!isValidPhone(phone)) $('input[type=phone]').addClass('error');
+			if(!isValidEmail(email)) $('input[type=email]').addClass('error');
+			if($('input[type=password]').val() == '') $('input[type=password]').addClass('error');
+			alert('Please provide a valid phone, email address and password');
+		}
 	},
+	//STEP 5
 	'mouseup #step_5_complete, tap #step_5_complete': function() {
-		//i'll leave this up to you, but alert the user of any issues, and highlight bad fields with the red error class
-		//upon completion, send the user to My Venues
+		var card = {
+		    	number: $('#signup_credit_card').val(),
+			    cvc: $('#signup_cvv_code').val(),
+			    expMonth: $('#signup_card_month').val(),
+			    expYear: $('#signup_card_year').val()
+			};
+		
+		Stripe.createToken(card, function(status, response) {
+			if(status === 200) {
+		        var stripeCardToken = response.id;
+			    Meteor.call('updateBillingInfo', stripeCardToken, function() {
+					Meteor.users.update(Meteor.userId(), {$set: {valid_card: true}}); //do this so router knows immediately from mini-mongo
+					Router.go('myVenues');
+				});
+		    } 
+			else {
+				$('#signup_step_5 input, #signup_step_5 select').addClass('error');
+				alert('Something is wrong with the card you provided. Please double check it.')
+			}
+		});
 	},
-    'focus .mobile_pages input, focus .mobile_pages textarea': function(e){
-        if( $(e.currentTarget).val() == $(e.currentTarget).data('placeholder') ){
-            $(e.currentTarget).val('');
-            $(e.currentTarget).addClass('notEmpty');
-        }
-    },
-    'blur .mobile_pages input, blur .mobile_pages textarea': function(e){
-        if( _.compact($(e.currentTarget).val().split(' ')).length == 0 ){
-            $(e.currentTarget).val($(e.currentTarget).data('placeholder'));
-            $(e.currentTarget).removeClass('notEmpty');
-        }
-    },
+	'focus input, mousedown select': function(e) {
+		$(e.currentTarget).removeClass('error');
+	}
 });
 
-
-Template.mobile_container.helpers({
-    signUpForm: function() {
-        return SignUpForms.findOne();
-    }
-});
-
-Template.step_1.helpers({
-    stepData: function(){
-        return SignUpForms.findOne().step_1;
-    }
-});
-
-StepValidation = {
-    step_1: function(){
-        var form = SignUpForms.findOne();
-        //var sessionAttributes = Session.get('signUpData');
-        var step_1_form = {
-            venue_name: {
-                value: notEmptyInput($('#mobile_container #venue_name')) ? $('#mobile_container #venue_name').val() : '',
-                error: notEmptyInput($('#mobile_container #venue_name')) ? false : emptyFieldError('Venue Name'),
-            },
-            venue_address: {
-                value: notEmptyInput($('#mobile_container #venue_address')) ? $('#mobile_container #venue_address').val() : '',
-                error: notEmptyInput($('#mobile_container #venue_address')) ? false : emptyFieldError('Address'),
-            },
-        };
-        //form.step_1 = step_1_form;
-        form.save({step_1: step_1_form});
-
-        var noError = true;
-        _.each(_.values(step_1_form), function(attr){ noError = attr.error ? false : noError });
-        return noError;
-    },
+Template.signup_slider_wrapper.rendered = function() {
+	setupSignupForm();
 };
-
-//GLOBAL TO DOS:
-//1)  change the title of the toolbar with each page change
-
-//2) after the user signs up on step 4, remove the back button (cuz there is no point changing what we already stored in the db). 
-//and then if they don't pay, take them to this page instead of the billing info page next time they login. ALSO, remove the back button from step 1.
-
-//3) don't slide to the next page with my hardwareAnimate functions if there is an error obviously
-//also what would be cool is if you made the page bounce if there is an error (and before showing the alert),  like this:
-//$('#sliding_page_wrapper').hardwareAnimate({translateX: -200}, 300, 'easeInElastic', function() {
-//	  $('#sliding_page_wrapper').hardwareAnimate({translateX: 200}, 300, 'easeOutElastic');
-//});
-//that's not correct necessarily. also try easeOutBounce and easeInBounce, maybe in combination with the elastic easing
-//the idea is to slide a little bit forward and bounce back and land with more bouncing and shaking
-
-//4) using jquery add a hover state that changes the opacity to .9 on hover to all the buttons. dont do it in css.
-//$('.toolbar-button').live('mouseenter', function() {
-//    $(this).css('opacity', .9);	
-//}).live('mouseleave', function() {
-//    $(this).css('opacity', 1)	
-//});
-//that's my lazy-man way of quickly adding hover states on lots of buttons that I always use. 
-
-//5) for the fields i used CSS3 placeholder values, but that won't work on older browsers. replace it
-//with the old fashioned way in js (i.e. real values), but make it look the same. as soon as you click a field, empty the placeholder value
-//and if the user blurs without providing any new text, supply the placeholder value. make sure ur validation of empty fields
-//do not validate the placeholder values. check to make sure that the text != 'Venue Name' for example. 
-

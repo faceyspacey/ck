@@ -1,46 +1,47 @@
 Meteor.users._transform = function(doc) {
 	return new UserModel(doc);
-}
-Meteor.subscribe('users');
-
+};
 
 Venues = new Meteor.Collection("venues", {
     reactive: true,
     transform: function (doc) { return new VenueModel(doc); }
 });
-Meteor.subscribe('venues');
-
 
 Kegs = new Meteor.Collection("kegs", {
     reactive: true,
     transform: function (doc) { return new KegModel(doc); }
 });
-Meteor.subscribe("kegs");
-
 
 Flavors = new Meteor.Collection('flavors', {
     reactive: true,
     transform: function (doc) { return new FlavorModel(doc); }
 });
-Meteor.subscribe('flavors');
-
 
 Invoices = new Meteor.Collection('invoices', {
     reactive: true,
     transform: function(doc){ return new InvoiceModel(doc); },
 });
-Meteor.subscribe('invoices');
-
 
 InvoiceItems = new Meteor.Collection("invoice_items", {
     reactive: true,
 	transform: function (doc) { return new InvoiceItemModel(doc); }
 });
-Meteor.subscribe('invoice_items');
-
 
 Messages = new Meteor.Collection("messages", {
     reactive: true,
     transform: function (doc) { return new MessageModel(doc); }
 });
-Meteor.subscribe('messages');
+
+
+Deps.autorun(function() {
+	console.log('user signed up!');
+	
+	var user_id = Session.get('new_user_id'); //this simply triggers reactivity so we have the right subscriptions once signed up
+	Meteor.subscribe('users');
+	Meteor.subscribe('venues', user_id);
+	Meteor.subscribe('kegs');
+	Meteor.subscribe('flavors');
+	Meteor.subscribe('invoices');
+	Meteor.subscribe('invoice_items');
+	Meteor.subscribe('messages');
+})

@@ -69,11 +69,6 @@ Router.map(function() {
         template: 'page_contact_us',
         data: {},
     });
-	/*this.route('order', {
-        path: '/orders/:order_num',
-        template: 'page_order',
-        data: function(){ return {_id: this.params.order_num} },
-    });*/
     this.route('myVenues', {
         path: '/myVenues',
         template: 'page_venues',
@@ -221,59 +216,50 @@ Router.configure({
     /*loadingTemplate: 'loading',*/
 
     renderTemplates: {
-
         'header': { to: 'header' },
-        'footer': { to: 'footer' },
+        'footer': { to: 'footer' }
     },
 
     before: function() {
         var pages = Router.options.pages;
         var routeName = this.context.route.name;
 
-        if( pages[routeName] == undefined ){
+		//page not found
+        if(pages[routeName] == undefined) {
             this.render('page_not_found');
             return this.stop();
         }
 
-        if( pages[routeName].loginReq == true && !Meteor.user() ){
+		//block user from login-required pages
+        if(pages[routeName].loginReq == true && !Meteor.user()){
             this.render('page_forbidden');
             return this.stop();
         }
 
-        if( Meteor.user() ){
-            if( Meteor.user().profile && Meteor.user().profile.sign_up_procedure ){
-                switch(Meteor.user().profile.sign_up_procedure){
-                    case 1:     if( routeName != 'myProfileEdit' ){
-                                    Router.go('myProfileEdit');
-                                    return this.stop();
-                                }
-                                break;
-                    case 2:     if( routeName != 'billingInfo' ){
-                                    Router.go('billingInfo');
-                                    return this.stop();
-                                }
-                                break;
-                }
-            }
-        }
-
-        if( Meteor.user() && Meteor.user().profile == undefined )
-            Meteor.users.update(Meteor.userId(), {set: {profile: {sign_up_procedure: 1}}});
-
-        if( pages[routeName].loginReq == true && !Roles.userIsInRole(Meteor.userId(), pages[routeName].roles) ){
-            /*console.log(pages[routeName].loginReq, Roles.userIsInRole(Meteor.userId(), pages[routeName].roles));*/
+		//force user to go to billing page if card is invalid
+		if(!Meteor.user().valid_card && this.context.route.name != 'mobile') {
+			Router.go('mobile');
+			Meteor.setTimeout(function() {
+				Session.set('signup_step', 4);
+				$('#signup_step_5 p').text('Please supply a new card to pay for past charges.')
+				$('#sliding_page_wrapper').hardwareAnimate({translateX: -1600}, 1, 'easeInBack');
+			}, 0);
+			return this.stop();
+		}
+		
+		//block user from pages not pertaining to role
+        if(pages[routeName].loginReq == true && !Roles.userIsInRole(Meteor.userId(), pages[routeName].roles)){
             this.render('page_forbidden');
             return this.stop();
         }
-    },
+    }
 });
 
-OrdersController = RouteController.extend({
-});
 
-MobileController = RouteController.extend({
+//use controllers as flags to determine which type of site to show the user. that's all. kinda stupid I know.
+OrdersController = RouteController.extend({});
+MobileController = RouteController.extend({});
 
-});
 
 FlashMessages.configure({
     autoHide: true,
@@ -286,12 +272,4 @@ Handlebars.registerHelper('isDesktopSite', function() {
 	
 	var controller = Router.current().route.options.controller;
 	return controller != 'OrdersController' && controller != 'MobileController';
-});
-
-Template._loginButtonsLoggedIn.events({
-    'click #login-buttons-logout': function(e){
-        e.preventDefault();
-        Router.go('home');
-        Meteor.logout();
-    }
 });

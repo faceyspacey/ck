@@ -1,34 +1,38 @@
 <template name="mobile_container">
 	{{>header}}
 	<div id="mobile_container">
-		<div class="toolbar">
-			<h1 id="pageTitle" class="">Choose a Flavor</h1>
-			<a class="toolbar-button toolbar-back" href="#">BACK</a>
-			<a class="toolbar-button toolbar-next" href="#" style="display:none;">NEXT</a>
-		</div>
+		{{>signup_toolbar}}	
+		{{>signup_slider_wrapper}}
+	</div>
+</template>
 
-        {{#with signUpForm}}
-		<div id="sliding_page_wrapper">
-			{{>step_1 step_1}}
-			{{>step_2 step_2}}
-			{{>step_3 step_3}}
-			{{>step_4 step_4}}
-			{{>step_5 step_5}}
-		</div>
-        {{/with}}
+<template name="signup_toolbar">
+	<div class="toolbar">
+		<h1 id="pageTitle" class="">{{pageTitle}}</h1>
+		{{#if showBackButton}}
+			<a class="toolbar-button toolbar-back" href="#">BACK</a>
+		{{/if}}
+	</div>
+</template>
+
+<template name="signup_slider_wrapper">
+	<div id="sliding_page_wrapper">
+		{{>step_1}}
+		{{>step_2}}
+		{{>step_3}}
+		{{>step_4}}
+		{{>step_5}}
 	</div>
 </template>
 
 <template name="step_1">
 	<div id="signup_step_1" class="mobile_pages">
 		<p>So you want to serve Kombucha on Draft at your Venue, eh? Tell us about it.</p>
-
-        <input id="venue_name" type="name" data-placeholder="{{venue_name.placeholder}}" class="{{errorClass venue_name.error}} {{notEmptyClass venue_name.placeholder venue_name.value}}" value="{{placeholder venue_name.placeholder venue_name.value}}" />
-        {{{showError venue_name.error}}}
-        <input id="venue_address" type="address" data-placeholder="{{venue_address.placeholder}}" class="{{errorClass venue_address.error}} {{notEmptyClass venue_address.placeholder venue_address.value}}" value="{{placeholder venue_address.placeholder venue_address.value}}" />
-        {{{showError venue_address.error}}}
-
-		<a id="step_1_complete" class="toolbar-button save-button" href="javascript: ;" data-step="step_1">NEXT</a>
+		
+		<input id="signup_venue_name" type="name" placeholder="Venue Name" />
+		<input id="signup_venue_address" type="name" placeholder="Address" />
+		
+		<a id="step_1_complete" class="toolbar-button save-button" href="#">NEXT</a>
 	</div>
 </template>
 
@@ -36,12 +40,9 @@
 <template name="step_2">
 	<div id="signup_step_2" class="mobile_pages">
 		<ul>
-			<li><img src="/images/flavor-icons/strawberry-icon.png" /> Random <div class="row-arrow"></div></li>
-			<li><img src="/images/flavor-icons/strawberry-icon.png" /> Strangerine <div class="row-arrow"></div></li>
-			<li><img src="/images/flavor-icons/strawberry-icon.png" /> SB Berry <div class="row-arrow"></div></li>
-			<li><img src="/images/flavor-icons/strawberry-icon.png" /> SB Citrus <div class="row-arrow"></div></li>
-			<li><img src="/images/flavor-icons/strawberry-icon.png" /> Ginger Lemon <div class="row-arrow"></div></li>
-			<li><img src="/images/flavor-icons/strawberry-icon.png" /> Tangerine <div class="row-arrow"></div></li>	
+			{{#each flavors}}
+				<li><img src="{{icon}}" width="30px" /> {{name}} <div class="row-arrow"></div></li>
+			{{/each}}	
 		</ul>
 	</div>
 </template>
@@ -76,26 +77,26 @@
 
 <template name="step_5">
 	<div id="signup_step_5" class="mobile_pages">
-		<p style="margin: 15px 34px -5px 34px;">Please put a credit card on file. We will only charge you upon keg delivery.</p>
+		<p style="margin: 15px 34px -5px 34px;">Please put a credit card on file. We will only charge you upon keg delivery ($120 per keg).</p>
 		
-		<input  placeholder="Credit Card #" />
+		<input id="signup_credit_card" placeholder="Credit Card #" />
 		
-		<input placeholder="CVV Code" style="width: 164px; margin-left: 30px;"/>
+		<input id="signup_cvv_code" placeholder="CVV Code" style="width: 164px; margin-left: 30px;"/>
 		
-		<select class="styled-select" id="user_card_month" name="cardExpMonth" style="float:left; width: 75px; margin-left:32px;">
+		<select class="styled-select" id="signup_card_month" name="cardExpMonth" style="float:left; width: 75px; margin-left:32px;">
 		    {{#each monthOptions}}
-                <option value="{{this}}" {{isSelectedOption 1 this}} >{{this}}</option>
-            {{/each}}
+				<option value="{{this}}">{{this}}</option>
+			{{/each}}
         </select>
 
-		<select class="styled-select" id="user_card_month" name="cardExpYear" style="float:left; width: 100px;">
-            {{#each yearOptions '2013' '2020'}}
-                <option value="{{this}}" {{isSelectedOption 2013 this}}>{{this}}</option>
-            {{/each}}
+		<select class="styled-select" id="signup_card_year" name="cardExpYear" style="float:left; width: 100px;">
+		    {{#each yearOptions}}
+				<option value="{{this}}">{{this}}</option>
+			{{/each}}
         </select>
 
 		<div style="clear:both;"></div>
 		
-		<a id="step_4_complete" class="toolbar-button save-button" href="#">ATTACH CARD</a>
+		<a id="step_5_complete" class="toolbar-button save-button" href="#">ATTACH CARD</a>
 	</div>
 </template>

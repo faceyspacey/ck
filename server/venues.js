@@ -1,8 +1,11 @@
 Venues = new Meteor.Collection("venues");
 
-Meteor.publish("venues", function () {
-    if(Roles.userIsInRole(this.userId, ['admin'])) return Venues.find({}); // everything
-    else return Venues.find({user_id: this.userId});
+Meteor.publish("venues", function (userId) {
+	var userId = userId || this.userId;
+	console.log('userId', userId);
+	
+    if(Roles.userIsInRole(userId, ['admin'])) return Venues.find();
+    else return Venues.find({user_id: userId});
 });
 
 

@@ -11,19 +11,17 @@ Template.page_edit_profile.helpers({
 
 Template.user_form.events({
     'click #save-profile-btn' : function(){
-        var suProcess = this.profile && this.profile.sign_up_procedure == 1 ? 2 : false,
-            user = {
+        var user = {
             emails: [{address: $('#profile_email').val()}],
             profile: {
                 name: $('#profile_name').val(),
                 phone: $('#profile_phone').val(),
-                avatar: $('#profile_avatar').val(),
-                sign_up_procedure: suProcess,
+                avatar: $('#profile_avatar').val()
             }
         };
 
         if( !user.emails[0].address || !user.profile.name || !user.profile.phone ){
-            FlashMessages.sendError('Please, fill all required field.');
+            FlashMessages.sendError('Please, fill all required fields');
             return;
         }
 

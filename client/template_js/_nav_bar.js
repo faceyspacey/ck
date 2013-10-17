@@ -43,6 +43,22 @@ Template._nav_bar.rendered = function() {
 	});
 };
 
+
+
+/** _loginButtonsLoggedIn HELPERS, EVENTS & CALLBACKS **/
+
+Template._loginButtonsLoggedIn.events({
+    'click #login-buttons-logout': function(e){
+        e.preventDefault();
+        Router.go('home');
+        Meteor.logout();
+    }
+});
+
+
+
+/** GLOBAL NAV HELPERS **/
+
 Handlebars.registerHelper('active', function(link){
     var links = [];
     _.each(arguments, function(arg){

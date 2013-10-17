@@ -27,10 +27,25 @@ Handlebars.registerHelper('monthOptions', function(){
     return _.range(1, 13);
 });
 
-Handlebars.registerHelper('yearOptions', function(start, end){
-    return _.range(parseInt(start), parseInt(end)+1);
+Handlebars.registerHelper('yearOptions', function(){
+    return _.range(2013, 2022);
 });
 
 Handlebars.registerHelper('placeholder', function(placeholder, value){
     return value ? value : placeholder;
 });
+
+
+isValidPhone = function(phone) {
+	var digits = phone.replace(/-/g, "").replace(/\(/g, "").replace(/\)/g, "").replace(/ /g, "");
+
+	if(!(digits.length == 10 || digits.length == 11)) return false;
+	return digits;
+};
+
+isValidEmail = function(email) {
+  	var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	
+	if(!regex.test(email)) return false
+	return true;
+}

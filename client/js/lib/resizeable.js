@@ -1,6 +1,6 @@
 Resizeable = Class.extend({
-	init: function() {
-		this.resizeAllElements();  
+	init: function(immediateResize) {
+		if(immediateResize) this.resizeAllElements();  
 		
 		var _this = this;
 	    $(window).resize(function() {

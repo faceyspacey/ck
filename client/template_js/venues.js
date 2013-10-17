@@ -2,7 +2,9 @@
 
 Template.page_venues.helpers({
 	venues: function(){
-	    var condition = this.user_id ? {user_id: this.user_id} : {};
+		var userId = Session.get('new_user_id') || this.user_id, //this is how i solved other collections not showing after signup
+			condition = userId ? {user_id: userId} : {};
+			
 	    return Venues.find(condition, {sort: {name: 1}});
 	},
 	model: function() {
