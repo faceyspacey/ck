@@ -1,0 +1,52 @@
+<template name="slide_one_time_order">
+	<div id="slide_one_time_order" class="mobile_pages">
+		<div class="scrollInner">
+			<div class="select_container">
+				<div class="select_label">Quantity:</div>
+				<select id="quantity_dropdown">
+					{{#each quantities}}
+						<option value="{{quantity}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</div>
+		
+			<div class="select_container">
+				<div class="select_label">day:</div>
+				<select id="day_dropdown">
+					{{#each days}}
+						<option value="{{this}}">{{this}}</option>
+					{{/each}}
+				</select>
+			</div>
+		
+			<div class="select_container">
+				<div class="select_label">Month:</div>
+				<select id="month_dropdown">
+					{{#each months}}
+						<option value="{{index}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</div>
+		
+			<div class="select_container">
+				<div class="select_label">Year:</div>
+				<select id="year_dropdown">
+					{{#each years}}
+						<option value="{{this}}">{{this}}</option>
+					{{/each}}
+				</select>
+			</div>
+		
+			<div class="select_container">
+				<div class="select_label">Venue:</div>
+				<select id="venue_dropdown">
+					{{#each venues}}
+						<option value="{{_id}}" {{selectedVenue}}>{{name}} - {{address}}</option>
+					{{/each}}
+				</select>
+			</div>
+	
+			<a class="toolbar-button save-button" href="#">Place Order</a>
+		</div>
+	</div>
+</template>

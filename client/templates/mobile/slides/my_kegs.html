@@ -1,0 +1,37 @@
+<template name="slide_my_kegs">
+	<div id="slide_my_kegs" class="mobile_pages">
+		<ul>
+			{{#if isKegs}}
+				{{#each kegs}}
+					<li>
+						<div class="row_icon">
+							<img src="{{flavor.keg_icon}}" width="30px" /> 
+						</div>
+						<div class="row_info">
+							<span class="row_title">{{flavor.name}} </span>
+							<br /> <span>{{payment_cycle}} - {{payment_day}}</span>
+						</div>
+						<div style="clear:both;"></div>
+					
+						<div class="row-arrow"></div>
+					</li>
+				{{/each}}
+			{{else}}
+				<div class="no_data">
+					<div class="row_info">
+						<span class="row_title">YOU HAVE NO KEG SUBSCRIPTIONS YET</span>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+			{{/if}}	
+		</ul>
+	</div>
+</template>
+
+
+<template name="slide_save_keg">
+	<img src="{{flavor.keg_icon}}" width="30px" /> {{flavor.name}} 
+	<br /> <span>{{payment_cycle}} - {{payment_day}}</span>
+	<div class="row-arrow"></div>
+	<a class="toolbar-button save-button" href="#" style="margin-top: 30px;">Save Subscription</a>
+</template>

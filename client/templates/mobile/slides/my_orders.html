@@ -1,0 +1,30 @@
+<template name="slide_my_orders">
+	<div id="slide_my_orders" class="mobile_pages">
+		<ul>
+			{{#if isInvoices}}
+				{{#each invoices}}
+					<li>
+						<div class="row_icon">
+							<img src="/images/keg.png" width="30px" /> 
+						</div>
+						<div class="row_info">
+							<span class="row_title">Order #{{order_num}}</span>
+							<br /> <span>{{deliveryDayOfWeek}} - {{actualDeliveryDate}}</span>
+						</div>
+						<div style="clear:both;"></div>
+
+						<div class="right_side_info">${{total}}</div>
+						<div class="row-arrow"></div>
+					</li>
+				{{/each}}	
+			{{else}}
+				<div class="no_data">
+					<div class="row_info">
+						<span class="row_title">YOU HAVE NO DELIVERED ORDERS YET</span>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+			{{/if}}
+		</ul>
+	</div>
+</template>

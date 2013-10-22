@@ -30,8 +30,9 @@ Meteor.methods({
 			});
 		}
 	},
-    chargeCustomer: function(user, invoiceId) {
+    chargeCustomer: function(invoiceId) {
         var invoice = Invoices.findOne(invoiceId),
+			user = Meteor.user(),
 			userId = Meteor.userId(),
 			error, result;
 

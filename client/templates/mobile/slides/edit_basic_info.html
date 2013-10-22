@@ -1,0 +1,11 @@
+<template name="slide_edit_basic_info">
+	<div id="slide_edit_basic_info" class="mobile_pages">
+		<div class="scrollInner">
+			<input type="name" placeholder="Name" style="margin-top: 44px;" value="{{user.profile.name}}"/>
+			<input type="email" placeholder="Email" value="{{user.getEmail}}"/>
+			<input type="phone" placeholder="Cell #"  value="{{user.profile.phone}}"/>
+		
+			<a class="toolbar-button save-button" href="#">Update Info</a>
+		</div>
+	</div>
+</template>

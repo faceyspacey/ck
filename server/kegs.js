@@ -13,10 +13,10 @@ Kegs.allow({
     },
     update: function(userId, doc, fields, modifier) {
         doc.updated_at = new Date;
-        return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
+        return (doc.user_id === userId || Roles.userIsInRole(userId, ['admin']));
     },
-    remove: function(userId, doc) {
-        return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
+    remove: function(userId, doc, bla) {
+        return (doc.user_id === userId || Roles.userIsInRole(userId, ['admin']));
     },
-    fetch: ['user_id, created_at, updated_at']
+    fetch: ['user_id', 'created_at', 'updated_at']
 });

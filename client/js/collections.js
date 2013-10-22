@@ -32,16 +32,11 @@ Messages = new Meteor.Collection("messages", {
     transform: function (doc) { return new MessageModel(doc); }
 });
 
+Meteor.subscribe('users');
+Meteor.subscribe('invoices');
+Meteor.subscribe('invoice_items');
+Meteor.subscribe('messages');
+Meteor.subscribe('venues');
+Meteor.subscribe('kegs');
+Meteor.subscribe('flavors');
 
-Deps.autorun(function() {
-	console.log('user signed up!');
-	
-	var user_id = Session.get('new_user_id'); //this simply triggers reactivity so we have the right subscriptions once signed up
-	Meteor.subscribe('users');
-	Meteor.subscribe('venues', user_id);
-	Meteor.subscribe('kegs');
-	Meteor.subscribe('flavors');
-	Meteor.subscribe('invoices');
-	Meteor.subscribe('invoice_items');
-	Meteor.subscribe('messages');
-})

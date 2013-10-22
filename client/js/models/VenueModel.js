@@ -12,9 +12,14 @@
  *  kegerator_count             Int
  *  tap_count                   Int
  *  delivery_date               Date
+ *
  *  kegerator_request_date      Date
  *  tap_request_date            Date
+ *  materials_request_date		Date
  *
+ *	kegerator_install_date		Date
+ *  tap_install_date			Date
+ *  materials_supplied_date		Date
 */
 
 VenueModel = function(doc){
@@ -36,6 +41,10 @@ VenueModel = function(doc){
 	
 	this.tapInstalled = function() {
 		return this.tap_install_date > this.tap_request_date;
+	};
+	
+	this.materialsSupplied = function() {
+		return this.materials_supplied_date > this.materials_request_date;
 	};
 		
     this.user = function(){
@@ -145,7 +154,7 @@ VenueModel = function(doc){
 
 		var invoiceId = this.createInvoice({type: 'one_off', delivered: false, requested_delivery_date: deliveryDate});
 		this.createInvoiceItems(orderedKegs, invoiceId, true);
-		this.chargeCustomer(invoiceId);
+		//this.chargeCustomer(invoiceId); do this upon delivery instead
 			
 		return invoiceId;
 	};
@@ -197,7 +206,7 @@ VenueModel = function(doc){
             total += item.quantity * item.rate;
             quantity += item.quantity;
 
-			if(isOneOff) Flavors.update(item.flavor_id, {$inc: {one_off_quantity_availible: -1 * item.quantity}});
+			if(isOneOff) Meteor.call('decrementFlavorQuantity', item.flavor_id, item.quantity);
         });
 
         this.finalizeInvoice(invoiceId, total, quantity);
@@ -215,7 +224,7 @@ VenueModel = function(doc){
 	
 	this.chargeCustomer = function(invoiceId) {
 		if(this.user().stripe_customer_token != undefined) {
-            Meteor.call('chargeCustomer', this.user(), invoiceId, function(error, result){
+            Meteor.call('chargeCustomer', invoiceId, function(error, result){
                 Invoices.update(invoiceId, {$set: {paymentInProgress: false}});
             });
 		}

@@ -1,0 +1,25 @@
+<template name="slide_cycle_day">
+	<div id="slide_cycle_day" class="mobile_pages">
+		<div class="scrollInner">
+			<div style="width: 100%; margin: 0 auto">
+				<p style="margin: 18px 8.5% 20px 8.5%;">How often would you like to receive fresh Kombucha on Draft?</p>
+
+				<a class="toolbar-button radio-button radio-cycle {{radioCycleSelected 'weekly'}}" href="#"><img src="/images/checkmark.png" />Weekly</a>
+				<a class="toolbar-button radio-button radio-cycle {{radioCycleSelected 'bi-weekly'}}" href="#"><img src="/images/checkmark.png" />Bi-Weekly</a>
+				<div style="clear:both;"></div>
+
+				<p style="margin: 40px 8.5% 18px 8.5%;">And on what day should we drop the keg off?</p>
+
+				<a class="toolbar-button radio-button radio-day {{radioDaySelected 'monday'}}" href="#"><img src="/images/checkmark.png" />Monday</a>
+				<a class="toolbar-button radio-button radio-day {{radioDaySelected 'thursday'}}" href="#"><img src="/images/checkmark.png" /> Thursday</a>
+				<div style="clear:both;"></div>
+			</div>
+	
+			{{#if updateKeg}}
+				<a  class="toolbar-button delete-button" href="#" style="margin-top: 60px; margin-bottom: -20px;">Cancel Keg Subscription</a>
+			{{/if}}
+		
+			<a class="toolbar-button save-button" href="#" style="margin: 48px auto;">{{saveButtonText}}</a>
+		</div>
+	</div>
+</template>

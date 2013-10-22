@@ -90,6 +90,7 @@ InvoiceModel = function(doc){
 		if(this.paid) return 'PAID';
 		if(this.payment_failed) return 'FAILED';
 		if(!this.is_stripe_customer && !this.paid) return 'AWAITING CHECK';
+		return 'AWAITING PAYMENT';
 	};
 
     this.formattedCreatedAt = function(){

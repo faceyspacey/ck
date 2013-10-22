@@ -61,6 +61,12 @@ Flavors.allow({
     remove: function(userId, doc) {
         return Roles.userIsInRole(userId, ['admin']);
     },
-    fetch: ['user_id, created_at, updated_at']
+    fetch: ['user_id', 'created_at', 'updated_at']
+});
+
+Meteor.methods({
+	decremenFlavorQuantity: function(flavorId, quantity) {
+		Flavors.update(flavorId, {$inc: {one_off_quantity_availible: -1 * quantity}});
+	}
 });
 

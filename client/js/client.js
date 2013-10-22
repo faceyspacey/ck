@@ -1,18 +1,15 @@
 Router.map(function() {
 	/* ----- Mobile Pages ----- */
-	this.route('mobile', {
-        path: '/mobile/step_1',
+	this.route('signup', {
+        path: '/signup',
         controller: 'MobileController',
-		template: 'mobile_container',
-        data: function() {
-            SignUpForms = new Meteor.Collection(null, { //create local-only (temporary) mini-mongo collection
-                reactive: true,
-                transform: function (doc) { return new SignUpForm(doc); }
-            });
+		template: 'signup_slides'
+    });
 
-            var form = new SignUpForm();
-            return form.save();
-        }
+	this.route('mobile', {
+        path: '/mobile',
+        controller: 'MobileController',
+		template: 'panel_slides'
     });
 	
     /* ----- Public pages ----- */
@@ -179,14 +176,16 @@ Router.map(function() {
 });
 
 Router.configure({
-    layout: 'layout',
+    layout: isMobile ? 'mobile_layout' : 'layout',
 
     pages: {
-		mobile: {loginReq: false, roles: []},
+		signup: {loginReq: false, roles: []},
 		
         home: {loginReq: false, roles: []},
         order: {loginReq: false, roles: []},
 
+		mobile: {loginReq: false, roles: ['client', 'admin']},
+		
         myProfile: {loginReq: true, roles: ['client', 'admin']},
         myProfileEdit: {loginReq: true, roles: ['client', 'admin']},
         myInvoices: {loginReq: true, roles: ['client', 'admin']},
@@ -221,9 +220,33 @@ Router.configure({
     },
 
     before: function() {
+		//prevent touch events from causing the typical crummy safari scroll of the entire web page
+	    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	
+		initializeScrolls();
+		
         var pages = Router.options.pages;
         var routeName = this.context.route.name;
-
+		
+		if(isMobile) {
+			if(!Meteor.user() && routeName != 'signup') {
+				Router.go('signup');
+				console.log('signup');
+			}
+			else if (Meteor.user() && routeName != 'mobile') {
+				Router.go('mobile');
+				console.log('panel');
+			}
+			
+			//if(routeName == 'signup') Session.set('step_type', 'signup');
+			//if(routeName == 'mobile') Session.set('step_type', 'panel');
+			//if(routeName == 'signup' || routeName == 'mobile') Session.set('slide_step', 0);	
+			
+			this.render();
+			
+			return this.stop();
+		}
+		
 		//page not found
         if(pages[routeName] == undefined) {
             this.render('page_not_found');
@@ -237,13 +260,10 @@ Router.configure({
         }
 
 		//force user to go to billing page if card is invalid
-		if(Meteor.user() && !Meteor.user().valid_card && this.context.route.name != 'mobile') {
-			Router.go('mobile');
-			Meteor.setTimeout(function() {
-				Session.set('signup_step', 4);
-				$('#signup_step_5 p').text('Please supply a new card to pay for past charges.')
-				$('#sliding_page_wrapper').hardwareAnimate({translateX: -1600}, 1, 'easeInBack');
-			}, 0);
+		if(Meteor.user() && !Meteor.user().valid_card && this.context.route.name != 'signup') {
+			console.log('invalid credit card. going to signup/pay');
+			Session.set('invalid_card', true);
+			Router.go('signup');
 			return this.stop();
 		}
 		
@@ -254,6 +274,7 @@ Router.configure({
         }
     }
 });
+
 
 
 //use controllers as flags to determine which type of site to show the user. that's all. kinda stupid I know.

@@ -8,10 +8,10 @@ App = (function(){
         {id: 'thursday', name: 'Thursday'}
     ];
     var kegTypes = {
-        1: {price: 120, size: 5, name: '5 Gallons'},
-        2: {price: 150, size: 5, name: '5 Gallons'},
-        3: {price: 100, size: 5, name: '5 Gallons'},
-        4: {price: 300, size: 15, name: '15 Gallons'}
+        1: {price: 120, size: 5, name: 'Five Gallons'},
+        2: {price: 150, size: 5, name: 'Five Gallons'},
+        3: {price: 100, size: 5, name: 'Five Gallons'},
+        4: {price: 300, size: 15, name: 'Fifteen Gallons'}
     };
 	var prices = {
 		fiveGallons: 120,
@@ -21,8 +21,14 @@ App = (function(){
 	};
     var messageTypes = {
         1: {id: 1, subject: 'General Question'},
-        2: {id: 2, subject: 'Invoice Reply'},
-        3: {id: 3, subject: 'Bug Report'}
+        2: {id: 2, subject: 'Order Reply'},
+        3: {id: 3, subject: 'Out of CO2'},
+		4: {id: 3, subject: 'Clogged Tap'},
+		5: {id: 3, subject: 'Issue with Website'},
+		6: {id: 3, subject: 'Request Double Tap'},
+		7: {id: 3, subject: 'Request Additional Kegerator'},
+		8: {id: 3, subject: 'Request Promotional Materials'},
+		9: {id: 3, subject: 'Other'}
     };
 
     function getPaymentCycles(){

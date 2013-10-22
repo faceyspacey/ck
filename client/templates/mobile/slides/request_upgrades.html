@@ -1,0 +1,22 @@
+<template name="slide_request_upgrades">
+	<div id="slide_request_upgrades" class="mobile_pages">
+		<div class="scrollInner">
+			<div class="select_container">
+				<div class="select_label">Upgrade:</div>
+				<select id="upgrade_type_dropdown">
+					{{#each upgradeTypes}}
+						<option value="{{id}}">{{subject}}</option>
+					{{/each}}
+				</select>
+			</div>
+		
+			<div style="margin: 30px auto 10px; width: 80%";>
+				<span>Message (optional):</span>
+			</div>
+		
+			<textarea id="upgrade_message" tstyle="margin-top: 20px;"/></textarea>
+
+			<a class="toolbar-button save-button" href="#">SEND</a>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,17 @@
+<template name="mobile_layout">
+	{{>header}}
+	<div id="mobile_container">
+		{{>mobile_sidebar}}	
+		
+		<div id="mobile_content_container">
+			{{>mobile_toolbar}}
+			<div id="sliding_page_wrapper">
+				{{yield}}
+			</div>	
+			
+			<div id="mobile_footer">
+				<img src="/images/sales_logo.png" />
+			</div>
+		</div>
+	</div>
+</template>

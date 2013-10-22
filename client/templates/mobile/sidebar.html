@@ -1,0 +1,11 @@
+<template name="mobile_sidebar">
+	<div id="mobile_sidebar">
+		<ul>
+			{{#each venues}}
+				<li id="{{_id}}" class="venue_name">{{address}} <div class="row-arrow"></div></li>
+			{{/each}}	
+			<li id="add_venue" style="font-weight:bold;">Add New Venue <div class="row-arrow"></div></li>
+		</ul>
+		<img src="/images/background-c.png" id="background_c" />
+	</div>
+</template>

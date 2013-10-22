@@ -11,6 +11,7 @@
                 <th style="">Equipment</th>
                 <th style="">Kegerator Requests</th>
 				<th style="">Tap Requests</th>
+				<th style="">Materials Requests</th>
             </tr>
 
             {{#if venues }}
@@ -37,6 +38,14 @@
 						{{else}}
 							<div class="kegerator-row">Requested on: <br /> {{time tap_request_date}}</div>
 							<div class="tap-installed-button customButton-blue">Installed</div>
+						{{/if}}
+					</td>
+					<td>
+						{{#if materialsSupplied}}
+							<div class="kegerator-row">Last Delivered: <br /> {{time materials_supplied_date}}</div>
+						{{else}}
+							<div class="kegerator-row">Requested on: <br /> {{time materials_requested_date}}</div>
+							<div class="materials-supplied-button customButton-blue">Supplied</div>
 						{{/if}}
 					</td>
                 </tr>

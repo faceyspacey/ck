@@ -45,6 +45,7 @@ transitionDelay = prefixStyle('transitionDelay'),
 isAndroid = (/android/gi).test(navigator.appVersion),
 isIDevice = (/iphone|ipad/gi).test(navigator.appVersion),
 isTouchPad = (/hp-tablet/gi).test(navigator.appVersion),
+isMobile = true, //isAndroid || isIDevice || isTouchPad,
 
 has3d = prefixStyle('perspective') in dummyStyle,
 hasTouch = 'ontouchstart' in window && !isTouchPad,

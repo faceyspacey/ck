@@ -24,5 +24,5 @@ Messages.allow({
     remove: function(userId, doc) {
         return Roles.userIsInRole(userId, ['admin']);
     },
-    fetch: ['user_id, created_at, updated_at, message_num']
+    fetch: ['user_id', 'created_at', 'updated_at']
 });

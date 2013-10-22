@@ -23,6 +23,10 @@ Handlebars.registerHelper('isSelectedOption', function(selected, value) {
     return selected == value ? 'selected=selected' : '';
 });
 
+Handlebars.registerHelper('dayOptions', function(){
+    return _.range(1, 31);
+});
+
 Handlebars.registerHelper('monthOptions', function(){
     return _.range(1, 13);
 });

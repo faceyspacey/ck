@@ -1,0 +1,28 @@
+<template name="slide_billing_info">
+	<div id="slide_billing_info" class="mobile_pages">
+		<div class="scrollInner">
+			<p style="margin: 0px 8.5% 15px 8.5%;">Please put a credit card on file. We will only charge you upon keg delivery ($120 per keg).</p>
+		
+			<div style="width:82%; margin: 0 auto;">
+				<input id="signup_credit_card" placeholder="Credit Card #" style="width: 90%; margin-left: 0px;" />
+				<input id="signup_cvv_code" placeholder="CVV Code" style="width: 164px; margin-left: 0px;"/>
+		
+				<select class="styled-select" id="signup_card_month" name="cardExpMonth" style="float:left; width: 75px; margin-left:0px;">
+				    {{#each monthOptions}}
+						<option value="{{this}}">{{this}}</option>
+					{{/each}}
+		        </select>
+
+				<select class="styled-select" id="signup_card_year" name="cardExpYear" style="float:left; width: 100px;">
+				    {{#each yearOptions}}
+						<option value="{{this}}">{{this}}</option>
+					{{/each}}
+		        </select>
+
+				<div style="clear:both;"></div>
+			</div>
+		
+			<a class="toolbar-button save-button" href="#" style="margin-top: 30px;">ATTACH CARD</a>
+		</div>
+	</div>
+</template>

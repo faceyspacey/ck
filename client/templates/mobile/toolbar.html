@@ -1,0 +1,17 @@
+<template name="mobile_toolbar">
+	<div class="toolbar">
+		<h1 id="pageTitle" class="">{{pageTitle}}</h1>
+		
+		{{#if showBackButton}}
+			<a class="toolbar-button toolbar-back" href="#">Back</a>
+		{{/if}}
+		
+		{{#if showMenuButton}}
+			<a class="toolbar-button toolbar-menu" href="#">☰</a>
+		{{/if}}		
+		
+		{{#if showAddButton}}
+			<a class="toolbar-button toolbar-add" href="#">+</a>
+		{{/if}}
+	</div>
+</template>

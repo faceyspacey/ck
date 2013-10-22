@@ -22,7 +22,7 @@ OrderedFlavorModel = function(doc){
         user_id: Meteor.userId(),
         quantity: 1,
 		rate: App.prices.fiveGallonsOneOff,
-		keg_type: '5 Gallons',
+		keg_type: 'Five Gallons',
 		flavor_id: defaultFlavor._id,
 		flavor_icon: defaultFlavor.icon,
 		flavor_name: defaultFlavor.name
@@ -37,7 +37,7 @@ OrderedFlavorModel = function(doc){
 	};
 	
 	this.name = function() {
-		return this.keg_type + ' ' + this.flavor_name + 'keg(s)'
+		return this.keg_type + ' ' + this.flavor_name + ' keg' + (this.quantity > 1 ? 's' : '');
 	};
 
 	_.extend(this, Model);

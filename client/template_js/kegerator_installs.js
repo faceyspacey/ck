@@ -12,5 +12,8 @@ Template.page_kegerator_installs.events({
     },
 	'click .tap-installed-button': function() {
 		Venues.update(this._id, {$set: {tap_install_date: new Date}, $inc: {tap_count: 1}});
+    },
+	'click .matterials-installed-button': function() {
+		Venues.update(this._id, {$set: {materials_supplied_date: new Date}});
     }
 });

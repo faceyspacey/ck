@@ -15,8 +15,8 @@ Template.contact_us_form.helpers({
         return new MessageModel();
     },
     messageTypes: function(){
-        var types = App.messageTypes;
-        delete types[2];
+        var types = _.extend({}, App.messageTypes);
+        delete types[2]; delete types[6]; delete types[7]; delete types[8];
         return _.values(types);
     }
 });

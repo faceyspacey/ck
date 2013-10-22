@@ -13,14 +13,16 @@ Invoices.allow({
         var max = Invoices.findOne({}, {sort: {order_num: -1}});
         doc.order_num = parseInt(max ? max.order_num : 0) +1;
 
-        return Roles.userIsInRole(userId, ['admin']);
+        return (doc.user_id === userId || Roles.userIsInRole(userId, ['admin']));
     },
     update: function(userId, doc, fields, modifier) {
         doc.updated_at = new Date;
-        return ((doc.user_id === userId) || Roles.userIsInRole(userId, ['admin']));
+        return (doc.user_id === userId || Roles.userIsInRole(userId, ['admin']));
     },
     remove: function(userId, doc) {
-        return Roles.userIsInRole(userId, ['admin']);
+        return (doc.user_id === userId || Roles.userIsInRole(userId, ['admin']));
     },
-    fetch: ['user_id, created_at, updated_at, order_num']
+    fetch: ['user_id', 'created_at', 'updated_at', 'order_num']
 });
+
+

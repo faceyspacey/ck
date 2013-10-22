@@ -42,6 +42,11 @@ Template.venue_grid_row.events({
 		if(confirm("Are you sure you'd like to replace your current tap tower with a {FREE!) double tower?")) {
 			Venues.update(this._id, {$set: {tap_request_date: new Date}});
 		}
+	},
+	'click .request-materials-btn': function(e) {
+		if(confirm("Are you sure you would like to request additional promotional materials?")) {
+			Venues.update(this._id, {$set: {materials_request_date: new Date}});
+		}
 	}
 });
 

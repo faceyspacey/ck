@@ -1,0 +1,19 @@
+<template name="slide_flavors">
+	<div id="panel_flavors_slide" class="mobile_pages">
+		<ul>
+			{{#each flavors}}
+				<li>
+					<div class="row_icon">
+						<img src="{{icon}}" width="30px" /> 
+					</div>
+					<div class="row_info">
+						<span class="row_title">{{name}}</span>
+					</div>
+					<div style="clear:both;"></div>
+					
+					<div class="row-arrow"></div>
+				</li>
+			{{/each}}	
+		</ul>
+	</div>
+</template>
