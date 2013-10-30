@@ -1175,13 +1175,37 @@ hvScroll = function(id) {
 }
 
 
-isScrollElements = {};
-setupIscroll = function(templateInstance) {
-	var page = templateInstance.find('.mobile_pages'),
+iScrollElements = {};
+iScrollElementsDontDestroy = {};
+setupIscrollOld = function(templateInstance) {
+	var page = templateInstance.find('.mobile_pages, #mobile_sidebar'),
 		id = $(page).attr('id');
 	
-	if(isScrollElements[id]) isScrollElements[id].destroy();
+	if(iScrollElements[id] && iScrollElementsDontDestroy[id] == undefined) {
+		iScrollElements[id].destroy();
+		delete iScrollElements[id]; 
+	}
+	if(iScrollElements[id] == undefined) iScrollElements[id] = vScroll(id);
 	
-	isScrollElements[id] = vScroll(id);
-	return isScrollElements[id]
-}
+	return iScrollElements[id];
+};
+
+
+setupIscroll = function(templateInstance) {
+	var page = templateInstance.find('.mobile_pages, #mobile_sidebar'),
+		id = $(page).attr('id');
+	
+	if(iScrollElements[id] == undefined) iScrollElements[id] = vScroll(id);
+	
+	return iScrollElements[id].refresh();
+};
+
+
+
+deleteDontDestroyScrolls = function() {
+	for (prop in iScrollElementsDontDestroy) { 
+		if (iScrollElementsDontDestroy.hasOwnProperty(prop)) { 
+			delete iScrollElementsDontDestroy[prop]; 
+		} 
+	}
+};

@@ -1,13 +1,14 @@
 Template.slide_flavors.events({
-	'mouseup li, tap li': function(e) {
-		Session.set('current_flavor_id', this._id);
-		$(e.currentTarget).addClass('touched');
-		nextPage();
+	'click li': function(e) {
+		if(!mobileScrolling) {
+			Session.set('current_flavor_id', this._id);
+			nextPage();
+		}
 	},
-	'touchstart li': function(e) {
+	'mousedown li, touchstart li': function(e) {
 		$(e.currentTarget).addClass('touched');
 	},
-	'touchend li': function(e) {
+	'mouseup li, touchend li': function(e) {
 		$(e.currentTarget).removeClass('touched');
 	}
 });

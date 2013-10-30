@@ -32,11 +32,11 @@ Messages = new Meteor.Collection("messages", {
     transform: function (doc) { return new MessageModel(doc); }
 });
 
-Meteor.subscribe('users');
+usersSub = Meteor.subscribe('users');
+venuesSub = Meteor.subscribe('venues');
 Meteor.subscribe('invoices');
 Meteor.subscribe('invoice_items');
 Meteor.subscribe('messages');
-Meteor.subscribe('venues');
 Meteor.subscribe('kegs');
 Meteor.subscribe('flavors');
 

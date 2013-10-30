@@ -37,7 +37,7 @@ OrderedFlavorModel = function(doc){
 	};
 	
 	this.name = function() {
-		return this.keg_type + ' ' + this.flavor_name + ' keg' + (this.quantity > 1 ? 's' : '');
+		return this.flavor_name + ' keg' + (this.quantity > 1 ? 's' : '');
 	};
 
 	_.extend(this, Model);

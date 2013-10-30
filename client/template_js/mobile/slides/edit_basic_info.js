@@ -5,7 +5,8 @@ Template.slide_edit_basic_info.helpers({
 });
 
 Template.slide_edit_basic_info.events({
-	'mouseup .save-button, tap .save-button': function() {		
+	'mouseup .save-button': function() {		
+		console.log('saving info');
 		var name = $('input[type=name]').val(),
 			email = $('input[type=email]').val(),
 			phone = $('input[type=phone]').val();
@@ -32,5 +33,11 @@ Template.slide_edit_basic_info.events({
 			alert('Please provide a valid phone, email address and name');
 		}
 		
+	},
+	'touchstart .save-button, mousedown .save-button': function(e) {
+		$(e.currentTarget).addClass('touched');
+	},
+	'touchend .save-button, mouseup .save-button': function(e) {
+		$(e.currentTarget).removeClass('touched');
 	}
 });

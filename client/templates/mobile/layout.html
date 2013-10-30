@@ -1,17 +1,22 @@
 <template name="mobile_layout">
-	{{>header}}
-	<div id="mobile_container">
-		{{>mobile_sidebar}}	
-		
-		<div id="mobile_content_container">
-			{{>mobile_toolbar}}
-			<div id="sliding_page_wrapper">
-				{{yield}}
-			</div>	
-			
-			<div id="mobile_footer">
-				<img src="/images/sales_logo.png" />
-			</div>
-		</div>
+	<div id="navi-top" style="">
+        {{loginButtons align="right"}} 
+  
+		{{#if isSuperAdminAndOnDesktop}}
+			<div class="navi-links-holder">
+	            {{> _nav_bar}}            
+	        </div>
+		{{/if}}
+    </div>
+
+	<div class="mobile_logo">
+		<img id="m_logo" src="/images/sales_logo.png" style="width: 505px;">
+		<img id="m_tagline" src="/images/sales_enlightened.png" style="width:289px;" alt="Enlightened Tea">
 	</div>
+	
+	<div id="fake_body"></div>
+	
+	{{yield}}
 </template>
+
+

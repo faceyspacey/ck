@@ -6,8 +6,8 @@
 					<div class="left_side">Order #:</div> <div class="right_side">{{order_num}}</div> <div style="clear:both;"></div>
 					<div class="left_side">Venue:</div> <div class="right_side">{{venue.name}}</div> <div style="clear:both;"></div>
 					<div class="left_side">Address:</div> <div class="right_side">{{venue.address}}</div> <div style="clear:both;"></div>
-					<div class="left_side">Keg Quantity:</div> <div class="right_side">{{keg_quantity}} Give Gallon Kegs</div> <div style="clear:both;"></div>
-					<div class="left_side">Delivery Date:</div> <div class="right_side">{{actualDeliveryDate}}</div> <div style="clear:both;"></div>
+					<div class="left_side">Quantity:</div> <div class="right_side">{{keg_quantity}} Five Gallon Kegs</div> <div style="clear:both;"></div>
+					<div class="left_side">Date:</div> <div class="right_side">{{{actualDeliveryDate}}}</div> <div style="clear:both;"></div>
 					<div class="left_side">Total:</div> <div class="right_side">${{total}}</div> <div style="clear:both;"></div>
 					<div class="left_side">Paid:</div> <div class="right_side">{{paidInfo}}</div> <div style="clear:both;"></div>
 				</div>
@@ -15,17 +15,15 @@
 				{{#if invoiceItems}}
 			    <div class="invoice_items">
 			        {{#each invoiceItems}}
-			            <div class="invoice_item">
+			            <div class="invoice_item" style="position: relative;">
 							<img src="{{flavor_icon}}" />
-			                <span class="invoice_item_quantity">{{quantity}}</span>						
-			                <span class="invoice_item_name">{{name}}</span>
-			                <div class="invoice_item_subtotal">${{subtotal}}</div>
+			                <span class="invoice_item_quantity" style="position: absolute; top: 7px; left: 38px; width: 90%;"><b>{{quantity}}</b> {{name}} <b>${{subtotal}}</b></span>						
 			            </div>
 			        {{/each}}
 			    </div>
 			    {{/if}}
 		
-				<a class="toolbar-button delete-button" href="#" style="margin-top: 30px;">OPEN PDF</a>
+				{{#if false}}<a class="toolbar-button delete-button" href="#" style="margin-top: 30px;">OPEN PDF</a>{{/if}}
 				<a class="toolbar-button save-button reply-button" href="#" style="margin-top: 30px;">REPLY</a>
 			{{/with}}
 		</div>

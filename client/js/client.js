@@ -1,18 +1,40 @@
 Router.map(function() {
 	/* ----- Mobile Pages ----- */
+	this.route('guest', {
+        path: '/',
+        controller: 'MobileController',
+		template: 'guest_home',
+		onBeforeRun: function() {
+			console.log('onBeforeRun guest');
+			Session.set('step_type', 'guest');
+			Session.set('slide_step', 0);
+		}
+    });
 	this.route('signup', {
         path: '/signup',
         controller: 'MobileController',
-		template: 'signup_slides'
+		template: 'signup_slides',
+		onBeforeRun: function() {
+			console.log('onBeforeRun signup');
+			Session.set('step_type', 'signup');
+			Session.set('slide_step', 0);
+		},
+		waitOn: Meteor.subscribe('users')
     });
-
 	this.route('mobile', {
-        path: '/mobile',
+        path: '/panel',
         controller: 'MobileController',
-		template: 'panel_slides'
+		template: 'panel_slides',
+		onBeforeRun: function() {
+			console.log('onBeforeRun panel');
+			Session.set('step_type', 'panel');
+			Session.set('slide_step', 0);
+		},
+		waitOn: Meteor.subscribe('users')
     });
 	
     /* ----- Public pages ----- */
+	/**
     this.route('home', {
         path: '/',
         template: 'page_home',
@@ -21,6 +43,7 @@ Router.map(function() {
         },
         data: {}
     });
+	**/
     this.route('home', {
         path: '/home',
         template: 'page_home',
@@ -176,15 +199,17 @@ Router.map(function() {
 });
 
 Router.configure({
-    layout: isMobile ? 'mobile_layout' : 'layout',
+    layout: 'mobile_layout', //isMobile ? 'mobile_layout' : 'layout',
 
     pages: {
+		guest: {loginReq: false, roles: []},
 		signup: {loginReq: false, roles: []},
+		mobile: {loginReq: true, roles: ['client', 'admin']},
 		
         home: {loginReq: false, roles: []},
         order: {loginReq: false, roles: []},
 
-		mobile: {loginReq: false, roles: ['client', 'admin']},
+		
 		
         myProfile: {loginReq: true, roles: ['client', 'admin']},
         myProfileEdit: {loginReq: true, roles: ['client', 'admin']},
@@ -221,27 +246,23 @@ Router.configure({
 
     before: function() {
 		//prevent touch events from causing the typical crummy safari scroll of the entire web page
-	    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	    if(isMobile) document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
 		initializeScrolls();
 		
         var pages = Router.options.pages;
         var routeName = this.context.route.name;
 		
-		if(isMobile) {
-			if(!Meteor.user() && routeName != 'signup') {
-				Router.go('signup');
-				console.log('signup');
+		if(isMobile) { 
+			if(!Meteor.user() && routeName != 'signup' && routeName != 'guest') {
+				Router.go('guest');
+				console.log('guest');
 			}
 			else if (Meteor.user() && routeName != 'mobile') {
 				Router.go('mobile');
 				console.log('panel');
 			}
-			
-			//if(routeName == 'signup') Session.set('step_type', 'signup');
-			//if(routeName == 'mobile') Session.set('step_type', 'panel');
-			//if(routeName == 'signup' || routeName == 'mobile') Session.set('slide_step', 0);	
-			
+
 			this.render();
 			
 			return this.stop();
@@ -258,14 +279,6 @@ Router.configure({
             this.render('page_forbidden');
             return this.stop();
         }
-
-		//force user to go to billing page if card is invalid
-		if(Meteor.user() && !Meteor.user().valid_card && this.context.route.name != 'signup') {
-			console.log('invalid credit card. going to signup/pay');
-			Session.set('invalid_card', true);
-			Router.go('signup');
-			return this.stop();
-		}
 		
 		//block user from pages not pertaining to role
         if(pages[routeName].loginReq == true && !Roles.userIsInRole(Meteor.userId(), pages[routeName].roles)){
@@ -276,6 +289,14 @@ Router.configure({
 });
 
 
+//force user to go to billing page if card is invalid
+Deps.autorun(function() {
+	if(Meteor.user() && !Meteor.user().valid_card && Meteor.user().stripe_customer_token && !Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+		console.log('invalid credit card. going to signup/pay', Meteor.user());
+		Session.set('invalid_card', true);
+		Router.go('signup');
+	}
+});
 
 //use controllers as flags to determine which type of site to show the user. that's all. kinda stupid I know.
 OrdersController = RouteController.extend({});
@@ -293,4 +314,17 @@ Handlebars.registerHelper('isDesktopSite', function() {
 	
 	var controller = Router.current().route.options.controller;
 	return controller != 'OrdersController' && controller != 'MobileController';
+});
+
+var justLoggedIn = true;
+Deps.autorun(function() {
+	//if(Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ['superAdmin'])) Router.go('mobile'); //do this later actually a superAdmin
+	if(Meteor.userId() && !App.isSuperAdmin()) Router.go('mobile');
+
+	//convenience for admin so admin can feel the initial login page change like a regular user to make sure it's not broken
+	//but still be able to view routes outside of 'mobile' (since the entire panel is in the 'mobile' router)
+	if(justLoggedIn && Meteor.user() && App.isSuperAdmin() && Router.current() && Router.current().route.name == 'guest') {
+		justLoggedIn = false;
+		Router.go('mobile');
+	}
 });

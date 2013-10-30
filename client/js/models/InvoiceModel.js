@@ -79,8 +79,17 @@ InvoiceModel = function(doc){
     };
 	
 	this.actualDeliveryDate = function() {
-		return this.actual_delivery_date ? moment(this.actual_delivery_date).format("ddd, MMM Do, h:mm a") : 'Not Delivered Yet';
+		return this.actual_delivery_date ? moment(this.actual_delivery_date).format("DD/MM <br /> h:mma") : 'Not Delivered Yet';
 	};
+	
+	this.actualDeliveryMoment = function() {
+		return this.actual_delivery_date ? moment(this.actual_delivery_date) : null;
+	};
+	
+	this.actualDeliverySmallTime = function() {
+		return this.actualDeliveryMoment().format("MM/DD") +'<br />' + this.actualDeliveryMoment().format("h:mma");
+	};
+	
 	
 	this.actualPaidDate = function() {
 		return moment(this.actual_paid_date).format("ddd, MMM Do, h:mm a");

@@ -1,10 +1,42 @@
 <template name="signup_slides">
-	{{#each slides}}
-		{{{renderSlide this}}}
-	{{/each}}
+	<div id="mobile_container" style="opacity: 0;">	
+		{{>mobile_sidebar}}	
+	
+		<div id="mobile_content_container">
+			{{>mobile_toolbar}}
+		
+			<div id="sliding_page_wrapper">
+				{{>sliding_page_wrapper}}
+			</div>	
+		
+			<div id="mobile_footer">
+				<img src="/images/sales_logo.png" />
+			</div>
+		</div>
+	</div>
 </template>
 
-<template name="panel_slides">
+
+<template name="panel_slides">	
+	<div id="mobile_container" style="opacity: 0;">	
+		{{>mobile_sidebar}}	
+	
+		<div id="mobile_content_container">
+			{{>mobile_toolbar}}
+		
+			<div id="sliding_page_wrapper">
+				{{>sliding_page_wrapper}}
+			</div>	
+		
+			<div id="mobile_footer">
+				<img src="/images/sales_logo.png" />
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<template name="sliding_page_wrapper">
 	{{#each slides}}
 		{{{renderSlide this}}}
 	{{/each}}

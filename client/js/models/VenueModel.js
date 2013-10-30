@@ -20,31 +20,51 @@
  *	kegerator_install_date		Date
  *  tap_install_date			Date
  *  materials_supplied_date		Date
-*/
+**/
 
 VenueModel = function(doc){
 	this.collectionName ='Venues';
 	this.defaultValues = {
 		kegerator_count: 0,
 		tap_count: 0,
+		
 		kegerator_request_date: new Date,
 		tap_request_date: new Date,
-        delivery_date : new Date(0),
+		materials_request_date: new Date,
+		
+        delivery_date : new Date(0)
 	};
 	
     this.afterInsert = function(){
+	
     };
 
 	this.kegeratorInstalled = function() {
-		return this.kegerator_install_date > this.kegerator_request_date;
+		return this.kegerator_install_date > (this.kegerator_request_date || 0);
 	};
 	
 	this.tapInstalled = function() {
-		return this.tap_install_date > this.tap_request_date;
+		return this.tap_install_date > (this.tap_request_date || 0);
 	};
 	
 	this.materialsSupplied = function() {
-		return this.materials_supplied_date > this.materials_request_date;
+		return this.materials_supplied_date > (this.materials_request_date || 0);
+	};
+		
+	this.needsStuff = function() {
+		return !this.kegeratorInstalled() || !this.tapInstalled() || !this.materialsSupplied();
+	};
+	
+	this.lastUpgradeTime = function() {
+		var lastUpgradeTime = _.sortBy([
+				this.kegerator_install_date,
+				this.tap_request_date,
+				this.materials_supplied_date
+			], function(date) {
+				return date ? date.getTime() : null;
+			})[2];
+			
+		return moment(lastUpgradeTime).format("MM/DD") +'<br />' + moment(lastUpgradeTime).format("h:mma");
 	};
 		
     this.user = function(){
@@ -82,10 +102,14 @@ VenueModel = function(doc){
         Meteor.call('sendCustomerEmail', this.user().getEmail(), 'Order delivered: #'+invoice.order_num, customerMessage, function(err, res){});
     }
 
-    this.lastDeliveryDate = function(payment_day){
-        var invoice = Invoices.findOne({venue_id: this._id, payment_day: payment_day}, {sort: {created_at: -1}});
-        return invoice ? invoice.actualDeliveryDate() : 'Not Delivered Yet';
-    }
+	//for subscriptions only
+    this.lastDeliveryDate = function(payment_day, smallTime){
+        var invoice = this.lastSubscriptionInvoiceForDay(payment_day);
+        return invoice ? (smallTime ? invoice.actualDeliverySmallTime() : invoice.actualDeliveryDate()) : 'Not Delivered Yet';
+    };
+	this.lastSubscriptionInvoiceForDay = function(payment_day) {
+		return Invoices.findOne({venue_id: this._id, payment_day: payment_day, type: 'subscription'}, {sort: {created_at: -1}});
+	};
 
     this.hasUnpaidInvoice = function(){
         return Invoices.find({
@@ -115,7 +139,7 @@ VenueModel = function(doc){
             flavors.push({
                 period: keg.payment_cycle + '-' + keg.payment_day,
                 period_name: keg.payment_cycle + ' on ' + keg.payment_day,
-                name: keg.getType().name + ' ' + keg.randomCompensatedFlavor().name + ' keg(s) ' + keg.payment_cycle.ucfirst()+ '',
+                name: keg.randomCompensatedFlavor().name + ' keg' + (kegGroup.length > 1 ? 's' : ''),
                 quantity: kegGroup.length,
                 subtotal: kegs_subtotal,
                 rate: keg.price,
@@ -132,7 +156,7 @@ VenueModel = function(doc){
         var invoiceId = this.createInvoice({
             	type: 'subscription',
 	            payment_day: subscriptionAttributes.payment_day,
-	            requested_delivery_date: nextDateObj(new Date(), subscriptionAttributes.payment_day, 'noon'),
+	            requested_delivery_date: markedDeliveryDate(subscriptionAttributes.payment_day),//nextDateObj(new Date(), subscriptionAttributes.payment_day, 'noon'),
 	            actual_delivery_date: new Date,
 	            delivered: true
 	        }),

@@ -7,20 +7,19 @@
 						<div class="row_icon">
 							<img src="/images/keg.png" width="30px" /> 
 						</div>
-						<div class="row_info">
+						<div class="row_info" style="margin-left: -2px;">
 							<span class="row_title">Order #{{order_num}}</span>
-							<br /> <span>{{deliveryDayOfWeek}} - {{actualDeliveryDate}}</span>
+							<br /> <span>{{{actualDeliveryDate}}} - ${{total}}</span>
 						</div>
 						<div style="clear:both;"></div>
 
-						<div class="right_side_info">${{total}}</div>
 						<div class="row-arrow"></div>
 					</li>
 				{{/each}}	
 			{{else}}
 				<div class="no_data">
 					<div class="row_info">
-						<span class="row_title">YOU HAVE NO DELIVERED ORDERS YET</span>
+						<span class="row_title" style="text-align: center;">YOU HAVE NO DELIVERED ORDERS YET</span>
 					</div>
 					<div style="clear:both;"></div>
 				</div>

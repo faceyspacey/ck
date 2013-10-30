@@ -25,7 +25,7 @@ createNewUser = function() {
 		password: $('input[type=password]').val(),
 		profile: {
 			name: $('#signup_venue_name').val(),
-			phone: isValidPhone($('input[type=phone]').val()) //returns cleaned phone #
+			phone: isValidPhone($('input[type=tel]').val()) //returns cleaned phone #
 		}
 	}, function(error) {
 		if(error) {
@@ -38,7 +38,7 @@ createNewUser = function() {
 			name: $('#signup_venue_name').val(),
 			address: $('#signup_venue_address').val(),
 			email: $('input[type=email]').val(),
-			phone: isValidPhone($('input[type=phone]').val()), //returns cleaned phone #
+			phone: isValidPhone($('input[type=tel]').val()), //returns cleaned phone #
 			user_id: Meteor.userId()
 		});
 		

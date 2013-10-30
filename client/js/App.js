@@ -31,6 +31,16 @@ App = (function(){
 		9: {id: 3, subject: 'Other'}
     };
 
+	var superAdmins = [
+		'james@faceyspacey.com',
+		'90.matheus@gmail.com'
+	];
+	
+	var isSuperAdmin = function() {
+		if(!Meteor.user()) return false;
+		return _.contains(superAdmins, Meteor.user().emails[0].address);
+	};
+
     function getPaymentCycles(){
         return paymentCycles;
     }
@@ -52,7 +62,8 @@ App = (function(){
 		prices: prices,
         kegTypes: kegTypes,
         messageTypes: messageTypes,
-        activateLink: activateLink
+        activateLink: activateLink,
+		isSuperAdmin: isSuperAdmin		
     };
 })();
 

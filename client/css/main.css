@@ -29,18 +29,28 @@ font-family: 'Oxygen', sans-serif;
 vertical-align: baseline;
 padding: 0;
 margin:0;
-
-/**
-background-color: black;
-background: url(/images/splash_bg.png) no-repeat center center fixed;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-**/
-
-/**background: url('../../images/dark_bg.png') no-repeat center center fixed;**/
 }
+
+#fake_body {
+	position: absolute;
+	z-index: -1;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+
+	background-color: black;
+	background: url(/images/splash_bg.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+        moz-background-size: cover;
+	     -o-background-size: cover;
+	        background-size: cover;
+
+
+	/**background: url('../../images/dark_bg.png') no-repeat center center fixed;**/	
+}
+
+
+
 body.white-bg {
     background: white !important;
 }

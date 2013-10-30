@@ -49,9 +49,12 @@ Template._nav_bar.rendered = function() {
 
 Template._loginButtonsLoggedIn.events({
     'click #login-buttons-logout': function(e){
+	console.log('logging out');
         e.preventDefault();
-        Router.go('home');
         Meteor.logout();
+		Meteor.setTimeout(function() {
+			Router.go('guest');
+		}, 100);
     }
 });
 

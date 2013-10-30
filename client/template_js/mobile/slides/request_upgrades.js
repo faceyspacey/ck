@@ -7,7 +7,7 @@ Template.slide_request_upgrades.helpers({
 });
 
 Template.slide_request_upgrades.events({
-    'mouseup .save-button, tap .save-button': function(){
+    'mouseup .save-button': function(){
 		var message = new MessageModel(),
 			messageType = $('#upgrade_type_dropdown').val(),
 		 	message_id = message.save({
@@ -28,5 +28,11 @@ Template.slide_request_upgrades.events({
 		else {
 			alert('Oops. Something was wrong with your message. Please try again.')
 		}
-    }
+    },
+	'touchstart .save-button, mousedown .save-button': function(e) {
+		$(e.currentTarget).addClass('touched');
+	},
+	'touchend .save-button, mouseup .save-button': function(e) {
+		$(e.currentTarget).removeClass('touched');
+	}
 });

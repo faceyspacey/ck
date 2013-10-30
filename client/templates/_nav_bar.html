@@ -15,6 +15,7 @@
 		<div class="links-parent" id="administration_panel_link">Administration Panel ▾
             <div id="admin_links" class="nav-menu" style="display:none">
                 <a class="navi-link {{active 'home'}}" id="page_home_link" href="javascript: Router.go('home');">Administration Panel ▾</a>
+				<a class="navi-link admin-only {{active 'mobile'}}" id="page_delivery_link" href="{{pathFor 'mobile'}}">Mobile Panel</a>
                 <a class="navi-link admin-only {{active 'delivery'}}" id="page_delivery_link" href="javascript: Router.go('delivery');">Delivery</a>
                 <a class="navi-link admin-only {{{active 'oneOffs'}}}" id="page_oneOffs_link" href="javascript: Router.go('oneOffs');">One-Offs {{{one_offs_count}}}</a>
                 <a class="navi-link admin-only {{active 'kegeratorInstalls' 'kegeratorInstallsAll'}}" id="page_kegeratorInstalls_link" href="javascript: Router.go('kegeratorInstallsAll');">Kegerator Installs {{{kegerator_installs_count}}}</a>

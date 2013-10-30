@@ -7,7 +7,7 @@ Template.slide_support.helpers({
 });
 
 Template.slide_support.events({
-    'mouseup .save-button, tap .save-button': function(){
+    'mouseup .save-button': function(){
 		var message = new MessageModel(),
 		 	message_id = message.save({
             	user_id: Meteor.userId(),
@@ -24,5 +24,11 @@ Template.slide_support.events({
 		else {
 			alert('Oops. Something was wrong with your message. Please try again.')
 		}
-    }
+    },
+	'touchstart .save-button, mousedown .save-button': function(e) {
+		$(e.currentTarget).addClass('touched');
+	},
+	'touchend .save-button, mouseup .save-button': function(e) {
+		$(e.currentTarget).removeClass('touched');
+	}
 });

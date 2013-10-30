@@ -1,3 +1,96 @@
+.mobile_logo img {
+	display: block;
+	margin: auto;
+}
+
+#homepage-signup-button {
+	position: absolute;
+	z-index: 3;
+	bottom: 100px;
+	left: 50%;
+	margin-left: -134px;
+	width: 250px;
+	height: 28px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px;
+	line-height: 14px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 0px rgb(62, 100, 124);
+	text-decoration: none;
+	text-align: center;
+	padding: 18px 8px;
+	-moz-box-shadow: inset 0px 1px 0px 0px #bee2f9;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #bee2f9;
+	box-shadow: inset 0px 1px 0px 0px #bee2f9;
+	
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #007CC9), color-stop(1, #0E4D74) );
+	background: -moz-linear-gradient( center top, #007CC9 5%, #0E4D74 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#296285', endColorstr='#0c2842');
+	
+	background-color: #296285;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-radius-bottomright: 6px;
+	border-bottom-right-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-bottom-left-radius: 6px;
+	border: 1px solid #3866a3;
+	
+	color: #e9eef5;
+	text-shadow: 1px 1px 0px #424d57;
+	cursor: pointer;
+}
+
+#homepage-signup-button {
+
+  
+  border-top: 1px solid #38538c;
+  border-right: 1px solid #1f2d4d;
+  border-bottom: 1px solid #151e33;
+  border-left: 1px solid #1f2d4d;
+  border-radius: 4px;
+  
+  -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+  box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+  
+  color: #fff;
+  font: "helvetica neue", helvetica, arial, sans-serif;
+  text-shadow: 0 -1px 1px #1e2d4d;
+  
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  z-index: 0;
+}
+ 
+#homepage-signup-button:hover {
+    -webkit-box-shadow: inset 0 0 20px 1px #87adff, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+    box-shadow: inset 0 0 20px 1px #87adff, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+}
+	
+#homepage-signup-button:active {
+    -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+    box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+}
+
+#signup-on-draft {
+	position: absolute; 
+	bottom: 8px; 
+	right: 100px; 
+	
+	font-size: 16px; 
+	font-style: oblique;
+	text-decoration:underline;
+}
+
 #mobile_container {
 	background-color: white;
 	position: absolute;
@@ -7,16 +100,21 @@
 	left: 50%;
 	margin-left: -200px;
 	
-	box-shadow: 0px 5px 100px 2px rgba(27, 115, 195, 1);
 	
-	/**border: 2px solid rgba(0, 94, 236, 1);**/
+	
 	
 	border-radius: 2px;
 	
 	overflow: hidden;
 	
-	background-color: #f6f6f6;
+	background-color: #f6f6f6;	
+}
+
+
+.mobile_container_on_desktop {
+	border: 2px solid rgba(0, 94, 236, 1);
 	
+	box-shadow: 0px 5px 100px 2px rgba(27, 115, 195, 1);
 	-webkit-animation-name: glowz;
 	-webkit-animation-duration: .85s;
 	-webkit-animation-timing-function: ease-in-out;
@@ -41,7 +139,6 @@
 	animation-delay: 0;
 	animation-fill-mode: none;
 }
-
 
 #sliding_page_wrapper {
 	position: relative;
@@ -349,11 +446,82 @@ text-shadow: 1px 1px 1px black;
 	margin-top: -10px;
 }
 
-#mobile_container ul > li.touched div.row-arrow {
-	background: url(/images/listArrowSel.png) no-repeat right center; 
+#mobile_container ul > li div.action_button {
+	line-height: 12px;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -16px;
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	padding: 10px 20px;
+	background-color: #1e7fe6;
+	background: -moz-linear-gradient(
+		top,
+		#1e7fe6 0%,
+		#1372d1);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#1e7fe6),
+		to(#1372d1));
+
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	border: 1px solid #003366;
+
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 1px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.7),
+		0px 1px 0px rgba(255,255,255,0.3);
+	text-decoration: none;	
+
+	width: 44px;
+	padding: 0px;
+	text-align: center;
+	height: 30px;
+	line-height: 30px; 
+}
+
+#mobile_container ul > li.touched div.action_button {
+box-shadow: none;
+background-color: #1e7fe6;
+background: -moz-linear-gradient(
+	top,
+	#215A96 0%,
+	#1259A5);
+background: -webkit-gradient(
+	linear, left top, left bottom, 
+	from(#215A96),
+	to(#1259A5));
+}
+
+#mobile_container ul > li div.delivered_result {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -16px;
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 12px;
+	color: rgb(56, 73, 126);
 }
 
 
+#mobile_container ul > li.touched div.row-arrow {
+	background: url(/images/listArrowSel.png) no-repeat right center; 
+}
 
 
 #mobile_container input, #mobile_container textarea {
@@ -392,7 +560,7 @@ font-size: 14px;
 
 #mobile_container .info_box {
 width: 80%;
-margin: 20px auto;
+margin: 0px auto 20px;
 
 padding: 10px;
 border: 1px solid #ddd;
@@ -400,7 +568,7 @@ border-radius: 5px;
 box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 
 font-family: "Helvetica Neue", Helvetica, sans-serif;
-font-size: 25px;
+font-size: 16px;
 font-weight: normal;
 text-shadow: 1px 1px 1px white;
 color: #999;
@@ -435,7 +603,7 @@ color: black;
 
 
 #mobile_container .invoice_items {
-width: 80%;
+width: 92%;
 margin: 0 auto;
 display: block;
 }
@@ -460,11 +628,12 @@ display: block;
 
 #mobile_container .invoice_items img {
 width: 30px;
+margin-left: -12px;
 }
 
 #mobile_container .invoice_items span {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	font-size: 25px;
+	font-size: 16px;
 	font-weight: normal;
 	text-shadow: 1px 1px 1px white;
 	color: #999;
@@ -472,22 +641,23 @@ width: 30px;
 	color: rgb(73, 79, 82);
 	
 	position: relative;
-	top: -4px;
+	top: -8px;
 }
 
 
 #mobile_container .invoice_items div.invoice_item_subtotal {
 font-weight: bold;
 float:right;
-margin-right: 10px;
+margin-right: -12px;
 
 font-family: "Helvetica Neue", Helvetica, sans-serif;
-font-size: 25px;
-font-weight: normal;
+font-size: 16px;
+font-weight: bold;
 text-shadow: 1px 1px 1px white;
 
 padding: 4px;
 color: rgb(73, 79, 82);
+margin-top: 4px;
 }
 
 #mobile_container input:hover, #mobile_container textarea:hover {
@@ -537,17 +707,7 @@ color: rgb(73, 79, 82);
     text-align: left;
 }
 
-#homepage-signup-button {
-	top: 8px;
-	right: 8px;
-	background: #000000;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FF6A06), to(#CE4419));
-	background: -moz-linear-gradient(top, #000000 0%, #343435);
-	font-size: 18px;
-	padding: 18px 32px;
-	text-shadow: 1px 1px 1px black;
-	z-index: 9999;
-}
+
 
 .placeholderd { color: #aaa; }
 
@@ -617,7 +777,7 @@ color: rgb(73, 79, 82);
 #mobile_footer {
 	background: black;
 	position:absolute;
-	bottom:-45px;
+	bottom:-46px;
 	left:0px;
 	width: 100%;
 	height: 45px;
@@ -634,11 +794,44 @@ color: rgb(73, 79, 82);
 	background: linear-gradient(to bottom,  rgba(30,31,33,1) 0%,rgba(0,0,0,1) 42%,rgba(0,0,0,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1f21', endColorstr='#000000',GradientType=0 ); /* IE6-8 */
 	
-	/**border-top: 3px solid #0D75E4;**/
+	border-top: 1px solid rgba(73,155,234,1);
 }
 
 #mobile_footer img {
 	margin: -1px auto 0px;
 	display: block;
 	height: 45px;
+}
+
+
+/** hack to prevent tap/touchend events from firing twice on mobile browsers **/
+.save-button:hover, .toolbar-button:hover{
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#mobile_container ul li:hover{
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+#mobile_container #signup_credit_card {
+	width: 90%; margin-left: 0px;
+}
+
+#mobile_container #signup_cvv_code {
+	width: 164px; margin-left: 0px;
+}
+
+#mobile_container #signup_card_month {
+	float:left; width: 75px; margin-left:0px;
+}
+
+#mobile_container #signup_card_year {
+	float:left; width: 100px;
 }

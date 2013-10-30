@@ -8,7 +8,7 @@ Template.slide_order.helpers({
 });
 
 Template.slide_order.events({
-	'mouseup .reply-button, tap .reply-button': function() {
+	'mouseup .reply-button': function() {
 		var message = prompt('Send us a quick message about the order. Anything wrong? All gravy?');
 		currentInvoice().addReplyMessage(message);
 	}

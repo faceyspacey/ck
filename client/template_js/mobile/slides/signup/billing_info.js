@@ -1,5 +1,14 @@
+Template.slide_billing_info.helpers({
+	disabled: function() {
+		return '';
+		if(Session.get('step_type') == 'signup')
+			return Session.get('slide_step') != 4 ? 'disabled="disabled"' : '';
+		return '';
+	}
+});
+
 Template.slide_billing_info.events({
-	'mouseup .save-button, tap .save-button': function() {
+	'mouseup .save-button': function() {
 		var card = {
 		    	number: $('#signup_credit_card').val(),
 			    cvc: $('#signup_cvv_code').val(),
@@ -19,15 +28,8 @@ Template.slide_billing_info.events({
 					//set user_id so subscriptions update & refresh is not needed
 					Session.set('new_user_id', Meteor.userId());
 					
-					if(!isMobile) Router.go('myVenues');
-					else {
-						if(Session.get('step_type') == 'panel_edit_billing_info') prevPage(2);
-						else {
-							Session.set('step_type', 'panel');
-							Session.set('slide_step', 0);
-							Router.go('mobile');
-						}
-					}
+					if(Session.get('step_type') == 'panel_edit_billing_info') prevPage(2);
+					Router.go('mobile');
 				});
 		    } 
 			else {
@@ -35,5 +37,11 @@ Template.slide_billing_info.events({
 				alert('Something is wrong with the card you provided. Please double check it.');
 			}
 		});
+	},
+	'mousedown .save-button': function(e) {
+		$(e.currentTarget).addClass('touched');
+	},
+	'touchend .save-button, mouseup .save-button': function(e) {
+		$(e.currentTarget).removeClass('touched');
 	}
 });

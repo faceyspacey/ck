@@ -28,6 +28,48 @@ nextDateObj = function(d, dayOfWeek, partOfDay){
     }
 }
 
+
+mondayStart = function() {
+	return moment().startOf('week').add(1, 'day').toDate();
+};
+
+mondayEnd = function() {
+	return moment().startOf('week').add(1, 'day').endOf('day').toDate();
+};
+
+thursdayStart = function() {
+	return moment().startOf('week').add(4, 'day').toDate();
+};
+
+thursdayEnd = function() {
+	return moment().startOf('week').add(4, 'day').endOf('day').toDate();
+};
+
+
+nextMondayStary = function() {
+	return moment().startOf('week').add(1, 'day').add(7, 'days').toDate();
+};
+
+nextMondayEnd = function() {
+	return moment().startOf('week').add(1, 'day').add(7, 'days').endOf('day').toDate();
+};
+
+nextThursdayStart = function() {
+	return moment().startOf('week').add(4, 'day').add(7, 'days').toDate();
+};
+
+nextThursdayEnd = function() {
+	return moment().startOf('week').add(4, 'day').add(7, 'days').endOf('day').toDate();
+};
+
+
+markedDeliveryDate = function(dayOfWeek) {
+	if(dayOfWeek == 'monday') return mondayStart();
+	if(dayOfWeek == 'thursday') return thursdayStart();
+};
+
+
+
 oddEvenWeek = function(d) {
 	var weekNumber = getWeekNumber(d);
 	return weekNumber % 2 ? 'odd' : 'even';

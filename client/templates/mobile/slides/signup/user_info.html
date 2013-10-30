@@ -1,9 +1,9 @@
 <template name="slide_user_info">
 	<div id="slide_user_info" class="mobile_pages">
 		<div class="scrollInner">
-			<input type="email" placeholder="Email" style="margin-top:0px;"/>
-			<input type="password" placeholder="Password" />
-			<input type="phone" placeholder="Cell #" />
+			<input id="user_email" type="email" placeholder="Email" style="margin-top:0px;" {{disabled}} />
+			<input id="user_password" type="password" placeholder="Password" {{disabled}} />
+			<input id="user_tel" type="tel" placeholder="Cell #" {{disabled}} /> 
 		
 			<a class="toolbar-button save-button" href="#">{{saveButtonText}}</a>
 		</div>

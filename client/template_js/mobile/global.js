@@ -1,4 +1,55 @@
 stepTypes = {
+	guest_home: [
+		{template: 'slide_venue_info', title: 'Add Your Venue'}, 
+	],
+	guest_slides: [
+	
+	],
+	panel_admin: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin', title: 'CK Admin'}
+	],
+	panel_admin_delivery_subscription_monday: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_delivery_subscription_monday', title: 'Monday'}
+	],
+	panel_admin_delivery_subscription_thursday: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_delivery_subscription_thursday', title: 'Thursday'}
+	],
+	panel_admin_delivery_one_time: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_delivery_one_time', title: 'One Time Orders'}
+	],
+	panel_admin_delivery_upgrades: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_delivery_upgrades', title: 'Upgrades'}, 
+	],
+	panel_admin_delivery_brewing_todo: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_brewing_todo', title: 'Brewing To Do'}
+	],
+	panel_admin_unpaid_offline_invoices: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin_unpaid_offline_invoices', title: 'Conscious Kombucha'},
+	],
+	panel_admin_deliquent_card_accounts: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin_deliquent_card_accounts', title: 'Conscious Kombucha'},
+	],
+	panel_admin_brewing_instructions: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin_brewing_instructions', title: 'Conscious Kombucha'},
+	],
+	panel_admin_how_to: [
+		{template: 'slide_home', title: 'Venue Name'}, 
+		{template: 'slide_admin_how_to', title: 'Conscious Kombucha'},
+	],
 	signup: [
 		{template: 'slide_venue_info', title: 'Add Your Venue'}, 
 		{template: 'slide_flavors', title: 'Select a Flavor'},
@@ -61,21 +112,18 @@ stepTypes = {
 
 currentStep = 0;
 
-//Session.set('step_type', 'signup'); //default step_type
-//Session.set('slide_step', 0); //default slide_step
-
-
 getSteps = function() {
 	return stepTypes[Session.get('step_type')];
 };
 
-getSlideGroupTemplates = function(stepType) {
+getSlideGroupTemplates = function(stepType) {	
 	return _.map(stepTypes[stepType], function(slide) {
 		return slide.template;
 	});
 };
 
 currentTemplate = function() {
+	console.log(Session.get('step_type'), Session.get('slide_step'))
 	return stepTypes[Session.get('step_type')][Session.get('slide_step')].template;
 };
 
@@ -129,7 +177,7 @@ currentInvoice = function() {
 
 setupSignupForm = function() {
 	//setup hover states on buttons for desktop browsers
-	$('.toolbar-button').live('mouseenter', function() {
+	$('.toolbar-button, .action_button').live('mouseenter', function() {
 	    $(this).css('opacity', .9);	
 	}).live('mouseleave', function() {
 	    $(this).css('opacity', 1)	
@@ -158,8 +206,11 @@ applyAllScrolls = function() {
 
 				Template[name].rendered = function() {
 					console.log('rendered', currentSlide);
-					if(oldRendered) oldRendered(); //call original rendered function
-					setupIscroll(this); //tack this on after the original rendered function ;)
+					var _this = this;
+					Meteor.setTimeout(function() {
+						setupIscroll(_this); //tack this on after the original rendered function ;)
+						if(oldRendered) oldRendered(); //call original rendered function
+					}, 0);
 				};
 			})();	
 		}

@@ -47,6 +47,7 @@ Model = {
 		return moment(this[field]).format("ddd, MMM Do, h:mm a");
 	},
 	extend: function(doc) {
-		_.extend(this, this.defaultValues, doc);
+		//_.extend(this, this.defaultValues); //for some reason the doc isnt overwriting default values. we dont need this anyway. insert handles it
+		_.extend(this, doc);
 	}
 };

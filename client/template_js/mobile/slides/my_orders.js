@@ -8,17 +8,17 @@ Template.slide_my_orders.helpers({
 });
 
 Template.slide_my_orders.events({
-	'mouseup li, tap li': function() {
+	'click li': function() {
 		if(!mobileScrolling) {
 			Session.set('title_add_on', this.order_num);
 			Session.set('current_invoice_id', this._id);
 			nextPage();
 		}
 	},
-	'touchstart li': function(e) {
+	'mousedown li, touchstart li': function(e) {
 		$(e.currentTarget).addClass('touched');
 	},
-	'touchend li': function(e) {
+	'mouseup li, touchend li': function(e) {
 		$(e.currentTarget).removeClass('touched');
 	}
 });

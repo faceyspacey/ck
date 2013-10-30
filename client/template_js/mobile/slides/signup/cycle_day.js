@@ -17,7 +17,7 @@ Template.slide_cycle_day.helpers({
 
 
 Template.slide_cycle_day.events({
-	'mouseup .save-button, tap .save-button': function() {
+	'mouseup .save-button': function() {
 		if($('.radio-button-selected').length < 2) alert('Please select the day and timing of your keg delivery');
 		else {
 			var cycle = $('.radio-cycle').index($('.radio-cycle.radio-button-selected')) ? 'bi-weekly' : 'weekly',
@@ -65,16 +65,22 @@ Template.slide_cycle_day.events({
 			}
 		}
 	},
-	'mouseup .delete-button, tap .delete-button': function() {
-		Kegs.remove(Session.get('current_keg_id'));
-		prevPage();
-	},
-	'mouseup .radio-cycle, tap .radio-cycle': function(e) {
+	'mouseup .radio-cycle, touchend .radio-cycle': function(e) {
 		$('.radio-cycle').removeClass('radio-button-selected');
 		$(e.currentTarget).addClass('radio-button-selected');
 	},
-	'mouseup .radio-day, tap .radio-day': function(e) {
+	'mouseup .radio-day, touchend .radio-day': function(e) {
 		$('.radio-day').removeClass('radio-button-selected');
 		$(e.currentTarget).addClass('radio-button-selected');
+	},
+	'mouseup .delete-button': function() {
+		Kegs.remove(Session.get('current_keg_id'));
+		prevPage();
+	},
+	'touchstart .save-button, mousedown .save-button': function(e) {
+		$(e.currentTarget).addClass('touched');
+	},
+	'touchend .save-button, mouseup .save-button': function(e) {
+		$(e.currentTarget).removeClass('touched');
 	}
 });

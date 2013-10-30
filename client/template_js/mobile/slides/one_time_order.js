@@ -31,7 +31,7 @@ Template.slide_one_time_order.helpers({
 });
 
 Template.slide_one_time_order.events({
-	'mouseup .save-button, tap .save-button': function(e) {
+	'mouseup .save-button': function(e) {
 		console.log('pressed');
 		OrderedFlavors = new Meteor.Collection(null, { //create local-only (temporary) mini-mongo collection
 		    reactive: true,
