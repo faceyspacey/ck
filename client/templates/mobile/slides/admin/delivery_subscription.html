@@ -1,0 +1,57 @@
+<template name="slide_admin_delivery_subscription_monday">
+	<div id="subscription_monday" class="mobile_pages">
+		<ul>
+			{{#each venues}}
+				<li>
+					<div class="row_info" style="margin-left: -18px;">
+						<span class="row_title" style="font-size:20px; display:block; width: 80%">{{name}}</span>
+						<span class="row_title" style="font-size:16px; font-weight: normal; display:block; width: 80%">{{address}}</span>
+						<span>
+							{{#each flavors this}}
+			                    {{quantity}} {{flavor_name}} &nbsp;
+			                {{/each}}
+						</span>
+					</div>
+					<div style="clear:both;"></div>
+
+					{{#if canBeDelivered}}
+						<div class="action_button">&#10003</div>
+					{{else}}
+						<div class="delivered_result">
+							{{{lastDeliveryDate 'monday' true}}}
+						</div>						
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="slide_admin_delivery_subscription_thursday">
+	<div id="subscription_thursday" class="mobile_pages">
+		<ul>
+			{{#each venues}}
+				<li>
+					<div class="row_info" style="margin-left: -18px;">
+						<span class="row_title" style="font-size:20px; display:block; width: 80%">{{name}}</span>
+						<span class="row_title" style="font-size:16px; font-weight: normal; display:block; width: 80%">{{address}}</span>
+						<span>
+							{{#each flavors this}}
+			                    {{quantity}} {{flavor_name}} &nbsp;
+			                {{/each}}
+						</span>
+					</div>
+					<div style="clear:both;"></div>
+
+					{{#if canBeDelivered}}
+						<div class="action_button">&#10003</div>
+					{{else}}
+						<div class="delivered_result">
+							{{{lastDeliveryDate 'thursday' true}}}
+						</div>						
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>

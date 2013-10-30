@@ -1,0 +1,29 @@
+<template name="slide_admin_delivery_upgrades">
+	<div id="delivery_upgrades" class="mobile_pages">
+		<ul>
+			{{#each venues}}
+				<li>
+					<div class="row_info" style="margin-left: -18px;">
+						<span class="row_title" style="font-size:20px; display:block; width: 80%">{{name}}</span>
+						<span class="row_title" style="font-size:16px; font-weight: normal; display:block; width: 80%">{{address}}</span>
+						<span>
+							  {{#if needsStuff}}REQUESTED: {{/if}}
+							  {{#unless kegeratorInstalled}}Kegerator &nbsp;{{/unless}}
+							  {{#unless tapInstalled}}Tap &nbsp;{{/unless}}
+							  {{#unless materialsSupplied}}Promo Materials &nbsp;{{/unless}}
+						</span>
+					</div>
+					<div style="clear:both;"></div>
+
+					{{#if needsStuff}}
+						<div class="action_button">&#10003</div>											
+					{{else}}
+						<div class="delivered_result">
+							{{{lastUpgradeTime}}}
+						</div>					
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>

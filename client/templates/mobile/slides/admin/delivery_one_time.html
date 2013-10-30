@@ -1,0 +1,28 @@
+<template name="slide_admin_delivery_one_time">
+	<div id="delivery_one_time" class="mobile_pages">
+		<ul>
+			{{#each invoices}}
+				<li>
+					<div class="row_info" style="margin-left: -18px;">
+						<span class="row_title" style="font-size:20px; display:block; width: 80%">{{venue.name}}</span>
+						<span class="row_title" style="font-size:16px; font-weight: normal; display:block; width: 80%">{{venue.address}}</span>
+						<span>
+							{{#each items}}
+			                    ${{../total}} - {{quantity}} {{flavor_name}} &nbsp;
+			                {{/each}}
+						</span>
+					</div>
+					<div style="clear:both;"></div>
+
+					{{#if delivered}}
+						<div class="delivered_result">
+							{{{actualDeliverySmallTime}}}
+						</div>						
+					{{else}}
+						<div class="action_button">&#10003</div>					
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
