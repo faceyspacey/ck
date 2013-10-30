@@ -42,6 +42,7 @@ Template.panel_slides.rendered = function() {
 
 Template.sliding_page_wrapper.helpers({
 	slides: function() {
+		clearScrolls(); //iScrolls need to be cleared cuz dead elements with the same IDs will be controlled by old iScroll calls
 		return getSlideGroupTemplates(Session.get('step_type'));
 	},
 	renderSlide: function(slide) {

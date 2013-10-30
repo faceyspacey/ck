@@ -31,7 +31,6 @@ Template.slide_admin_delivery_subscription_monday.events({
 	'click li .action_button': function(e) {
 		if(!mobileScrolling) {
 	        if(confirm('Are all ordered items delivered to this venue? ('+this.name+')')) {
-				iScrollElementsDontDestroy['subscription_monday'] = true;
 				this.placeSubscriptionOrder({payment_day: 'monday'});
 			}
 		}
@@ -79,7 +78,6 @@ Template.slide_admin_delivery_subscription_thursday.events({
 	'click li .action_button': function(e) {
 		if(!mobileScrolling) {
 	        if(confirm('Are all ordered items delivered to this venue? ('+this.name+')')) {
-				iScrollElementsDontDestroy['subscription_thursday'] = true;
 				this.placeSubscriptionOrder({payment_day: 'thursday'});
 			}
 		}

@@ -1176,21 +1176,6 @@ hvScroll = function(id) {
 
 
 iScrollElements = {};
-iScrollElementsDontDestroy = {};
-setupIscrollOld = function(templateInstance) {
-	var page = templateInstance.find('.mobile_pages, #mobile_sidebar'),
-		id = $(page).attr('id');
-	
-	if(iScrollElements[id] && iScrollElementsDontDestroy[id] == undefined) {
-		iScrollElements[id].destroy();
-		delete iScrollElements[id]; 
-	}
-	if(iScrollElements[id] == undefined) iScrollElements[id] = vScroll(id);
-	
-	return iScrollElements[id];
-};
-
-
 setupIscroll = function(templateInstance) {
 	var page = templateInstance.find('.mobile_pages, #mobile_sidebar'),
 		id = $(page).attr('id');
@@ -1200,12 +1185,10 @@ setupIscroll = function(templateInstance) {
 	return iScrollElements[id].refresh();
 };
 
-
-
-deleteDontDestroyScrolls = function() {
-	for (prop in iScrollElementsDontDestroy) { 
-		if (iScrollElementsDontDestroy.hasOwnProperty(prop)) { 
-			delete iScrollElementsDontDestroy[prop]; 
-		} 
+clearScrolls = function() {
+	for(id in iScrollElements) {
+		iScrollElements[id].destroy();
+		delete iScrollElements[id];
 	}
 };
+

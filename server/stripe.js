@@ -32,8 +32,8 @@ Meteor.methods({
 	},
     chargeCustomer: function(invoiceId) {
         var invoice = Invoices.findOne(invoiceId),
-			user = Meteor.user(),
-			userId = Meteor.userId(),
+			user = Meteor.users.findOne(invoice.user_id),
+			userId = user._id,
 			error, result;
 
         Stripe.charges.create({
@@ -49,7 +49,5 @@ Meteor.methods({
 				else Invoices.update(invoice._id, {$set: {paid: true}});
             }).run();         
         });
-
-        return {error: error, result: response};
     }
 });

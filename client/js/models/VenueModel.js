@@ -171,14 +171,15 @@ VenueModel = function(doc){
 	this.placeOrder = function(orderedKegs, deliveryDate) {	
 		var alertMessage;
 			
+		/** we are not using one-off quantity limits any more. but will save the code
 		if(alertMessage = this.orderedMoreThanAvailable(orderedKegs)) {
 			alert(alertMessage)
 			return false;
 		}
+		**/
 
 		var invoiceId = this.createInvoice({type: 'one_off', delivered: false, requested_delivery_date: deliveryDate});
 		this.createInvoiceItems(orderedKegs, invoiceId, true);
-		//this.chargeCustomer(invoiceId); do this upon delivery instead
 			
 		return invoiceId;
 	};
@@ -189,14 +190,11 @@ VenueModel = function(doc){
 			availableFlavors = {};
 			
 		orderedKegs.forEach(function(keg) {
-			var kegFlavor = Flavors.findOne(keg.flavor_id),
-				kegFlavorQuantity = kegFlavor.one_off_quantity_available;
-		
-			if(_.isUndefined(availableFlavors[keg.flavor_id])) availableFlavors[keg.flavor_id] = 0;
-			availableFlavors[keg.flavor_id] += keg.quantity; //sum quantity used across the same flavor in multiple flavor rows
+			//sum quantity used across the same flavor in multiple flavor rows
+			availableFlavors[keg.flavor_id] ? availableFlavors[keg.flavor_id] = 0 : availableFlavors[keg.flavor_id] += keg.quantity;
 			
 			//if ordered more kegs than we have available for the current flavor
-			if(availableFlavors[keg.flavor_id] > kegFlavorQuantity) {
+			if(availableFlavors[keg.flavor_id] > Flavors.findOne(keg.flavor_id).kegFlavor.one_off_quantity_available) {
 				stopOrder = true;
 				message = 'Sorry, you ordered more '+ kegFlavor.name + ' kegs than we have available. Please modify your order.';
 			}
@@ -247,14 +245,7 @@ VenueModel = function(doc){
 	};
 	
 	this.chargeCustomer = function(invoiceId) {
-		if(this.user().stripe_customer_token != undefined) {
-            Meteor.call('chargeCustomer', invoiceId, function(error, result){
-                Invoices.update(invoiceId, {$set: {paymentInProgress: false}});
-            });
-		}
-		else {
-			// charge non-stripe cutomers
-		}
+		Invoices.findOne(invoiceId).chargeCustomer();
 	};
 
     _.extend(this, Model);

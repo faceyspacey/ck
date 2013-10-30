@@ -12,6 +12,11 @@ Template.slide_my_orders.events({
 		if(!mobileScrolling) {
 			Session.set('title_add_on', this.order_num);
 			Session.set('current_invoice_id', this._id);
+			Meteor.setTimeout(function() {
+				//iScrollElements['slide_order'].refresh(); //not working for some weird reason
+				if(iScrollElements['slide_order']) iScrollElements['slide_order'].destroy();
+				iScrollElements['slide_order'] = vScroll('slide_order');
+			}, 0);
 			nextPage();
 		}
 	},

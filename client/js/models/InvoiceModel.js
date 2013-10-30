@@ -13,6 +13,7 @@
  *  total                       Int
  *  paid                        Bool
  *
+ *  offline_customer			Bool
  */
 
 InvoiceModel = function(doc){
@@ -24,6 +25,10 @@ InvoiceModel = function(doc){
 		paid: false
     };
 
+	this.afterInsert = function() {
+		if(!this.user().stripe_customer_token) this.save({offline_customer: true});
+	};
+	
     this.user = function(){
         return Meteor.users.findOne(this.user_id);
     };
@@ -43,11 +48,10 @@ InvoiceModel = function(doc){
 	};
 
     this.payItOff = function() {
-        if( this.paid )
-            return;
+        if(this.paid) return;
 
         this.save({paymentInProgress: true});
-        this.venue().chargeCustomer(this._id);
+        this.chargeCustomer();
     };
 
 	this.invoiceItems = function(condition){
@@ -79,7 +83,7 @@ InvoiceModel = function(doc){
     };
 	
 	this.actualDeliveryDate = function() {
-		return this.actual_delivery_date ? moment(this.actual_delivery_date).format("DD/MM <br /> h:mma") : 'Not Delivered Yet';
+		return this.actual_delivery_date ? moment(this.actual_delivery_date).format("DD/MM h:mma") : 'Not Delivered Yet';
 	};
 	
 	this.actualDeliveryMoment = function() {
@@ -110,6 +114,15 @@ InvoiceModel = function(doc){
         // payment period rendering comes here
     };
 
+	this.chargeCustomer = function() {
+		if(this.user().stripe_customer_token != undefined) {
+            Meteor.call('chargeCustomer', this._id);
+		}
+		else {
+			
+		}
+	};
+	
 	_.extend(this, Model);
 	this.extend(doc);
 

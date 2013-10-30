@@ -316,6 +316,10 @@ Handlebars.registerHelper('isDesktopSite', function() {
 	return controller != 'OrdersController' && controller != 'MobileController';
 });
 
+Handlebars.registerHelper('isAdmin', function() {
+	return Roles.userIsInRole(Meteor.userId(), ['admin']);
+});
+
 var justLoggedIn = true;
 Deps.autorun(function() {
 	//if(Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ['superAdmin'])) Router.go('mobile'); //do this later actually a superAdmin

@@ -1,0 +1,20 @@
+<template name="slide_admin_unpaid_offline_invoices">
+	<div id="unpaid_offline_invoices" class="mobile_pages">
+		<ul>
+			{{#each invoices}}
+				<li>
+					<div class="row_info" style="margin-left: -18px; width:80%;">
+						<span class="row_title" style="font-size:20px; display:block;">Order #{{order_num}}</span>
+						<span>{{{actualDeliveryDate}}} - ${{total}}</span>
+					</div>
+					<div style="clear:both;"></div>
+
+					<div class="action_button reply_button" style="right: 60px;">RE</div>
+					<div class="action_button pay_button">PAY</div>
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+

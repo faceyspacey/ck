@@ -18,15 +18,7 @@ Template.page_daily_flavors.helpers({
 
 Template.daily_kegs_table.helpers({
 	flavors: function(dayCycleAttributes) {		
-		var kegs =  Kegs.find(dayCycleAttributes).fetch(),
-			flavors = _.countBy(kegs, function(keg) {
-				return keg.randomCompensatedFlavor()._id;
-			}); //returns {Orange: 4, Cherry 7}, but ids instead of names: {dfgljkdfg: 4, sljksdfljs: 7}
-	
-		return _.map(flavors, function(value, key) {
-			var flavor = Flavors.findOne(key);
-			return {name: flavor.name, icon: flavor.icon, quantity: value}; 
-		}); //returns [{name: 'orange', etc: }, {name: 'strawberry, etc: }]
+		return getBrewingFlavors(dayCycleAttributes);
 	}
 });
 
@@ -47,7 +39,6 @@ Template.offline_customer_kegs.helpers({
 				quantity: Math.ceil(venuesCount/flavorsCount)
 			});
 		});
-
 
 		return offlineFlavors;
 	}

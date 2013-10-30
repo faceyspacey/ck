@@ -7,7 +7,14 @@ UserModel = function(doc){
 
     this.getAvatar = function(){
         return this.profile && this.profile.avatar ? this.profile.avatar : '/images/default-avatar.jpg';
-    }
+    };
+
+	this.pastDueTotal = function() {
+		var invoices = Invoices.find({user_id: this._id, paid: false});
+		return _.reduce(invoices, function(total, invoice) {
+			return total + invoice.total;
+		}, 0);
+	};
 	
     _.extend(this, Model);
 	this.extend(doc);

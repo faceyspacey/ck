@@ -21,7 +21,7 @@ Template.page_invoices.helpers({
             Router.go('home');
 
     },
-    'isAllInvoice' : function(page) {
+    isAllInvoice : function(page) {
         return page.user_id == 'all' || page.user_id == undefined;
     }
 });

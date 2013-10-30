@@ -27,14 +27,6 @@ Template.slide_admin.events({
 		if(!mobileScrolling) Session.set('step_type', 'panel_admin_deliquent_card_accounts');
 		if(!mobileScrolling) nextPage();
 	},
-	'click #slide_admin_brewing_instructions': function() {
-		if(!mobileScrolling) Session.set('step_type', 'panel_admin_brewing_instructions');
-		if(!mobileScrolling) nextPage();
-	},
-	'click #slide_admin_how_to': function() {
-		if(!mobileScrolling) Session.set('step_type', 'panel_admin_how_to');
-		if(!mobileScrolling) nextPage();
-	},
 	'mousedown li, touchstart li': function(e) {
 		$(e.currentTarget).addClass('touched');
 	},

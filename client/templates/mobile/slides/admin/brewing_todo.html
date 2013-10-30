@@ -1,0 +1,24 @@
+<template name="slide_admin_brewing_todo">
+	<div id="brewing_todo" class="mobile_pages">
+		<ul>
+			{{#each flavors}}
+				<li>
+					<div class="row_icon">
+						<img src="{{icon}}" width="30px" /> 
+					</div>
+					
+					<div class="row_info">
+						<span class="row_title">{{name}}</span>
+					</div>
+					
+					<div style="clear:both;"></div>
+
+					<div class="action_button" style="background: red;">{{quantity}}</div>
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+
+

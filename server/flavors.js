@@ -10,31 +10,31 @@ Meteor.startup(function(){
         var defaultFlavors = [
             {   _id:    'random',
                 icon:   '/images/flavor-icons/dices.png',
-                keg_icon: '/images/flavor-icons/keg_140x140.png',
+                keg_icon: '/images/flavor-icons/dices.png',
                 one_off_quantity_available: 0,
                 is_public: true,
                 name:   'Random'
             },
             {   icon:   '/images/flavor-icons/lemon-icon.png',
-                keg_icon: '/images/flavor-icons/keg_140x140.png',
+                keg_icon: '/images/flavor-icons/lemon-icon.png',
                 one_off_quantity_available: 0,
                 is_public: true,
                 name:   'Lemon'
             },
             {   icon:   '/images/flavor-icons/apple-icon.png',
-                keg_icon: '/images/flavor-icons/keg_140x140.png',
+                keg_icon: '/images/flavor-icons/apple-icon.png',
                 one_off_quantity_available: 0,
                 is_public: true,
                 name:   'Apple'
             },
             {   icon:   '/images/flavor-icons/strawberry-icon.png',
-                keg_icon: '/images/flavor-icons/keg_140x140.png',
+                keg_icon: '/images/flavor-icons/strawberry-icon.png',
                 one_off_quantity_available: 0,
                 is_public: true,
                 name:   'Strawberry'
             },
             {   icon:   '/images/flavor-icons/cherry-icon.png',
-                keg_icon: '/images/flavor-icons/keg_140x140.png',
+                keg_icon: '/images/flavor-icons/cherry-icon.png',
                 one_off_quantity_available: 0,
                 is_public: true,
                 name:   'Cherry'

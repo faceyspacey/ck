@@ -26,7 +26,6 @@ Template.mobile_toolbar.helpers({
 sidebarShown = false;
 Template.mobile_toolbar.events({
 	'mouseup .toolbar-back': function() {
-		deleteDontDestroyScrolls();
 		Session.set('title_add_on', null);
 		prevPage();
 	},

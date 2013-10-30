@@ -26,7 +26,7 @@ Template.page_one_offs.helpers({
 
 Template.delivered_one_off.events({
 	'click .delivered': function() {
-		Invoices.findOne(this._id).venue().chargeCustomer(this._id);
+		Invoices.findOne(this._id).chargeCustomer(this._id);
 		Invoices.update(this._id, {$set: {
 				delivered: true,
 				actual_delivery_date: new moment().toDate()

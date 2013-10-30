@@ -27,7 +27,7 @@ stepTypes = {
 	panel_admin_delivery_upgrades: [
 		{template: 'slide_home', title: 'Venue Name'}, 
 		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
-		{template: 'slide_admin_delivery_upgrades', title: 'Upgrades'}, 
+		{template: 'slide_admin_delivery_upgrades', title: 'Upgrades'},
 	],
 	panel_admin_delivery_brewing_todo: [
 		{template: 'slide_home', title: 'Venue Name'}, 
@@ -36,20 +36,15 @@ stepTypes = {
 	],
 	panel_admin_unpaid_offline_invoices: [
 		{template: 'slide_home', title: 'Venue Name'}, 
-		{template: 'slide_admin_unpaid_offline_invoices', title: 'Conscious Kombucha'},
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_unpaid_offline_invoices', title: 'Conscious Kombucha'}
 	],
 	panel_admin_deliquent_card_accounts: [
 		{template: 'slide_home', title: 'Venue Name'}, 
-		{template: 'slide_admin_deliquent_card_accounts', title: 'Conscious Kombucha'},
+		{template: 'slide_admin', title: 'Conscious Kombucha'}, 
+		{template: 'slide_admin_deliquent_card_accounts', title: 'Conscious Kombucha'}
 	],
-	panel_admin_brewing_instructions: [
-		{template: 'slide_home', title: 'Venue Name'}, 
-		{template: 'slide_admin_brewing_instructions', title: 'Conscious Kombucha'},
-	],
-	panel_admin_how_to: [
-		{template: 'slide_home', title: 'Venue Name'}, 
-		{template: 'slide_admin_how_to', title: 'Conscious Kombucha'},
-	],
+	
 	signup: [
 		{template: 'slide_venue_info', title: 'Add Your Venue'}, 
 		{template: 'slide_flavors', title: 'Select a Flavor'},
@@ -201,11 +196,9 @@ applyAllScrolls = function() {
 	for(name in Template) {
 		if(name.substring(0,6) == 'slide_') { //loop through all slide_ templates		
 			(function() {
-				var currentSlide = name;
 				if(Template[name].rendered != undefined) var oldRendered = Template[name].rendered.duplicate(); //clone original rendered function
 
 				Template[name].rendered = function() {
-					console.log('rendered', currentSlide);
 					var _this = this;
 					Meteor.setTimeout(function() {
 						setupIscroll(_this); //tack this on after the original rendered function ;)

@@ -1,0 +1,19 @@
+<template name="slide_admin_deliquent_card_accounts">
+	<div id="deliquent_card_accounts" class="mobile_pages">
+		<ul>
+			{{#each users}}
+				<li>
+					<div class="row_info" style="margin-left: -18px; width:80%;">
+						<span class="row_title" style="font-size:20px; display:block;">{{profile.name}}</span>
+						<span>${{pastDueTotal}}</span>
+					</div>
+					<div style="clear:both;"></div>
+
+					<div class="action_button">RE</div>
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+

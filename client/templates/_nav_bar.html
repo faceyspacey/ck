@@ -2,7 +2,7 @@
     {{#if currentUser}}
 		<div class="links-parent" id="my_kombucha_link">My Kombucha ▾
             <div id="customer_links" class="nav-menu" style="display:none;">
-                <a class="navi-link {{active 'home'}}" id="page_home_link" href="javascript: Router.go('home');">My Kombucha ▾</a>
+                <a class="navi-link {{active 'home'}}" id="page_home_link" href="#">My Kombucha ▾</a>
                 <a class="navi-link {{active 'myVenues'}}" id="page_myVenues_link" href="javascript: Router.go('myVenues');">Venues</a>
                 <a class="navi-link {{active 'myProfile'}}" id="page_myProfile_link" href="javascript: Router.go('myProfile');">Profile</a>
                 <a class="navi-link" id="page_daily_flavors_link" href="javascript: Router.go('orderKegs');">Order Kegs</a>
@@ -14,7 +14,7 @@
 	{{#if isInRole 'admin'}}
 		<div class="links-parent" id="administration_panel_link">Administration Panel ▾
             <div id="admin_links" class="nav-menu" style="display:none">
-                <a class="navi-link {{active 'home'}}" id="page_home_link" href="javascript: Router.go('home');">Administration Panel ▾</a>
+                <a class="navi-link {{active 'home'}}" id="page_home_link" href="#">Administration Panel ▾</a>
 				<a class="navi-link admin-only {{active 'mobile'}}" id="page_delivery_link" href="{{pathFor 'mobile'}}">Mobile Panel</a>
                 <a class="navi-link admin-only {{active 'delivery'}}" id="page_delivery_link" href="javascript: Router.go('delivery');">Delivery</a>
                 <a class="navi-link admin-only {{{active 'oneOffs'}}}" id="page_oneOffs_link" href="javascript: Router.go('oneOffs');">One-Offs {{{one_offs_count}}}</a>
